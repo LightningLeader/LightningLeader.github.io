@@ -341,7 +341,6 @@
             <div id="articleContent">
                 <h1 id="4路红外循迹模块使用教程"><a href="#4路红外循迹模块使用教程" class="headerlink" title="4路红外循迹模块使用教程"></a>4路红外循迹模块使用教程</h1><a id="more"></a>
 
-<p>[TOC]</p>
 <h2 id="模块详细信息："><a href="#模块详细信息：" class="headerlink" title="模块详细信息："></a>模块详细信息：</h2><p>工作电压：DC 3.3V~5V</p>
 <p>工作电流：尽量选择1A以上电源供电</p>
 <p>工作温度：-10℃~+50℃</p>
@@ -364,7 +363,7 @@
 * 检测到黑线或悬空LED灭，输出高电平
 */</span>
  <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+ <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
     <span class="token function">DisableGlobalIRQ</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment" spellcheck="true">//关闭总中断</span>
 
     <span class="token function">board_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment" spellcheck="true">//初始化寄存器</span>
@@ -394,7 +393,7 @@
             <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"OFF\r\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
   <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
+ <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span></code></pre>
 <p>代码是比较简单的，就是判断单片机IO口状态。如果IO口是高电平则表示传感器检测到黑线，否则没有检测到黑线。理解了这个原理就可以在其他型号的单片机上使用这个模块。</p>
 
                 
