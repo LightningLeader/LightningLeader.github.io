@@ -34,12 +34,20 @@
 }
 
 body {
+    cursor: url(/cursor.svg),auto;
+    background: linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35) );
+    margin: 0;
+    color: #34495e;
+}
+
+
+/* body {
     background-color: #eaeaea;
     margin: 0;
     color: #34495e;
     overflow-x: hidden;
     overflow-y: auto;
-}
+} */
 
 h1 {
     margin: 48px 0 22px -5px;
@@ -550,10 +558,10 @@ header .go-back i {
     height: 40vh !important;
 }
 
-.bg-cover:after {
+/* .bg-cover:after {
     -webkit-animation: rainbow 60s infinite;
     animation: rainbow 60s infinite;
-}
+} */
 
 .bg-cover:before,
 .bg-cover:after {
