@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="4路红外循迹模块使用教程, LightningMaster">
+    <meta name="keywords" content="循迹智能小车, LightningMaster">
     <meta name="description" content="老废物">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>4路红外循迹模块使用教程 | LightningMaster</title>
+    <title>循迹智能小车 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/4%E8%B7%AF%E7%BA%A2%E5%A4%96%E5%BE%AA%E8%BF%B9%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">4路红外循迹模块使用教程</h1>
+                    <h1 class="description center-align post-title">循迹智能小车</h1>
                 </div>
             </div>
         </div>
@@ -306,10 +306,6 @@
                                 <span class="chip bg-color">教程</span>
                             </a>
                         
-                            <a href="/tags/%E7%A1%AC%E4%BB%B6%E4%BD%BF%E7%94%A8/">
-                                <span class="chip bg-color">硬件使用</span>
-                            </a>
-                        
                             <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
                                 <span class="chip bg-color">单片机</span>
                             </a>
@@ -335,7 +331,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    722
+                    1.4k
                 </div>
                 
 
@@ -360,62 +356,164 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="4路红外循迹模块使用教程"><a href="#4路红外循迹模块使用教程" class="headerlink" title="4路红外循迹模块使用教程"></a>4路红外循迹模块使用教程</h1><a id="more"></a>
+                <h1 id="循迹智能小车-循黑线"><a href="#循迹智能小车-循黑线" class="headerlink" title="循迹智能小车 循黑线"></a>循迹智能小车 循黑线</h1><a id="more"></a>
 
-<h2 id="模块详细信息："><a href="#模块详细信息：" class="headerlink" title="模块详细信息："></a>模块详细信息：</h2><p>工作电压：DC 3.3V~5V</p>
-<p>工作电流：尽量选择1A以上电源供电</p>
-<p>工作温度：-10℃~+50℃</p>
-<p>安装孔径：M3螺丝</p>
-<p>检测距离：1mm~30cm可调，距离越近2性能越稳定，白色反射距离远</p>
-<p>尺寸大小：中控板42mmX38mmX12mm（长X宽X高）；小板向前25mmX12mmX12mm（长X宽X高）</p>
-<p>输出接口：6线制接口（1、2、3、4为4路信号输出端，VCC接正电源，GND接GND）</p>
-<p>输出信号：TTL电平，可直接连接单片机IO口，感应到传感器反射回来的红外光时，红指示灯亮，输出低电平；没有红外光时，指示灯不亮，输出高电平。</p>
-<h2 id="模块接线"><a href="#模块接线" class="headerlink" title="模块接线"></a>模块接线</h2><p><img src="/posts/2/1.png" alt="4路红外循迹模块"></p>
-<p>图中主控板左侧分别为，VCC、GND、OUT1、OUT2、OUT3、OUT4，其中OUT1、2、3、4分别连接单片机的IO口，用于检测输出电平。主控板右侧分别与四个小板连接，用于采集信息。</p>
-<h2 id="模块使用"><a href="#模块使用" class="headerlink" title="模块使用"></a>模块使用</h2><p>模块正确连接并通电后，小板传感器开始工作。模块感应到传感器反射回来的红外光时，红指示灯亮，输出低电平；没有红外光时，指示灯不亮，输出高电平。以检测黑线为例，如果传感器检测到黑线，红外光无法反射回来则模块红指示灯熄灭，同时小板对应的OUT口输出高电平；如果未检测到黑线，红外光可以反射回来则模块红指示灯亮，小板对应的OUT口输出低电平。其中需要注意一种特殊情况，也就是说当测量物体超出测量范围时，此时红指示灯熄灭，OUT口输出高电平。</p>
-<p>每个小板前面对应的电位器可以用来调整使用精度。</p>
-<h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><p>代码使用的单片机型号：STC16F40K128</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">#include &quot;headfile.h&quot;
-&#x2F;*
+<h2 id="硬件菜单"><a href="#硬件菜单" class="headerlink" title="硬件菜单"></a>硬件菜单</h2><ul>
+<li><p>单片机型号：STC16F40K128</p>
+</li>
+<li><p>4路红外循迹模块</p>
+</li>
+<li><p>小车底盘套件（一个底盘、两个TT马达、两个轮胎）</p>
+</li>
+<li><p>12V航模电池</p>
+</li>
+<li><p>降压模块</p>
+</li>
+<li><p>A4950双路电机驱动</p>
+</li>
+<li><p>杜邦线等</p>
+</li>
+</ul>
+<h2 id="硬件使用"><a href="#硬件使用" class="headerlink" title="硬件使用"></a>硬件使用</h2><p><img src="/posts/3/1.png" alt="4路红外循迹模块"></p>
+<ul>
+<li>关于4路红外循迹模块的使用教程，我之前写过一篇博客，里面有详细的介绍。如果有不会的可以先去浏览学习一下。<a href="https://lightningleader.github.io/posts/2.html">跳转至教程</a></li>
+<li>A4950双路电机驱动使用方式不多说了，比较简单。大部分人应该都是用L298N的。</li>
+</ul>
+<h2 id="硬件组装"><a href="#硬件组装" class="headerlink" title="硬件组装"></a>硬件组装</h2><p><img src="/posts/3/2.jpg" alt="循迹小车1"></p>
+<p><img src="/posts/3/3.jpg" alt="循迹小车2"></p>
+<p>硬件组装大概按照上面两张图片组装就行。  </p>
+<ul>
+<li>不过要注意的是红外传感器之间的距离和单个传感器的测量精度。在组装完成后，要通电试一试传感器的工作情况，用它检测黑线，康康是不是能够正常工作。如果无法正常工作需要及时调整传感器的精度或者其他东西。总之要保证传感器能正常检测黑线。</li>
+<li>另一点就是传感器的安装位置。受到传感器数量的限制，所以传感器的安装位置需要仔细考虑。我这里一共有4个传感器所以就像图中那样安装的。中间两个之间留有空隙，空隙的宽度大概为黑线宽度（可以稍微比黑线宽点），其他两个的位置也不要离得太远。具体为什么这样设计再后面讲解。</li>
+</ul>
+<h2 id="程序设计前的理解"><a href="#程序设计前的理解" class="headerlink" title="程序设计前的理解"></a>程序设计前的理解</h2><ul>
+<li>接上面挖下的坑，说一下中间两个传感器之间空隙的问题。</li>
+</ul>
+<p>前提是小车在没有检测到黑线的时候会直线行驶。中间的空隙宽度略微大于黑线宽度，这样就可以满足当黑线处于这个缝隙间的时候传感器不会有反应，小车会直线行驶，在一定程度上满足循线的基础操作。肯定会出现黑线移出这个空隙的情况，这样的话黑线就会被两侧的传感器检测到，然后由单片机做出应对。如果是左侧的传感器检测到黑线（设定小车前进方向为正方向），代表车头右偏了，因此小车需要左转；于此类似，右侧的传感器也是一个道理。理解了这些就可以完成最基本的循线了。</p>
+<ul>
+<li>最外侧两个传感器的作用  </li>
+</ul>
+<p>因为传感器反应速度等等一系列可能的原因会出现黑线在移出中央空隙的时间很短导致传感器没有检测到等的情况，这样的话小车肯定会继续前进而导致无法继续循线。如果在中间两个传感器两侧又安装了两个传感器的话，这样就相当于多了一个保险，如果中间两个没有检测到的话，最外侧的传感器正常工作仍能让小车重新回到循线轨迹上来。不过要注意的是，因为当最外侧的传感器检测到黑线时就意味着车头已经偏的比较严重了，所以要想让车头偏正就需要给更大的“力”，也就是给更大的PWM。</p>
+<h2 id="程序代码"><a href="#程序代码" class="headerlink" title="程序代码"></a>程序代码</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;headfile.h&quot;
+
+
+&#x2F;*******************
+* 用于初始化PWM的
+*******************&#x2F;
+void All_Init(void)
+&#123;
+	pwm_init(PWMA_CH1P_P60, 10000, 0);
+	pwm_init(PWMA_CH2P_P62, 10000, 0);
+	pwm_init(PWMA_CH3P_P64, 10000, 0);
+	pwm_init(PWMA_CH4P_P66, 10000, 0);
+&#125;
+
+
+&#x2F;*******************
+* 车子左转
+*******************&#x2F;
+void turn_left(int duty)
+&#123;
+	pwm_duty(PWMA_CH1P_P60, duty);
+	pwm_duty(PWMA_CH2P_P62, 0);
+	pwm_duty(PWMA_CH3P_P64, 0);
+	pwm_duty(PWMA_CH4P_P66, duty);
+&#125;
+
+
+&#x2F;*******************
+* 车子右转
+*******************&#x2F;
+void turn_right(int duty)
+&#123;
+	pwm_duty(PWMA_CH1P_P60, 0);
+	pwm_duty(PWMA_CH2P_P62, duty);
+	pwm_duty(PWMA_CH3P_P64, duty);
+	pwm_duty(PWMA_CH4P_P66, 0);
+&#125;
+
+
+&#x2F;*******************
+* 车子直行
+*******************&#x2F;
+void go_straight(void)
+&#123;
+	pwm_duty(PWMA_CH1P_P60, 7000);
+	pwm_duty(PWMA_CH2P_P62, 0);
+	pwm_duty(PWMA_CH3P_P64, 7000);
+	pwm_duty(PWMA_CH4P_P66, 0);
+&#125;
+
+
+&#x2F;*******************
+* 车子停止
+*******************&#x2F;
+void go_stop(void)
+&#123;
+	pwm_duty(PWMA_CH1P_P60, 0);
+	pwm_duty(PWMA_CH2P_P62, 0);
+	pwm_duty(PWMA_CH3P_P64, 0);
+	pwm_duty(PWMA_CH4P_P66, 0);
+&#125;
+
+&#x2F;*****************************************
 * OUT1 P27
 * OUT2 P26
 * OUT3 P25
 * OUT4 P24
+* 如图循迹小车2所示，从左到右分别为OUT1、2、3、4
 * 检测到黑线或悬空LED灭，输出高电平
-*&#x2F;
- int main()
- &#123;
+* 对单片机的IO口状态进行判断，这样可以得到是哪个
+* 传感器检测到了黑线，然后再
+* 做出相对应的行为。
+*****************************************&#x2F;
+void scan(void)
+&#123;
+	if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
+	&#123;
+		&#x2F;&#x2F; 未检测到黑线
+		go_straight();
+	&#125;
+	else if ((P26 &#x3D;&#x3D; 1)&amp;&amp;(P25 &#x3D;&#x3D; 1)&amp;&amp;(P27 &#x3D;&#x3D; 1)&amp;&amp;(P24 &#x3D;&#x3D; 1))
+	&#123;
+		&#x2F;&#x2F; 悬空
+		go_stop();
+	&#125;
+	else if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 1)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
+	&#123;
+		&#x2F;&#x2F; 车头右偏（相对于前进方向） 向左转（幅度较小）
+		turn_left(7000);
+	&#125;
+	else if ((P26 &#x3D;&#x3D; 1)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
+	&#123;
+		&#x2F;&#x2F; 车头左偏 向右转（幅度较小）
+		turn_right(7000);
+	&#125;
+	else if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 1)&amp;&amp;(P24 &#x3D;&#x3D; 0))
+	&#123;
+		&#x2F;&#x2F; 向左转（幅度较大）
+		turn_left(9500);
+	&#125;
+	else if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 1))
+	&#123;
+		&#x2F;&#x2F; 向右转（幅度较大）
+		turn_right(9500);
+	&#125;
+&#125;
+void main()
+&#123;
 	DisableGlobalIRQ();		&#x2F;&#x2F;关闭总中断
 	
 	board_init();			&#x2F;&#x2F;初始化寄存器
+	All_Init();
 	&#x2F;&#x2F;总中断最后开启
 	EnableGlobalIRQ();		&#x2F;&#x2F;开启总中断
     while(1)
 	&#123;
-        &#x2F;&#x2F; 判断IO口电平状态
-		if (P27 &#x3D;&#x3D; 1)
-        &#123;
-			printf(&quot;OUT1 NO\r\n&quot;);
-		&#125;
-		if (P26 &#x3D;&#x3D; 1)
-		&#123;
-			printf(&quot;OUT2 NO\r\n&quot;);
-		&#125;
-		if (P25 &#x3D;&#x3D; 1)
-		&#123;
-			printf(&quot;OUT3 NO\r\n&quot;);
-		&#125;
-		if (P24 &#x3D;&#x3D; 1)
-		&#123;
-			printf(&quot;OUT4 NO\r\n&quot;);
-		&#125;
-		if ((P27 &#x3D;&#x3D; 0)&amp;&amp;(P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
-		&#123;
-			printf(&quot;OFF\r\n&quot;);
-		&#125;
+		scan();
   &#125;
- &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>代码是比较简单的，就是判断单片机IO口状态。如果IO口是高电平则表示传感器检测到黑线，否则没有检测到黑线。理解了这个原理就可以在其他型号的单片机上使用这个模块。</p>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>程序代码大概就像上面那样。其中有些参数，比如说小车行进速度和转弯占空比该给多少。这个东西需要自己测试然后填写，也就是自己慢慢调参测试，找到合适的数值就行。</p>
 
                 
             </div>
@@ -442,7 +540,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/2.html">https://lightningleader.github.io/posts/2.html</a>
+                    <a href="https://lightningleader.github.io/posts/3.html">https://lightningleader.github.io/posts/3.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -482,10 +580,6 @@
                             
                                 <a href="/tags/%E6%95%99%E7%A8%8B/">
                                     <span class="chip bg-color">教程</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%A1%AC%E4%BB%B6%E4%BD%BF%E7%94%A8/">
-                                    <span class="chip bg-color">硬件使用</span>
                                 </a>
                             
                                 <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
@@ -535,9 +629,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/3.html">
                     <div class="card-image">
@@ -555,9 +650,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -566,6 +661,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -588,24 +684,23 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/1.html">
+                <a href="/posts/2.html">
                     <div class="card-image">
                         
+                        <img src="/images/4%E8%B7%AF%E7%BA%A2%E5%A4%96%E5%BE%AA%E8%BF%B9%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/1.jpg" class="responsive-img" alt="4路红外循迹模块使用教程">
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Markdown学习笔记">
-                        
-                        <span class="card-title">Markdown学习笔记</span>
+                        <span class="card-title">4路红外循迹模块使用教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Markdown学习笔记
+                            4路红外循迹模块使用教程
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
                             </span>
                         <span class="publish-author">
                             
@@ -622,8 +717,12 @@
                         <span class="chip bg-color">教程</span>
                     </a>
                     
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
+                    <a href="/tags/%E7%A1%AC%E4%BB%B6%E4%BD%BF%E7%94%A8/">
+                        <span class="chip bg-color">硬件使用</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
+                        <span class="chip bg-color">单片机</span>
                     </a>
                     
                 </div>
