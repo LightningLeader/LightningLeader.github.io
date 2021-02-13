@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="循迹智能小车 循黑线, LightningMaster">
+    <meta name="keywords" content="OpenCV学习笔记, LightningMaster">
     <meta name="description" content="老废物">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>循迹智能小车 循黑线 | LightningMaster</title>
+    <title>OpenCV学习笔记 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/%E5%BE%AA%E8%BF%B9%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%20%E5%BE%AA%E9%BB%91%E7%BA%BF/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">循迹智能小车 循黑线</h1>
+                    <h1 class="description center-align post-title">OpenCV学习笔记</h1>
                 </div>
             </div>
         </div>
@@ -302,12 +302,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
                             </a>
                         
-                            <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                <span class="chip bg-color">单片机</span>
+                            <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                                <span class="chip bg-color">图像处理</span>
+                            </a>
+                        
+                            <a href="/tags/OpenCV/">
+                                <span class="chip bg-color">OpenCV</span>
                             </a>
                         
                     </div>
@@ -322,21 +326,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-09
+                    2021-02-13
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-09
+                    2021-02-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.2k
                 </div>
                 
 
@@ -366,164 +370,143 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="循迹智能小车-循黑线"><a href="#循迹智能小车-循黑线" class="headerlink" title="循迹智能小车 循黑线"></a>循迹智能小车 循黑线</h1><a id="more"></a>
+                <h1 id="OpenCV学习笔记"><a href="#OpenCV学习笔记" class="headerlink" title="OpenCV学习笔记"></a>OpenCV学习笔记</h1><a id="more"></a>
 
-<h2 id="硬件菜单"><a href="#硬件菜单" class="headerlink" title="硬件菜单"></a>硬件菜单</h2><ul>
-<li><p>单片机型号：STC16F40K128</p>
-</li>
-<li><p>4路红外循迹模块</p>
-</li>
-<li><p>小车底盘套件（一个底盘、两个TT马达、两个轮胎）</p>
-</li>
-<li><p>12V航模电池</p>
-</li>
-<li><p>降压模块</p>
-</li>
-<li><p>A4950双路电机驱动</p>
-</li>
-<li><p>杜邦线等</p>
-</li>
-</ul>
-<h2 id="硬件使用"><a href="#硬件使用" class="headerlink" title="硬件使用"></a>硬件使用</h2><p><img src="/posts/3/1.png" alt="4路红外循迹模块"></p>
-<ul>
-<li>关于4路红外循迹模块的使用教程，我之前写过一篇博客，里面有详细的介绍。如果有不会的可以先去浏览学习一下。<a href="https://lightningleader.github.io/posts/2.html">跳转至教程</a></li>
-<li>A4950双路电机驱动使用方式不多说了，比较简单。大部分人应该都是用L298N的。</li>
-</ul>
-<h2 id="硬件组装"><a href="#硬件组装" class="headerlink" title="硬件组装"></a>硬件组装</h2><p><img src="/posts/3/2.jpg" alt="循迹小车1"></p>
-<p><img src="/posts/3/3.jpg" alt="循迹小车2"></p>
-<p>硬件组装大概按照上面两张图片组装就行。  </p>
-<ul>
-<li>不过要注意的是红外传感器之间的距离和单个传感器的测量精度。在组装完成后，要通电试一试传感器的工作情况，用它检测黑线，康康是不是能够正常工作。如果无法正常工作需要及时调整传感器的精度或者其他东西。总之要保证传感器能正常检测黑线。</li>
-<li>另一点就是传感器的安装位置。受到传感器数量的限制，所以传感器的安装位置需要仔细考虑。我这里一共有4个传感器所以就像图中那样安装的。中间两个之间留有空隙，空隙的宽度大概为黑线宽度（可以稍微比黑线宽点），其他两个的位置也不要离得太远。具体为什么这样设计再后面讲解。</li>
-</ul>
-<h2 id="程序设计前的理解"><a href="#程序设计前的理解" class="headerlink" title="程序设计前的理解"></a>程序设计前的理解</h2><ul>
-<li>接上面挖下的坑，说一下中间两个传感器之间空隙的问题。</li>
-</ul>
-<p>前提是小车在没有检测到黑线的时候会直线行驶。中间的空隙宽度略微大于黑线宽度，这样就可以满足当黑线处于这个缝隙间的时候传感器不会有反应，小车会直线行驶，在一定程度上满足循线的基础操作。肯定会出现黑线移出这个空隙的情况，这样的话黑线就会被两侧的传感器检测到，然后由单片机做出应对。如果是左侧的传感器检测到黑线（设定小车前进方向为正方向），代表车头右偏了，因此小车需要左转；于此类似，右侧的传感器也是一个道理。理解了这些就可以完成最基本的循线了。</p>
-<ul>
-<li>最外侧两个传感器的作用  </li>
-</ul>
-<p>因为传感器反应速度等等一系列可能的原因会出现黑线在移出中央空隙的时间很短导致传感器没有检测到等的情况，这样的话小车肯定会继续前进而导致无法继续循线。如果在中间两个传感器两侧又安装了两个传感器的话，这样就相当于多了一个保险，如果中间两个没有检测到的话，最外侧的传感器正常工作仍能让小车重新回到循线轨迹上来。不过要注意的是，因为当最外侧的传感器检测到黑线时就意味着车头已经偏的比较严重了，所以要想让车头偏正就需要给更大的“力”，也就是给更大的PWM。</p>
-<h2 id="程序代码"><a href="#程序代码" class="headerlink" title="程序代码"></a>程序代码</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;headfile.h&quot;
+<h2 id="图像翻转"><a href="#图像翻转" class="headerlink" title="图像翻转"></a>图像翻转</h2><p>使用Python的一个包，imutils。使用下面的指令可以安装。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pip install imutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>imutils包的Github地址：<a target="_blank" rel="noopener" href="https://github.com/jrosebr1/imutils">https://github.com/jrosebr1/imutils</a>    CSDN镜像：<a target="_blank" rel="noopener" href="https://codechina.csdn.net/mirrors/jrosebr1/imutils">https://codechina.csdn.net/mirrors/jrosebr1/imutils</a></p>
+<p>可以在上面这个地址里面学习更多的使用方式。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
+import imutils
+
+&#39;&#39;&#39;
+imutils.rotate
+第一个参数是翻转的图像，第二个参数的翻转角度
+函数还提供翻转中心的设置，但默认就是中心翻转。
+&#39;&#39;&#39;
+vc &#x3D; cv2.VideoCapture(0)
+
+if vc.isOpened():
+    flag, frame &#x3D; vc.read()
+    img &#x3D; imutils.rotate(frame, 180)    # 图像翻转 
+    cv2.imshow(&quot;frame&quot;, img)
+else:
+    flag &#x3D; False
+
+while flag:
+    flag, frame &#x3D; vc.read()
+    if frame is None:
+        break
+    if flag is True:
+        img &#x3D; imutils.rotate(frame, 180)    # 图像翻转
+        cv2.imshow(&quot;frame&quot;, img)
+        if cv2.waitKey(10) &#x3D;&#x3D; 27:
+            break
+vc.release()
+cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样写的话，最后的输出图像就是翻转180度的。</p>
+<p>imutils包里还有其他好用的函数，resizing、4-point Perspective Transform、Sorting Contours等等。</p>
+<h2 id="图像轮廓排序"><a href="#图像轮廓排序" class="headerlink" title="图像轮廓排序"></a>图像轮廓排序</h2><p>这个效果同样也是依靠imutils包完成。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from imutils import contours
+import cv2
+&#39;&#39;&#39;
+contours.sort_contours
+可选排序方式：&quot;left-to-right&quot;, &quot;right-to-left&quot;, &quot;top-to-bottom&quot;, &quot;bottom-to-top&quot;
+返回值为轮廓和外接矩形
+
+contours.label_contour
+contours包内自带的画轮廓的函数，可以直接用，然后可以在图片上标出轮廓序号
+也可以直接使用cv2.drawContours直接画轮廓
+&#39;&#39;&#39;
+img &#x3D; cv2.imread(r&quot;D:\opencv-workspace\Opencv\test17--VScode\shapes.png&quot;)
+draw_img &#x3D; img.copy()
+img_rect &#x3D; img.copy()
+gray &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+img &#x3D; cv2.Canny(gray, 10, 20)    # Canny边缘检测
+cnts, hierarchy &#x3D; cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)    # 获得轮廓
+(cnts, boundingBoxes) &#x3D; contours.sort_contours(cnts, &quot;top-to-bottom&quot;)    # 对轮廓进行排序处理
+for (i, c) in enumerate(cnts):
+    sortedImage &#x3D; contours.label_contour(draw_img, c, i, color&#x3D;(240, 0, 159))
+# img_out &#x3D; cv2.drawContours(draw_img, cnts, -1, (240, 0, 159), 2)
+# 根据boundingBoxes画外接矩形
+for (x, y, w, h) in boundingBoxes:
+    img_rect &#x3D; cv2.rectangle(img_rect, (x, y), (x+w, y+h), (240, 0, 159), 2)
+cv2.imshow(&quot;top-to-bottom&quot;, sortedImage)
+cv2.imshow(&quot;rect&quot;, img_rect)
+cv2.waitKey(0)
+cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/6/1.jpg" alt="处理效果"></p>
+<h2 id="颜色识别"><a href="#颜色识别" class="headerlink" title="颜色识别"></a>颜色识别</h2><h3 id="基础颜色识别"><a href="#基础颜色识别" class="headerlink" title="基础颜色识别"></a>基础颜色识别</h3><p>颜色识别是在HSV空间内进行的，因此在使用之前先进行颜色空间的转换。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;使用下面这个函数进行转换，第一个参数填写要转换的图片，第二个参数填写cv2.COLOR_BGR2HSV&#39;&#39;&#39;
+cv2.cvtColor<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
+import numpy as np
+&#39;&#39;&#39;
+cv2.inRange
+函数很简单，参数有三个
+第一个参数：hsv指的是原图
+第二个参数：lower_red指的是图像中低于这个lower_red的值，图像值变为0
+第三个参数：upper_red指的是图像中高于这个upper_red的值，图像值变为0
+而在lower_red～upper_red之间的值变成255
+&#39;&#39;&#39;
+# 阈值
+lower_green &#x3D; np.array([50, 255, 255])
+upper_green &#x3D; np.array([70, 255, 255])
+img &#x3D; cv2.imread(r&quot;D:\opencv-workspace\Opencv\test16--VScode\photo.jpg&quot;)
+img_hsv &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+mask_green &#x3D; cv2.inRange(img_hsv, lower_green, upper_green)
+cv2.imshow(&quot;img_or&quot;, mask_green)
+# 使用下面这个函数能显示原来的颜色。
+res_green &#x3D; cv2.bitwise_and(img, img, mask&#x3D;mask_green)
+cv2.imshow(&quot;img&quot;, res_green)
+cv2.waitKey(0)
+cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/6/2.jpg" alt="原图"></p>
+<p><img src="/posts/6/3.jpg" alt="mask_green"></p>
+<p><img src="/posts/6/4.jpg" alt="res_green"></p>
+<p>在进行颜色识别时，难免会出现“漏颜色”的现象，也就是会出现没识别全的现象。这个时候可以再对图像进行处理，比如说进行形态学处理，让图像更加饱满之类的。</p>
+<h3 id="根据BGR获取HSV"><a href="#根据BGR获取HSV" class="headerlink" title="根据BGR获取HSV"></a>根据BGR获取HSV</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
+
+color &#x3D; np.uint8([[[193, 189, 147]]])    # 参数填写BGR的值
+hsv &#x3D; cv2.cvtColor(color, cv2.COLOR_BGR2HSV)
+print(hsv)    # 打印出来的数值就是对应的HSV值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>程序运行的结果是</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">[[[ 93  61 193]]]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这个就是对应的HSV的值。</p>
+<p>根据之前写的颜色识别，就需要把对应的阈值写出。具体写法就是<strong>保持S和V不变，H加减10。</strong>这样的话就可以写出高低阈值然后应用到颜色识别里面就可以了。</p>
+<h3 id="阈值编辑器"><a href="#阈值编辑器" class="headerlink" title="阈值编辑器"></a>阈值编辑器</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
+import numpy as np
 
 
-&#x2F;*******************
-* 用于初始化PWM的
-*******************&#x2F;
-void All_Init(void)
-&#123;
-	pwm_init(PWMA_CH1P_P60, 10000, 0);
-	pwm_init(PWMA_CH2P_P62, 10000, 0);
-	pwm_init(PWMA_CH3P_P64, 10000, 0);
-	pwm_init(PWMA_CH4P_P66, 10000, 0);
-&#125;
+def function(x):
+    lowH &#x3D; cv2.getTrackbarPos(&quot;lowH&quot;, &quot;img_666&quot;)
+    lowS &#x3D; cv2.getTrackbarPos(&quot;lowS&quot;, &quot;img_666&quot;)
+    lowV &#x3D; cv2.getTrackbarPos(&quot;lowV&quot;, &quot;img_666&quot;)
+    HighH &#x3D; cv2.getTrackbarPos(&quot;HighH&quot;, &quot;img_666&quot;)
+    HighS &#x3D; cv2.getTrackbarPos(&quot;HighS&quot;, &quot;img_666&quot;)
+    HighV &#x3D; cv2.getTrackbarPos(&quot;HighV&quot;, &quot;img_666&quot;)
+    # print(lowH, lowS, lowV, HighH, HighS, HighV)
+    lower &#x3D; np.uint8([lowH, lowS, lowV])
+    upper &#x3D; np.uint8([HighH, HighS, HighV])
+    mask &#x3D; cv2.inRange(img_hsv, lower, upper)
+    res &#x3D; cv2.bitwise_and(img, img, mask&#x3D;mask)
+    cv2.imshow(&quot;img&quot;, res)
 
 
-&#x2F;*******************
-* 车子左转
-*******************&#x2F;
-void turn_left(int duty)
-&#123;
-	pwm_duty(PWMA_CH1P_P60, duty);
-	pwm_duty(PWMA_CH2P_P62, 0);
-	pwm_duty(PWMA_CH3P_P64, 0);
-	pwm_duty(PWMA_CH4P_P66, duty);
-&#125;
-
-
-&#x2F;*******************
-* 车子右转
-*******************&#x2F;
-void turn_right(int duty)
-&#123;
-	pwm_duty(PWMA_CH1P_P60, 0);
-	pwm_duty(PWMA_CH2P_P62, duty);
-	pwm_duty(PWMA_CH3P_P64, duty);
-	pwm_duty(PWMA_CH4P_P66, 0);
-&#125;
-
-
-&#x2F;*******************
-* 车子直行
-*******************&#x2F;
-void go_straight(void)
-&#123;
-	pwm_duty(PWMA_CH1P_P60, 7000);
-	pwm_duty(PWMA_CH2P_P62, 0);
-	pwm_duty(PWMA_CH3P_P64, 7000);
-	pwm_duty(PWMA_CH4P_P66, 0);
-&#125;
-
-
-&#x2F;*******************
-* 车子停止
-*******************&#x2F;
-void go_stop(void)
-&#123;
-	pwm_duty(PWMA_CH1P_P60, 0);
-	pwm_duty(PWMA_CH2P_P62, 0);
-	pwm_duty(PWMA_CH3P_P64, 0);
-	pwm_duty(PWMA_CH4P_P66, 0);
-&#125;
-
-&#x2F;*****************************************
-* OUT1 P27
-* OUT2 P26
-* OUT3 P25
-* OUT4 P24
-* 如图循迹小车2所示，从左到右分别为OUT1、2、3、4
-* 检测到黑线或悬空LED灭，输出高电平
-* 对单片机的IO口状态进行判断，这样可以得到是哪个
-* 传感器检测到了黑线，然后再
-* 做出相对应的行为。
-*****************************************&#x2F;
-void scan(void)
-&#123;
-	if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
-	&#123;
-		&#x2F;&#x2F; 未检测到黑线
-		go_straight();
-	&#125;
-	else if ((P26 &#x3D;&#x3D; 1)&amp;&amp;(P25 &#x3D;&#x3D; 1)&amp;&amp;(P27 &#x3D;&#x3D; 1)&amp;&amp;(P24 &#x3D;&#x3D; 1))
-	&#123;
-		&#x2F;&#x2F; 悬空
-		go_stop();
-	&#125;
-	else if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 1)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
-	&#123;
-		&#x2F;&#x2F; 车头右偏（相对于前进方向） 向左转（幅度较小）
-		turn_left(7000);
-	&#125;
-	else if ((P26 &#x3D;&#x3D; 1)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
-	&#123;
-		&#x2F;&#x2F; 车头左偏 向右转（幅度较小）
-		turn_right(7000);
-	&#125;
-	else if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 1)&amp;&amp;(P24 &#x3D;&#x3D; 0))
-	&#123;
-		&#x2F;&#x2F; 向左转（幅度较大）
-		turn_left(9500);
-	&#125;
-	else if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 1))
-	&#123;
-		&#x2F;&#x2F; 向右转（幅度较大）
-		turn_right(9500);
-	&#125;
-&#125;
-void main()
-&#123;
-	DisableGlobalIRQ();		&#x2F;&#x2F;关闭总中断
-	
-	board_init();			&#x2F;&#x2F;初始化寄存器
-	All_Init();
-	&#x2F;&#x2F;总中断最后开启
-	EnableGlobalIRQ();		&#x2F;&#x2F;开启总中断
-    while(1)
-	&#123;
-		scan();
-  &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>程序代码大概就像上面那样。其中有些参数，比如说小车行进速度和转弯占空比该给多少。这个东西需要自己测试然后填写，也就是自己慢慢调参测试，找到合适的数值就行。</p>
+img &#x3D; cv2.imread(r&quot;D:\opencv-workspace\Opencv\test16--VScode\test.jpg&quot;)
+img_hsv &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+cv2.namedWindow(&quot;img_666&quot;)
+cv2.createTrackbar(&quot;lowH&quot;, &quot;img_666&quot;, 0, 179, function)
+cv2.createTrackbar(&quot;lowS&quot;, &quot;img_666&quot;, 0, 255, function)
+cv2.createTrackbar(&quot;lowV&quot;, &quot;img_666&quot;, 0, 255, function)
+cv2.createTrackbar(&quot;HighH&quot;, &quot;img_666&quot;, 0, 179, function)
+cv2.createTrackbar(&quot;HighS&quot;, &quot;img_666&quot;, 0, 255, function)
+cv2.createTrackbar(&quot;HighV&quot;, &quot;img_666&quot;, 0, 255, function)
+cv2.imshow(&quot;img&quot;, img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>写了一个比较垃圾的阈值编辑器。。。就不多解释了。。</p>
+<p><img src="/posts/posts%5C6%5C5.jpg" alt="阈值编辑器"></p>
 
                 
             </div>
@@ -550,7 +533,7 @@ void main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/3.html">https://lightningleader.github.io/posts/3.html</a>
+                    <a href="https://lightningleader.github.io/posts/6.html">https://lightningleader.github.io/posts/6.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -588,12 +571,16 @@ void main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
-                                <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                    <span class="chip bg-color">单片机</span>
+                                <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                                    <span class="chip bg-color">图像处理</span>
+                                </a>
+                            
+                                <a href="/tags/OpenCV/">
+                                    <span class="chip bg-color">OpenCV</span>
                                 </a>
                             
                         </div>
@@ -902,29 +889,84 @@ void main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/4.html">
+                <a href="/posts/6.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="树莓派使用USB串口通信 CH340">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="OpenCV学习笔记">
                         
-                        <span class="card-title">树莓派使用USB串口通信 CH340</span>
+                        <span class="card-title">OpenCV学习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            树莓派使用USB串口通信 CH340
+                            OpenCV学习笔记
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            LightningMaster
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">图像处理</span>
+                    </a>
+                    
+                    <a href="/tags/OpenCV/">
+                        <span class="chip bg-color">OpenCV</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/5.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="树莓派串口通信 USB串口通信">
+                        
+                        <span class="card-title">树莓派串口通信 USB串口通信</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            树莓派串口通信 USB串口通信
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -946,58 +988,6 @@ void main()
                     
                     <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
                         <span class="chip bg-color">树莓派</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/2.html">
-                    <div class="card-image">
-                        
-                        <img src="/images/4%E8%B7%AF%E7%BA%A2%E5%A4%96%E5%BE%AA%E8%BF%B9%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/1.jpg" class="responsive-img" alt="4路红外循迹模块使用教程">
-                        
-                        <span class="card-title">4路红外循迹模块使用教程</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            4路红外循迹模块使用教程
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            LightningMaster
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%A1%AC%E4%BB%B6%E4%BD%BF%E7%94%A8/">
-                        <span class="chip bg-color">硬件使用</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                        <span class="chip bg-color">单片机</span>
                     </a>
                     
                 </div>
