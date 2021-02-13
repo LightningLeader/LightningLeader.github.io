@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="树莓派使用USB串口通信 CH340, LightningMaster">
+    <meta name="keywords" content="OpenCV颜色识别 物体追踪, LightningMaster">
     <meta name="description" content="老废物">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>树莓派使用USB串口通信 CH340 | LightningMaster</title>
+    <title>OpenCV颜色识别 物体追踪 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">树莓派使用USB串口通信 CH340</h1>
+                    <h1 class="description center-align post-title">OpenCV颜色识别 物体追踪</h1>
                 </div>
             </div>
         </div>
@@ -310,8 +310,12 @@
                                 <span class="chip bg-color">学习笔记</span>
                             </a>
                         
-                            <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                                <span class="chip bg-color">树莓派</span>
+                            <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                                <span class="chip bg-color">图像处理</span>
+                            </a>
+                        
+                            <a href="/tags/OpenCV/">
+                                <span class="chip bg-color">OpenCV</span>
                             </a>
                         
                     </div>
@@ -326,21 +330,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-02-13
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-02-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    613
+                    838
                 </div>
                 
 
@@ -370,36 +374,87 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="树莓派使用USB串口通信-CH340"><a href="#树莓派使用USB串口通信-CH340" class="headerlink" title="树莓派使用USB串口通信 CH340"></a>树莓派使用USB串口通信 CH340</h1><a id="more"></a>
+                <h1 id="OpenCV颜色识别-物体追踪"><a href="#OpenCV颜色识别-物体追踪" class="headerlink" title="OpenCV颜色识别 物体追踪"></a>OpenCV颜色识别 物体追踪</h1><a id="more"></a>
 
-<p>因为需要使用树莓派做自控方向的东西，所以需要使用树莓派串口与各种外设进行通信。使用串口的话个人比较喜欢直接使用USB串口，用起来比较方便。下面就介绍一下怎么使用树莓派的USB串口通信。</p>
-<p>对于不会使用串口通信的hxd可以康康我的这篇文章，里面详细讲解了常用的串口通信的命令：<a href="https://lightningleader.github.io/posts/5.html">树莓派串口通信 USB串口通信</a></p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
-<li>树莓派4</li>
-<li>CH340</li>
-<li>串口助手</li>
-</ul>
-<h2 id="树莓派正确识别CH340"><a href="#树莓派正确识别CH340" class="headerlink" title="树莓派正确识别CH340"></a>树莓派正确识别CH340</h2><p>首先正常开启树莓派，不要插入CH340，然后进入树莓派桌面，打开命令行，输入命令lsusb，可以查看本机的USB设备列表，以及USB设备的详细信息。</p>
-<p><img src="/posts/4/1.jpg" alt="输入命令lsusb"></p>
-<p>正常的话，就会像上图那样。</p>
-<p>然后插入CH340，再次运行lsusb命令，这个时候应该会出现下面这个界面。</p>
-<p><img src="/posts/4/2.jpg" alt="再次输入命令lsusb"></p>
-<p>从上图可以明显看出多了一个设备，后面的设备详情也明确表示这个是CH340，这就表明树莓派正确识别到了插入的CH340。</p>
-<p>接着在命令行输入命令 ls -l /dev/tty* </p>
-<p><img src="/posts/4/3.jpg" alt="USB"></p>
-<p>如上图所示，不出意外的话最后一个就是你插入的ch340，然后就记住这个黄色字体即/dev/ttyUSB0。这里的USB0也可能是USB1，这个是不确定的。</p>
-<p>到了这里就代表你的树莓派可以正常识别CH34，下面就是写代码来验证效果了。</p>
-<h2 id="代码实现通信"><a href="#代码实现通信" class="headerlink" title="代码实现通信"></a>代码实现通信</h2><p>这里我的代码是Python的。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import serial
-ser &#x3D; serial.Serial(&quot;&#x2F;dev&#x2F;ttyUSB0&quot;, 115200)    # 第一个参数就是上面那个黄色字体  第二个参数填波特率
-ser.flushInput()    # 清除缓存
-ser.write(&quot;LightningMaster\r\n&quot;.encode())   # 发送<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>注意：这个教程是默认树莓派已经进行了串口配置的。比如说安装pyserial包，如果没安装的话，可以使用下面的命令进行安装</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">pip3 install pyserial<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>为了测试，我使用两个CH340，一个连接树莓派另一个连接电脑，这样就可以直接在电脑上通过串口助手看到发送的数据了。</p>
-<p>运行代码后就可以在串口助手上看到树莓派发送的数据了。</p>
-<p><img src="/posts/4/4.jpg" alt="串口助手"></p>
-<p>这样就可以正常使用USB串口进行通信了。</p>
+<p>对于颜色识别和<code>imutils</code>包的用法请浏览我得另一篇博客：<a href="https://lightningleader.github.io/posts/6.html">OpenCV学习笔记</a></p>
+<h2 id="代码原理"><a href="#代码原理" class="headerlink" title="代码原理"></a>代码原理</h2><p>这是个比较简单的代码。代码实现的就是简单的物体追踪，将物体用方框框出。</p>
+<p>简单来讲就是先进行颜色识别，正确识别到物体后获取物体的外接矩形再画出外接矩形即可。</p>
+<p>详细的解释可以看代码注释，应该是容易理解的。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
+import numpy as np
+import imutils
+from imutils import contours
+
+# 颜色阈值
+lower &#x3D; np.array([130, 62, 72])
+upper &#x3D; np.array([170, 255, 148])
+# 内核
+kernel &#x3D; np.ones((5, 5), np.uint8)
+# 打开摄像头
+vc &#x3D; cv2.VideoCapture(0)
+if vc.isOpened():
+    flag, frame &#x3D; vc.read()
+    # 翻转图像
+    # 这一步可以忽略，博主的摄像头是反着的
+    # 所以加上这句话可以让摄像头的图像正过来
+    frame &#x3D; imutils.rotate(frame, 180)
+    cv2.imshow(&quot;frame&quot;, frame)
+else:
+    flag &#x3D; False
+while flag:
+    flag, frame &#x3D; vc.read()
+    # 翻转图像
+    frame &#x3D; imutils.rotate(frame, 180)
+    draw_frame &#x3D; frame.copy()
+    if frame is None:
+        break
+    if flag is True:
+        &#39;&#39;&#39;下面对摄像头读取到的图像进行处理，这个步骤是比较重要的&#39;&#39;&#39;
+        # 转换颜色空间HSV
+        frame_hsv &#x3D; cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        # 颜色识别
+        img &#x3D; cv2.inRange(frame_hsv, lower, upper)
+        # 膨胀操作
+        dilation &#x3D; cv2.dilate(img, kernel, iterations&#x3D;1)
+        # 闭操作
+        closing &#x3D; cv2.morphologyEx(dilation, cv2.MORPH_CLOSE, kernel)
+        # 高斯滤波
+        closing &#x3D; cv2.GaussianBlur(closing, (5, 5), 0)
+        # 边缘检测
+        edges &#x3D; cv2.Canny(closing, 10, 20)
+        &#39;&#39;&#39;上面进行那么多操作就是为了得到更好的目标图形，具体效果因环境而异&#39;&#39;&#39;
+        # 寻找轮廓
+        cnts, _ &#x3D; cv2.findContours(
+            edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+        # 判断轮廓数量也就是判断是否寻找到轮廓，如果没有找到轮廓就不继续进行操作
+        if len(cnts) &gt; 0:
+            # 存放轮廓面积的列表
+            s &#x3D; []
+            # 存放最大轮廓的索引
+            max_index &#x3D; 0
+            # 获得排序后的轮廓列表以及每个轮廓对应的外接矩形
+            (cnts, boundingRects) &#x3D; contours.sort_contours(cnts)
+            # 寻找面积最大的轮廓的索引
+            for cnt in cnts:
+                s.append(cv2.contourArea(cnt))
+            max_index &#x3D; s.index(max(s))
+            # 根据面积最大轮廓的索引找到它的外接矩形的信息
+            (x, y, w, h) &#x3D; boundingRects[max_index]
+            # 画矩形
+            frame_out &#x3D; cv2.rectangle(
+                         draw_frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
+        cv2.imshow(&quot;frame&quot;, draw_frame)
+        if cv2.waitKey(10) &#x3D;&#x3D; 27:
+            break
+vc.release()
+cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>具体解释都在代码注释里面了，下面我要提一些注意的地方。</p>
+<ol>
+<li>获得过图像之后可能需要进行一系列的形态学操作，这样可以让获得的图像更加接近目的图像。这些操作虽然不是必需的但如果正常取得的图像效果不好的时候可以加上。</li>
+<li>函数<code>contours.sort_contours</code> 和 <code>imutils.rotate</code>是<code>imutils</code>包里面的，使用起来比较方便，具体用法可以看博主的另一篇博客：<a href="https://lightningleader.github.io/posts/6.html">OpenCV学习笔记</a>。外接矩形也可以通过<code>cv2.boundingRect</code>函数获得。</li>
+<li>代码中博主是以轮廓的最大面积为条件画的图，但这个条件应该根据自己想要的效果而定。这里除了寻找最大面积以外还可以寻找最大周长、最长的边之类的。</li>
+</ol>
+<h2 id="最终效果图"><a href="#最终效果图" class="headerlink" title="最终效果图"></a>最终效果图</h2><p><img src="/posts/7/1.jpg" alt="最终效果图"></p>
 
                 
             </div>
@@ -426,7 +481,7 @@ ser.write(&quot;LightningMaster\r\n&quot;.encode())   # 发送<span aria-hidden=
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/4.html">https://lightningleader.github.io/posts/4.html</a>
+                    <a href="https://lightningleader.github.io/posts/7.html">https://lightningleader.github.io/posts/7.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -472,8 +527,12 @@ ser.write(&quot;LightningMaster\r\n&quot;.encode())   # 发送<span aria-hidden=
                                     <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
-                                <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                                    <span class="chip bg-color">树莓派</span>
+                                <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                                    <span class="chip bg-color">图像处理</span>
+                                </a>
+                            
+                                <a href="/tags/OpenCV/">
+                                    <span class="chip bg-color">OpenCV</span>
                                 </a>
                             
                         </div>
@@ -782,29 +841,30 @@ ser.write(&quot;LightningMaster\r\n&quot;.encode())   # 发送<span aria-hidden=
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/5.html">
+                <a href="/posts/7.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="树莓派串口通信 USB串口通信">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="OpenCV颜色识别 物体追踪">
                         
-                        <span class="card-title">树莓派串口通信 USB串口通信</span>
+                        <span class="card-title">OpenCV颜色识别 物体追踪</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            树莓派串口通信 USB串口通信
+                            OpenCV颜色识别 物体追踪
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -813,6 +873,7 @@ ser.write(&quot;LightningMaster\r\n&quot;.encode())   # 发送<span aria-hidden=
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -824,8 +885,12 @@ ser.write(&quot;LightningMaster\r\n&quot;.encode())   # 发送<span aria-hidden=
                         <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                        <span class="chip bg-color">树莓派</span>
+                    <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">图像处理</span>
+                    </a>
+                    
+                    <a href="/tags/OpenCV/">
+                        <span class="chip bg-color">OpenCV</span>
                     </a>
                     
                 </div>
@@ -839,23 +904,24 @@ ser.write(&quot;LightningMaster\r\n&quot;.encode())   # 发送<span aria-hidden=
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/3.html">
+                <a href="/posts/6.html">
                     <div class="card-image">
                         
-                        <img src="/images/%E5%BE%AA%E8%BF%B9%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%20%E5%BE%AA%E9%BB%91%E7%BA%BF/1.jpg" class="responsive-img" alt="循迹智能小车 循黑线">
                         
-                        <span class="card-title">循迹智能小车 循黑线</span>
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="OpenCV学习笔记">
+                        
+                        <span class="card-title">OpenCV学习笔记</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            循迹智能小车 循黑线
+                            OpenCV学习笔记
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-13
                             </span>
                         <span class="publish-author">
                             
@@ -868,12 +934,16 @@ ser.write(&quot;LightningMaster\r\n&quot;.encode())   # 发送<span aria-hidden=
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                        <span class="chip bg-color">单片机</span>
+                    <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">图像处理</span>
+                    </a>
+                    
+                    <a href="/tags/OpenCV/">
+                        <span class="chip bg-color">OpenCV</span>
                     </a>
                     
                 </div>
