@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="OpenCV颜色识别 物体追踪, LightningMaster">
+    <meta name="keywords" content="整理收藏好用的宝藏网站, LightningMaster">
     <meta name="description" content="老废物">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>OpenCV颜色识别 物体追踪 | LightningMaster</title>
+    <title>整理收藏好用的宝藏网站 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">OpenCV颜色识别 物体追踪</h1>
+                    <h1 class="description center-align post-title">整理收藏好用的宝藏网站</h1>
                 </div>
             </div>
         </div>
@@ -302,20 +302,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                                <span class="chip bg-color">学习笔记</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
-                                <span class="chip bg-color">图像处理</span>
-                            </a>
-                        
-                            <a href="/tags/OpenCV/">
-                                <span class="chip bg-color">OpenCV</span>
+                            <a href="/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">
+                                <span class="chip bg-color">资源分享</span>
                             </a>
                         
                     </div>
@@ -330,21 +318,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-13
+                    2021-03-02
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-13
+                    2021-03-02
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    838
+                    266
                 </div>
                 
 
@@ -374,87 +362,26 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="OpenCV颜色识别-物体追踪"><a href="#OpenCV颜色识别-物体追踪" class="headerlink" title="OpenCV颜色识别 物体追踪"></a>OpenCV颜色识别 物体追踪</h1><a id="more"></a>
+                <h1 id="整理收藏好用的宝藏网站"><a href="#整理收藏好用的宝藏网站" class="headerlink" title="整理收藏好用的宝藏网站"></a>整理收藏好用的宝藏网站</h1><a id="more"></a>
 
-<p>对于颜色识别和<code>imutils</code>包的用法请浏览我得另一篇博客：<a href="https://lightningleader.github.io/posts/6.html">OpenCV学习笔记</a></p>
-<h2 id="代码原理"><a href="#代码原理" class="headerlink" title="代码原理"></a>代码原理</h2><p>这是个比较简单的代码。代码实现的就是简单的物体追踪，将物体用方框框出。</p>
-<p>简单来讲就是先进行颜色识别，正确识别到物体后获取物体的外接矩形再画出外接矩形即可。</p>
-<p>详细的解释可以看代码注释，应该是容易理解的。</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
-import numpy as np
-import imutils
-from imutils import contours
-
-# 颜色阈值
-lower &#x3D; np.array([130, 62, 72])
-upper &#x3D; np.array([170, 255, 148])
-# 内核
-kernel &#x3D; np.ones((5, 5), np.uint8)
-# 打开摄像头
-vc &#x3D; cv2.VideoCapture(0)
-if vc.isOpened():
-    flag, frame &#x3D; vc.read()
-    # 翻转图像
-    # 这一步可以忽略，博主的摄像头是反着的
-    # 所以加上这句话可以让摄像头的图像正过来
-    frame &#x3D; imutils.rotate(frame, 180)
-    cv2.imshow(&quot;frame&quot;, frame)
-else:
-    flag &#x3D; False
-while flag:
-    flag, frame &#x3D; vc.read()
-    # 翻转图像
-    frame &#x3D; imutils.rotate(frame, 180)
-    draw_frame &#x3D; frame.copy()
-    if frame is None:
-        break
-    if flag is True:
-        &#39;&#39;&#39;下面对摄像头读取到的图像进行处理，这个步骤是比较重要的&#39;&#39;&#39;
-        # 转换颜色空间HSV
-        frame_hsv &#x3D; cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        # 颜色识别
-        img &#x3D; cv2.inRange(frame_hsv, lower, upper)
-        # 膨胀操作
-        dilation &#x3D; cv2.dilate(img, kernel, iterations&#x3D;1)
-        # 闭操作
-        closing &#x3D; cv2.morphologyEx(dilation, cv2.MORPH_CLOSE, kernel)
-        # 高斯滤波
-        closing &#x3D; cv2.GaussianBlur(closing, (5, 5), 0)
-        # 边缘检测
-        edges &#x3D; cv2.Canny(closing, 10, 20)
-        &#39;&#39;&#39;上面进行那么多操作就是为了得到更好的目标图形，具体效果因环境而异&#39;&#39;&#39;
-        # 寻找轮廓
-        cnts, _ &#x3D; cv2.findContours(
-            edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-        # 判断轮廓数量也就是判断是否寻找到轮廓，如果没有找到轮廓就不继续进行操作
-        if len(cnts) &gt; 0:
-            # 存放轮廓面积的列表
-            s &#x3D; []
-            # 存放最大轮廓的索引
-            max_index &#x3D; 0
-            # 获得排序后的轮廓列表以及每个轮廓对应的外接矩形
-            (cnts, boundingRects) &#x3D; contours.sort_contours(cnts)
-            # 寻找面积最大的轮廓的索引
-            for cnt in cnts:
-                s.append(cv2.contourArea(cnt))
-            max_index &#x3D; s.index(max(s))
-            # 根据面积最大轮廓的索引找到它的外接矩形的信息
-            (x, y, w, h) &#x3D; boundingRects[max_index]
-            # 画矩形
-            frame_out &#x3D; cv2.rectangle(
-                         draw_frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
-        cv2.imshow(&quot;frame&quot;, draw_frame)
-        if cv2.waitKey(10) &#x3D;&#x3D; 27:
-            break
-vc.release()
-cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>具体解释都在代码注释里面了，下面我要提一些注意的地方。</p>
-<ol>
-<li>获得过图像之后可能需要进行一系列的形态学操作，这样可以让获得的图像更加接近目的图像。这些操作虽然不是必需的但如果正常取得的图像效果不好的时候可以加上。</li>
-<li>函数<code>contours.sort_contours</code> 和 <code>imutils.rotate</code>是<code>imutils</code>包里面的，使用起来比较方便，具体用法可以看博主的另一篇博客：<a href="https://lightningleader.github.io/posts/6.html">OpenCV学习笔记</a>。外接矩形也可以通过<code>cv2.boundingRect</code>函数获得。</li>
-<li>代码中博主是以轮廓的最大面积为条件画的图，但这个条件应该根据自己想要的效果而定。这里除了寻找最大面积以外还可以寻找最大周长、最长的边之类的。</li>
-</ol>
-<h2 id="最终效果图"><a href="#最终效果图" class="headerlink" title="最终效果图"></a>最终效果图</h2><p><img src="/posts/7/1.jpg" alt="最终效果图"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这篇博客里面的所有网站均是来源于网络收集，是博主个人看到好玩或者有用的网站才收集的。</p>
+<p>这些网站有些需要科学上网的手段才能进入，所以懂的都懂。</p>
+<p>本篇博客会持续更新的，更新时间可以从博客上方看到。</p>
+<hr>
+<h2 id="推荐网站"><a href="#推荐网站" class="headerlink" title="推荐网站"></a>推荐网站</h2><ul>
+<li><p>壁纸网站：<a target="_blank" rel="noopener" href="https://wallhaven.cc/">https://wallhaven.cc/</a></p>
+<p>介绍：这个网站上面有很多精美壁纸。懂的都懂。</p>
+</li>
+<li><p>Al捏人：<a target="_blank" rel="noopener" href="https://artbreeder.com/">https://artbreeder.com/</a></p>
+<p>介绍：算是AI合成图片的一种吧，可以随意合成自己想要的图片。可以合成之后用来当头像，毕竟是AI合成的，在一定程度上可以保证“独一无二”的特点。并且合成方向还可以根据自己喜好改变。挺好的。</p>
+</li>
+<li><p>网易见外：<a target="_blank" rel="noopener" href="https://jianwai.netease.com/">https://jianwai.netease.com/</a></p>
+<p>介绍：翻译网站。可以把视频翻译。</p>
+</li>
+<li><p>商用图片：<a target="_blank" rel="noopener" href="https://www.pexels.com/zh-cn/">https://www.pexels.com/zh-cn/</a></p>
+<p>介绍：顾名思义。免费的商用图片，懂的都懂。</p>
+</li>
+</ul>
 
                 
             </div>
@@ -481,7 +408,7 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/7.html">https://lightningleader.github.io/posts/7.html</a>
+                    <a href="https://lightningleader.github.io/posts/9.html">https://lightningleader.github.io/posts/9.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -519,20 +446,8 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                                    <span class="chip bg-color">学习笔记</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
-                                    <span class="chip bg-color">图像处理</span>
-                                </a>
-                            
-                                <a href="/tags/OpenCV/">
-                                    <span class="chip bg-color">OpenCV</span>
+                                <a href="/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">
+                                    <span class="chip bg-color">资源分享</span>
                                 </a>
                             
                         </div>
@@ -841,9 +756,56 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/posts/9.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="整理收藏好用的宝藏网站">
+                        
+                        <span class="card-title">整理收藏好用的宝藏网站</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            整理收藏好用的宝藏网站
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            LightningMaster
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">
+                        <span class="chip bg-color">资源分享</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/posts/8.html">
                     <div class="card-image">
@@ -861,9 +823,9 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -885,59 +847,6 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                     
                     <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
                         <span class="chip bg-color">人工智能</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/6.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="OpenCV学习笔记">
-                        
-                        <span class="card-title">OpenCV学习笔记</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            OpenCV学习笔记
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-13
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            LightningMaster
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
-                        <span class="chip bg-color">图像处理</span>
-                    </a>
-                    
-                    <a href="/tags/OpenCV/">
-                        <span class="chip bg-color">OpenCV</span>
                     </a>
                     
                 </div>
