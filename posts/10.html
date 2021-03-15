@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="循迹智能小车 循黑线, LightningMaster">
+    <meta name="keywords" content="C语言数据结构-链表, LightningMaster">
     <meta name="description" content="老废物">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>循迹智能小车 循黑线 | LightningMaster</title>
+    <title>C语言数据结构-链表 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/%E5%BE%AA%E8%BF%B9%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%20%E5%BE%AA%E9%BB%91%E7%BA%BF/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">循迹智能小车 循黑线</h1>
+                    <h1 class="description center-align post-title">C语言数据结构-链表</h1>
                 </div>
             </div>
         </div>
@@ -302,12 +302,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
+                            <a href="/tags/C%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">C语言</span>
                             </a>
                         
-                            <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                <span class="chip bg-color">单片机</span>
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
                             </a>
                         
                     </div>
@@ -322,21 +322,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-09
+                    2021-03-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-09
+                    2021-03-15
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    3k
                 </div>
                 
 
@@ -366,164 +366,543 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="循迹智能小车-循黑线"><a href="#循迹智能小车-循黑线" class="headerlink" title="循迹智能小车 循黑线"></a>循迹智能小车 循黑线</h1><a id="more"></a>
+                <h1 id="C语言数据结构-链表"><a href="#C语言数据结构-链表" class="headerlink" title="C语言数据结构-链表"></a>C语言数据结构-链表</h1><a id="more"></a>
 
-<h2 id="硬件菜单"><a href="#硬件菜单" class="headerlink" title="硬件菜单"></a>硬件菜单</h2><ul>
-<li><p>单片机型号：STC16F40K128</p>
-</li>
-<li><p>4路红外循迹模块</p>
-</li>
-<li><p>小车底盘套件（一个底盘、两个TT马达、两个轮胎）</p>
-</li>
-<li><p>12V航模电池</p>
-</li>
-<li><p>降压模块</p>
-</li>
-<li><p>A4950双路电机驱动</p>
-</li>
-<li><p>杜邦线等</p>
-</li>
-</ul>
-<h2 id="硬件使用"><a href="#硬件使用" class="headerlink" title="硬件使用"></a>硬件使用</h2><p><img src="/posts/3/1.png" alt="4路红外循迹模块"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>这篇博客属于学习笔记，是博主在学习链表时的一些笔记，所以不保证内容的完全正确性和严谨性以及简洁等。</strong></p>
+<p><strong>此外由于属于学习笔记所以不会对原理性知识进行讲解，博客重点放在代码上。</strong></p>
+<p>使用环境：</p>
 <ul>
-<li>关于4路红外循迹模块的使用教程，我之前写过一篇博客，里面有详细的介绍。如果有不会的可以先去浏览学习一下。<a href="https://lightningleader.github.io/posts/2.html">跳转至教程</a></li>
-<li>A4950双路电机驱动使用方式不多说了，比较简单。大部分人应该都是用L298N的。</li>
+<li>C语言</li>
+<li>VS2019</li>
 </ul>
-<h2 id="硬件组装"><a href="#硬件组装" class="headerlink" title="硬件组装"></a>硬件组装</h2><p><img src="/posts/3/2.jpg" alt="循迹小车1"></p>
-<p><img src="/posts/3/3.jpg" alt="循迹小车2"></p>
-<p>硬件组装大概按照上面两张图片组装就行。  </p>
-<ul>
-<li>不过要注意的是红外传感器之间的距离和单个传感器的测量精度。在组装完成后，要通电试一试传感器的工作情况，用它检测黑线，康康是不是能够正常工作。如果无法正常工作需要及时调整传感器的精度或者其他东西。总之要保证传感器能正常检测黑线。</li>
-<li>另一点就是传感器的安装位置。受到传感器数量的限制，所以传感器的安装位置需要仔细考虑。我这里一共有4个传感器所以就像图中那样安装的。中间两个之间留有空隙，空隙的宽度大概为黑线宽度（可以稍微比黑线宽点），其他两个的位置也不要离得太远。具体为什么这样设计再后面讲解。</li>
-</ul>
-<h2 id="程序设计前的理解"><a href="#程序设计前的理解" class="headerlink" title="程序设计前的理解"></a>程序设计前的理解</h2><ul>
-<li>接上面挖下的坑，说一下中间两个传感器之间空隙的问题。</li>
-</ul>
-<p>前提是小车在没有检测到黑线的时候会直线行驶。中间的空隙宽度略微大于黑线宽度，这样就可以满足当黑线处于这个缝隙间的时候传感器不会有反应，小车会直线行驶，在一定程度上满足循线的基础操作。肯定会出现黑线移出这个空隙的情况，这样的话黑线就会被两侧的传感器检测到，然后由单片机做出应对。如果是左侧的传感器检测到黑线（设定小车前进方向为正方向），代表车头右偏了，因此小车需要左转；于此类似，右侧的传感器也是一个道理。理解了这些就可以完成最基本的循线了。</p>
-<ul>
-<li>最外侧两个传感器的作用  </li>
-</ul>
-<p>因为传感器反应速度等等一系列可能的原因会出现黑线在移出中央空隙的时间很短导致传感器没有检测到等的情况，这样的话小车肯定会继续前进而导致无法继续循线。如果在中间两个传感器两侧又安装了两个传感器的话，这样就相当于多了一个保险，如果中间两个没有检测到的话，最外侧的传感器正常工作仍能让小车重新回到循线轨迹上来。不过要注意的是，因为当最外侧的传感器检测到黑线时就意味着车头已经偏的比较严重了，所以要想让车头偏正就需要给更大的“力”，也就是给更大的PWM。</p>
-<h2 id="程序代码"><a href="#程序代码" class="headerlink" title="程序代码"></a>程序代码</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">#include &quot;headfile.h&quot;
-
-
-&#x2F;*******************
-* 用于初始化PWM的
-*******************&#x2F;
-void All_Init(void)
+<h2 id="创建链表"><a href="#创建链表" class="headerlink" title="创建链表"></a>创建链表</h2><p>创建链表的方法可能会有很多种，博主这里使用的是把头结点空出来也就是不给头节点赋值的一种创建方式。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*结点结构体*&#x2F;
+struct Node
 &#123;
-	pwm_init(PWMA_CH1P_P60, 10000, 0);
-	pwm_init(PWMA_CH2P_P62, 10000, 0);
-	pwm_init(PWMA_CH3P_P64, 10000, 0);
-	pwm_init(PWMA_CH4P_P66, 10000, 0);
-&#125;
+	int data;
+	struct Node* next;
+&#125;;
+typedef struct Node Node;
 
-
-&#x2F;*******************
-* 车子左转
-*******************&#x2F;
-void turn_left(int duty)
+&#x2F;*创建链表*&#x2F;
+Node* createNode()
 &#123;
-	pwm_duty(PWMA_CH1P_P60, duty);
-	pwm_duty(PWMA_CH2P_P62, 0);
-	pwm_duty(PWMA_CH3P_P64, 0);
-	pwm_duty(PWMA_CH4P_P66, duty);
-&#125;
-
-
-&#x2F;*******************
-* 车子右转
-*******************&#x2F;
-void turn_right(int duty)
-&#123;
-	pwm_duty(PWMA_CH1P_P60, 0);
-	pwm_duty(PWMA_CH2P_P62, duty);
-	pwm_duty(PWMA_CH3P_P64, duty);
-	pwm_duty(PWMA_CH4P_P66, 0);
-&#125;
-
-
-&#x2F;*******************
-* 车子直行
-*******************&#x2F;
-void go_straight(void)
-&#123;
-	pwm_duty(PWMA_CH1P_P60, 7000);
-	pwm_duty(PWMA_CH2P_P62, 0);
-	pwm_duty(PWMA_CH3P_P64, 7000);
-	pwm_duty(PWMA_CH4P_P66, 0);
-&#125;
-
-
-&#x2F;*******************
-* 车子停止
-*******************&#x2F;
-void go_stop(void)
-&#123;
-	pwm_duty(PWMA_CH1P_P60, 0);
-	pwm_duty(PWMA_CH2P_P62, 0);
-	pwm_duty(PWMA_CH3P_P64, 0);
-	pwm_duty(PWMA_CH4P_P66, 0);
-&#125;
-
-&#x2F;*****************************************
-* OUT1 P27
-* OUT2 P26
-* OUT3 P25
-* OUT4 P24
-* 如图循迹小车2所示，从左到右分别为OUT1、2、3、4
-* 检测到黑线或悬空LED灭，输出高电平
-* 对单片机的IO口状态进行判断，这样可以得到是哪个
-* 传感器检测到了黑线，然后再
-* 做出相对应的行为。
-*****************************************&#x2F;
-void scan(void)
-&#123;
-	if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
+	&#x2F;* head,tail分别指向链表的头结点和尾结点*&#x2F;
+	Node* head, * tail, * p;
+	int num;
+	head &#x3D; (Node*)malloc(sizeof(Node));    &#x2F;*申请内存*&#x2F;
+	tail &#x3D; head;
+	printf(&quot;请输入一组数据，结尾使用&#39;-9999&#39;\n&quot;);
+	(void)scanf(&quot;%d&quot;, &amp;num);
+	while (num !&#x3D; -9999)
 	&#123;
-		&#x2F;&#x2F; 未检测到黑线
-		go_straight();
+		p &#x3D; (Node*)malloc(sizeof(Node));    &#x2F;*申请内存*&#x2F;
+		p-&gt;data &#x3D; num;    &#x2F;*结点赋值*&#x2F;
+		tail-&gt;next &#x3D; p;    &#x2F;*当前链表尾指向结点p*&#x2F;
+		tail &#x3D; p;    &#x2F;*将结点p设为尾结点*&#x2F;
+		(void)scanf(&quot;%d&quot;, &amp;num);
 	&#125;
-	else if ((P26 &#x3D;&#x3D; 1)&amp;&amp;(P25 &#x3D;&#x3D; 1)&amp;&amp;(P27 &#x3D;&#x3D; 1)&amp;&amp;(P24 &#x3D;&#x3D; 1))
-	&#123;
-		&#x2F;&#x2F; 悬空
-		go_stop();
-	&#125;
-	else if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 1)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
-	&#123;
-		&#x2F;&#x2F; 车头右偏（相对于前进方向） 向左转（幅度较小）
-		turn_left(7000);
-	&#125;
-	else if ((P26 &#x3D;&#x3D; 1)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
-	&#123;
-		&#x2F;&#x2F; 车头左偏 向右转（幅度较小）
-		turn_right(7000);
-	&#125;
-	else if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 1)&amp;&amp;(P24 &#x3D;&#x3D; 0))
-	&#123;
-		&#x2F;&#x2F; 向左转（幅度较大）
-		turn_left(9500);
-	&#125;
-	else if ((P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P27 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 1))
-	&#123;
-		&#x2F;&#x2F; 向右转（幅度较大）
-		turn_right(9500);
-	&#125;
-&#125;
-void main()
+	tail-&gt;next &#x3D; NULL;    &#x2F;*最后一个结点指向NULL*&#x2F;
+    printf(&quot;链表创建成功\n&quot;);
+	return head;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<h2 id="打印链表内容"><a href="#打印链表内容" class="headerlink" title="打印链表内容"></a>打印链表内容</h2><p>因为创建链表是从首结点开始的（从首结点开始赋值），所以打印的时候也要从首结点开始。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*打印链表*&#x2F;
+void displayNode(Node* head)
 &#123;
-	DisableGlobalIRQ();		&#x2F;&#x2F;关闭总中断
+	if (head-&gt;next &#x3D;&#x3D; NULL)    &#x2F;*判断链表是否为空*&#x2F;
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		Node* p;
+		p &#x3D; head-&gt;next;    &#x2F;*从首结点开始*&#x2F;
+		printf(&quot;链表如下\n&quot;);
+		while (p !&#x3D; NULL)    &#x2F;*遍历打印*&#x2F;
+		&#123;
+			printf(&quot;%d    &quot;, p-&gt;data);
+			p &#x3D; p-&gt;next;
+		&#125;
+        printf(&quot;\n&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/10/1.jpg" alt="打印链表内容-效果图"></p>
+<p>在这里为了更好的理解代码引用其他博主的博客中的一句话，（出处原地址:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41481924/article/details/85340787">C语言链表操作详解</a>)</p>
+<p><strong>我在这着重解释一下p-&gt;next = NULL和p!=NULL的区别，因为我刚开始也经常弄错！！<br>while(p-&gt;next ！= NULL) 循环结束时，此时p的位置是尾节点的位置，但如果用于输出函数的判断条件，则尾节点的数据不会输出。<br>while(p!=NULL) 循环结束时， 此时p指向的位置为尾节点的下一个节点，因为没有申请内存空间，所以是一个未知的区域。</strong></p>
+<p>理解这两句话的话就可以继续下面的学习了。</p>
+<h2 id="释放链表内存"><a href="#释放链表内存" class="headerlink" title="释放链表内存"></a>释放链表内存</h2><p>在结束链表使用的时候需要释放一下内存。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*释放链表内存*&#x2F;
+void releaseNode(Node* head)
+&#123;
+	Node* p1, * p2;
+	p1 &#x3D; head;
+	while (p1 !&#x3D; NULL)
+	&#123;
+		p2 &#x3D; p1;
+		p1 &#x3D; p1-&gt;next;
+		free(p2);
+	&#125;
+	printf(&quot;链表释放内存成功\n&quot;);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<h2 id="删除结点"><a href="#删除结点" class="headerlink" title="删除结点"></a>删除结点</h2><p>这里提供两种不同目的的删除方式，一种是根据结点值删除，另一种是根据结点位置删除。</p>
+<h3 id="根据结点值删除"><a href="#根据结点值删除" class="headerlink" title="根据结点值删除"></a>根据结点值删除</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*根据结点的值删除链表中结点*&#x2F;
+void deleteNode_val(Node* head)
+&#123;
 	
-	board_init();			&#x2F;&#x2F;初始化寄存器
-	All_Init();
-	&#x2F;&#x2F;总中断最后开启
-	EnableGlobalIRQ();		&#x2F;&#x2F;开启总中断
-    while(1)
+	if (head-&gt;next &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
 	&#123;
-		scan();
-  &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>程序代码大概就像上面那样。其中有些参数，比如说小车行进速度和转弯占空比该给多少。这个东西需要自己测试然后填写，也就是自己慢慢调参测试，找到合适的数值就行。</p>
+		Node* p1, * p2;
+		int num;
+		printf(&quot;请输入要删除的结点数值：\n&quot;);
+		(void)scanf(&quot;%d&quot;, &amp;num);
+		p1 &#x3D; head-&gt;next;    &#x2F;*使用p1逐个寻找数据*&#x2F;
+		p2 &#x3D; NULL;
+		while ((p1-&gt;data !&#x3D; num) &amp;&amp; (p1-&gt;next !&#x3D; NULL))    &#x2F;*遍历寻找*&#x2F;
+		&#123;
+			p2 &#x3D; p1;    &#x2F;*用p2记录p1原来的位置*&#x2F;
+			p1 &#x3D; p1-&gt;next;
+		&#125;
+		if (p1-&gt;data &#x3D;&#x3D; num)
+		&#123;
+			if (p1 &#x3D;&#x3D; head-&gt;next)    &#x2F;*判断p1是否为首结点*&#x2F;
+			&#123;
+				head-&gt;next &#x3D; p1-&gt;next;    &#x2F;*如果是则将头结点与首结点的下一个结点链接*&#x2F;
+			&#125;
+			else
+				p2-&gt;next &#x3D; p1-&gt;next;   &#x2F;*将p1前一个结点p2直接与p1下一个结点链接*&#x2F;
+			free(p1);    &#x2F;*释放p1的内存*&#x2F;
+			printf(&quot;删除成功\n&quot;);
+		&#125;
+		else
+			printf(&quot;删除失败\n&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/10/2.jpg" alt="根据结点值删除结点-效果图"></p>
+<h3 id="根据结点位置删除"><a href="#根据结点位置删除" class="headerlink" title="根据结点位置删除"></a>根据结点位置删除</h3><p>这里的位置索引是从“1”开始的，可以通过修改变量<code>now_pos</code>改变位置索引。</p>
+<pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*根据结点位置删除结点*&#x2F;
+void deleteNode_pos(Node* head)
+&#123;
+	if (head-&gt;next &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		Node* p1, * p2;
+		int  now_pos&#x3D; 1, pos;
+		printf(&quot;请输入要输出结点的位置：\n&quot;);
+		(void)scanf(&quot;%d&quot;, &amp;pos);
+		p1 &#x3D; head-&gt;next;
+		p2 &#x3D; NULL;
+		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
+		&#123;
+			p2 &#x3D; p1;
+			p1 &#x3D; p1-&gt;next;
+			now_pos++;
+		&#125;
+		if (now_pos &#x3D;&#x3D; pos)
+		&#123;
+			if (p1 &#x3D;&#x3D; head-&gt;next)
+				head-&gt;next &#x3D; p1-&gt;next;
+			else
+				p2-&gt;next &#x3D; p1-&gt;next;
+			free(p1);
+			printf(&quot;删除成功\n&quot;);
+		&#125;
+		else
+			printf(&quot;删除失败\n&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/10/3.jpg" alt="根据结点位置删除-效果图"></p>
+<h2 id="根据结点位置插入新的结点"><a href="#根据结点位置插入新的结点" class="headerlink" title="根据结点位置插入新的结点"></a>根据结点位置插入新的结点</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*根据结点位置插入新的结点*&#x2F;
+void insertNode(Node* head)
+&#123;
+	if (head-&gt;next !&#x3D; NULL)
+	&#123;
+		int pos, val, now_pos &#x3D; 1;
+		Node* p, * p1, * p2;
+		p &#x3D; (Node*)malloc(sizeof(Node));
+		printf(&quot;请输入要插入的值和位置\n&quot;);
+		(void)scanf(&quot;%d %d&quot;, &amp;val, &amp;pos);
+		p-&gt;data &#x3D; val;
+		p-&gt;next &#x3D; NULL;
+		p1 &#x3D; head-&gt;next;
+		p2 &#x3D; NULL;
+		while ((now_pos !&#x3D; pos) &amp;&amp; (p1 !&#x3D; NULL))    &#x2F;*注意这里，如果使用p1-&gt;next则没办法在插入到最后*&#x2F;
+		&#123;
+			p2 &#x3D; p1;
+			p1 &#x3D; p1-&gt;next;
+			now_pos++;
+		&#125;
+		if (now_pos &#x3D;&#x3D; pos)
+		&#123;
+			if (p1 &#x3D;&#x3D; head-&gt;next)
+			&#123;
+				head-&gt;next &#x3D; p;
+				p-&gt;next &#x3D; p1;
+			&#125;
+			else
+			&#123;
+				p2-&gt;next &#x3D; p;
+				p-&gt;next &#x3D; p1;
+			&#125;
+			printf(&quot;插入成功\n&quot;);
+		&#125;
+		else
+			printf(&quot;插入失败\n&quot;);
+	&#125;
+	else
+		printf(&quot;链表为空\n&quot;);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/10/4.jpg" alt="根据结点位置插入新的结点-效果图"></p>
+<h2 id="根据结点位置修改结点的值"><a href="#根据结点位置修改结点的值" class="headerlink" title="根据结点位置修改结点的值"></a>根据结点位置修改结点的值</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*根据结点位置修改结点的值*&#x2F;
+void changeNode(Node* head)
+&#123;
+	if (head-&gt;next &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		int now_pos &#x3D; 1, pos, val;
+		Node* p1;
+		printf(&quot;请输入要修改的值和位置\n&quot;);
+		(void)scanf(&quot;%d %d&quot;, &amp;val, &amp;pos);
+		p1 &#x3D; head-&gt;next;
+		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
+		&#123;
+			p1 &#x3D; p1-&gt;next;
+			now_pos++;
+		&#125;
+		if (now_pos &#x3D;&#x3D; pos)
+		&#123;
+			p1-&gt;data &#x3D; val;
+			printf(&quot;修改成功\n&quot;);
+		&#125;
+		else
+			printf(&quot;修改失败\n&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/10/5.jpg" alt="根据结点位置修改结点的值-效果图"></p>
+<h2 id="根据结点的值查找结点位置"><a href="#根据结点的值查找结点位置" class="headerlink" title="根据结点的值查找结点位置"></a>根据结点的值查找结点位置</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*根据结点的值查找结点位置*&#x2F;
+void checkNode(Node* head)
+&#123;
+	if (head-&gt;data &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		Node* p1;
+		int val, now_pos &#x3D; 1;
+		printf(&quot;请输入要查询的值：\n&quot;);
+		(void)scanf(&quot;%d&quot;, &amp;val);
+		p1 &#x3D; head-&gt;next;
+		while ((p1-&gt;data !&#x3D; val) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
+		&#123;
+			now_pos++;
+			p1 &#x3D; p1-&gt;next;
+		&#125;
+		if (p1-&gt;data &#x3D;&#x3D; val)
+			printf(&quot;位置为：%d\n&quot;, now_pos);
+		else
+			printf(&quot;未找到\n&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/10/6.jpg" alt="根据结点的值查找结点位置-效果图"></p>
+<h2 id="根据结点的位置查找结点的值"><a href="#根据结点的位置查找结点的值" class="headerlink" title="根据结点的位置查找结点的值"></a>根据结点的位置查找结点的值</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*根据结点的位置查找结点的值*&#x2F;
+void checkNode_pos(Node* head)
+&#123;
+	if (head-&gt;next &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		Node* p1;
+		int pos, now_pos &#x3D; 1;
+		printf(&quot;请输入要查询的位置：\n&quot;);
+		(void)scanf(&quot;%d&quot;, &amp;pos);
+		p1 &#x3D; head-&gt;next;
+		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
+		&#123;
+			p1 &#x3D; p1-&gt;next;
+			now_pos++;
+		&#125;
+		if (now_pos &#x3D;&#x3D; pos)
+			printf(&quot;结点值为：%d\n&quot;, p1-&gt;data);
+		else
+			printf(&quot;未找到\n&quot;);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/10/7.jpg" alt="根据结点的位置查找结点的值-效果图"></p>
+<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+#include&lt;malloc.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct Node
+&#123;
+	int data;
+	struct Node* next;
+&#125;;
+typedef struct Node Node;
+
+&#x2F;*创建链表*&#x2F;
+Node* createNode()
+&#123;
+	&#x2F;* head,tail分别指向链表的头结点和尾结点*&#x2F;
+	Node* head, * tail, * p;
+	int num;
+	head &#x3D; (Node*)malloc(sizeof(Node));
+	tail &#x3D; head;
+	printf(&quot;请输入一组数据，结尾使用&#39;-9999&#39;\n&quot;);
+	(void)scanf(&quot;%d&quot;, &amp;num);
+	while (num !&#x3D; -9999)
+	&#123;
+		p &#x3D; (Node*)malloc(sizeof(Node));    &#x2F;*申请内存*&#x2F;
+		&#x2F;&#x2F;if (p &#x3D;&#x3D; NULL)
+		&#x2F;&#x2F;	exit(0);
+		p-&gt;data &#x3D; num;
+		tail-&gt;next &#x3D; p;
+		tail &#x3D; p;
+		(void)scanf(&quot;%d&quot;, &amp;num);
+	&#125;
+	tail-&gt;next &#x3D; NULL;
+	return head;
+&#125;
+
+&#x2F;*打印链表*&#x2F;
+void displayNode(Node* head)
+&#123;
+	if (head-&gt;next &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		Node* p;
+		p &#x3D; head-&gt;next;    &#x2F;*从首结点开始*&#x2F;
+		printf(&quot;链表如下\n&quot;);
+		while (p !&#x3D; NULL)
+		&#123;
+			printf(&quot;%d    &quot;, p-&gt;data);
+			p &#x3D; p-&gt;next;
+		&#125;
+		printf(&quot;\n&quot;);
+	&#125;
+&#125;
+
+&#x2F;*释放链表内存*&#x2F;
+void releaseNode(Node* head)
+&#123;
+	Node* p1, * p2;
+	p1 &#x3D; head;
+	while (p1 !&#x3D; NULL)
+	&#123;
+		p2 &#x3D; p1;
+		p1 &#x3D; p1-&gt;next;
+		free(p2);
+	&#125;
+	printf(&quot;链表释放内存成功\n&quot;);
+&#125;
+
+&#x2F;*根据结点的值删除链表中结点*&#x2F;
+void deleteNode_val(Node* head)
+&#123;
+	
+	if (head-&gt;next &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		Node* p1, * p2;
+		int num;
+		printf(&quot;请输入要删除的结点数值：\n&quot;);
+		(void)scanf(&quot;%d&quot;, &amp;num);
+		p1 &#x3D; head-&gt;next;    &#x2F;*使用p1逐个寻找数据*&#x2F;
+		p2 &#x3D; NULL;
+		while ((p1-&gt;data !&#x3D; num) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
+		&#123;
+			p2 &#x3D; p1;    &#x2F;*用p2记录p1原来的位置*&#x2F;
+			p1 &#x3D; p1-&gt;next;
+		&#125;
+		if (p1-&gt;data &#x3D;&#x3D; num)
+		&#123;
+			if (p1 &#x3D;&#x3D; head-&gt;next)
+			&#123;
+				head-&gt;next &#x3D; p1-&gt;next;
+			&#125;
+			else
+				p2-&gt;next &#x3D; p1-&gt;next;   &#x2F;*将p1前一个结点p2直接与p1下一个结点链接*&#x2F;
+			free(p1);
+			printf(&quot;删除成功\n&quot;);
+		&#125;
+		else
+			printf(&quot;删除失败\n&quot;);
+	&#125;
+	&#x2F;&#x2F; return head;
+&#125;
+
+&#x2F;*根据结点位置删除结点*&#x2F;
+void deleteNode_pos(Node* head)
+&#123;
+	if (head-&gt;next &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		Node* p1, * p2;
+		int  now_pos&#x3D; 1, pos;
+		printf(&quot;请输入要输出结点的位置：\n&quot;);
+		(void)scanf(&quot;%d&quot;, &amp;pos);
+		p1 &#x3D; head-&gt;next;
+		p2 &#x3D; NULL;
+		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
+		&#123;
+			p2 &#x3D; p1;
+			p1 &#x3D; p1-&gt;next;
+			now_pos++;
+		&#125;
+		if (now_pos &#x3D;&#x3D; pos)
+		&#123;
+			if (p1 &#x3D;&#x3D; head-&gt;next)
+				head-&gt;next &#x3D; p1-&gt;next;
+			else
+				p2-&gt;next &#x3D; p1-&gt;next;
+			free(p1);
+			printf(&quot;删除成功\n&quot;);
+		&#125;
+		else
+			printf(&quot;删除失败\n&quot;);
+	&#125;
+&#125;
+
+&#x2F;*根据结点位置插入新的结点*&#x2F;
+void insertNode(Node* head)
+&#123;
+	if (head-&gt;next !&#x3D; NULL)
+	&#123;
+		int pos, val, now_pos &#x3D; 1;
+		Node* p, * p1, * p2;
+		p &#x3D; (Node*)malloc(sizeof(Node));
+		printf(&quot;请输入要插入的值和位置\n&quot;);
+		(void)scanf(&quot;%d %d&quot;, &amp;val, &amp;pos);
+		p-&gt;data &#x3D; val;
+		p-&gt;next &#x3D; NULL;
+		p1 &#x3D; head-&gt;next;
+		p2 &#x3D; NULL;
+		while ((now_pos !&#x3D; pos) &amp;&amp; (p1 !&#x3D; NULL))
+		&#123;
+			p2 &#x3D; p1;
+			p1 &#x3D; p1-&gt;next;
+			now_pos++;
+		&#125;
+		if (now_pos &#x3D;&#x3D; pos)
+		&#123;
+			if (p1 &#x3D;&#x3D; head-&gt;next)
+			&#123;
+				head-&gt;next &#x3D; p;
+				p-&gt;next &#x3D; p1;
+			&#125;
+			else
+			&#123;
+				p2-&gt;next &#x3D; p;
+				p-&gt;next &#x3D; p1;
+			&#125;
+			printf(&quot;插入成功\n&quot;);
+		&#125;
+		else
+			printf(&quot;插入失败\n&quot;);
+	&#125;
+	else
+		printf(&quot;链表为空\n&quot;);
+&#125;
+
+&#x2F;*根据结点位置修改结点的值*&#x2F;
+void changeNode(Node* head)
+&#123;
+	if (head-&gt;next &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		int now_pos &#x3D; 1, pos, val;
+		Node* p1;
+		printf(&quot;请输入要修改的值和位置\n&quot;);
+		(void)scanf(&quot;%d %d&quot;, &amp;val, &amp;pos);
+		p1 &#x3D; head-&gt;next;
+		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
+		&#123;
+			p1 &#x3D; p1-&gt;next;
+			now_pos++;
+		&#125;
+		if (now_pos &#x3D;&#x3D; pos)
+		&#123;
+			p1-&gt;data &#x3D; val;
+			printf(&quot;修改成功\n&quot;);
+		&#125;
+		else
+			printf(&quot;修改失败\n&quot;);
+	&#125;
+&#125;
+
+&#x2F;*根据结点的值查找结点位置*&#x2F;
+void checkNode_val(Node* head)
+&#123;
+	if (head-&gt;data &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		Node* p1;
+		int val, now_pos &#x3D; 1;
+		printf(&quot;请输入要查询的值：\n&quot;);
+		(void)scanf(&quot;%d&quot;, &amp;val);
+		p1 &#x3D; head-&gt;next;
+		while ((p1-&gt;data !&#x3D; val) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
+		&#123;
+			now_pos++;
+			p1 &#x3D; p1-&gt;next;
+		&#125;
+		if (p1-&gt;data &#x3D;&#x3D; val)
+			printf(&quot;位置为：%d\n&quot;, now_pos);
+		else
+			printf(&quot;未找到\n&quot;);
+	&#125;
+&#125;
+
+&#x2F;*根据结点的位置查找结点的值*&#x2F;
+void checkNode_pos(Node* head)
+&#123;
+	if (head-&gt;next &#x3D;&#x3D; NULL)
+		printf(&quot;链表为空\n&quot;);
+	else
+	&#123;
+		Node* p1;
+		int pos, now_pos &#x3D; 1;
+		printf(&quot;请输入要查询的位置：\n&quot;);
+		(void)scanf(&quot;%d&quot;, &amp;pos);
+		p1 &#x3D; head-&gt;next;
+		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
+		&#123;
+			p1 &#x3D; p1-&gt;next;
+			now_pos++;
+		&#125;
+		if (now_pos &#x3D;&#x3D; pos)
+			printf(&quot;结点值为：%d\n&quot;, p1-&gt;data);
+		else
+			printf(&quot;未找到\n&quot;);
+	&#125;
+&#125;
+
+int main()
+&#123;
+	Node* head;
+	head &#x3D; createNode();    &#x2F;&#x2F; 创建列表
+	displayNode(head);    &#x2F;&#x2F; 打印
+	&#x2F;&#x2F; releaseNode(head);
+	&#x2F;&#x2F; deleteNode_val(head);
+	&#x2F;&#x2F; deleteNode_pos(head);
+	&#x2F;&#x2F; insertNode(head);
+	&#x2F;&#x2F; changeNode(head);
+	&#x2F;&#x2F; checkNode_val(head);
+	checkNode_pos(head);
+	displayNode(head);
+	releaseNode(head);
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -550,7 +929,7 @@ void main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/3.html">https://lightningleader.github.io/posts/3.html</a>
+                    <a href="https://lightningleader.github.io/posts/10.html">https://lightningleader.github.io/posts/10.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -588,12 +967,12 @@ void main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
+                                <a href="/tags/C%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">C语言</span>
                                 </a>
                             
-                                <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                    <span class="chip bg-color">单片机</span>
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
                         </div>
@@ -902,29 +1281,30 @@ void main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/4.html">
+                <a href="/posts/10.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="树莓派使用USB串口通信 CH340">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="C语言数据结构-链表">
                         
-                        <span class="card-title">树莓派使用USB串口通信 CH340</span>
+                        <span class="card-title">C语言数据结构-链表</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            树莓派使用USB串口通信 CH340
+                            C语言数据结构-链表
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -933,19 +1313,16 @@ void main()
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
+                    <a href="/tags/C%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">C语言</span>
                     </a>
                     
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                        <span class="chip bg-color">树莓派</span>
                     </a>
                     
                 </div>
@@ -959,23 +1336,24 @@ void main()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/2.html">
+                <a href="/posts/9.html">
                     <div class="card-image">
                         
-                        <img src="/images/4%E8%B7%AF%E7%BA%A2%E5%A4%96%E5%BE%AA%E8%BF%B9%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/1.jpg" class="responsive-img" alt="4路红外循迹模块使用教程">
                         
-                        <span class="card-title">4路红外循迹模块使用教程</span>
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="整理收藏好用的宝藏网站">
+                        
+                        <span class="card-title">整理收藏好用的宝藏网站</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            4路红外循迹模块使用教程
+                            整理收藏好用的宝藏网站
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-02
                             </span>
                         <span class="publish-author">
                             
@@ -988,16 +1366,8 @@ void main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%A1%AC%E4%BB%B6%E4%BD%BF%E7%94%A8/">
-                        <span class="chip bg-color">硬件使用</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                        <span class="chip bg-color">单片机</span>
+                    <a href="/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">
+                        <span class="chip bg-color">资源分享</span>
                     </a>
                     
                 </div>
