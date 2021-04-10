@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言数据结构-链表, LightningMaster">
+    <meta name="keywords" content="OpenCV实现连通区域填充, LightningMaster">
     <meta name="description" content="老废物">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C语言数据结构-链表 | LightningMaster</title>
+    <title>OpenCV实现连通区域填充 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C语言数据结构-链表</h1>
+                    <h1 class="description center-align post-title">OpenCV实现连通区域填充</h1>
                 </div>
             </div>
         </div>
@@ -302,12 +302,20 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/C%E8%AF%AD%E8%A8%80/">
-                                <span class="chip bg-color">C语言</span>
+                            <a href="/tags/%E6%95%99%E7%A8%8B/">
+                                <span class="chip bg-color">教程</span>
                             </a>
                         
                             <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                 <span class="chip bg-color">学习笔记</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                                <span class="chip bg-color">图像处理</span>
+                            </a>
+                        
+                            <a href="/tags/OpenCV/">
+                                <span class="chip bg-color">OpenCV</span>
                             </a>
                         
                     </div>
@@ -322,21 +330,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-15
+                    2021-04-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-03-15
+                    2021-04-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3k
+                    3.2k
                 </div>
                 
 
@@ -366,543 +374,465 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C语言数据结构-链表"><a href="#C语言数据结构-链表" class="headerlink" title="C语言数据结构-链表"></a>C语言数据结构-链表</h1><a id="more"></a>
+                <h1 id="OpenCV实现连通区域填充"><a href="#OpenCV实现连通区域填充" class="headerlink" title="OpenCV实现连通区域填充"></a>OpenCV实现连通区域填充</h1><a id="more"></a>
 
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>这篇博客属于学习笔记，是博主在学习链表时的一些笔记，所以不保证内容的完全正确性和严谨性以及简洁等。</strong></p>
-<p><strong>此外由于属于学习笔记所以不会对原理性知识进行讲解，博客重点放在代码上。</strong></p>
-<p>使用环境：</p>
-<ul>
-<li>C语言</li>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本博客主要解决的问题来源于数据结构老师的一次作业，作业内容如下图所示。</p>
+<p><img src="/posts/12/1.png" alt="问题照片"></p>
+<p>要处理的图像如下：</p>
+<p><img src="/posts/12/2.jpg" alt="原图像"></p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><ul>
 <li>VS2019</li>
+<li>C++</li>
+<li>OpenCV-4.1.0</li>
 </ul>
-<h2 id="创建链表"><a href="#创建链表" class="headerlink" title="创建链表"></a>创建链表</h2><p>创建链表的方法可能会有很多种，博主这里使用的是把头结点空出来也就是不给头节点赋值的一种创建方式。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*结点结构体*&#x2F;
-struct Node
+<h2 id="第一部分：使用轮廓查找和漫水填充的方法实现区域染色"><a href="#第一部分：使用轮廓查找和漫水填充的方法实现区域染色" class="headerlink" title="第一部分：使用轮廓查找和漫水填充的方法实现区域染色"></a>第一部分：使用轮廓查找和漫水填充的方法实现区域染色</h2><p><strong>流程图：</strong></p>
+<p><img src="/posts/12/3.png" alt="漫水填充"></p>
+<p><strong>源程序代码：</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void deal_test_1()
 &#123;
-	int data;
-	struct Node* next;
-&#125;;
-typedef struct Node Node;
+    Mat test_1_gray, test_1_threshold, test_1_gauss;
+    Mat test_1_sobelx, test_1_sobely, test_1_sobelxy;
+    Mat test_1_origin &#x3D; imread(&quot;C:\\Users\\17513\\Desktop\\数据结构报告\\栈和队列\\test.jpg&quot;);
+    Mat test_1_copy &#x3D; test_1_origin.clone();
+    &#x2F;*转换为灰度图*&#x2F;
+    cvtColor(test_1_origin, test_1_gray, COLOR_BGR2GRAY);
+    &#x2F;*高斯滤波*&#x2F;
+    GaussianBlur(test_1_gray, test_1_gauss, Size(5, 5), 0, 0);
+    &#x2F;*二值化*&#x2F;
+    threshold(test_1_gauss, test_1_threshold, 127, 255, THRESH_BINARY);
+    &#x2F;*Sobel算子*&#x2F;
+    Sobel(test_1_threshold, test_1_sobelx, CV_64F, 1, 0, 3);
+    convertScaleAbs(test_1_sobelx, test_1_sobelx);
+    Sobel(test_1_threshold, test_1_sobely, CV_64F, 0, 1, 3);
+    convertScaleAbs(test_1_sobely, test_1_sobely);
+    addWeighted(test_1_sobelx, 1, test_1_sobely, 1, 0, test_1_sobelxy);
+    &#x2F;*再次二值化*&#x2F;
+    threshold(test_1_sobelxy, test_1_threshold, 127, 255, THRESH_BINARY);
+    &#x2F;*寻找轮廓*&#x2F;
+    vector&lt;vector&lt;Point&gt;&gt; contours;
+    findContours(test_1_threshold, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+    &#x2F;*最小外接矩形*&#x2F;
+Point2f rect[4];
+vector&lt;Rect&gt; boundRect(contours.size());  &#x2F;&#x2F;定义外接矩形集合
+    vector&lt;RotatedRect&gt; box(contours.size()); &#x2F;&#x2F;定义最小外接矩形集合
+    srand((int)time(0));
+    for (int i &#x3D; 0; i &lt; contours.size(); i++)
+    &#123;
+        box[i] &#x3D; minAreaRect(Mat(contours[i]));  &#x2F;&#x2F;计算每个轮廓最小外接矩形
+        box[i].points(rect);  &#x2F;&#x2F;把最小外接矩形四个端点复制给rect数组
+        floodFill(test_1_copy, Point(box[i].center.x, box[i].center.y), Scalar(rand() % 255, rand() &amp; 255, rand() % 255), &amp;boundRect[i], Scalar(20, 20, 20), Scalar(20, 20, 20));
+    &#125;
+    cv_show(&quot;666&quot;, test_1_copy);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>代码分析：</strong></p>
+<ol>
+<li>   这部分代码比较基础。首先对图片进行基本的处理，再使用轮廓查找的方式找的图形的轮廓。再通过轮廓算出其最小外接矩形，这样就可以大致确定每个图形所在的区域，也就是ROI区域。</li>
+<li>   在获取ROI区域后的难点是如何对图像进行染色，而且还要保证每个图形染的颜色是不同的。<br>对于染色方法我这里使用的是漫水填充的算法。这个算法参考<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/poem_qianmo/article/details/28261997">【OpenCV入门教程之十五】水漫金山：OpenCV漫水填充算法（Floodfill）</a><br>具体函数的使用方法也比较简单。函数需要提供seedPoint即漫水填充算法的起点，在程序中这个点我给的是每个图像最小外接矩形的中心点。此外还需要提供填充的颜色，为了保证颜色的不同，采用随机数的方式选择不用的BGR颜色，随机数的范围是0到255.</li>
+</ol>
+<p><strong>效果图：</strong></p>
+<p><img src="/posts/12/4.png" alt="漫水填充效果图">\</p>
+<p>程序最终效果还可以接受，但有些图形的外边明显没有进行染色，这可能是因为图像经过基本处理后发生改变与原图像不同导致。</p>
+<h2 id="第二部分：使用队列实现种子填充法"><a href="#第二部分：使用队列实现种子填充法" class="headerlink" title="第二部分：使用队列实现种子填充法"></a>第二部分：使用队列实现种子填充法</h2><p><strong>流程图：</strong></p>
+<p><img src="/posts/12/5.png" alt="种子填充法"></p>
+<p><strong>源程序代码：</strong></p>
+<p>基本的图像处理：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">Mat labelImg;
+Mat colorLabelImg;
+Mat test_1_gray, test_1_threshold, test_1_gauss;
+Mat test_1_origin &#x3D; imread(&quot;C:\\Users\\17513\\Desktop\\数据结构报告\\栈和队列\\test.jpg&quot;);
+Mat test_1_copy;
+cvtColor(test_1_origin, test_1_gray, COLOR_BGR2GRAY);
+GaussianBlur(test_1_gray, test_1_gauss, Size(5, 5), 0, 0);
+threshold(test_1_gauss, test_1_threshold, 127, 255, THRESH_BINARY);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>代码分析：</strong><br>一些基本的图像处理。灰度图、高斯滤波和二值化。</p>
+<p>种子填充法相关代码：</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void SeedFillOld(const Mat&amp; binImg, Mat&amp; lableImg)
+&#123;
+    if (binImg.empty() || binImg.type() !&#x3D; CV_8UC1)
+    &#123;
+        return;
+    &#125;
 
-&#x2F;*创建链表*&#x2F;
-Node* createNode()
+    lableImg.release();
+    binImg.convertTo(lableImg, CV_32SC1);
+
+    int label &#x3D; 1;
+
+    int rows &#x3D; binImg.rows;
+    int cols &#x3D; binImg.cols;
+    for (int i &#x3D; 0; i &lt; rows; i++)
+    &#123;
+        for (int j &#x3D; 0; j &lt; cols; j++)
+        &#123;
+            if (lableImg.at&lt;int&gt;(i, j) &#x3D;&#x3D; 255)
+            &#123;
+                queue&lt;pair&lt;int, int&gt;&gt; neighborPixels;
+                neighborPixels.push(pair&lt;int, int&gt;(i, j));     &#x2F;&#x2F; 像素位置: &lt;i,j&gt;
+                ++label;
+                while (!neighborPixels.empty())
+                &#123;
+                    pair&lt;int, int&gt; curPixel &#x3D; neighborPixels.front();
+                    int curX &#x3D; curPixel.first;
+                    int curY &#x3D; curPixel.second;
+                    if (lableImg.at&lt;int&gt;(curX, curY) !&#x3D; label)
+                    &#123;
+                        lableImg.at&lt;int&gt;(curX, curY) &#x3D; label;
+
+                        neighborPixels.pop();
+
+                        if (lableImg.at&lt;int&gt;(curX, curY - 1) &#x3D;&#x3D; 255)
+                        &#123;
+                            neighborPixels.push(std::pair&lt;int, int&gt;(curX, curY - 1));
+                        &#125;
+                        if (lableImg.at&lt;int&gt;(curX, curY + 1) &#x3D;&#x3D; 255)
+                        &#123;
+                            neighborPixels.push(std::pair&lt;int, int&gt;(curX, curY + 1));
+                        &#125;
+                        if (lableImg.at&lt;int&gt;(curX - 1, curY) &#x3D;&#x3D; 255)
+                        &#123;
+                            neighborPixels.push(std::pair&lt;int, int&gt;(curX - 1, curY));
+                        &#125;
+                        if (lableImg.at&lt;int&gt;(curX + 1, curY) &#x3D;&#x3D; 255)
+                        &#123;
+                            neighborPixels.push(std::pair&lt;int, int&gt;(curX + 1, curY));
+                        &#125;
+                    &#125;
+                    else
+                    &#123;
+                        neighborPixels.pop();
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>代码分析：</strong></p>
+<ol>
+<li>   种子填充法<br>参考博客：<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/icvpr/article/details/10259577">OpenCV_连通区域分析（Connected Component Analysis-Labeling）</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_37059483/article/details/78018539">OpenCV-二值图像连通域分析</a><br>在上面这两个博客中的种子填充法都是使用堆栈来实现的，因此在本程序中需要考虑换成队列。</li>
+<li>   算法的简单分析：<br>（1）    首先需要获取原图像的列数和行数方便后面对每个像素点的访问。<br>（2）    通过遍历访问像素点，如果像素点(i, j)的值等于255（白色点）则将其坐标点存入neighborPixels队列中，并且标签label加1。<br>（3）    如果neighborPixels队列非空，则取出neighborPixels队列的队头。判断队头代表的像素点是否与当前label相等，如果相等则直接删除并重复步骤（3），否则进行步骤（4）。如果neighborPixels队列为空则执行步骤（2）。<br>（4）    将队头点赋值为label并从队列中删除。对队头点进行4领域判断。上下左右四个点，哪个点的像素值为255哪个值就入队。重复步骤（3）。<br>（5）    当所有像素点被遍历完之后种子填充法结束。</li>
+<li>   种子填充法比较容易理解，我认为难点在于将原本代码中的堆栈转换为队列。经过仔细分析，发现如果仅仅是把堆栈换成队列会导致代码重复，及会出现一个像素点被多次访问的情况。为了解决这个问题，我在程序中多加了一个判断（第135行）。因为一个像素点被访问后会被“贴上”值为label的“标签”，所以对像素点的“标签”进行判断就可以知道这个点有没有被访问过。如果访问过则直接删除，否则正常执行程序即可。</li>
+<li>   本程序中使用的是4领域，还可以换成8领域，不过我没试过，不知道效果怎么样。</li>
+</ol>
+<h2 id="第三部分：对图像染色"><a href="#第三部分：对图像染色" class="headerlink" title="第三部分：对图像染色"></a>第三部分：对图像染色</h2><p><strong>源程序代码：</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">Scalar GetRandomColor()
 &#123;
-	&#x2F;* head,tail分别指向链表的头结点和尾结点*&#x2F;
-	Node* head, * tail, * p;
-	int num;
-	head &#x3D; (Node*)malloc(sizeof(Node));    &#x2F;*申请内存*&#x2F;
-	tail &#x3D; head;
-	printf(&quot;请输入一组数据，结尾使用&#39;-9999&#39;\n&quot;);
-	(void)scanf(&quot;%d&quot;, &amp;num);
-	while (num !&#x3D; -9999)
+    uchar r &#x3D; 255 * (rand() &#x2F; (1.0 + RAND_MAX));
+    uchar g &#x3D; 255 * (rand() &#x2F; (1.0 + RAND_MAX));
+    uchar b &#x3D; 255 * (rand() &#x2F; (1.0 + RAND_MAX));
+    return Scalar(b, g, r);
+&#125;
+
+void LabelColor(const Mat&amp; labelImg, Mat&amp; colorLabelImg)
+&#123;
+    int num &#x3D; 0;
+    if (labelImg.empty() ||
+        labelImg.type() !&#x3D; CV_32SC1)
+    &#123;
+        return;
+    &#125;
+
+    map&lt;int, Scalar&gt; colors;
+
+    int rows &#x3D; labelImg.rows;
+    int cols &#x3D; labelImg.cols;
+
+    colorLabelImg.release();
+    colorLabelImg.create(rows, cols, CV_8UC3);
+    colorLabelImg &#x3D; Scalar::all(0);
+
+    for (int i &#x3D; 0; i &lt; rows; i++)
+    &#123;
+        const int* data_src &#x3D; (int*)labelImg.ptr&lt;int&gt;(i);
+        uchar* data_dst &#x3D; colorLabelImg.ptr&lt;uchar&gt;(i);
+        for (int j &#x3D; 0; j &lt; cols; j++)
+        &#123;
+            int pixelValue &#x3D; data_src[j];
+            if (pixelValue &gt; 1)
+            &#123;
+                if (colors.count(pixelValue) &lt;&#x3D; 0)
+                &#123;
+                    colors[pixelValue] &#x3D; GetRandomColor();
+                    num++;
+                &#125;
+
+                Scalar color &#x3D; colors[pixelValue];
+                *data_dst++ &#x3D; color[0];
+                *data_dst++ &#x3D; color[1];
+                *data_dst++ &#x3D; color[2];
+            &#125;
+            else
+            &#123;
+                data_dst++;
+                data_dst++;
+                data_dst++;
+            &#125;
+        &#125;
+    &#125;
+    printf(&quot;color num : %d \n&quot;, num);
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>代码分析：</strong></p>
+<ol>
+<li>   颜色BGR也是取的随机数，可以保证每个区域颜色不同。</li>
+<li>   通过遍历进行染色，判断方式就是对每个像素点的值也就是标签进行染色。同一个标签的点染同一个颜色。</li>
+</ol>
+<p><strong>效果图：</strong></p>
+<p><img src="/posts/12/6.png" alt="种子填充法"></p>
+<p>从图中可以看出，效果比轮廓法要好，颜色填充比较饱满。</p>
+<h2 id="完整代码："><a href="#完整代码：" class="headerlink" title="完整代码："></a>完整代码：</h2><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;opencv2&#x2F;opencv.hpp&gt;
+#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;queue&gt;
+#include &lt;stack&gt;
+#include &lt;map&gt;
+#include &lt;list&gt;
+using namespace cv;
+using namespace std;
+
+void cv_show(string name, Mat img)
+&#123;
+	&#x2F;*用于显示图像*&#x2F;
+	imshow(name, img);
+	waitKey(0);
+&#125;
+
+void deal_test_1()
+&#123;
+	Mat test_1_gray, test_1_threshold, test_1_gauss;
+	Mat test_1_sobelx, test_1_sobely, test_1_sobelxy;
+	Mat test_1_origin &#x3D; imread(&quot;C:\\Users\\17513\\Desktop\\数据结构报告\\栈和队列\\test.jpg&quot;);
+	Mat test_1_copy &#x3D; test_1_origin.clone();
+	&#x2F;*转换为灰度图*&#x2F;
+	cvtColor(test_1_origin, test_1_gray, COLOR_BGR2GRAY);
+	&#x2F;*高斯滤波*&#x2F;
+	GaussianBlur(test_1_gray, test_1_gauss, Size(5, 5), 0, 0);
+	&#x2F;*二值化*&#x2F;
+	threshold(test_1_gauss, test_1_threshold, 127, 255, THRESH_BINARY);
+	&#x2F;*Sobel算子*&#x2F;
+	Sobel(test_1_threshold, test_1_sobelx, CV_64F, 1, 0, 3);
+	convertScaleAbs(test_1_sobelx, test_1_sobelx);
+	Sobel(test_1_threshold, test_1_sobely, CV_64F, 0, 1, 3);
+	convertScaleAbs(test_1_sobely, test_1_sobely);
+	addWeighted(test_1_sobelx, 1, test_1_sobely, 1, 0, test_1_sobelxy);
+	&#x2F;*再次二值化*&#x2F;
+	threshold(test_1_sobelxy, test_1_threshold, 127, 255, THRESH_BINARY);
+	&#x2F;*寻找轮廓*&#x2F;
+	vector&lt;vector&lt;Point&gt;&gt; contours;
+	findContours(test_1_threshold, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+	&#x2F;*绘制轮廓*&#x2F;
+	&#x2F;&#x2F;drawContours(test_1_copy, contours, -1, Scalar(0, 255, 255), 2);
+	&#x2F;*最小外接矩形*&#x2F;
+	Point2f rect[4];
+	vector&lt;Rect&gt; boundRect(contours.size());  &#x2F;&#x2F;定义外接矩形集合
+	vector&lt;RotatedRect&gt; box(contours.size()); &#x2F;&#x2F;定义最小外接矩形集合
+	srand((int)time(0));
+	for (int i &#x3D; 0; i &lt; contours.size(); i++)
 	&#123;
-		p &#x3D; (Node*)malloc(sizeof(Node));    &#x2F;*申请内存*&#x2F;
-		p-&gt;data &#x3D; num;    &#x2F;*结点赋值*&#x2F;
-		tail-&gt;next &#x3D; p;    &#x2F;*当前链表尾指向结点p*&#x2F;
-		tail &#x3D; p;    &#x2F;*将结点p设为尾结点*&#x2F;
-		(void)scanf(&quot;%d&quot;, &amp;num);
+		box[i] &#x3D; minAreaRect(Mat(contours[i]));  &#x2F;&#x2F;计算每个轮廓最小外接矩形
+		&#x2F;&#x2F;boundRect[i] &#x3D; boundingRect(Mat(contours[i]));
+		&#x2F;&#x2F;circle(test_1_copy, Point(box[i].center.x, box[i].center.y), 2, Scalar(0, 255, 0), -1, 8);
+		&#x2F;&#x2F;绘制最小外接矩形的中心点
+		&#x2F;*rectangle(test_1_copy, Point(boundRect[i].x, boundRect[i].y), Point(boundRect[i].x +
+			boundRect[i].width, boundRect[i].y + boundRect[i].height), Scalar(0, 255, 0), 1, 8);*&#x2F;
+		box[i].points(rect);  &#x2F;&#x2F;把最小外接矩形四个端点复制给rect数组
+		floodFill(test_1_copy, Point(box[i].center.x, box[i].center.y), Scalar(rand() % 255, rand() &amp; 255, rand() % 255), &amp;boundRect[i], Scalar(20, 20, 20), Scalar(20, 20, 20));
 	&#125;
-	tail-&gt;next &#x3D; NULL;    &#x2F;*最后一个结点指向NULL*&#x2F;
-    printf(&quot;链表创建成功\n&quot;);
-	return head;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	cv_show(&quot;666&quot;, test_1_copy);
+&#125;
 
-
-<h2 id="打印链表内容"><a href="#打印链表内容" class="headerlink" title="打印链表内容"></a>打印链表内容</h2><p>因为创建链表是从首结点开始的（从首结点开始赋值），所以打印的时候也要从首结点开始。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*打印链表*&#x2F;
-void displayNode(Node* head)
+void deal_test_2()
 &#123;
-	if (head-&gt;next &#x3D;&#x3D; NULL)    &#x2F;*判断链表是否为空*&#x2F;
-		printf(&quot;链表为空\n&quot;);
-	else
+	Mat img_origin &#x3D; imread(&quot;C:\\Users\\17513\\Desktop\\数据结构报告\\栈和队列\\test2.jpg&quot;);
+	Mat img_copy &#x3D; img_origin.clone();
+	Mat img_gray, img_gauss, img_threshold;
+	Mat img_sobelx, img_sobely, img_sobelxy;
+	Mat dstImage;
+	Mat element &#x3D; getStructuringElement(MORPH_RECT, Size(3, 3));
+	cvtColor(img_copy, img_gray, COLOR_BGR2GRAY);
+	GaussianBlur(img_gray, img_gauss, Size(5, 5), 0, 0);
+	threshold(img_gray, img_threshold, 127, 255, THRESH_BINARY);
+	morphologyEx(img_threshold, dstImage, 0, element);
+	&#x2F;&#x2F;Sobel(dstImage, img_sobelx, CV_64F, 1, 0, 3);
+	&#x2F;&#x2F;convertScaleAbs(img_sobelx, img_sobelx);
+	&#x2F;&#x2F;Sobel(img_threshold, img_sobely, CV_64F, 0, 1, 3);
+	&#x2F;&#x2F;convertScaleAbs(img_sobely, img_sobely);
+	&#x2F;&#x2F;addWeighted(img_sobelx, 1, img_sobely, 1, 0, img_sobelxy);
+	threshold(dstImage, img_threshold, 127, 255, THRESH_BINARY);
+	vector&lt;vector&lt;Point&gt;&gt; contours;
+	vector&lt;vector&lt;Point&gt;&gt; cnts;
+	vector&lt;vector&lt;Point&gt;&gt; cnts_max;
+	findContours(img_threshold, contours, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+	for (int i &#x3D; 0; i &lt; contours.size(); i++)
 	&#123;
-		Node* p;
-		p &#x3D; head-&gt;next;    &#x2F;*从首结点开始*&#x2F;
-		printf(&quot;链表如下\n&quot;);
-		while (p !&#x3D; NULL)    &#x2F;*遍历打印*&#x2F;
-		&#123;
-			printf(&quot;%d    &quot;, p-&gt;data);
-			p &#x3D; p-&gt;next;
-		&#125;
-        printf(&quot;\n&quot;);
+		double size &#x3D; contourArea(contours[i]);
+		if (size &gt;&#x3D; 10 &amp;&amp; size &lt; 1000)
+			cnts.push_back(contours[i]);
+		if (size &gt;&#x3D; 1000)
+			cnts_max.push_back(contours[i]);
+		&#x2F;&#x2F; cout &lt;&lt; i &lt;&lt; &quot;&#x3D;&quot; &lt;&lt; size &lt;&lt; endl;
 	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/10/1.jpg" alt="打印链表内容-效果图"></p>
-<p>在这里为了更好的理解代码引用其他博主的博客中的一句话，（出处原地址:<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41481924/article/details/85340787">C语言链表操作详解</a>)</p>
-<p><strong>我在这着重解释一下p-&gt;next = NULL和p!=NULL的区别，因为我刚开始也经常弄错！！<br>while(p-&gt;next ！= NULL) 循环结束时，此时p的位置是尾节点的位置，但如果用于输出函数的判断条件，则尾节点的数据不会输出。<br>while(p!=NULL) 循环结束时， 此时p指向的位置为尾节点的下一个节点，因为没有申请内存空间，所以是一个未知的区域。</strong></p>
-<p>理解这两句话的话就可以继续下面的学习了。</p>
-<h2 id="释放链表内存"><a href="#释放链表内存" class="headerlink" title="释放链表内存"></a>释放链表内存</h2><p>在结束链表使用的时候需要释放一下内存。</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*释放链表内存*&#x2F;
-void releaseNode(Node* head)
+	Mat img_copy2 &#x3D; img_copy.clone();
+	int sum;
+	sum &#x3D; cnts.size() + cnts_max.size() * 2;
+	drawContours(img_copy2, cnts, -1, Scalar(0, 0, 255), 1);
+	&#x2F;&#x2F;drawContours(img_copy, cnts, -1, Scalar(0, 0, 255), 2);
+	&#x2F;&#x2F;cout &lt;&lt; &quot;contours &#x3D; &quot; &lt;&lt; contours.size() &lt;&lt; endl;
+	&#x2F;&#x2F;cout &lt;&lt; &quot;cnts &#x3D; &quot; &lt;&lt; cnts.size() &lt;&lt; endl;
+	&#x2F;&#x2F;cout &lt;&lt; &quot;cnts_max &#x3D; &quot; &lt;&lt; cnts_max.size() &lt;&lt; endl;
+	cout &lt;&lt; &quot;sum &#x3D; &quot; &lt;&lt; sum &lt;&lt; endl;
+	&#x2F;&#x2F;cout &lt;&lt; &quot;一共有&quot; &lt;&lt; cnts.size() &lt;&lt; &quot;个米粒&quot; &lt;&lt; endl;
+	imshow(&quot;米粒轮廓&quot;, img_copy2);
+	waitKey(0);
+&#125;
+
+void SeedFillOld(const Mat&amp; binImg, Mat&amp; lableImg)
 &#123;
-	Node* p1, * p2;
-	p1 &#x3D; head;
-	while (p1 !&#x3D; NULL)
+	if (binImg.empty() || binImg.type() !&#x3D; CV_8UC1)
 	&#123;
-		p2 &#x3D; p1;
-		p1 &#x3D; p1-&gt;next;
-		free(p2);
+		return;
 	&#125;
-	printf(&quot;链表释放内存成功\n&quot;);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+	lableImg.release();
+	binImg.convertTo(lableImg, CV_32SC1);
 
-<h2 id="删除结点"><a href="#删除结点" class="headerlink" title="删除结点"></a>删除结点</h2><p>这里提供两种不同目的的删除方式，一种是根据结点值删除，另一种是根据结点位置删除。</p>
-<h3 id="根据结点值删除"><a href="#根据结点值删除" class="headerlink" title="根据结点值删除"></a>根据结点值删除</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*根据结点的值删除链表中结点*&#x2F;
-void deleteNode_val(Node* head)
-&#123;
-	
-	if (head-&gt;next &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
+	int label &#x3D; 1;
+
+	int rows &#x3D; binImg.rows;
+	int cols &#x3D; binImg.cols;
+	for (int i &#x3D; 0; i &lt; rows; i++)
 	&#123;
-		Node* p1, * p2;
-		int num;
-		printf(&quot;请输入要删除的结点数值：\n&quot;);
-		(void)scanf(&quot;%d&quot;, &amp;num);
-		p1 &#x3D; head-&gt;next;    &#x2F;*使用p1逐个寻找数据*&#x2F;
-		p2 &#x3D; NULL;
-		while ((p1-&gt;data !&#x3D; num) &amp;&amp; (p1-&gt;next !&#x3D; NULL))    &#x2F;*遍历寻找*&#x2F;
+		for (int j &#x3D; 0; j &lt; cols; j++)
 		&#123;
-			p2 &#x3D; p1;    &#x2F;*用p2记录p1原来的位置*&#x2F;
-			p1 &#x3D; p1-&gt;next;
-		&#125;
-		if (p1-&gt;data &#x3D;&#x3D; num)
-		&#123;
-			if (p1 &#x3D;&#x3D; head-&gt;next)    &#x2F;*判断p1是否为首结点*&#x2F;
+			if (lableImg.at&lt;int&gt;(i, j) &#x3D;&#x3D; 255)
 			&#123;
-				head-&gt;next &#x3D; p1-&gt;next;    &#x2F;*如果是则将头结点与首结点的下一个结点链接*&#x2F;
+				queue&lt;pair&lt;int, int&gt;&gt; neighborPixels;
+				neighborPixels.push(pair&lt;int, int&gt;(i, j));     &#x2F;&#x2F; 像素位置: &lt;i,j&gt;
+				++label;
+				while (!neighborPixels.empty())
+				&#123;
+					pair&lt;int, int&gt; curPixel &#x3D; neighborPixels.front();
+					int curX &#x3D; curPixel.first;
+					int curY &#x3D; curPixel.second;
+					if (lableImg.at&lt;int&gt;(curX, curY) !&#x3D; label)
+					&#123;
+						lableImg.at&lt;int&gt;(curX, curY) &#x3D; label;
+
+						neighborPixels.pop();
+
+						if (lableImg.at&lt;int&gt;(curX, curY - 1) &#x3D;&#x3D; 255)
+						&#123;
+							neighborPixels.push(std::pair&lt;int, int&gt;(curX, curY - 1));
+						&#125;
+						if (lableImg.at&lt;int&gt;(curX, curY + 1) &#x3D;&#x3D; 255)
+						&#123;
+							neighborPixels.push(std::pair&lt;int, int&gt;(curX, curY + 1));
+						&#125;
+						if (lableImg.at&lt;int&gt;(curX - 1, curY) &#x3D;&#x3D; 255)
+						&#123;
+							neighborPixels.push(std::pair&lt;int, int&gt;(curX - 1, curY));
+						&#125;
+						if (lableImg.at&lt;int&gt;(curX + 1, curY) &#x3D;&#x3D; 255)
+						&#123;
+							neighborPixels.push(std::pair&lt;int, int&gt;(curX + 1, curY));
+						&#125;
+					&#125;
+					else
+					&#123;
+						neighborPixels.pop();
+					&#125;
+				&#125;
 			&#125;
-			else
-				p2-&gt;next &#x3D; p1-&gt;next;   &#x2F;*将p1前一个结点p2直接与p1下一个结点链接*&#x2F;
-			free(p1);    &#x2F;*释放p1的内存*&#x2F;
-			printf(&quot;删除成功\n&quot;);
 		&#125;
-		else
-			printf(&quot;删除失败\n&quot;);
 	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/10/2.jpg" alt="根据结点值删除结点-效果图"></p>
-<h3 id="根据结点位置删除"><a href="#根据结点位置删除" class="headerlink" title="根据结点位置删除"></a>根据结点位置删除</h3><p>这里的位置索引是从“1”开始的，可以通过修改变量<code>now_pos</code>改变位置索引。</p>
-<pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*根据结点位置删除结点*&#x2F;
-void deleteNode_pos(Node* head)
+&#125;
+
+Scalar GetRandomColor()
 &#123;
-	if (head-&gt;next &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
+	uchar r &#x3D; 255 * (rand() &#x2F; (1.0 + RAND_MAX));
+	uchar g &#x3D; 255 * (rand() &#x2F; (1.0 + RAND_MAX));
+	uchar b &#x3D; 255 * (rand() &#x2F; (1.0 + RAND_MAX));
+	return Scalar(b, g, r);
+&#125;
+
+void LabelColor(const Mat&amp; labelImg, Mat&amp; colorLabelImg)
+&#123;
+	int num &#x3D; 0;
+	if (labelImg.empty() ||
+		labelImg.type() !&#x3D; CV_32SC1)
 	&#123;
-		Node* p1, * p2;
-		int  now_pos&#x3D; 1, pos;
-		printf(&quot;请输入要输出结点的位置：\n&quot;);
-		(void)scanf(&quot;%d&quot;, &amp;pos);
-		p1 &#x3D; head-&gt;next;
-		p2 &#x3D; NULL;
-		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
-		&#123;
-			p2 &#x3D; p1;
-			p1 &#x3D; p1-&gt;next;
-			now_pos++;
-		&#125;
-		if (now_pos &#x3D;&#x3D; pos)
-		&#123;
-			if (p1 &#x3D;&#x3D; head-&gt;next)
-				head-&gt;next &#x3D; p1-&gt;next;
-			else
-				p2-&gt;next &#x3D; p1-&gt;next;
-			free(p1);
-			printf(&quot;删除成功\n&quot;);
-		&#125;
-		else
-			printf(&quot;删除失败\n&quot;);
+		return;
 	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/10/3.jpg" alt="根据结点位置删除-效果图"></p>
-<h2 id="根据结点位置插入新的结点"><a href="#根据结点位置插入新的结点" class="headerlink" title="根据结点位置插入新的结点"></a>根据结点位置插入新的结点</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*根据结点位置插入新的结点*&#x2F;
-void insertNode(Node* head)
-&#123;
-	if (head-&gt;next !&#x3D; NULL)
+
+	map&lt;int, Scalar&gt; colors;
+
+	int rows &#x3D; labelImg.rows;
+	int cols &#x3D; labelImg.cols;
+
+	colorLabelImg.release();
+	colorLabelImg.create(rows, cols, CV_8UC3);
+	colorLabelImg &#x3D; Scalar::all(0);
+
+	for (int i &#x3D; 0; i &lt; rows; i++)
 	&#123;
-		int pos, val, now_pos &#x3D; 1;
-		Node* p, * p1, * p2;
-		p &#x3D; (Node*)malloc(sizeof(Node));
-		printf(&quot;请输入要插入的值和位置\n&quot;);
-		(void)scanf(&quot;%d %d&quot;, &amp;val, &amp;pos);
-		p-&gt;data &#x3D; val;
-		p-&gt;next &#x3D; NULL;
-		p1 &#x3D; head-&gt;next;
-		p2 &#x3D; NULL;
-		while ((now_pos !&#x3D; pos) &amp;&amp; (p1 !&#x3D; NULL))    &#x2F;*注意这里，如果使用p1-&gt;next则没办法在插入到最后*&#x2F;
+		const int* data_src &#x3D; (int*)labelImg.ptr&lt;int&gt;(i);
+		uchar* data_dst &#x3D; colorLabelImg.ptr&lt;uchar&gt;(i);
+		for (int j &#x3D; 0; j &lt; cols; j++)
 		&#123;
-			p2 &#x3D; p1;
-			p1 &#x3D; p1-&gt;next;
-			now_pos++;
-		&#125;
-		if (now_pos &#x3D;&#x3D; pos)
-		&#123;
-			if (p1 &#x3D;&#x3D; head-&gt;next)
+			int pixelValue &#x3D; data_src[j];
+			if (pixelValue &gt; 1)
 			&#123;
-				head-&gt;next &#x3D; p;
-				p-&gt;next &#x3D; p1;
-			&#125;
-			else
-			&#123;
-				p2-&gt;next &#x3D; p;
-				p-&gt;next &#x3D; p1;
-			&#125;
-			printf(&quot;插入成功\n&quot;);
-		&#125;
-		else
-			printf(&quot;插入失败\n&quot;);
-	&#125;
-	else
-		printf(&quot;链表为空\n&quot;);
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/10/4.jpg" alt="根据结点位置插入新的结点-效果图"></p>
-<h2 id="根据结点位置修改结点的值"><a href="#根据结点位置修改结点的值" class="headerlink" title="根据结点位置修改结点的值"></a>根据结点位置修改结点的值</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*根据结点位置修改结点的值*&#x2F;
-void changeNode(Node* head)
-&#123;
-	if (head-&gt;next &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
-	&#123;
-		int now_pos &#x3D; 1, pos, val;
-		Node* p1;
-		printf(&quot;请输入要修改的值和位置\n&quot;);
-		(void)scanf(&quot;%d %d&quot;, &amp;val, &amp;pos);
-		p1 &#x3D; head-&gt;next;
-		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
-		&#123;
-			p1 &#x3D; p1-&gt;next;
-			now_pos++;
-		&#125;
-		if (now_pos &#x3D;&#x3D; pos)
-		&#123;
-			p1-&gt;data &#x3D; val;
-			printf(&quot;修改成功\n&quot;);
-		&#125;
-		else
-			printf(&quot;修改失败\n&quot;);
-	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/10/5.jpg" alt="根据结点位置修改结点的值-效果图"></p>
-<h2 id="根据结点的值查找结点位置"><a href="#根据结点的值查找结点位置" class="headerlink" title="根据结点的值查找结点位置"></a>根据结点的值查找结点位置</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*根据结点的值查找结点位置*&#x2F;
-void checkNode(Node* head)
-&#123;
-	if (head-&gt;next &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
-	&#123;
-		Node* p1;
-		int val, now_pos &#x3D; 1;
-		printf(&quot;请输入要查询的值：\n&quot;);
-		(void)scanf(&quot;%d&quot;, &amp;val);
-		p1 &#x3D; head-&gt;next;
-		while ((p1-&gt;data !&#x3D; val) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
-		&#123;
-			now_pos++;
-			p1 &#x3D; p1-&gt;next;
-		&#125;
-		if (p1-&gt;data &#x3D;&#x3D; val)
-			printf(&quot;位置为：%d\n&quot;, now_pos);
-		else
-			printf(&quot;未找到\n&quot;);
-	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/10/6.jpg" alt="根据结点的值查找结点位置-效果图"></p>
-<h2 id="根据结点的位置查找结点的值"><a href="#根据结点的位置查找结点的值" class="headerlink" title="根据结点的位置查找结点的值"></a>根据结点的位置查找结点的值</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*根据结点的位置查找结点的值*&#x2F;
-void checkNode_pos(Node* head)
-&#123;
-	if (head-&gt;next &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
-	&#123;
-		Node* p1;
-		int pos, now_pos &#x3D; 1;
-		printf(&quot;请输入要查询的位置：\n&quot;);
-		(void)scanf(&quot;%d&quot;, &amp;pos);
-		p1 &#x3D; head-&gt;next;
-		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
-		&#123;
-			p1 &#x3D; p1-&gt;next;
-			now_pos++;
-		&#125;
-		if (now_pos &#x3D;&#x3D; pos)
-			printf(&quot;结点值为：%d\n&quot;, p1-&gt;data);
-		else
-			printf(&quot;未找到\n&quot;);
-	&#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/10/7.jpg" alt="根据结点的位置查找结点的值-效果图"></p>
-<h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define _CRT_SECURE_NO_WARNINGS
-#include&lt;stdio.h&gt;
-#include&lt;malloc.h&gt;
-#include &lt;stdlib.h&gt;
+				if (colors.count(pixelValue) &lt;&#x3D; 0)
+				&#123;
+					colors[pixelValue] &#x3D; GetRandomColor();
+					num++;
+				&#125;
 
-struct Node
-&#123;
-	int data;
-	struct Node* next;
-&#125;;
-typedef struct Node Node;
-
-&#x2F;*创建链表*&#x2F;
-Node* createNode()
-&#123;
-	&#x2F;* head,tail分别指向链表的头结点和尾结点*&#x2F;
-	Node* head, * tail, * p;
-	int num;
-	head &#x3D; (Node*)malloc(sizeof(Node));
-	tail &#x3D; head;
-	printf(&quot;请输入一组数据，结尾使用&#39;-9999&#39;\n&quot;);
-	(void)scanf(&quot;%d&quot;, &amp;num);
-	while (num !&#x3D; -9999)
-	&#123;
-		p &#x3D; (Node*)malloc(sizeof(Node));    &#x2F;*申请内存*&#x2F;
-		&#x2F;&#x2F;if (p &#x3D;&#x3D; NULL)
-		&#x2F;&#x2F;	exit(0);
-		p-&gt;data &#x3D; num;
-		tail-&gt;next &#x3D; p;
-		tail &#x3D; p;
-		(void)scanf(&quot;%d&quot;, &amp;num);
-	&#125;
-	tail-&gt;next &#x3D; NULL;
-	return head;
-&#125;
-
-&#x2F;*打印链表*&#x2F;
-void displayNode(Node* head)
-&#123;
-	if (head-&gt;next &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
-	&#123;
-		Node* p;
-		p &#x3D; head-&gt;next;    &#x2F;*从首结点开始*&#x2F;
-		printf(&quot;链表如下\n&quot;);
-		while (p !&#x3D; NULL)
-		&#123;
-			printf(&quot;%d    &quot;, p-&gt;data);
-			p &#x3D; p-&gt;next;
-		&#125;
-		printf(&quot;\n&quot;);
-	&#125;
-&#125;
-
-&#x2F;*释放链表内存*&#x2F;
-void releaseNode(Node* head)
-&#123;
-	Node* p1, * p2;
-	p1 &#x3D; head;
-	while (p1 !&#x3D; NULL)
-	&#123;
-		p2 &#x3D; p1;
-		p1 &#x3D; p1-&gt;next;
-		free(p2);
-	&#125;
-	printf(&quot;链表释放内存成功\n&quot;);
-&#125;
-
-&#x2F;*根据结点的值删除链表中结点*&#x2F;
-void deleteNode_val(Node* head)
-&#123;
-	
-	if (head-&gt;next &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
-	&#123;
-		Node* p1, * p2;
-		int num;
-		printf(&quot;请输入要删除的结点数值：\n&quot;);
-		(void)scanf(&quot;%d&quot;, &amp;num);
-		p1 &#x3D; head-&gt;next;    &#x2F;*使用p1逐个寻找数据*&#x2F;
-		p2 &#x3D; NULL;
-		while ((p1-&gt;data !&#x3D; num) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
-		&#123;
-			p2 &#x3D; p1;    &#x2F;*用p2记录p1原来的位置*&#x2F;
-			p1 &#x3D; p1-&gt;next;
-		&#125;
-		if (p1-&gt;data &#x3D;&#x3D; num)
-		&#123;
-			if (p1 &#x3D;&#x3D; head-&gt;next)
-			&#123;
-				head-&gt;next &#x3D; p1-&gt;next;
-			&#125;
-			else
-				p2-&gt;next &#x3D; p1-&gt;next;   &#x2F;*将p1前一个结点p2直接与p1下一个结点链接*&#x2F;
-			free(p1);
-			printf(&quot;删除成功\n&quot;);
-		&#125;
-		else
-			printf(&quot;删除失败\n&quot;);
-	&#125;
-	&#x2F;&#x2F; return head;
-&#125;
-
-&#x2F;*根据结点位置删除结点*&#x2F;
-void deleteNode_pos(Node* head)
-&#123;
-	if (head-&gt;next &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
-	&#123;
-		Node* p1, * p2;
-		int  now_pos&#x3D; 1, pos;
-		printf(&quot;请输入要输出结点的位置：\n&quot;);
-		(void)scanf(&quot;%d&quot;, &amp;pos);
-		p1 &#x3D; head-&gt;next;
-		p2 &#x3D; NULL;
-		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
-		&#123;
-			p2 &#x3D; p1;
-			p1 &#x3D; p1-&gt;next;
-			now_pos++;
-		&#125;
-		if (now_pos &#x3D;&#x3D; pos)
-		&#123;
-			if (p1 &#x3D;&#x3D; head-&gt;next)
-				head-&gt;next &#x3D; p1-&gt;next;
-			else
-				p2-&gt;next &#x3D; p1-&gt;next;
-			free(p1);
-			printf(&quot;删除成功\n&quot;);
-		&#125;
-		else
-			printf(&quot;删除失败\n&quot;);
-	&#125;
-&#125;
-
-&#x2F;*根据结点位置插入新的结点*&#x2F;
-void insertNode(Node* head)
-&#123;
-	if (head-&gt;next !&#x3D; NULL)
-	&#123;
-		int pos, val, now_pos &#x3D; 1;
-		Node* p, * p1, * p2;
-		p &#x3D; (Node*)malloc(sizeof(Node));
-		printf(&quot;请输入要插入的值和位置\n&quot;);
-		(void)scanf(&quot;%d %d&quot;, &amp;val, &amp;pos);
-		p-&gt;data &#x3D; val;
-		p-&gt;next &#x3D; NULL;
-		p1 &#x3D; head-&gt;next;
-		p2 &#x3D; NULL;
-		while ((now_pos !&#x3D; pos) &amp;&amp; (p1 !&#x3D; NULL))
-		&#123;
-			p2 &#x3D; p1;
-			p1 &#x3D; p1-&gt;next;
-			now_pos++;
-		&#125;
-		if (now_pos &#x3D;&#x3D; pos)
-		&#123;
-			if (p1 &#x3D;&#x3D; head-&gt;next)
-			&#123;
-				head-&gt;next &#x3D; p;
-				p-&gt;next &#x3D; p1;
+				Scalar color &#x3D; colors[pixelValue];
+				*data_dst++ &#x3D; color[0];
+				*data_dst++ &#x3D; color[1];
+				*data_dst++ &#x3D; color[2];
 			&#125;
 			else
 			&#123;
-				p2-&gt;next &#x3D; p;
-				p-&gt;next &#x3D; p1;
+				data_dst++;
+				data_dst++;
+				data_dst++;
 			&#125;
-			printf(&quot;插入成功\n&quot;);
 		&#125;
-		else
-			printf(&quot;插入失败\n&quot;);
 	&#125;
-	else
-		printf(&quot;链表为空\n&quot;);
+	printf(&quot;color num : %d \n&quot;, num);
 &#125;
 
-&#x2F;*根据结点位置修改结点的值*&#x2F;
-void changeNode(Node* head)
+void deal_test_3()
 &#123;
-	if (head-&gt;next &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
-	&#123;
-		int now_pos &#x3D; 1, pos, val;
-		Node* p1;
-		printf(&quot;请输入要修改的值和位置\n&quot;);
-		(void)scanf(&quot;%d %d&quot;, &amp;val, &amp;pos);
-		p1 &#x3D; head-&gt;next;
-		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
-		&#123;
-			p1 &#x3D; p1-&gt;next;
-			now_pos++;
-		&#125;
-		if (now_pos &#x3D;&#x3D; pos)
-		&#123;
-			p1-&gt;data &#x3D; val;
-			printf(&quot;修改成功\n&quot;);
-		&#125;
-		else
-			printf(&quot;修改失败\n&quot;);
-	&#125;
-&#125;
-
-&#x2F;*根据结点的值查找结点位置*&#x2F;
-void checkNode_val(Node* head)
-&#123;
-	if (head-&gt;data &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
-	&#123;
-		Node* p1;
-		int val, now_pos &#x3D; 1;
-		printf(&quot;请输入要查询的值：\n&quot;);
-		(void)scanf(&quot;%d&quot;, &amp;val);
-		p1 &#x3D; head-&gt;next;
-		while ((p1-&gt;data !&#x3D; val) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
-		&#123;
-			now_pos++;
-			p1 &#x3D; p1-&gt;next;
-		&#125;
-		if (p1-&gt;data &#x3D;&#x3D; val)
-			printf(&quot;位置为：%d\n&quot;, now_pos);
-		else
-			printf(&quot;未找到\n&quot;);
-	&#125;
-&#125;
-
-&#x2F;*根据结点的位置查找结点的值*&#x2F;
-void checkNode_pos(Node* head)
-&#123;
-	if (head-&gt;next &#x3D;&#x3D; NULL)
-		printf(&quot;链表为空\n&quot;);
-	else
-	&#123;
-		Node* p1;
-		int pos, now_pos &#x3D; 1;
-		printf(&quot;请输入要查询的位置：\n&quot;);
-		(void)scanf(&quot;%d&quot;, &amp;pos);
-		p1 &#x3D; head-&gt;next;
-		while ((now_pos !&#x3D; pos) &amp;&amp; (p1-&gt;next !&#x3D; NULL))
-		&#123;
-			p1 &#x3D; p1-&gt;next;
-			now_pos++;
-		&#125;
-		if (now_pos &#x3D;&#x3D; pos)
-			printf(&quot;结点值为：%d\n&quot;, p1-&gt;data);
-		else
-			printf(&quot;未找到\n&quot;);
-	&#125;
+	Mat labelImg;
+	Mat colorLabelImg;
+	Mat test_1_gray, test_1_threshold, test_1_gauss;
+	Mat test_1_origin &#x3D; imread(&quot;C:\\Users\\17513\\Desktop\\数据结构报告\\栈和队列\\test.jpg&quot;);
+	Mat test_1_copy;
+	cvtColor(test_1_origin, test_1_gray, COLOR_BGR2GRAY);
+	GaussianBlur(test_1_gray, test_1_gauss, Size(5, 5), 0, 0);
+	threshold(test_1_gauss, test_1_threshold, 127, 255, THRESH_BINARY);
+	SeedFillOld(test_1_threshold, labelImg);
+	LabelColor(labelImg, colorLabelImg);
+	cv_show(&quot;666&quot;, colorLabelImg);
 &#125;
 
 int main()
 &#123;
-	Node* head;
-	head &#x3D; createNode();    &#x2F;&#x2F; 创建列表
-	displayNode(head);    &#x2F;&#x2F; 打印
-	&#x2F;&#x2F; releaseNode(head);
-	&#x2F;&#x2F; deleteNode_val(head);
-	&#x2F;&#x2F; deleteNode_pos(head);
-	&#x2F;&#x2F; insertNode(head);
-	&#x2F;&#x2F; changeNode(head);
-	&#x2F;&#x2F; checkNode_val(head);
-	checkNode_pos(head);
-	displayNode(head);
-	releaseNode(head);
+	int mode;
+	cout &lt;&lt; &quot;请输入要执行的程序编号：&quot;;
+	cin &gt;&gt; mode;
+	if (mode &#x3D;&#x3D; 1)
+		deal_test_1();
+	else if (mode &#x3D;&#x3D; 2)
+		deal_test_2();
+	else if (mode &#x3D;&#x3D; 3)
+		deal_test_3();
+	else
+		cout &lt;&lt; &quot;请输入正确的编号！&quot; &lt;&lt; endl;
 	return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -929,7 +859,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/10.html">https://lightningleader.github.io/posts/10.html</a>
+                    <a href="https://lightningleader.github.io/posts/12.html">https://lightningleader.github.io/posts/12.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -967,12 +897,20 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/C%E8%AF%AD%E8%A8%80/">
-                                    <span class="chip bg-color">C语言</span>
+                                <a href="/tags/%E6%95%99%E7%A8%8B/">
+                                    <span class="chip bg-color">教程</span>
                                 </a>
                             
                                 <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                     <span class="chip bg-color">学习笔记</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                                    <span class="chip bg-color">图像处理</span>
+                                </a>
+                            
+                                <a href="/tags/OpenCV/">
+                                    <span class="chip bg-color">OpenCV</span>
                                 </a>
                             
                         </div>
@@ -1281,29 +1219,30 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/11.html">
+                <a href="/posts/12.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="OpenCV模板匹配识别图片中的数字">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="OpenCV实现连通区域填充">
                         
-                        <span class="card-title">OpenCV模板匹配识别图片中的数字</span>
+                        <span class="card-title">OpenCV实现连通区域填充</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            OpenCV模板匹配识别图片中的数字
+                            OpenCV实现连通区域填充
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -1312,6 +1251,7 @@ int main()
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1342,24 +1282,24 @@ int main()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/9.html">
+                <a href="/posts/11.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="整理收藏好用的宝藏网站">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="OpenCV模板匹配识别图片中的数字">
                         
-                        <span class="card-title">整理收藏好用的宝藏网站</span>
+                        <span class="card-title">OpenCV模板匹配识别图片中的数字</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            整理收藏好用的宝藏网站
+                            OpenCV模板匹配识别图片中的数字
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-02
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-28
                             </span>
                         <span class="publish-author">
                             
@@ -1372,8 +1312,20 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">
-                        <span class="chip bg-color">资源分享</span>
+                    <a href="/tags/%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">教程</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">图像处理</span>
+                    </a>
+                    
+                    <a href="/tags/OpenCV/">
+                        <span class="chip bg-color">OpenCV</span>
                     </a>
                     
                 </div>
