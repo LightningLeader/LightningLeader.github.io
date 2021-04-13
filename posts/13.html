@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="OpenCV学习笔记, LightningMaster">
+    <meta name="keywords" content="Skimage库使用, LightningMaster">
     <meta name="description" content="老废物">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>OpenCV学习笔记 | LightningMaster</title>
+    <title>Skimage库使用 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">OpenCV学习笔记</h1>
+                    <h1 class="description center-align post-title">Skimage库使用</h1>
                 </div>
             </div>
         </div>
@@ -310,10 +310,6 @@
                                 <span class="chip bg-color">图像处理</span>
                             </a>
                         
-                            <a href="/tags/OpenCV/">
-                                <span class="chip bg-color">OpenCV</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -326,14 +322,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-13
+                    2021-04-13
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-13
+                    2021-04-13
                 </div>
                 
 
@@ -370,144 +366,142 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="OpenCV学习笔记"><a href="#OpenCV学习笔记" class="headerlink" title="OpenCV学习笔记"></a>OpenCV学习笔记</h1><a id="more"></a>
-
-<h2 id="图像翻转"><a href="#图像翻转" class="headerlink" title="图像翻转"></a>图像翻转</h2><p>使用Python的一个包，imutils。使用下面的指令可以安装。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">pip install imutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>imutils包的Github地址：<a target="_blank" rel="noopener" href="https://github.com/jrosebr1/imutils">https://github.com/jrosebr1/imutils</a></p>
-<p>CSDN镜像：<a target="_blank" rel="noopener" href="https://codechina.csdn.net/mirrors/jrosebr1/imutils">https://codechina.csdn.net/mirrors/jrosebr1/imutils</a></p>
-<p>可以在上面这个地址里面学习更多的使用方式。</p>
+                <h1 id="Skimage库使用"><a href="#Skimage库使用" class="headerlink" title="Skimage库使用"></a>Skimage库使用</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近发现Skimage库挺好用的，可以和OpenCV搭配一起使用，让图像处理更加灵活和方便。</p>
+<p>本博客只对Skimage库做简单的介绍，细节使用的话推荐官网查看或百度寻找。</p>
+<p>本博客会不断更新的，尽量。</p>
+<h2 id="实现连通区域染色"><a href="#实现连通区域染色" class="headerlink" title="实现连通区域染色"></a>实现连通区域染色</h2><p><strong>源代码程序：</strong></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
-import imutils
-
-&#39;&#39;&#39;
-imutils.rotate
-第一个参数是翻转的图像，第二个参数的翻转角度
-函数还提供翻转中心的设置，但默认就是中心翻转。
-&#39;&#39;&#39;
-vc &#x3D; cv2.VideoCapture(0)
-
-if vc.isOpened():
-    flag, frame &#x3D; vc.read()
-    img &#x3D; imutils.rotate(frame, 180)    # 图像翻转 
-    cv2.imshow(&quot;frame&quot;, img)
-else:
-    flag &#x3D; False
-
-while flag:
-    flag, frame &#x3D; vc.read()
-    if frame is None:
-        break
-    if flag is True:
-        img &#x3D; imutils.rotate(frame, 180)    # 图像翻转
-        cv2.imshow(&quot;frame&quot;, img)
-        if cv2.waitKey(10) &#x3D;&#x3D; 27:
-            break
-vc.release()
-cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这样写的话，最后的输出图像就是翻转180度的。</p>
-<p>imutils包里还有其他好用的函数，resizing、4-point Perspective Transform、Sorting Contours等等。</p>
-<h2 id="图像轮廓排序"><a href="#图像轮廓排序" class="headerlink" title="图像轮廓排序"></a>图像轮廓排序</h2><p>这个效果同样也是依靠imutils包完成。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">from imutils import contours
-import cv2
-&#39;&#39;&#39;
-contours.sort_contours
-可选排序方式：&quot;left-to-right&quot;, &quot;right-to-left&quot;, &quot;top-to-bottom&quot;, &quot;bottom-to-top&quot;
-返回值为轮廓和外接矩形
-
-contours.label_contour
-contours包内自带的画轮廓的函数，可以直接用，然后可以在图片上标出轮廓序号
-也可以直接使用cv2.drawContours直接画轮廓
-&#39;&#39;&#39;
-img &#x3D; cv2.imread(r&quot;D:\opencv-workspace\Opencv\test17--VScode\shapes.png&quot;)
-draw_img &#x3D; img.copy()
-img_rect &#x3D; img.copy()
-gray &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-img &#x3D; cv2.Canny(gray, 10, 20)    # Canny边缘检测
-cnts, hierarchy &#x3D; cv2.findContours(img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)    # 获得轮廓
-(cnts, boundingBoxes) &#x3D; contours.sort_contours(cnts, &quot;top-to-bottom&quot;)    # 对轮廓进行排序处理
-for (i, c) in enumerate(cnts):
-    sortedImage &#x3D; contours.label_contour(draw_img, c, i, color&#x3D;(240, 0, 159))
-# img_out &#x3D; cv2.drawContours(draw_img, cnts, -1, (240, 0, 159), 2)
-# 根据boundingBoxes画外接矩形
-for (x, y, w, h) in boundingBoxes:
-    img_rect &#x3D; cv2.rectangle(img_rect, (x, y), (x+w, y+h), (240, 0, 159), 2)
-cv2.imshow(&quot;top-to-bottom&quot;, sortedImage)
-cv2.imshow(&quot;rect&quot;, img_rect)
+from skimage import measure, color
+path &#x3D; &quot;C:\\Users\\17513\\Desktop\\test.jpg&quot;
+img &#x3D; cv2.imread(path)
+img_copy &#x3D; img.copy()
+img_gray &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+img_gauss &#x3D; cv2.GaussianBlur(img_gray, (5, 5), 1)
+img_temp &#x3D; cv2.threshold(img_gray, 127, 255, cv2.THRESH_BINARY)[1]
+labels &#x3D; measure.label(img_temp)
+dst &#x3D; color.label2rgb(labels, bg_label&#x3D;0)    # bg_label&#x3D;0要有，不然会有警告
+cv2.imshow(&quot;666&quot;, dst)
 cv2.waitKey(0)
-cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/6/1.jpg" alt="处理效果"></p>
-<h2 id="颜色识别"><a href="#颜色识别" class="headerlink" title="颜色识别"></a>颜色识别</h2><h3 id="基础颜色识别"><a href="#基础颜色识别" class="headerlink" title="基础颜色识别"></a>基础颜色识别</h3><p>颜色识别是在HSV空间内进行的，因此在使用之前先进行颜色空间的转换。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;使用下面这个函数进行转换，第一个参数填写要转换的图片，第二个参数填写cv2.COLOR_BGR2HSV&#39;&#39;&#39;
-cv2.cvtColor<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/13/1.png" alt="效果图"></p>
+<p><strong>代码函数分析：</strong></p>
+<p>这段代码很少，其中需要讲解的只有 <code>measure.label</code>和<code>color.label2rgb</code>，其他均为OpenCV的基础代码。</p>
+<ul>
+<li><p>skimage.measure.label</p>
+<p>功能描述：实现连通区域标记。<br>函数调用形式：skimage.measure.label(input, neighbors = None, background = None, return_num = False, connectivity =None)<br>参数描述：<br>input : Image to label 需要被标记的图片，输入的数据结构不作要求<br>neighbors : 这个参数将被移除，被下面的connectivity替代。可以忽略不看<br>background : 选择背景像素，指定像素作为背景，全部相同像素标记为0<br>return_num : 是一个bool值，如果为True的话返回值是一个元组（labels ，num ）；如果为False的话就只返回labels<br>connectivity : Maximum number of orthogonal hops to consider a pixel/voxel as a neighbor. Accepted values are ranging from 1 to input.ndim. If None, a full connectivity of input.ndim is used. [int, optional]。如果input是一个二维的图片，那么connectivity的值范围选择{1,2}，如果是None则默认是取最高的值，对于二维来说，当connectivity=1时代表4连通，当connectivity=2时代表8连通.<br>Returns:<br>labels : 和input形状一样，但是数值是标记号，所以这是一个已经标记的图片<br>num : 标记的种类数，如果输出0则只有背景，如果输出2则有两个种类或者说是连通域</p>
+</li>
+<li><p>skimage.color.label2rgb</p>
+<p>Parameters<br>labelarray, shape (M, N)<br>Integer array of labels with the same shape as image.</p>
+<p>imagearray, shape (M, N, 3), optional<br>Image used as underlay for labels. If the input is an RGB image, it’s converted to grayscale before coloring.</p>
+<p>colorslist, optional<br>List of colors. If the number of labels exceeds the number of colors, then the colors are cycled.</p>
+<p>alphafloat [0, 1], optional<br>Opacity of colorized labels. Ignored if image is None.</p>
+<p>bg_labelint, optional<br>Label that’s treated as the background. If bg_label is specified, bg_color is None, and kind is overlay, background is not painted by any colors.</p>
+<p>bg_colorstr or array, optional<br>Background color. Must be a name in color_dict or RGB float values between [0, 1].</p>
+<p>image_alphafloat [0, 1], optional<br>Opacity of the image.</p>
+<p>kindstring, one of {‘overlay’, ‘avg’}<br>The kind of color image desired. ‘overlay’ cycles over defined colors and overlays the colored labels over the original image. ‘avg’ replaces each labeled segment with its average color, for a stained-class or pastel painting appearance.</p>
+<p>saturationfloat [0, 1], optional<br>Parameter to control the saturation applied to the original image between fully saturated (original RGB, saturation=1) and fully unsaturated (grayscale, saturation=0). Only applies when kind=’overlay’.</p>
+<p>Returns<br>resultarray of float, shape (M, N, 3)<br>The result of blending a cycling colormap (colors) for each distinct value in label with the image, at a certain alpha value.</p>
+<p>这段关于<code>color.label2rgb</code>是直接复制官网上的。大部分参数都保持默认即可，与<code>measure.label</code>结合使用可以达到对不同连通区域染色的效果。</p>
+</li>
+</ul>
+<h2 id="Skimage-measure-regionprops介绍"><a href="#Skimage-measure-regionprops介绍" class="headerlink" title="Skimage.measure.regionprops介绍"></a>Skimage.measure.regionprops介绍</h2><ul>
+<li><p>Skimage.measure.regionprops</p>
+<p>功能描述：测量标记图像区域的属性。<br>函数调用形式：skimage.measure.regionprops(label_image, intensity_image=None, cache=True, coordinates=None)<br>参数描述：<br>label_image：（N,M）ndarray，标记输入图像；<br>intensity_image : (N, M) ndarray，可选参数，具有与标记图像相同大小的强度（即输入）图像，默认值为“None”；<br>cache：bool，可选参数，确定是否缓存计算的属性。对于缓存属性，计算速度要快得多，而内存消耗则会增加；<br>coordinates：’rc’或’xy‘，可选参数，协调2D图像的约定。（3D图像仅支持’rc‘坐标）<br>Return:<br>region：是一种列表的形式，每个连通域的标记区域。</p>
+</li>
+</ul>
+<p>这个函数返回值是一个列表，内容是每个没标记的连通区域。</p>
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>area</td>
+<td>int</td>
+<td>区域内像素点总数</td>
+</tr>
+<tr>
+<td>bbox</td>
+<td>tuple</td>
+<td>边界外接框(min_row, min_col, max_row, max_col)</td>
+</tr>
+<tr>
+<td>centroid</td>
+<td>array</td>
+<td>质心坐标</td>
+</tr>
+<tr>
+<td>convex_area</td>
+<td>int</td>
+<td>凸包内像素点总数</td>
+</tr>
+<tr>
+<td>convex_image</td>
+<td>ndarray</td>
+<td>和边界外接框同大小的凸包</td>
+</tr>
+<tr>
+<td>coords</td>
+<td>ndarray</td>
+<td>区域内像素点坐标</td>
+</tr>
+<tr>
+<td>Eccentricity</td>
+<td>float</td>
+<td>离心率</td>
+</tr>
+<tr>
+<td>equivalent_diameter</td>
+<td>float</td>
+<td>和区域面积相同的圆的直径</td>
+</tr>
+<tr>
+<td>euler_number</td>
+<td>int</td>
+<td>区域欧拉数</td>
+</tr>
+<tr>
+<td>extent</td>
+<td>float</td>
+<td>区域面积和边界外接框面积的比率</td>
+</tr>
+<tr>
+<td>filled_area</td>
+<td>int</td>
+<td>区域和外接框之间填充的像素点总数</td>
+</tr>
+<tr>
+<td>perimeter</td>
+<td>float</td>
+<td>区域周长</td>
+</tr>
+<tr>
+<td>label</td>
+<td>int</td>
+<td>区域标记</td>
+</tr>
+</tbody></table>
+<p>源程序代码：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
-import numpy as np
-&#39;&#39;&#39;
-cv2.inRange
-函数很简单，参数有三个
-第一个参数：hsv指的是原图
-第二个参数：lower_red指的是图像中低于这个lower_red的值，图像值变为0
-第三个参数：upper_red指的是图像中高于这个upper_red的值，图像值变为0
-而在lower_red～upper_red之间的值变成255
-&#39;&#39;&#39;
-# 阈值
-lower_green &#x3D; np.array([50, 255, 255])
-upper_green &#x3D; np.array([70, 255, 255])
-img &#x3D; cv2.imread(r&quot;D:\opencv-workspace\Opencv\test16--VScode\photo.jpg&quot;)
-img_hsv &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-mask_green &#x3D; cv2.inRange(img_hsv, lower_green, upper_green)
-cv2.imshow(&quot;img_or&quot;, mask_green)
-# 使用下面这个函数能显示原来的颜色。
-res_green &#x3D; cv2.bitwise_and(img, img, mask&#x3D;mask_green)
-cv2.imshow(&quot;img&quot;, res_green)
+from skimage import measure
+path &#x3D; &quot;C:\\Users\\17513\\Desktop\\test.jpg&quot;
+img &#x3D; cv2.imread(path)
+img_copy &#x3D; img.copy()
+img_gray &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+img_gauss &#x3D; cv2.GaussianBlur(img_gray, (5, 5), 1)
+img_temp &#x3D; cv2.threshold(img_gray, 127, 255, cv2.THRESH_BINARY)[1]
+labels &#x3D; measure.label(img_temp)
+a &#x3D; measure.regionprops(labels)
+for (j, i) in enumerate(a):
+    (min_row, min_col, max_row, max_col) &#x3D; i.bbox
+    cv2.rectangle(img_copy, (min_col, min_row), (max_col, max_row), (0, 0, 255))
+cv2.imshow(&quot;666&quot;, img_copy)
 cv2.waitKey(0)
-cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/6/2.jpg" alt="原图"></p>
-<p><img src="/posts/6/4.jpg" alt="mask_green"></p>
-<p><img src="/posts/6/3.jpg" alt="res_green"></p>
-<p>在进行颜色识别时，难免会出现“漏颜色”的现象，也就是会出现没识别全的现象。这个时候可以再对图像进行处理，比如说进行形态学处理，让图像更加饱满之类的。</p>
-<h3 id="根据BGR获取HSV"><a href="#根据BGR获取HSV" class="headerlink" title="根据BGR获取HSV"></a>根据BGR获取HSV</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
-
-color &#x3D; np.uint8([[[193, 189, 147]]])    # 参数填写BGR的值
-hsv &#x3D; cv2.cvtColor(color, cv2.COLOR_BGR2HSV)
-print(hsv)    # 打印出来的数值就是对应的HSV值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>程序运行的结果是</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">[[[ 93  61 193]]]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这个就是对应的HSV的值。</p>
-<p>根据之前写的颜色识别，就需要把对应的阈值写出。具体写法就是<strong>保持S和V不变，H加减10。</strong>这样的话就可以写出高低阈值然后应用到颜色识别里面就可以了。</p>
-<h3 id="阈值编辑器"><a href="#阈值编辑器" class="headerlink" title="阈值编辑器"></a>阈值编辑器</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
-import numpy as np
-
-
-def function(x):
-    lowH &#x3D; cv2.getTrackbarPos(&quot;lowH&quot;, &quot;img_666&quot;)
-    lowS &#x3D; cv2.getTrackbarPos(&quot;lowS&quot;, &quot;img_666&quot;)
-    lowV &#x3D; cv2.getTrackbarPos(&quot;lowV&quot;, &quot;img_666&quot;)
-    HighH &#x3D; cv2.getTrackbarPos(&quot;HighH&quot;, &quot;img_666&quot;)
-    HighS &#x3D; cv2.getTrackbarPos(&quot;HighS&quot;, &quot;img_666&quot;)
-    HighV &#x3D; cv2.getTrackbarPos(&quot;HighV&quot;, &quot;img_666&quot;)
-    # print(lowH, lowS, lowV, HighH, HighS, HighV)
-    lower &#x3D; np.uint8([lowH, lowS, lowV])
-    upper &#x3D; np.uint8([HighH, HighS, HighV])
-    mask &#x3D; cv2.inRange(img_hsv, lower, upper)
-    res &#x3D; cv2.bitwise_and(img, img, mask&#x3D;mask)
-    cv2.imshow(&quot;img&quot;, res)
-
-
-img &#x3D; cv2.imread(r&quot;D:\opencv-workspace\Opencv\test16--VScode\test.jpg&quot;)
-img_hsv &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-cv2.namedWindow(&quot;img_666&quot;)
-cv2.createTrackbar(&quot;lowH&quot;, &quot;img_666&quot;, 0, 179, function)
-cv2.createTrackbar(&quot;lowS&quot;, &quot;img_666&quot;, 0, 255, function)
-cv2.createTrackbar(&quot;lowV&quot;, &quot;img_666&quot;, 0, 255, function)
-cv2.createTrackbar(&quot;HighH&quot;, &quot;img_666&quot;, 0, 179, function)
-cv2.createTrackbar(&quot;HighS&quot;, &quot;img_666&quot;, 0, 255, function)
-cv2.createTrackbar(&quot;HighV&quot;, &quot;img_666&quot;, 0, 255, function)
-cv2.imshow(&quot;img&quot;, img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>写了一个比较垃圾的阈值编辑器。。。就不多解释了。。</p>
-<p><img src="/posts/6/5.jpg" alt="阈值编辑器"></p>
+cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/13/2.png" alt="效果图"></p>
 
                 
             </div>
@@ -534,7 +528,7 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/6.html">https://lightningleader.github.io/posts/6.html</a>
+                    <a href="https://lightningleader.github.io/posts/13.html">https://lightningleader.github.io/posts/13.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -578,10 +572,6 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                             
                                 <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
                                     <span class="chip bg-color">图像处理</span>
-                                </a>
-                            
-                                <a href="/tags/OpenCV/">
-                                    <span class="chip bg-color">OpenCV</span>
                                 </a>
                             
                         </div>
@@ -890,29 +880,80 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/7.html">
+                <a href="/posts/13.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="OpenCV颜色识别 物体追踪">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Skimage库使用">
                         
-                        <span class="card-title">OpenCV颜色识别 物体追踪</span>
+                        <span class="card-title">Skimage库使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            OpenCV颜色识别 物体追踪
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-13
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            LightningMaster
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
+                        <span class="chip bg-color">图像处理</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/12.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="OpenCV实现连通区域填充">
+                        
+                        <span class="card-title">OpenCV实现连通区域填充</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            OpenCV实现连通区域填充
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -938,59 +979,6 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                     
                     <a href="/tags/OpenCV/">
                         <span class="chip bg-color">OpenCV</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/5.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="树莓派串口通信 USB串口通信">
-                        
-                        <span class="card-title">树莓派串口通信 USB串口通信</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            树莓派串口通信 USB串口通信
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            LightningMaster
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                        <span class="chip bg-color">树莓派</span>
                     </a>
                     
                 </div>
