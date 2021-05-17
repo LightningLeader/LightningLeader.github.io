@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="树莓派串口通信 USB串口通信, LightningMaster">
+    <meta name="keywords" content="C语言实现堆栈和队列, LightningMaster">
     <meta name="description" content="老废物">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>树莓派串口通信 USB串口通信 | LightningMaster</title>
+    <title>C语言实现堆栈和队列 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">树莓派串口通信 USB串口通信</h1>
+                    <h1 class="description center-align post-title">C语言实现堆栈和队列</h1>
                 </div>
             </div>
         </div>
@@ -302,16 +302,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
+                            <a href="/tags/C%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">C语言</span>
                             </a>
                         
                             <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                 <span class="chip bg-color">学习笔记</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                                <span class="chip bg-color">树莓派</span>
                             </a>
                         
                     </div>
@@ -326,21 +322,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-05-17
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-05-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    597
+                    1.7k
                 </div>
                 
 
@@ -370,71 +366,422 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="树莓派串口通信-USB串口通信"><a href="#树莓派串口通信-USB串口通信" class="headerlink" title="树莓派串口通信 USB串口通信"></a>树莓派串口通信 USB串口通信</h1><a id="more"></a>
+                <h1 id="C语言实现堆栈和队列"><a href="#C语言实现堆栈和队列" class="headerlink" title="C语言实现堆栈和队列"></a>C语言实现堆栈和队列</h1><h2 id="堆栈实现"><a href="#堆栈实现" class="headerlink" title="堆栈实现"></a>堆栈实现</h2><p>base称为栈底指针，在顺序栈中，它始终指向栈底的位置，若base的值为NULL，则表明栈结构不存在。</p>
+<p>top称为栈顶指针，其初值指向栈底，即top=base可作为栈空的标记。每当插入新的栈顶元素时，指针top增1；删除栈顶元素时，指针top减1，因此，非空栈中的栈顶指针始终在栈顶元素的下一个位置上。</p>
+<p><img src="/posts/14/1.jpg" alt="栈顶指针和栈中元素之间地关系"></p>
+<h3 id="定义堆栈"><a href="#定义堆栈" class="headerlink" title="定义堆栈"></a>定义堆栈</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define stack_maxSize 100    &#x2F;&#x2F; 存储空间初始分配量
+#define stack_increment 10    &#x2F;&#x2F; 存储空间分配增量
 
-<p>如果不知道树莓派怎么使用USB串口通信的，欢迎浏览我的另一篇博客文章：<a href="https://lightningleader.github.io/posts/4.html">树莓派使用USB串口通信 CH340</a></p>
-<p>这篇文章就以USB串口为例，简单的说下串口通信时常用的几个命令。注意：代码均为Python编写。</p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
-<li>树莓派4</li>
-<li>两个CH340</li>
-<li>串口助手</li>
-</ul>
-<h2 id="发送数据"><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h2><ol>
-<li><p>最基础的发送数据方式</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;
-ser.write(data)    # 发送数据data，data为字节型
-&#39;&#39;&#39;
-import serial
-ser &#x3D; serial.Serial(&quot;&#x2F;dev&#x2F;ttyUSB0&quot;, 115200)
-ser.flushInput()    # 清除缓存
-ser.write(&quot;LightningMaster\r\n&quot;.encode())    # 发送数据  \r\n可以实现换行  encode()默认是&#39;utf-8&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行这个代码就可以在串口助手上收到数据。</p>
-<p><img src="/posts/5/1.jpg" alt="最基础发送数据"></p>
-</li>
-<li><p>发送中文</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import serial
-ser &#x3D; serial.Serial(&quot;&#x2F;dev&#x2F;ttyUSB0&quot;, 115200)
-ser.flushInput()    # 清除缓存
-ser.write(&quot;闪电丶教主\r\n&quot;.encode(&#39;gb2312&#39;))    # 发送数据  \r\n可以实现换行<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/5/2.jpg" alt="发送中文"></p>
-</li>
-<li><p>发送数据包 十六进制</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import serial
-import struct
-ser &#x3D; serial.Serial(&quot;&#x2F;dev&#x2F;ttyUSB0&quot;, 115200)
-ser.flushInput()    # 清除缓存
-pack &#x3D; struct.pack(&#39;BBBB&#39;, 0xaa, 6, 7, 0x55)    # 将数据打包 格式是unsigned char
-ser.write(pack)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/5/3.jpg" alt="发送数据包"></p>
-<p>这个地方使用到了struct.pack，具体有啥作用可以自行百度去看看，我在这就不多说了。这里的作用就是将数据打包，返回格式是unsigned char 的字节串。</p>
-<p>可以使用这个函数给数据加上“头”“尾”之类的东西。</p>
-</li>
-</ol>
-<h2 id="接收数据"><a href="#接收数据" class="headerlink" title="接收数据"></a>接收数据</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;
-ser.read(num)    # 读取收到的num个字节的数据
-ser.inWaiting()    # 可以获取还未读出的数据
-&#39;&#39;&#39;
-import serial
-import struct
-import time
-ser &#x3D; serial.Serial(&quot;&#x2F;dev&#x2F;ttyUSB0&quot;, 115200)
-ser.flushInput()    # 清除缓存
-while True:
-    count &#x3D; ser.inWaiting()    # 获取还有多少字符未读
-    if count !&#x3D; 0:
-        data &#x3D; ser.read(count)    # 读取数据存到data中
-        print(data)    # 打印接受到的数据
-    time.sleep(0.1)    # 系统等待<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行代码，使用串口助手发送数据，可以在树莓派中看到返回值。</p>
-<p><img src="/posts/5/4.jpg" alt="接收数据"></p>
-<p>可以看到树莓派成功接收到了数据。</p>
-<p>如果想把b’ ‘去掉可以使用代码</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">print(data.decode(&#39;utf-8&#39;))<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="/posts/5/5.jpg" alt="去掉b&#39;&#39;"></p>
-<p>接收中文的话需要使用下面的代码</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">print(data.decode(&#39;gb2312&#39;))<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="/posts/5/6.jpg" alt="接收中文"></p>
-<p>具体为什么使用encode和decode，可以自行查阅Python相关资料。</p>
+typedef struct
+&#123;
+	int* base;    &#x2F;&#x2F; 栈底
+	int* top;    &#x2F;&#x2F; 栈顶
+	int stackMaxSize;    &#x2F;&#x2F; 当前已分配地存储空间
+&#125;SqStack;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="初始化堆栈"><a href="#初始化堆栈" class="headerlink" title="初始化堆栈"></a>初始化堆栈</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*创建堆栈*&#x2F;
+void Inistack(SqStack&amp; S)
+&#123;
+	S.base &#x3D; (int*)malloc(stack_maxSize * sizeof(int));    &#x2F;&#x2F; 分配空间
+	if (!S.base)
+		exit(0);
+	S.top &#x3D; S.base;
+	S.stackMaxSize &#x3D; stack_maxSize;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="判断堆栈是否为空"><a href="#判断堆栈是否为空" class="headerlink" title="判断堆栈是否为空"></a>判断堆栈是否为空</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*判断堆栈是否为空*&#x2F;
+int isStackEmpty(SqStack S)
+&#123;
+	if (S.base &#x3D;&#x3D; S.top)
+		return 0;
+	else
+		return 1;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="取栈顶元素"><a href="#取栈顶元素" class="headerlink" title="取栈顶元素"></a>取栈顶元素</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*取栈顶元素*&#x2F;
+int getTop(SqStack S)
+&#123;
+	&#x2F;*判断非空*&#x2F;
+	if (!isStackEmpty(S))
+		return 0;
+	return *(S.top - 1);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="压入堆栈"><a href="#压入堆栈" class="headerlink" title="压入堆栈"></a>压入堆栈</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*压入堆栈*&#x2F;
+void push_Stack(SqStack&amp; S, int e)
+&#123;
+	if (S.top - S.base &gt;&#x3D; S.stackMaxSize)
+	&#123;
+		int* temp &#x3D; (int*)realloc(S.base, (S.stackMaxSize + stack_increment) * sizeof(int));
+		if (!temp)
+			exit(0);
+		S.base &#x3D; temp;
+		S.top &#x3D; S.base + S.stackMaxSize;
+		S.base +&#x3D; stack_increment;
+	&#125;
+	*S.top++ &#x3D; e;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="弹出栈顶元素"><a href="#弹出栈顶元素" class="headerlink" title="弹出栈顶元素"></a>弹出栈顶元素</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*弹出栈顶元素*&#x2F;
+int pop_stack(SqStack&amp; S)
+&#123;
+	int temp;
+	if (!isStackEmpty)
+		return 0;
+	temp &#x3D; *--S.top;
+	return temp;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="清空栈元素，不释放空间"><a href="#清空栈元素，不释放空间" class="headerlink" title="清空栈元素，不释放空间"></a>清空栈元素，不释放空间</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*清空堆栈元素，不释放空间*&#x2F;
+void clear_stack(SqStack&amp; S)
+&#123;
+	if (!isStackEmpty)
+		return ;
+	S.top &#x3D; S.base;
+	printf(&quot;清空完成！\n&quot;);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="打印堆栈内容"><a href="#打印堆栈内容" class="headerlink" title="打印堆栈内容"></a>打印堆栈内容</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*打印堆栈内容*&#x2F;
+void show_stack(SqStack S)
+&#123;
+	if (!isStackEmpty)
+		return;
+	while (S.top !&#x3D; S.base)
+	&#123;
+		printf(&quot;%d\t&quot;, *--S.top);
+	&#125;
+	printf(&quot;\n&quot;);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="返回堆栈元素个数"><a href="#返回堆栈元素个数" class="headerlink" title="返回堆栈元素个数"></a>返回堆栈元素个数</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*返回堆栈元素个数*&#x2F;
+int show_NumOfStack(SqStack S)
+&#123;
+	return (S.top - S.base);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="销毁堆栈，释放空间"><a href="#销毁堆栈，释放空间" class="headerlink" title="销毁堆栈，释放空间"></a>销毁堆栈，释放空间</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*销毁堆栈，释放空间*&#x2F;
+void destroy_stack(SqStack&amp; S)
+&#123;
+	if (S.base)
+	&#123;
+		free(S.base);
+		S.base &#x3D; S.top &#x3D; NULL;
+		printf(&quot;销毁成功！\n&quot;);
+	&#125;
+	else
+		printf(&quot;销毁失败！\n&quot;);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+#include&lt;malloc.h&gt;
+#include &lt;stdlib.h&gt;
+
+
+#define stack_maxSize 100
+#define stack_increment 10
+
+
+typedef struct
+&#123;
+	int* base;
+	int* top;
+	int stackMaxSize;
+&#125;SqStack;
+
+
+&#x2F;*创建堆栈*&#x2F;
+void Inistack(SqStack&amp; S)
+&#123;
+	S.base &#x3D; (int*)malloc(stack_maxSize * sizeof(int));
+	if (!S.base)
+		exit(0);
+	S.top &#x3D; S.base;
+	S.stackMaxSize &#x3D; stack_maxSize;
+&#125;
+
+
+&#x2F;*判断堆栈是否为空*&#x2F;
+int isStackEmpty(SqStack S)
+&#123;
+	if (S.base &#x3D;&#x3D; S.top)
+		return 0;
+	else
+		return 1;
+&#125;
+
+
+&#x2F;*取栈顶元素*&#x2F;
+int getTop(SqStack S)
+&#123;
+	&#x2F;*判断非空*&#x2F;
+	if (!isStackEmpty(S))
+		return 0;
+	return *(S.top - 1);
+&#125;
+
+
+&#x2F;*压入堆栈*&#x2F;
+void push_Stack(SqStack&amp; S, int e)
+&#123;
+	if (S.top - S.base &gt;&#x3D; S.stackMaxSize)
+	&#123;
+		int* temp &#x3D; (int*)realloc(S.base, (S.stackMaxSize + stack_increment) * sizeof(int));
+		if (!temp)
+			exit(0);
+		S.base &#x3D; temp;
+		S.top &#x3D; S.base + S.stackMaxSize;
+		S.base +&#x3D; stack_increment;
+	&#125;
+	*S.top++ &#x3D; e;
+&#125;
+
+
+&#x2F;*弹出栈顶元素*&#x2F;
+int pop_stack(SqStack&amp; S)
+&#123;
+	int temp;
+	if (!isStackEmpty)
+		return 0;
+	temp &#x3D; *--S.top;
+	return temp;
+&#125;
+
+
+&#x2F;*清空堆栈元素，不释放空间*&#x2F;
+void clear_stack(SqStack&amp; S)
+&#123;
+	if (!isStackEmpty)
+		return ;
+	S.top &#x3D; S.base;
+	printf(&quot;清空完成！\n&quot;);
+&#125;
+
+
+&#x2F;*打印堆栈内容*&#x2F;
+void show_stack(SqStack S)
+&#123;
+	if (!isStackEmpty)
+		return;
+	while (S.top !&#x3D; S.base)
+	&#123;
+		printf(&quot;%d\t&quot;, *--S.top);
+	&#125;
+	printf(&quot;\n&quot;);
+&#125;
+
+
+&#x2F;*返回堆栈元素个数*&#x2F;
+int show_NumOfStack(SqStack S)
+&#123;
+	return (S.top - S.base);
+&#125;
+
+
+&#x2F;*销毁堆栈，释放空间*&#x2F;
+void destroy_stack(SqStack&amp; S)
+&#123;
+	if (S.base)
+	&#123;
+		free(S.base);
+		S.base &#x3D; S.top &#x3D; NULL;
+		printf(&quot;销毁成功！\n&quot;);
+	&#125;
+	else
+		printf(&quot;销毁失败！\n&quot;);
+&#125;
+
+
+int main()
+&#123;
+	SqStack myStack;
+	Inistack(myStack);
+	for (int i &#x3D; 0; i &lt; 10; i++)
+	&#123;
+		push_Stack(myStack, i);
+	&#125;
+	show_stack(myStack);
+	for (int i &#x3D; 0; i &lt; 10; i++)
+	&#123;
+		push_Stack(myStack, i);
+	&#125;
+	show_stack(myStack);
+	destroy_stack(myStack);
+	show_stack(myStack);
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="队列实现"><a href="#队列实现" class="headerlink" title="队列实现"></a>队列实现</h2><p>循环队列</p>
+<p><img src="/posts/14/2.png" alt="循环队列"></p>
+<h3 id="定义队列"><a href="#定义队列" class="headerlink" title="定义队列"></a>定义队列</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define mSize 5
+
+
+typedef struct queue
+&#123;
+	int front;    &#x2F;&#x2F; 队头元素的前一单元的位置下标
+	int rear;     &#x2F;&#x2F; 队尾元素的位置下标
+	int maxSize;  &#x2F;&#x2F; 队列空间的最大容量
+	int* element; &#x2F;&#x2F; 队列元素的数组首地址
+&#125;Queue;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="初始化队列"><a href="#初始化队列" class="headerlink" title="初始化队列"></a>初始化队列</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*创建队列*&#x2F;
+void initQueue(Queue&amp; Q)
+&#123;
+	Q.maxSize &#x3D; mSize;
+	Q.element &#x3D; (int*)malloc(sizeof(int) * mSize);
+	Q.front &#x3D; Q.rear &#x3D; 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="销毁队列，释放空间"><a href="#销毁队列，释放空间" class="headerlink" title="销毁队列，释放空间"></a>销毁队列，释放空间</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*销毁队列，释放空间*&#x2F;
+void destroy_Queue(Queue&amp; Q)
+&#123;
+	free(Q.element);
+	Q.maxSize &#x3D; -1;
+	Q.front &#x3D; Q.rear &#x3D; -1;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="清除队列"><a href="#清除队列" class="headerlink" title="清除队列"></a>清除队列</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*清除队列*&#x2F;
+void clear_queue(Queue&amp; Q)
+&#123;
+	Q.front &#x3D; Q.rear &#x3D; 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="判断非空"><a href="#判断非空" class="headerlink" title="判断非空"></a>判断非空</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*判断非空*&#x2F;
+int isQueueEmpty(Queue Q)
+&#123;
+	return Q.front &#x3D;&#x3D; Q.rear;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="判断已满"><a href="#判断已满" class="headerlink" title="判断已满"></a>判断已满</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*判断已满*&#x2F;
+int isQueueFull(Queue Q)
+&#123;
+	return ((Q.rear + 1) % Q.maxSize &#x3D;&#x3D; Q.front);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="获取队头元素"><a href="#获取队头元素" class="headerlink" title="获取队头元素"></a>获取队头元素</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*获取队头元素*&#x2F;
+void getFront(Queue Q)
+&#123;
+	if (isQueueEmpty(Q))
+		exit(0);
+	printf(&quot;%d\n&quot;, Q.element[(Q.front + 1) % Q.maxSize]);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="队尾插入"><a href="#队尾插入" class="headerlink" title="队尾插入"></a>队尾插入</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*队尾插入*&#x2F;
+void enQueueRear(Queue&amp; Q, int temp)
+&#123;
+	if (isQueueFull(Q))
+		exit(0);
+	Q.rear &#x3D; (Q.rear + 1) % Q.maxSize;
+	Q.element[Q.rear] &#x3D; temp;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="队头删除"><a href="#队头删除" class="headerlink" title="队头删除"></a>队头删除</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*队头删除*&#x2F;
+void deQueueFront(Queue&amp; Q)
+&#123;
+	if (isQueueEmpty(Q))
+		exit(0);
+	Q.front &#x3D; (Q.front + 1) % Q.maxSize;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="打印队列"><a href="#打印队列" class="headerlink" title="打印队列"></a>打印队列</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*打印队列*&#x2F;
+void show_Queue(Queue Q)
+&#123;
+	int p &#x3D; Q.front;
+	while (p !&#x3D; Q.rear)
+	&#123;
+		printf(&quot;%d\t&quot;, Q.element[++p]);
+	&#125;
+	printf(&quot;\n&quot;);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="完整代码-1"><a href="#完整代码-1" class="headerlink" title="完整代码"></a>完整代码</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+#include&lt;malloc.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define mSize 5
+
+
+typedef struct queue
+&#123;
+	int front;
+	int rear;
+	int maxSize;
+	int* element;
+&#125;Queue;
+
+
+&#x2F;*创建队列*&#x2F;
+void initQueue(Queue&amp; Q)
+&#123;
+	Q.maxSize &#x3D; mSize;
+	Q.element &#x3D; (int*)malloc(sizeof(int) * mSize);
+	Q.front &#x3D; Q.rear &#x3D; 0;
+&#125;
+
+
+&#x2F;*销毁队列，释放空间*&#x2F;
+void destroy_Queue(Queue&amp; Q)
+&#123;
+	free(Q.element);
+	Q.maxSize &#x3D; -1;
+	Q.front &#x3D; Q.rear &#x3D; -1;
+&#125;
+
+
+&#x2F;*清除队列*&#x2F;
+void clear_queue(Queue&amp; Q)
+&#123;
+	Q.front &#x3D; Q.rear &#x3D; 0;
+&#125;
+
+
+&#x2F;*判断非空*&#x2F;
+int isQueueEmpty(Queue Q)
+&#123;
+	return Q.front &#x3D;&#x3D; Q.rear;
+&#125;
+
+
+&#x2F;*判断已满*&#x2F;
+int isQueueFull(Queue Q)
+&#123;
+	return ((Q.rear + 1) % Q.maxSize &#x3D;&#x3D; Q.front);
+&#125;
+
+
+&#x2F;*获取队头元素*&#x2F;
+void getFront(Queue Q)
+&#123;
+	if (isQueueEmpty(Q))
+		exit(0);
+	printf(&quot;%d\n&quot;, Q.element[(Q.front + 1) % Q.maxSize]);
+&#125;
+
+
+&#x2F;*队尾插入*&#x2F;
+void enQueueRear(Queue&amp; Q, int temp)
+&#123;
+	if (isQueueFull(Q))
+		exit(0);
+	Q.rear &#x3D; (Q.rear + 1) % Q.maxSize;
+	Q.element[Q.rear] &#x3D; temp;
+&#125;
+
+
+&#x2F;*队头删除*&#x2F;
+void deQueueFront(Queue&amp; Q)
+&#123;
+	if (isQueueEmpty(Q))
+		exit(0);
+	Q.front &#x3D; (Q.front + 1) % Q.maxSize;
+&#125;
+
+
+&#x2F;*打印队列*&#x2F;
+void show_Queue(Queue Q)
+&#123;
+	int p &#x3D; Q.front;
+	while (p !&#x3D; Q.rear)
+	&#123;
+		printf(&quot;%d\t&quot;, Q.element[++p]);
+	&#125;
+	printf(&quot;\n&quot;);
+&#125;
+
+
+int main()
+&#123;
+	Queue myQueue;
+	initQueue(myQueue);
+	for (int i &#x3D; 0; i &lt; 4; i++)
+	&#123;
+		enQueueRear(myQueue, i);
+	&#125;
+	show_Queue(myQueue);
+	destroy_Queue(myQueue);
+	show_Queue(myQueue);
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -461,7 +808,7 @@ while True:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/5.html">https://lightningleader.github.io/posts/5.html</a>
+                    <a href="https://lightningleader.github.io/posts/14.html">https://lightningleader.github.io/posts/14.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -499,16 +846,12 @@ while True:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
+                                <a href="/tags/C%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">C语言</span>
                                 </a>
                             
                                 <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                     <span class="chip bg-color">学习笔记</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                                    <span class="chip bg-color">树莓派</span>
                                 </a>
                             
                         </div>
@@ -817,29 +1160,80 @@ while True:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/6.html">
+                <a href="/posts/14.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="OpenCV学习笔记">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="C语言实现堆栈和队列">
                         
-                        <span class="card-title">OpenCV学习笔记</span>
+                        <span class="card-title">C语言实现堆栈和队列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            OpenCV学习笔记
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-13
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            LightningMaster
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C%E8%AF%AD%E8%A8%80/">
+                        <span class="chip bg-color">C语言</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/13.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Skimage库使用">
+                        
+                        <span class="card-title">Skimage库使用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Skimage库使用
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -857,63 +1251,6 @@ while True:
                     
                     <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
                         <span class="chip bg-color">图像处理</span>
-                    </a>
-                    
-                    <a href="/tags/OpenCV/">
-                        <span class="chip bg-color">OpenCV</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/4.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="树莓派使用USB串口通信 CH340">
-                        
-                        <span class="card-title">树莓派使用USB串口通信 CH340</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            树莓派使用USB串口通信 CH340
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            LightningMaster
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                        <span class="chip bg-color">树莓派</span>
                     </a>
                     
                 </div>
