@@ -329,14 +329,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-05-17
+                    2021-05-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    2.8k
                 </div>
                 
 
@@ -368,7 +368,7 @@
             <div id="articleContent">
                 <h1 id="C语言实现堆栈和队列"><a href="#C语言实现堆栈和队列" class="headerlink" title="C语言实现堆栈和队列"></a>C语言实现堆栈和队列</h1><a id="more"></a>
 
-<h2 id="堆栈实现"><a href="#堆栈实现" class="headerlink" title="堆栈实现"></a>堆栈实现</h2><p>base称为栈底指针，在顺序栈中，它始终指向栈底的位置，若base的值为NULL，则表明栈结构不存在。</p>
+<h2 id="堆栈实现（顺序结构）"><a href="#堆栈实现（顺序结构）" class="headerlink" title="堆栈实现（顺序结构）"></a>堆栈实现（顺序结构）</h2><p>base称为栈底指针，在顺序栈中，它始终指向栈底的位置，若base的值为NULL，则表明栈结构不存在。</p>
 <p>top称为栈顶指针，其初值指向栈底，即top=base可作为栈空的标记。每当插入新的栈顶元素时，指针top增1；删除栈顶元素时，指针top减1，因此，非空栈中的栈顶指针始终在栈顶元素的下一个位置上。</p>
 <p><img src="/posts/14/1.jpg" alt="栈顶指针和栈中元素之间地关系"></p>
 <h3 id="定义堆栈"><a href="#定义堆栈" class="headerlink" title="定义堆栈"></a>定义堆栈</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define stack_maxSize 100    &#x2F;&#x2F; 存储空间初始分配量
@@ -423,7 +423,7 @@ void push_Stack(SqStack&amp; S, int e)
 int pop_stack(SqStack&amp; S)
 &#123;
 	int temp;
-	if (!isStackEmpty)
+	if (!isStackEmpty(S))
 		return 0;
 	temp &#x3D; *--S.top;
 	return temp;
@@ -431,7 +431,7 @@ int pop_stack(SqStack&amp; S)
 <h3 id="清空栈元素，不释放空间"><a href="#清空栈元素，不释放空间" class="headerlink" title="清空栈元素，不释放空间"></a>清空栈元素，不释放空间</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*清空堆栈元素，不释放空间*&#x2F;
 void clear_stack(SqStack&amp; S)
 &#123;
-	if (!isStackEmpty)
+	if (!isStackEmpty(S))
 		return ;
 	S.top &#x3D; S.base;
 	printf(&quot;清空完成！\n&quot;);
@@ -439,7 +439,7 @@ void clear_stack(SqStack&amp; S)
 <h3 id="打印堆栈内容"><a href="#打印堆栈内容" class="headerlink" title="打印堆栈内容"></a>打印堆栈内容</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*打印堆栈内容*&#x2F;
 void show_stack(SqStack S)
 &#123;
-	if (!isStackEmpty)
+	if (!isStackEmpty(S))
 		return;
 	while (S.top !&#x3D; S.base)
 	&#123;
@@ -533,7 +533,7 @@ void push_Stack(SqStack&amp; S, int e)
 int pop_stack(SqStack&amp; S)
 &#123;
 	int temp;
-	if (!isStackEmpty)
+	if (!isStackEmpty(S))
 		return 0;
 	temp &#x3D; *--S.top;
 	return temp;
@@ -543,7 +543,7 @@ int pop_stack(SqStack&amp; S)
 &#x2F;*清空堆栈元素，不释放空间*&#x2F;
 void clear_stack(SqStack&amp; S)
 &#123;
-	if (!isStackEmpty)
+	if (!isStackEmpty(S))
 		return ;
 	S.top &#x3D; S.base;
 	printf(&quot;清空完成！\n&quot;);
@@ -553,7 +553,7 @@ void clear_stack(SqStack&amp; S)
 &#x2F;*打印堆栈内容*&#x2F;
 void show_stack(SqStack S)
 &#123;
-	if (!isStackEmpty)
+	if (!isStackEmpty(S))
 		return;
 	while (S.top !&#x3D; S.base)
 	&#123;
@@ -602,7 +602,156 @@ int main()
 	show_stack(myStack);
 	return 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="队列实现"><a href="#队列实现" class="headerlink" title="队列实现"></a>队列实现</h2><p>循环队列</p>
+<h2 id="堆栈实现（链式结构）"><a href="#堆栈实现（链式结构）" class="headerlink" title="堆栈实现（链式结构）"></a>堆栈实现（链式结构）</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct StackNode
+&#123;
+	int data;
+	struct StackNode* next;
+&#125;StackNode, *LinkStack;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*初始化*&#x2F;
+void InitStack(LinkStack&amp; S)
+&#123;
+	S &#x3D; NULL;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="判断非空"><a href="#判断非空" class="headerlink" title="判断非空"></a>判断非空</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*判断是否为空*&#x2F;
+int isEmpty(LinkStack S)
+&#123;
+	if (S &#x3D;&#x3D; NULL)
+		return 0;
+	return 1;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="进栈"><a href="#进栈" class="headerlink" title="进栈"></a>进栈</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*进栈*&#x2F;
+void pushStack(LinkStack&amp; S, int x)
+&#123;
+	StackNode* p &#x3D; new StackNode;
+	p-&gt;data &#x3D; x;
+	p-&gt;next &#x3D; S;
+	S &#x3D; p;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="出栈"><a href="#出栈" class="headerlink" title="出栈"></a>出栈</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*出栈*&#x2F;
+int popStack(LinkStack&amp; S)
+&#123;
+	if (!isEmpty(S))
+		exit(0);
+	StackNode* p &#x3D; new StackNode;
+	int x &#x3D; S-&gt;data;
+	p &#x3D; S;
+	S &#x3D; S-&gt;next;
+	delete p;
+	return x;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="取栈顶元素-1"><a href="#取栈顶元素-1" class="headerlink" title="取栈顶元素"></a>取栈顶元素</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*取栈顶元素*&#x2F;
+int getTop(LinkStack S)
+&#123;
+	if (!isEmpty(S))
+		exit(0);
+	return S-&gt;data;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="打印"><a href="#打印" class="headerlink" title="打印"></a>打印</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*打印*&#x2F;
+void showStack(LinkStack S)
+&#123;
+	if (!isEmpty(S))
+		exit(0);
+	StackNode* p &#x3D; new StackNode;
+	p &#x3D; S;
+	while (p !&#x3D; NULL)
+	&#123;
+		printf(&quot;%d\t&quot;, p-&gt;data);
+		p &#x3D; p-&gt;next;
+	&#125;
+	printf(&quot;\n&quot;);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="完整代码-1"><a href="#完整代码-1" class="headerlink" title="完整代码"></a>完整代码</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+#include&lt;malloc.h&gt;
+#include &lt;stdlib.h&gt;
+
+
+typedef struct StackNode
+&#123;
+	int data;
+	struct StackNode* next;
+&#125;StackNode, *LinkStack;
+
+
+&#x2F;*初始化*&#x2F;
+void InitStack(LinkStack&amp; S)
+&#123;
+	S &#x3D; NULL;
+&#125;
+
+
+&#x2F;*判断是否为空*&#x2F;
+int isEmpty(LinkStack S)
+&#123;
+	if (S &#x3D;&#x3D; NULL)
+		return 0;
+	return 1;
+&#125;
+
+
+&#x2F;*进栈*&#x2F;
+void pushStack(LinkStack&amp; S, int x)
+&#123;
+	StackNode* p &#x3D; new StackNode;
+	p-&gt;data &#x3D; x;
+	p-&gt;next &#x3D; S;
+	S &#x3D; p;
+&#125;
+
+
+&#x2F;*出栈*&#x2F;
+int popStack(LinkStack&amp; S)
+&#123;
+	if (!isEmpty(S))
+		exit(0);
+	StackNode* p &#x3D; new StackNode;
+	int x &#x3D; S-&gt;data;
+	p &#x3D; S;
+	S &#x3D; S-&gt;next;
+	delete p;
+	return x;
+&#125;
+
+
+&#x2F;*取栈顶元素*&#x2F;
+int getTop(LinkStack S)
+&#123;
+	if (!isEmpty(S))
+		exit(0);
+	return S-&gt;data;
+&#125;
+
+
+&#x2F;*打印*&#x2F;
+void showStack(LinkStack S)
+&#123;
+	if (!isEmpty(S))
+		exit(0);
+	StackNode* p &#x3D; new StackNode;
+	p &#x3D; S;
+	while (p !&#x3D; NULL)
+	&#123;
+		printf(&quot;%d\t&quot;, p-&gt;data);
+		p &#x3D; p-&gt;next;
+	&#125;
+	printf(&quot;\n&quot;);
+&#125;
+
+
+int main()
+&#123;
+	LinkStack S;
+	InitStack(S);
+	for (int i &#x3D; 0; i &lt; 10; i++)
+	&#123;
+		pushStack(S, i);
+	&#125;
+	showStack(S);
+	printf(&quot;%d\n&quot;, popStack(S));
+	showStack(S);
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="队列实现（顺序结构）"><a href="#队列实现（顺序结构）" class="headerlink" title="队列实现（顺序结构）"></a>队列实现（顺序结构）</h2><p>循环队列</p>
 <p><img src="/posts/14/2.png" alt="循环队列"></p>
 <h3 id="定义队列"><a href="#定义队列" class="headerlink" title="定义队列"></a>定义队列</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define mSize 5
 
@@ -633,7 +782,7 @@ void clear_queue(Queue&amp; Q)
 &#123;
 	Q.front &#x3D; Q.rear &#x3D; 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="判断非空"><a href="#判断非空" class="headerlink" title="判断非空"></a>判断非空</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*判断非空*&#x2F;
+<h3 id="判断非空-1"><a href="#判断非空-1" class="headerlink" title="判断非空"></a>判断非空</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*判断非空*&#x2F;
 int isQueueEmpty(Queue Q)
 &#123;
 	return Q.front &#x3D;&#x3D; Q.rear;
@@ -675,7 +824,7 @@ void show_Queue(Queue Q)
 	&#125;
 	printf(&quot;\n&quot;);
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="完整代码-1"><a href="#完整代码-1" class="headerlink" title="完整代码"></a>完整代码</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define _CRT_SECURE_NO_WARNINGS
+<h3 id="完整代码-2"><a href="#完整代码-2" class="headerlink" title="完整代码"></a>完整代码</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define _CRT_SECURE_NO_WARNINGS
 #include&lt;stdio.h&gt;
 #include&lt;malloc.h&gt;
 #include &lt;stdlib.h&gt;
@@ -784,6 +933,207 @@ int main()
 	show_Queue(myQueue);
 	return 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="队列实现（链式结构）"><a href="#队列实现（链式结构）" class="headerlink" title="队列实现（链式结构）"></a>队列实现（链式结构）</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">typedef struct QNode
+&#123;
+	int data;
+	struct QNode* next;
+&#125;QNode, *QueuePtr;
+
+
+typedef struct
+&#123;
+	QueuePtr front;
+	QueuePtr rear;
+&#125;LinkQueue;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*初始化*&#x2F;
+void InitQueue(LinkQueue&amp; Q)
+&#123;
+	Q.front &#x3D; Q.rear &#x3D; (QueuePtr)malloc(sizeof(QNode));
+	if (!Q.front)
+		exit(0);
+	Q.front-&gt;next &#x3D; NULL;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="判断是否为空"><a href="#判断是否为空" class="headerlink" title="判断是否为空"></a>判断是否为空</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*判断是否为空*&#x2F;
+int isEmpty(LinkQueue Q)
+&#123;
+	return (Q.front &#x3D;&#x3D; Q.rear);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="销毁"><a href="#销毁" class="headerlink" title="销毁"></a>销毁</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">&#x2F;*销毁*&#x2F;
+void destroyQueue(LinkQueue&amp; Q)
+&#123;
+	if (isEmpty(Q))
+		exit(0);
+	while (Q.front)
+	&#123;
+		Q.rear &#x3D; Q.front-&gt;next;
+		free(Q.front);
+		Q.front &#x3D; Q.rear;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="取队头元素"><a href="#取队头元素" class="headerlink" title="取队头元素"></a>取队头元素</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*取队头元素*&#x2F;
+int getFront(LinkQueue Q)
+&#123;
+	if (isEmpty(Q))
+		exit(0);
+	return Q.front-&gt;next-&gt;data;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="入队"><a href="#入队" class="headerlink" title="入队"></a>入队</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*入队*&#x2F;
+void enQueue(LinkQueue&amp; Q, int x)
+&#123;
+	QNode* p &#x3D; (QueuePtr)malloc(sizeof(QNode));
+	if (!p)
+		exit(0);
+	p-&gt;data &#x3D; x;
+	p-&gt;next &#x3D; NULL;
+	Q.rear-&gt;next &#x3D; p;
+	Q.rear &#x3D; p;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="出队"><a href="#出队" class="headerlink" title="出队"></a>出队</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*出队*&#x2F;
+int deQueue(LinkQueue&amp; Q)
+&#123;
+	if (isEmpty(Q))
+		exit(0);
+	QNode* p &#x3D; (QueuePtr)malloc(sizeof(QNode));
+	p &#x3D; Q.front-&gt;next;
+	int x &#x3D; p-&gt;data;
+	Q.front-&gt;next &#x3D; p-&gt;next;
+	if (Q.rear &#x3D;&#x3D; p)
+		Q.rear &#x3D; Q.front;
+	free(p);
+	return x;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="打印-1"><a href="#打印-1" class="headerlink" title="打印"></a>打印</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c">&#x2F;*打印*&#x2F;
+void show_Queue(LinkQueue Q)
+&#123;
+	if (isEmpty(Q))
+		exit(0);
+	QNode* p &#x3D; (QueuePtr)malloc(sizeof(QNode));
+	p &#x3D; Q.front-&gt;next;
+	while (p !&#x3D; NULL)
+	&#123;
+		printf(&quot;%d\t&quot;, p-&gt;data);
+		p &#x3D; p-&gt;next;
+	&#125;
+	printf(&quot;\n&quot;);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="完整代码-3"><a href="#完整代码-3" class="headerlink" title="完整代码"></a>完整代码</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">#define _CRT_SECURE_NO_WARNINGS
+#include&lt;stdio.h&gt;
+#include&lt;malloc.h&gt;
+#include &lt;stdlib.h&gt;
+
+
+typedef struct QNode
+&#123;
+	int data;
+	struct QNode* next;
+&#125;QNode, *QueuePtr;
+
+
+typedef struct
+&#123;
+	QueuePtr front;
+	QueuePtr rear;
+&#125;LinkQueue;
+
+
+&#x2F;*初始化*&#x2F;
+void InitQueue(LinkQueue&amp; Q)
+&#123;
+	Q.front &#x3D; Q.rear &#x3D; (QueuePtr)malloc(sizeof(QNode));
+	if (!Q.front)
+		exit(0);
+	Q.front-&gt;next &#x3D; NULL;
+&#125;
+
+
+&#x2F;*判断是否为空*&#x2F;
+int isEmpty(LinkQueue Q)
+&#123;
+	return (Q.front &#x3D;&#x3D; Q.rear);
+&#125;
+
+
+&#x2F;*销毁*&#x2F;
+void destroyQueue(LinkQueue&amp; Q)
+&#123;
+	if (isEmpty(Q))
+		exit(0);
+	while (Q.front)
+	&#123;
+		Q.rear &#x3D; Q.front-&gt;next;
+		free(Q.front);
+		Q.front &#x3D; Q.rear;
+	&#125;
+&#125;
+
+
+&#x2F;*取队头元素*&#x2F;
+int getFront(LinkQueue Q)
+&#123;
+	if (isEmpty(Q))
+		exit(0);
+	return Q.front-&gt;next-&gt;data;
+&#125;
+
+
+&#x2F;*入队*&#x2F;
+void enQueue(LinkQueue&amp; Q, int x)
+&#123;
+	QNode* p &#x3D; (QueuePtr)malloc(sizeof(QNode));
+	if (!p)
+		exit(0);
+	p-&gt;data &#x3D; x;
+	p-&gt;next &#x3D; NULL;
+	Q.rear-&gt;next &#x3D; p;
+	Q.rear &#x3D; p;
+&#125;
+
+
+&#x2F;*出队*&#x2F;
+int deQueue(LinkQueue&amp; Q)
+&#123;
+	if (isEmpty(Q))
+		exit(0);
+	QNode* p &#x3D; (QueuePtr)malloc(sizeof(QNode));
+	p &#x3D; Q.front-&gt;next;
+	int x &#x3D; p-&gt;data;
+	Q.front-&gt;next &#x3D; p-&gt;next;
+	if (Q.rear &#x3D;&#x3D; p)
+		Q.rear &#x3D; Q.front;
+	free(p);
+	return x;
+&#125;
+
+
+&#x2F;*打印*&#x2F;
+void show_Queue(LinkQueue Q)
+&#123;
+	if (isEmpty(Q))
+		exit(0);
+	QNode* p &#x3D; (QueuePtr)malloc(sizeof(QNode));
+	p &#x3D; Q.front-&gt;next;
+	while (p !&#x3D; NULL)
+	&#123;
+		printf(&quot;%d\t&quot;, p-&gt;data);
+		p &#x3D; p-&gt;next;
+	&#125;
+	printf(&quot;\n&quot;);
+&#125;
+
+
+int main()
+&#123;
+	LinkQueue Q;
+	InitQueue(Q);
+	for (int i &#x3D; 0; i &lt; 10; i++)
+	&#123;
+		enQueue(Q, i);
+	&#125;
+	show_Queue(Q);
+	printf(&quot;%d\n&quot;, deQueue(Q));
+	show_Queue(Q);
+	return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -1401,7 +1751,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">27.1k</span>&nbsp;字
+                class="white-color">28.2k</span>&nbsp;字
             
             
             
