@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>PX4飞控-自定义发送MavLink消息</title>
+      <link href="posts/16.html"/>
+      <url>posts/16.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="PX4飞控-自定义发送MavLink消息"><a href="#PX4飞控-自定义发送MavLink消息" class="headerlink" title="PX4飞控-自定义发送MavLink消息"></a>PX4飞控-自定义发送MavLink消息</h1><h3 id="一、自定义XML文件"><a href="#一、自定义XML文件" class="headerlink" title="一、自定义XML文件"></a>一、自定义XML文件</h3><p><img src="/posts/16/1.png" alt="1"></p><p>如图所示。</p><p>这相当于定义了一个结构体，结构体里面就有一个类型为uint8_t的u8元素。</p><p>使用的id端口为150，这里注意不要与已经存在的id重复。</p><h3 id="二、使用XML文件生成对应的头文件"><a href="#二、使用XML文件生成对应的头文件" class="headerlink" title="二、使用XML文件生成对应的头文件"></a>二、使用XML文件生成对应的头文件</h3><p>在这里需要使用到一个工具<code>mavlink_generator</code>，它的安装方法比较简单。</p><p>在命令行依次输入下方命令即可完成安装：</p><pre class="line-numbers language-c" data-language="c"><code class="language-c">git clone https:&#x2F;&#x2F;github.com&#x2F;mavlink&#x2F;mavlink.gitcd mavlink    git submodule update --init --recursive    python -m mavgenerate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>之后会弹出下图界面：</p><p><img src="/posts/16/2.png" alt="2"></p><p>点击第一个Browse，选择之前新建的XML文件。</p><p>点击第二个Browse，选择最终的输出文件夹。</p><p>将Language切换为C，其他保持默认。</p><p>最终选择界面如下图所示</p><p><img src="/posts/16/3.png" alt="3"></p><p>点击Generate按钮，会弹出一个窗口，点击OK即可。</p><p><img src="/posts/16/4.png" alt="4"></p><p>最后成功生成最终文件。</p><h3 id="三、将生成的头文件添加到源代码中"><a href="#三、将生成的头文件添加到源代码中" class="headerlink" title="三、将生成的头文件添加到源代码中"></a>三、将生成的头文件添加到源代码中</h3><p>在生成目录找到<code>mavlink_msg_mytestmessage.h</code>（这个文件名不是固定的，根据个人定义而不同。）</p><p>将这个文件复制到源代码/mavlink/include/mavlink/v2.0/common目录下。</p><p>同时在同目录的<code>common.h</code>文件中添加刚才复制的头文件。</p><p><img src="/posts/16/5.png" alt="5"></p><h3 id="四、-修改mavlink-messages-cpp文件"><a href="#四、-修改mavlink-messages-cpp文件" class="headerlink" title="四、 修改mavlink_messages.cpp文件"></a>四、 修改mavlink_messages.cpp文件</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">class MavlinkMytestMessage : public MavlinkStream&#123;public:const char *get_name() const override&#123;return MavlinkMytestMessage::get_name_static();&#125;static constexpr const char *get_name_static()&#123;return &quot;MytestMessage&quot;;&#125;static constexpr uint16_t get_id_static()&#123;return MAVLINK_MSG_ID_TEST_TYPES;&#125;uint16_t get_id() override&#123;return get_id_static();&#125;bool const_rate() override&#123;return true;&#125;static MavlinkStream *new_instance(Mavlink *mavlink)&#123;return new MavlinkMytestMessage(mavlink);&#125;unsigned get_size() override&#123;return MAVLINK_MSG_ID_TEST_TYPES_LEN + MAVLINK_NUM_NON_PAYLOAD_BYTES;&#125;private:&#x2F;* do not allow top copying this class *&#x2F;MavlinkMytestMessage(MavlinkMytestMessage &amp;) ;MavlinkMytestMessage &amp;operator &#x3D; (const MavlinkMytestMessage &amp;) ;protected:explicit MavlinkMytestMessage(Mavlink *mavlink) : MavlinkStream(mavlink)&#123;&#125;~MavlinkMytestMessage()&#123;&#125;    &#x2F;* 发送函数 *&#x2F;bool send(const hrt_abstime t) override&#123;        &#x2F;* 创建结构体 *&#x2F;mavlink_test_types_t test;        &#x2F;* 结构体变量赋值 *&#x2F;test.u8 &#x3D; 150;        &#x2F;* 发送函数 *&#x2F;mavlink_msg_test_types_send_struct(_mavlink-&gt;get_channel(), &amp;test);return true;&#125;&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>在<code>mavlink_messages.cpp</code>文件中添加如上面代码差不多的类。有一些地方需要对应起来，也可以参考这个文件中其他类的定义来进行修改和理解。</p><p>添加完自定义的类之后还需要修改<code>static const StreamListItem streams_list</code>这个列表。</p><p>这个列表里面存放着目前所有需要输出的Mavlink消息，可以根据自己的需要进行取舍，注释掉不需要的消息。</p><p>要发送自定义的消息，就需要把刚才自定义的类添加到这个列表中来。</p><p><img src="/posts/16/6.png" alt="6"></p><h3 id="五、-修改mavlink-main-cpp文件"><a href="#五、-修改mavlink-main-cpp文件" class="headerlink" title="五、 修改mavlink_main.cpp文件"></a>五、 修改mavlink_main.cpp文件</h3><p>需要在<code>Mavlink::configure_streams_to_default(const char *configure_single_stream)</code>这个函数里面添加要发送的消息。（位置差不多在函数尾处）</p><p><img src="/posts/16/7.png" alt="7"></p><p>这个函数第二个参数是发送速率，可以通过修改它来更改发送速率。</p><h3 id="六、-上传固件"><a href="#六、-上传固件" class="headerlink" title="六、 上传固件"></a>六、 上传固件</h3><p>编译已经修改过的源代码，并上传到飞行器中。之后查看Mavlink消息就会找到自己定义的消息了。</p><p>推荐测试的时候把其他所有消息全部注释，只留自己自定义的消息，这样可以更清晰的看到输出结果。</p><p>QGC地面站可能无法正常查看到自己自定义的消息，可能还需要进一步修改地面站的配置。所以这里还是推荐使用串口助手直接调试查看。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 学习笔记 </tag>
+            
+            <tag> PX4 </tag>
+            
+            <tag> 无人机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>YOLOv5简易使用教程</title>
       <link href="posts/15.html"/>
       <url>posts/15.html</url>

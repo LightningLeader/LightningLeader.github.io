@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="4路红外循迹模块使用教程, LightningMaster">
+    <meta name="keywords" content="PX4飞控-自定义发送MavLink消息, LightningMaster">
     <meta name="description" content="老废物">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>4路红外循迹模块使用教程 | LightningMaster</title>
+    <title>PX4飞控-自定义发送MavLink消息 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/4%E8%B7%AF%E7%BA%A2%E5%A4%96%E5%BE%AA%E8%BF%B9%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">4路红外循迹模块使用教程</h1>
+                    <h1 class="description center-align post-title">PX4飞控-自定义发送MavLink消息</h1>
                 </div>
             </div>
         </div>
@@ -302,16 +302,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
                             </a>
                         
-                            <a href="/tags/%E7%A1%AC%E4%BB%B6%E4%BD%BF%E7%94%A8/">
-                                <span class="chip bg-color">硬件使用</span>
+                            <a href="/tags/PX4/">
+                                <span class="chip bg-color">PX4</span>
                             </a>
                         
-                            <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                <span class="chip bg-color">单片机</span>
+                            <a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/">
+                                <span class="chip bg-color">无人机</span>
                             </a>
                         
                     </div>
@@ -326,21 +326,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-09
+                    2021-09-23
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-09
+                    2021-09-23
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    722
+                    836
                 </div>
                 
 
@@ -370,62 +370,104 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="4路红外循迹模块使用教程"><a href="#4路红外循迹模块使用教程" class="headerlink" title="4路红外循迹模块使用教程"></a>4路红外循迹模块使用教程</h1><a id="more"></a>
+                <h1 id="PX4飞控-自定义发送MavLink消息"><a href="#PX4飞控-自定义发送MavLink消息" class="headerlink" title="PX4飞控-自定义发送MavLink消息"></a>PX4飞控-自定义发送MavLink消息</h1><h3 id="一、自定义XML文件"><a href="#一、自定义XML文件" class="headerlink" title="一、自定义XML文件"></a>一、自定义XML文件</h3><p><img src="/posts/16/1.png" alt="1"></p>
+<p>如图所示。</p>
+<p>这相当于定义了一个结构体，结构体里面就有一个类型为uint8_t的u8元素。</p>
+<p>使用的id端口为150，这里注意不要与已经存在的id重复。</p>
+<h3 id="二、使用XML文件生成对应的头文件"><a href="#二、使用XML文件生成对应的头文件" class="headerlink" title="二、使用XML文件生成对应的头文件"></a>二、使用XML文件生成对应的头文件</h3><p>在这里需要使用到一个工具<code>mavlink_generator</code>，它的安装方法比较简单。</p>
+<p>在命令行依次输入下方命令即可完成安装：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c">git clone https:&#x2F;&#x2F;github.com&#x2F;mavlink&#x2F;mavlink.git
 
-<h2 id="模块详细信息："><a href="#模块详细信息：" class="headerlink" title="模块详细信息："></a>模块详细信息：</h2><p>工作电压：DC 3.3V~5V</p>
-<p>工作电流：尽量选择1A以上电源供电</p>
-<p>工作温度：-10℃~+50℃</p>
-<p>安装孔径：M3螺丝</p>
-<p>检测距离：1mm~30cm可调，距离越近2性能越稳定，白色反射距离远</p>
-<p>尺寸大小：中控板42mmX38mmX12mm（长X宽X高）；小板向前25mmX12mmX12mm（长X宽X高）</p>
-<p>输出接口：6线制接口（1、2、3、4为4路信号输出端，VCC接正电源，GND接GND）</p>
-<p>输出信号：TTL电平，可直接连接单片机IO口，感应到传感器反射回来的红外光时，红指示灯亮，输出低电平；没有红外光时，指示灯不亮，输出高电平。</p>
-<h2 id="模块接线"><a href="#模块接线" class="headerlink" title="模块接线"></a>模块接线</h2><p><img src="/posts/2/1.png" alt="4路红外循迹模块"></p>
-<p>图中主控板左侧分别为，VCC、GND、OUT1、OUT2、OUT3、OUT4，其中OUT1、2、3、4分别连接单片机的IO口，用于检测输出电平。主控板右侧分别与四个小板连接，用于采集信息。</p>
-<h2 id="模块使用"><a href="#模块使用" class="headerlink" title="模块使用"></a>模块使用</h2><p>模块正确连接并通电后，小板传感器开始工作。模块感应到传感器反射回来的红外光时，红指示灯亮，输出低电平；没有红外光时，指示灯不亮，输出高电平。以检测黑线为例，如果传感器检测到黑线，红外光无法反射回来则模块红指示灯熄灭，同时小板对应的OUT口输出高电平；如果未检测到黑线，红外光可以反射回来则模块红指示灯亮，小板对应的OUT口输出低电平。其中需要注意一种特殊情况，也就是说当测量物体超出测量范围时，此时红指示灯熄灭，OUT口输出高电平。</p>
-<p>每个小板前面对应的电位器可以用来调整使用精度。</p>
-<h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><p>代码使用的单片机型号：STC16F40K128</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">#include &quot;headfile.h&quot;
-&#x2F;*
-* OUT1 P27
-* OUT2 P26
-* OUT3 P25
-* OUT4 P24
-* 检测到黑线或悬空LED灭，输出高电平
-*&#x2F;
- int main()
- &#123;
-	DisableGlobalIRQ();		&#x2F;&#x2F;关闭总中断
-	
-	board_init();			&#x2F;&#x2F;初始化寄存器
-	&#x2F;&#x2F;总中断最后开启
-	EnableGlobalIRQ();		&#x2F;&#x2F;开启总中断
-    while(1)
+cd mavlink
+    
+git submodule update --init --recursive
+    
+python -m mavgenerate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>之后会弹出下图界面：</p>
+<p><img src="/posts/16/2.png" alt="2"></p>
+<p>点击第一个Browse，选择之前新建的XML文件。</p>
+<p>点击第二个Browse，选择最终的输出文件夹。</p>
+<p>将Language切换为C，其他保持默认。</p>
+<p>最终选择界面如下图所示</p>
+<p><img src="/posts/16/3.png" alt="3"></p>
+<p>点击Generate按钮，会弹出一个窗口，点击OK即可。</p>
+<p><img src="/posts/16/4.png" alt="4"></p>
+<p>最后成功生成最终文件。</p>
+<h3 id="三、将生成的头文件添加到源代码中"><a href="#三、将生成的头文件添加到源代码中" class="headerlink" title="三、将生成的头文件添加到源代码中"></a>三、将生成的头文件添加到源代码中</h3><p>在生成目录找到<code>mavlink_msg_mytestmessage.h</code>（这个文件名不是固定的，根据个人定义而不同。）</p>
+<p>将这个文件复制到源代码/mavlink/include/mavlink/v2.0/common目录下。</p>
+<p>同时在同目录的<code>common.h</code>文件中添加刚才复制的头文件。</p>
+<p><img src="/posts/16/5.png" alt="5"></p>
+<h3 id="四、-修改mavlink-messages-cpp文件"><a href="#四、-修改mavlink-messages-cpp文件" class="headerlink" title="四、 修改mavlink_messages.cpp文件"></a>四、 修改mavlink_messages.cpp文件</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">class MavlinkMytestMessage : public MavlinkStream
+&#123;
+public:
+	const char *get_name() const override
 	&#123;
-        &#x2F;&#x2F; 判断IO口电平状态
-		if (P27 &#x3D;&#x3D; 1)
-        &#123;
-			printf(&quot;OUT1 NO\r\n&quot;);
-		&#125;
-		if (P26 &#x3D;&#x3D; 1)
-		&#123;
-			printf(&quot;OUT2 NO\r\n&quot;);
-		&#125;
-		if (P25 &#x3D;&#x3D; 1)
-		&#123;
-			printf(&quot;OUT3 NO\r\n&quot;);
-		&#125;
-		if (P24 &#x3D;&#x3D; 1)
-		&#123;
-			printf(&quot;OUT4 NO\r\n&quot;);
-		&#125;
-		if ((P27 &#x3D;&#x3D; 0)&amp;&amp;(P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
-		&#123;
-			printf(&quot;OFF\r\n&quot;);
-		&#125;
-  &#125;
- &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>代码是比较简单的，就是判断单片机IO口状态。如果IO口是高电平则表示传感器检测到黑线，否则没有检测到黑线。理解了这个原理就可以在其他型号的单片机上使用这个模块。</p>
+		return MavlinkMytestMessage::get_name_static();
+	&#125;
+
+	static constexpr const char *get_name_static()
+	&#123;
+		return &quot;MytestMessage&quot;;
+	&#125;
+
+	static constexpr uint16_t get_id_static()
+	&#123;
+		return MAVLINK_MSG_ID_TEST_TYPES;
+	&#125;
+
+	uint16_t get_id() override
+	&#123;
+		return get_id_static();
+	&#125;
+
+	bool const_rate() override
+	&#123;
+		return true;
+	&#125;
+
+	static MavlinkStream *new_instance(Mavlink *mavlink)
+	&#123;
+		return new MavlinkMytestMessage(mavlink);
+	&#125;
+
+	unsigned get_size() override
+	&#123;
+		return MAVLINK_MSG_ID_TEST_TYPES_LEN + MAVLINK_NUM_NON_PAYLOAD_BYTES;
+	&#125;
+
+private:
+	&#x2F;* do not allow top copying this class *&#x2F;
+	MavlinkMytestMessage(MavlinkMytestMessage &amp;) ;
+	MavlinkMytestMessage &amp;operator &#x3D; (const MavlinkMytestMessage &amp;) ;
+
+protected:
+	explicit MavlinkMytestMessage(Mavlink *mavlink) : MavlinkStream(mavlink)
+	&#123;&#125;
+	~MavlinkMytestMessage()
+	&#123;&#125;
+    &#x2F;* 发送函数 *&#x2F;
+	bool send(const hrt_abstime t) override
+	&#123;
+        &#x2F;* 创建结构体 *&#x2F;
+		mavlink_test_types_t test;
+        &#x2F;* 结构体变量赋值 *&#x2F;
+		test.u8 &#x3D; 150;
+        &#x2F;* 发送函数 *&#x2F;
+		mavlink_msg_test_types_send_struct(_mavlink-&gt;get_channel(), &amp;test);
+		return true;
+	&#125;
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在<code>mavlink_messages.cpp</code>文件中添加如上面代码差不多的类。有一些地方需要对应起来，也可以参考这个文件中其他类的定义来进行修改和理解。</p>
+<p>添加完自定义的类之后还需要修改<code>static const StreamListItem streams_list</code>这个列表。</p>
+<p>这个列表里面存放着目前所有需要输出的Mavlink消息，可以根据自己的需要进行取舍，注释掉不需要的消息。</p>
+<p>要发送自定义的消息，就需要把刚才自定义的类添加到这个列表中来。</p>
+<p><img src="/posts/16/6.png" alt="6"></p>
+<h3 id="五、-修改mavlink-main-cpp文件"><a href="#五、-修改mavlink-main-cpp文件" class="headerlink" title="五、 修改mavlink_main.cpp文件"></a>五、 修改mavlink_main.cpp文件</h3><p>需要在<code>Mavlink::configure_streams_to_default(const char *configure_single_stream)</code>这个函数里面添加要发送的消息。（位置差不多在函数尾处）</p>
+<p><img src="/posts/16/7.png" alt="7"></p>
+<p>这个函数第二个参数是发送速率，可以通过修改它来更改发送速率。</p>
+<h3 id="六、-上传固件"><a href="#六、-上传固件" class="headerlink" title="六、 上传固件"></a>六、 上传固件</h3><p>编译已经修改过的源代码，并上传到飞行器中。之后查看Mavlink消息就会找到自己定义的消息了。</p>
+<p>推荐测试的时候把其他所有消息全部注释，只留自己自定义的消息，这样可以更清晰的看到输出结果。</p>
+<p>QGC地面站可能无法正常查看到自己自定义的消息，可能还需要进一步修改地面站的配置。所以这里还是推荐使用串口助手直接调试查看。</p>
 
                 
             </div>
@@ -452,7 +494,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/2.html">https://lightningleader.github.io/posts/2.html</a>
+                    <a href="https://lightningleader.github.io/posts/16.html">https://lightningleader.github.io/posts/16.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -490,16 +532,16 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
-                                <a href="/tags/%E7%A1%AC%E4%BB%B6%E4%BD%BF%E7%94%A8/">
-                                    <span class="chip bg-color">硬件使用</span>
+                                <a href="/tags/PX4/">
+                                    <span class="chip bg-color">PX4</span>
                                 </a>
                             
-                                <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                    <span class="chip bg-color">单片机</span>
+                                <a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/">
+                                    <span class="chip bg-color">无人机</span>
                                 </a>
                             
                         </div>
@@ -808,28 +850,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/3.html">
+                <a href="/posts/16.html">
                     <div class="card-image">
                         
-                        <img src="/images/%E5%BE%AA%E8%BF%B9%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%20%E5%BE%AA%E9%BB%91%E7%BA%BF/1.jpg" class="responsive-img" alt="循迹智能小车 循黑线">
                         
-                        <span class="card-title">循迹智能小车 循黑线</span>
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="PX4飞控-自定义发送MavLink消息">
+                        
+                        <span class="card-title">PX4飞控-自定义发送MavLink消息</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            循迹智能小车 循黑线
+                            
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -838,15 +882,20 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                        <span class="chip bg-color">单片机</span>
+                    <a href="/tags/PX4/">
+                        <span class="chip bg-color">PX4</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/">
+                        <span class="chip bg-color">无人机</span>
                     </a>
                     
                 </div>
@@ -860,24 +909,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/1.html">
+                <a href="/posts/15.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Markdown学习笔记">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="YOLOv5简易使用教程">
                         
-                        <span class="card-title">Markdown学习笔记</span>
+                        <span class="card-title">YOLOv5简易使用教程</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Markdown学习笔记
+                            YOLOv5简易使用笔记
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-14
                             </span>
                         <span class="publish-author">
                             
@@ -890,12 +939,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
+                        <span class="chip bg-color">人工智能</span>
                     </a>
                     
                 </div>
