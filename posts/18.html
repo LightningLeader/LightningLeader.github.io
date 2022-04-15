@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Skimage库使用, LightningMaster">
+    <meta name="keywords" content="【MindSpore】简单使用Resnet50实现狗狼图片分类, LightningMaster">
     <meta name="description" content="老废物">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Skimage库使用 | LightningMaster</title>
+    <title>【MindSpore】简单使用Resnet50实现狗狼图片分类 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Skimage库使用</h1>
+                    <h1 class="description center-align post-title">【MindSpore】简单使用Resnet50实现狗狼图片分类</h1>
                 </div>
             </div>
         </div>
@@ -306,8 +306,12 @@
                                 <span class="chip bg-color">学习笔记</span>
                             </a>
                         
-                            <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
-                                <span class="chip bg-color">图像处理</span>
+                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">深度学习</span>
+                            </a>
+                        
+                            <a href="/tags/MindSpore/">
+                                <span class="chip bg-color">MindSpore</span>
                             </a>
                         
                     </div>
@@ -322,21 +326,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-04-13
+                    2022-04-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-04-13
+                    2022-04-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    2.7k
                 </div>
                 
 
@@ -366,144 +370,240 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Skimage库使用"><a href="#Skimage库使用" class="headerlink" title="Skimage库使用"></a>Skimage库使用</h1><a id="more"></a>
+                <h1 id="【MindSpore】简单使用Resnet50实现狗狼图片分类"><a href="#【MindSpore】简单使用Resnet50实现狗狼图片分类" class="headerlink" title="【MindSpore】简单使用Resnet50实现狗狼图片分类"></a>【MindSpore】简单使用Resnet50实现狗狼图片分类</h1><a id="more"></a>
 
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近发现Skimage库挺好用的，可以和OpenCV搭配一起使用，让图像处理更加灵活和方便。</p>
-<p>本博客只对Skimage库做简单的介绍，细节使用的话推荐官网查看或百度寻找。<a target="_blank" rel="noopener" href="https://scikit-image.org/">Skimage官方网站</a></p>
-<p>本博客会不断更新的，尽量。</p>
-<h2 id="实现连通区域染色"><a href="#实现连通区域染色" class="headerlink" title="实现连通区域染色"></a>实现连通区域染色</h2><p><strong>源代码程序：</strong></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
-from skimage import measure, color
-path &#x3D; &quot;C:\\Users\\17513\\Desktop\\test.jpg&quot;
-img &#x3D; cv2.imread(path)
-img_copy &#x3D; img.copy()
-img_gray &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-img_gauss &#x3D; cv2.GaussianBlur(img_gray, (5, 5), 1)
-img_temp &#x3D; cv2.threshold(img_gray, 127, 255, cv2.THRESH_BINARY)[1]
-labels &#x3D; measure.label(img_temp)
-dst &#x3D; color.label2rgb(labels, bg_label&#x3D;0)    # bg_label&#x3D;0要有，不然会有警告
-cv2.imshow(&quot;666&quot;, dst)
-cv2.waitKey(0)
-cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/13/1.png" alt="效果图"></p>
-<p><strong>代码函数分析：</strong></p>
-<p>这段代码很少，其中需要讲解的只有 <code>measure.label</code>和<code>color.label2rgb</code>，其他均为OpenCV的基础代码。</p>
+<p><strong>本文章用的例子来自MindSpore官网<a target="_blank" rel="noopener" href="https://www.mindspore.cn/tutorials/zh-CN/r1.6/intermediate/image_and_video/transfer_learning.html">教程</a>，这里主要是分享一下个人理解和整合一下相关代码。</strong></p>
+<p>环境配置：</p>
 <ul>
-<li><p>skimage.measure.label</p>
-<p>功能描述：实现连通区域标记。<br>函数调用形式：skimage.measure.label(input, neighbors = None, background = None, return_num = False, connectivity =None)<br>参数描述：<br>input : Image to label 需要被标记的图片，输入的数据结构不作要求<br>neighbors : 这个参数将被移除，被下面的connectivity替代。可以忽略不看<br>background : 选择背景像素，指定像素作为背景，全部相同像素标记为0<br>return_num : 是一个bool值，如果为True的话返回值是一个元组（labels ，num ）；如果为False的话就只返回labels<br>connectivity : Maximum number of orthogonal hops to consider a pixel/voxel as a neighbor. Accepted values are ranging from 1 to input.ndim. If None, a full connectivity of input.ndim is used. [int, optional]。如果input是一个二维的图片，那么connectivity的值范围选择{1,2}，如果是None则默认是取最高的值，对于二维来说，当connectivity=1时代表4连通，当connectivity=2时代表8连通.<br>Returns:<br>labels : 和input形状一样，但是数值是标记号，所以这是一个已经标记的图片<br>num : 标记的种类数，如果输出0则只有背景，如果输出2则有两个种类或者说是连通域</p>
-</li>
-<li><p>skimage.color.label2rgb</p>
-<p>Parameters<br>labelarray, shape (M, N)<br>Integer array of labels with the same shape as image.</p>
-<p>imagearray, shape (M, N, 3), optional<br>Image used as underlay for labels. If the input is an RGB image, it’s converted to grayscale before coloring.</p>
-<p>colorslist, optional<br>List of colors. If the number of labels exceeds the number of colors, then the colors are cycled.</p>
-<p>alphafloat [0, 1], optional<br>Opacity of colorized labels. Ignored if image is None.</p>
-<p>bg_labelint, optional<br>Label that’s treated as the background. If bg_label is specified, bg_color is None, and kind is overlay, background is not painted by any colors.</p>
-<p>bg_colorstr or array, optional<br>Background color. Must be a name in color_dict or RGB float values between [0, 1].</p>
-<p>image_alphafloat [0, 1], optional<br>Opacity of the image.</p>
-<p>kindstring, one of {‘overlay’, ‘avg’}<br>The kind of color image desired. ‘overlay’ cycles over defined colors and overlays the colored labels over the original image. ‘avg’ replaces each labeled segment with its average color, for a stained-class or pastel painting appearance.</p>
-<p>saturationfloat [0, 1], optional<br>Parameter to control the saturation applied to the original image between fully saturated (original RGB, saturation=1) and fully unsaturated (grayscale, saturation=0). Only applies when kind=’overlay’.</p>
-<p>Returns<br>resultarray of float, shape (M, N, 3)<br>The result of blending a cycling colormap (colors) for each distinct value in label with the image, at a certain alpha value.</p>
-<p>这段关于<code>color.label2rgb</code>是直接复制官网上的。大部分参数都保持默认即可，与<code>measure.label</code>结合使用可以达到对不同连通区域染色的效果。</p>
-</li>
+<li>windows10</li>
+<li>MindSpore1.6.1 CPU版本</li>
+<li>python3.9.0</li>
 </ul>
-<h2 id="Skimage-measure-regionprops介绍"><a href="#Skimage-measure-regionprops介绍" class="headerlink" title="Skimage.measure.regionprops介绍"></a>Skimage.measure.regionprops介绍</h2><ul>
-<li><p>Skimage.measure.regionprops</p>
-<p>功能描述：测量标记图像区域的属性。<br>函数调用形式：skimage.measure.regionprops(label_image, intensity_image=None, cache=True, coordinates=None)<br>参数描述：<br>label_image：（N,M）ndarray，标记输入图像；<br>intensity_image : (N, M) ndarray，可选参数，具有与标记图像相同大小的强度（即输入）图像，默认值为“None”；<br>cache：bool，可选参数，确定是否缓存计算的属性。对于缓存属性，计算速度要快得多，而内存消耗则会增加；<br>coordinates：’rc’或’xy‘，可选参数，协调2D图像的约定。（3D图像仅支持’rc‘坐标）<br>Return:<br>region：是一种列表的形式，每个连通域的标记区域。</p>
-</li>
-</ul>
-<p>这个函数返回值是一个列表，内容是每个没标记的连通区域。</p>
-<table>
-<thead>
-<tr>
-<th>属性名称</th>
-<th>类型</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>area</td>
-<td>int</td>
-<td>区域内像素点总数</td>
-</tr>
-<tr>
-<td>bbox</td>
-<td>tuple</td>
-<td>边界外接框(min_row, min_col, max_row, max_col)</td>
-</tr>
-<tr>
-<td>centroid</td>
-<td>array</td>
-<td>质心坐标</td>
-</tr>
-<tr>
-<td>convex_area</td>
-<td>int</td>
-<td>凸包内像素点总数</td>
-</tr>
-<tr>
-<td>convex_image</td>
-<td>ndarray</td>
-<td>和边界外接框同大小的凸包</td>
-</tr>
-<tr>
-<td>coords</td>
-<td>ndarray</td>
-<td>区域内像素点坐标</td>
-</tr>
-<tr>
-<td>Eccentricity</td>
-<td>float</td>
-<td>离心率</td>
-</tr>
-<tr>
-<td>equivalent_diameter</td>
-<td>float</td>
-<td>和区域面积相同的圆的直径</td>
-</tr>
-<tr>
-<td>euler_number</td>
-<td>int</td>
-<td>区域欧拉数</td>
-</tr>
-<tr>
-<td>extent</td>
-<td>float</td>
-<td>区域面积和边界外接框面积的比率</td>
-</tr>
-<tr>
-<td>filled_area</td>
-<td>int</td>
-<td>区域和外接框之间填充的像素点总数</td>
-</tr>
-<tr>
-<td>perimeter</td>
-<td>float</td>
-<td>区域周长</td>
-</tr>
-<tr>
-<td>label</td>
-<td>int</td>
-<td>区域标记</td>
-</tr>
-</tbody></table>
-<p>源程序代码：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
-from skimage import measure
-path &#x3D; &quot;C:\\Users\\17513\\Desktop\\test.jpg&quot;
-img &#x3D; cv2.imread(path)
-img_copy &#x3D; img.copy()
-img_gray &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-img_gauss &#x3D; cv2.GaussianBlur(img_gray, (5, 5), 1)
-img_temp &#x3D; cv2.threshold(img_gray, 127, 255, cv2.THRESH_BINARY)[1]
-labels &#x3D; measure.label(img_temp)
-a &#x3D; measure.regionprops(labels)
-for (j, i) in enumerate(a):
-    (min_row, min_col, max_row, max_col) &#x3D; i.bbox
-    cv2.rectangle(img_copy, (min_col, min_row), (max_col, max_row), (0, 0, 255))
-cv2.imshow(&quot;666&quot;, img_copy)
-cv2.waitKey(0)
-cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/13/2.png" alt="效果图"></p>
+<h2 id="一、数据集和预训练模型下载"><a href="#一、数据集和预训练模型下载" class="headerlink" title="一、数据集和预训练模型下载"></a>一、数据集和预训练模型下载</h2><p><a target="_blank" rel="noopener" href="https://mindspore-website.obs.cn-north-4.myhuaweicloud.com/notebook/datasets/intermediate/Canidae_data.zip">数据集下载</a></p>
+<p><a target="_blank" rel="noopener" href="https://download.mindspore.cn/model_zoo/official/cv/resnet/resnet50_v1.5_ascend_0.3.0_cifar10_official_classification_20200718/resnet50.ckpt">预训练模型下载</a></p>
+<p>注：以上链接均来源MindSpore官网。</p>
+<h2 id="二、定义命令行参数并保存成config-yml"><a href="#二、定义命令行参数并保存成config-yml" class="headerlink" title="二、定义命令行参数并保存成config.yml"></a>二、定义命令行参数并保存成config.yml</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">def parse_args():
+    parser &#x3D; argparse.ArgumentParser()
+    
+    # 工程文件名字
+    parser.add_argument(&quot;--name&quot;, default&#x3D;&quot;resnet50_classify&quot;, help&#x3D;&quot;The name of project.&quot;)
+    # 数据集名称
+    parser.add_argument(&#39;--dataset&#39;, default&#x3D;&#39;Canidae&#39;, help&#x3D;&#39;dataset name&#39;)
+    parser.add_argument(&quot;--epochs&quot;, default&#x3D;200, type&#x3D;int, metavar&#x3D;&#39;N&#39;)
+    parser.add_argument(&#39;--batch_size&#39;, default&#x3D;16, type&#x3D;int, metavar&#x3D;&#39;N&#39;)
+
+    # 预训练权重，参数填预训练文件的路径
+    parser.add_argument(&#39;--pre_ckpt&#39;, default&#x3D;&quot;.&#x2F;pre_ckpt&#x2F;resnet50.ckpt&quot;)
+    # 是否删除预训练模型的全连接层
+    parser.add_argument(&quot;--delfc_flag&quot;, default&#x3D;True)
+    
+    # 输入图片的channels，默认是RGB三通道图片
+    parser.add_argument(&#39;--input_channels&#39;, default&#x3D;3, type&#x3D;int, help&#x3D;&#39;input channels&#39;)
+    # 类别个数
+    parser.add_argument(&#39;--num_classes&#39;, default&#x3D;20, type&#x3D;int, help&#x3D;&#39;number of classes&#39;)
+    # 输入图像的尺寸
+    parser.add_argument(&#39;--image_size&#39;, default&#x3D;128, type&#x3D;int, help&#x3D;&#39;image size&#39;)
+
+    # 优化器
+    parser.add_argument(&#39;--optimizer&#39;, default&#x3D;&#39;Adam&#39;)
+    # 损失函数
+    parser.add_argument(&#39;--loss&#39;, default&#x3D;&#39;SoftmaxCrossEntropyWithLogits&#39;)
+    
+    parser.add_argument(&#39;--dataset_sink_mode&#39;, default&#x3D;False)
+
+
+    config &#x3D; parser.parse_args()
+    return config<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用<code>argparse</code>这个库可以自定义命令行参数，方便训练参数的更改。后面可以把这些参数存储为<code>config.yml</code>，作为配置文件使用，也方便自己或其他人了解这个网络的相关参数。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def main():
+    # 解析命令行参数。config类型为字典，键是之前定义的命令行参数名字，值是对应其的内容。
+    config &#x3D; vars(parse_args())
+    
+    # 创建模型工程文件夹，用来保存训练文件
+    if config[&quot;name&quot;] is None:
+        config[&#39;name&#39;] &#x3D; &quot;test&quot;
+    os.makedirs(os.path.join(&quot;models&quot;, config[&quot;name&quot;]), exist_ok&#x3D;True)
+
+    # 创建config文件并将参数写入
+    config_path &#x3D; &#39;models&#x2F;%s&#x2F;config.yml&#39; % config[&#39;name&#39;]
+    with open(config_path, &#39;w&#39;) as f:
+        yaml.dump(config, f)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="三、★数据集预处理和加载★"><a href="#三、★数据集预处理和加载★" class="headerlink" title="三、★数据集预处理和加载★"></a>三、★数据集预处理和加载★</h2><p>数据集分为训练集和验证集。</p>
+<p>MindSpore提供了<code>mindspore.dataset.ImageFolderDataset</code>函数可以方便读取数据集。<a href="%5BMindSpore%5D(https://www.mindspore.cn/docs/api/zh-CN/r1.6/api_python/dataset/mindspore.dataset.ImageFolderDataset.html?highlight=imagefolderdataset#mindspore.dataset.ImageFolderDataset)">函数官方解释</a></p>
+<p>不过要使用函数需要按照规定的方式存储数据。以本数据集为例，数据集可以以下面这种方式存放。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">└─Canidae
+  └─train
+  │   └─dogs
+  │   └─wolves
+  └─val
+      └─dogs
+      └─wolves<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>该数据的存放方式是，在单个目录下创建要分类图片的对应文件夹，每一个文件夹对应一个类别。</p>
+<p>例如，该函数会自动读取train目录下的所有文件夹，将同一个文件夹内的所有图片看作同一个类别。</p>
+<p>在按文件夹名称顺序读入图片后会给每一类的图片赋予数字标签也就是label。第一个读入的文件夹图片被记为0，第二个读入的文件夹图片被记为1，依此类推直到所有文件夹读取完毕。</p>
+<p>这种读取方式是函数默认的方式，但这种方式可能会让人无法准确判断哪一种类别对应着哪个label，在后面进行测试推理的时候可能会麻烦一点。因此我们可以使用该函数的<code>class_indexing</code>参数，用来直接指定文件夹与label的对应关系。</p>
+<p>可以给这个参数传入字典类型。字典的键就是文件夹名称，值就是对应的数字。</p>
+<p>例如：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">dataset &#x3D; ds.ImageFolderDataset(dataset_dir&#x3D;image_folder_dataset_dir,
+                                class_indexing&#x3D;&#123;&quot;dogs&quot;:0, &quot;wolves&quot;:1&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>这样就直接指定dogs是0，wolves是1。这就比较清晰label和类别的具体关系了。</p>
+<p>因此我比较推荐直接将类别的名称作为文件夹的名字，可以通过函数读取文件夹的名字然后依次赋值生成相关字典并将内容保存到config文件中，这样之后测试就可以很清晰的知道类别和label关系。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def getClasses(data_path, config_path):
+    &quot;&quot;&quot;
+    加载路径下所有文件夹的名字然后进行升序排序。
+    将第一个文件夹记作0，第二个文件夹记作1，依此类推。
+    然后将文件夹名称和对应的标记写入config文件，用于制作数据集label。
+    Args:
+        data_path (str): 数据集路径
+        config_path (str): 配置文件路径
+    Returns:
+        _type_: _description_
+    &quot;&quot;&quot;
+    res_dict &#x3D; &#123;&quot;classes&quot;:&#123;&#125;&#125;
+    data_list &#x3D; os.listdir(data_path)
+    data_list.sort()
+    for data in data_list:
+        res_dict[&quot;classes&quot;][data] &#x3D; data_list.index(data)
+    # 保存到config文件
+    with open(config_path, &#39;a+&#39;) as f:
+        yaml.dump(res_dict, f, Dumper&#x3D;yaml.RoundTripDumper)
+        f.close()
+    return res_dict[&quot;classes&quot;]
+
+# 获取label，就是获取所有种类名称将其与数字对应
+classesDict &#x3D; getClasses(train_data_path, config_path)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在官方教程中给了<code>create_dataset</code>函数。这个函数是比较完整的数据集读取和处理。这个函数我就不多介绍了，能说的都写在下面的注释里了。</p>
+<p>需要注意的是<code>training</code>参数。这个参数在True的时候是表示对训练集进行处理，False是对验证集进行处理。也就是只对训练集进行数据增强而验证集不用。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def create_dataset(data_path, image_size, classDict&#x3D;None, batch_size&#x3D;24, repeat_num&#x3D;1, training&#x3D;True):
+    &quot;&quot;&quot;定义数据集&quot;&quot;&quot;
+    
+    # 默认是按照文件夹名称排序（字母顺序），每一个类被赋予一个从0开始的唯一索引
+    data_set &#x3D; ds.ImageFolderDataset(data_path,
+                                     num_parallel_workers&#x3D;8,
+                                     shuffle&#x3D;True,
+                                     class_indexing&#x3D;classDict)
+
+    # 对数据进行增强操作
+    mean &#x3D; [0.485 * 255, 0.456 * 255, 0.406 * 255]
+    std &#x3D; [0.229 * 255, 0.224 * 255, 0.225 * 255]
+    if training:
+        trans &#x3D; [
+            # 裁剪、Decode、Resize
+            CV.RandomCropDecodeResize(image_size, scale&#x3D;(0.8, 1.0), ratio&#x3D;(0.75, 1.333)),
+            # 水平翻转
+            CV.RandomHorizontalFlip(prob&#x3D;0.5),
+            # 随机旋转
+            CV.RandomRotation(90),
+            # 归一化
+            CV.Normalize(mean&#x3D;mean, std&#x3D;std),
+            # h,w,c -&gt; c,h,w
+            CV.HWC2CHW()
+        ]
+    else:
+        trans &#x3D; [
+            # 解码
+            CV.Decode(),
+            # 调整大小
+            CV.Resize((image_size, image_size)),
+            CV.Normalize(mean&#x3D;mean, std&#x3D;std),
+            CV.HWC2CHW()
+        ]
+    type_cast_op &#x3D; C.TypeCast(mstype.int32)
+    # 实现数据的map映射、批量处理和数据重复的操作
+    data_set &#x3D; data_set.map(operations&#x3D;trans, input_columns&#x3D;&quot;image&quot;, num_parallel_workers&#x3D;8)
+    data_set &#x3D; data_set.map(operations&#x3D;type_cast_op, input_columns&#x3D;&quot;label&quot;, num_parallel_workers&#x3D;8)
+    data_set &#x3D; data_set.batch(batch_size, drop_remainder&#x3D;True)
+    data_set &#x3D; data_set.repeat(repeat_num)
+
+    return data_set<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="四、训练过程"><a href="#四、训练过程" class="headerlink" title="四、训练过程"></a>四、训练过程</h2><p>主要的参数配置记录和数据集加载已经说完了，模型加载和训练方面MindSpore整合的很好，只需要几句话就可以调用，所以这部分就不多说了，在文章末尾会有工程的全部文件供下载。</p>
+<h2 id="五、测试过程"><a href="#五、测试过程" class="headerlink" title="五、测试过程"></a>五、测试过程</h2><p>首先要加载分类标签，就是之前保存在config文件中的内容。</p>
+<p>还需要将字典内容的键值调换顺序，方便后面根据预测结果直接输出类别名称。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># classes格式
+classesDict &#x3D; config[&quot;classes&quot;]
+# 将字典的键值调换顺序
+class_name &#x3D; dict(zip(classesDict.values(), classesDict.keys()))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="★加载测试数据及预处理★"><a href="#★加载测试数据及预处理★" class="headerlink" title="★加载测试数据及预处理★"></a>★加载测试数据及预处理★</h3><p>这一部分是很关键的。这一步的加载数据选择了与之前训练时不同的方式，是使用自定义的加载方式来读取数据集。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">class testDataset:
+    &quot;&quot;&quot;
+    自定义的读取图片的类。
+    只用于test使用，不返回label。
+    返回：
+    第一个值为用于分类的图
+    第二个值为该图的ID，即名字和后缀
+    第三个值为用于显示的图
+    &quot;&quot;&quot;
+    def __init__(self, data_path):
+        self.data_path &#x3D; data_path
+        self.imgList &#x3D; os.listdir(self.data_path)
+
+    def __getitem__(self, index):
+        imgID &#x3D; self.imgList[index]
+        img &#x3D; cv2.imread(os.path.join(self.data_path, imgID))
+        # 图像预处理
+        img &#x3D; cv2.resize(img, (256, 256))
+        img &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        img &#x3D; img.astype(np.float32)
+        return img, imgID, img
+
+    def __len__(self):
+        return len(self.imgList)
+
+# 读取测试数据并做预处理
+testData &#x3D; testDataset(test_data_path)
+# image用于分类处理；imgID为图片名字和后缀；imageInit用于显示原图
+dataset &#x3D; ds.GeneratorDataset(testData, [&quot;image&quot;, &quot;imgID&quot;, &quot;imageInit&quot;])
+
+# 图像预处理，主要是归一化和通道交换顺序
+mean &#x3D; [0.485 * 255, 0.456 * 255, 0.406 * 255]
+std &#x3D; [0.229 * 255, 0.224 * 255, 0.225 * 255]
+dataset &#x3D; dataset.map(operations&#x3D;[CV.Normalize(mean&#x3D;mean, std&#x3D;std), CV.HWC2CHW()],
+                      input_columns&#x3D;&quot;image&quot;,
+                      num_parallel_workers&#x3D;8)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这一部分可能比较难理解。</p>
+<p>首先自己定义了一个<code>testDataset</code>类去读取数据集并做简单的预处理，这个类的<code>__getitem__</code>函数返回三个值，分别是img，imgID，img。这三个值代表什么含义我在类的介绍里写了，可以去理解一下。</p>
+<p><code>ds.GeneratorDataset</code>这个函数可以创建一个<code>dataset</code>。第一个参数就填写之前写的<code>testDataset</code>类的实例结果，第二个参数填写“列名称”。这个“列名称”也就是<code>column_names</code>参数，我认为可以理解为通道名称。之前<code>testDataset</code>类的<code>__getitem__</code>函数可以返回三个值，这三个值可以通过<code>ds.GeneratorDataset</code>函数赋予每个值一个单独的名称，之后就可以通过这个“名称”调用对应的数据。</p>
+<p>这部分可能难理解，我说的可能也不够详细和简洁，所以建议这部分单步调试，一点一点搞懂这个几个函数的用法比较好。</p>
+<p>之后就是对图像进行归一化和通道数改变顺序的基本操作。</p>
+<h3 id="预测过程"><a href="#预测过程" class="headerlink" title="预测过程"></a>预测过程</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 用于存放预测结果
+pred_list &#x3D; []
+# 存放显示图片
+img_list &#x3D; []
+# 图片名字
+imgID_list &#x3D; []
+# 扩充维度
+expand &#x3D; ExpandDims()
+for data in dataset.create_dict_iterator():
+    # 将图像添加到待显示图片列表中
+    img_list.append(data[&quot;imageInit&quot;].asnumpy())
+    imgID_list.append(str(data[&quot;imgID&quot;]))
+    # 使用处理后的图像来预测
+    image &#x3D; data[&quot;image&quot;].asnumpy()
+    # 扩充维度
+    img &#x3D; expand(Tensor(image), 0)
+    output &#x3D; model.predict(img)
+    pred &#x3D; np.argmax(output.asnumpy(), axis&#x3D;1)[0]
+    pred_list.append(pred)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>我这里的预测没有使用batch_size的格式，而是一张一张图片的预测，所以需要进行一个扩维的操作。</p>
+<p>如果是batch_size格式的话需要在这之前对数据集进行batch处理。</p>
+<p>模型最后的输出也就是pred是数字，这个数字与数据集的种类对应。具体的对应关系可以从class_name字典中获得。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># 可视化模型预测
+plt.figure(figsize&#x3D;(12, 5))
+# 显示24张图
+for i in range(len(img_list)):
+    plt.subplot(3, 9, i+1)
+    plt.title(&#39;&#123;&#125;&#39;.format(class_name[pred_list[i]]))
+    picture_show &#x3D; img_list[i]&#x2F;np.amax(img_list[i])
+    picture_show &#x3D; np.clip(picture_show, 0, 1)
+    plt.imshow(picture_show)
+    plt.axis(&#39;off&#39;)
+plt.show()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可视化输出。可以显示预测结果和对应图片。</p>
+<p>注意，这里显示的图片来自<code>imageInit</code>通道，因为<code>image</code>通道的图片都被归一化和通道顺序转换了所以没法直接用来显示。</p>
+<p>可视化效果：</p>
+<p><img src="/posts/18/1.png" alt="可视化效果"></p>
+<h2 id="六、完整代码下载"><a href="#六、完整代码下载" class="headerlink" title="六、完整代码下载"></a>六、完整代码下载</h2><p>[Github](<a target="_blank" rel="noopener" href="https://github.com/LightningLeader/MindSpore_classify/tree/master">LightningLeader/MindSpore_classify: 使用MindSpore实现简单狗狼图片分类，resnet50网络。 (github.com)</a>)</p>
+<p><a target="_blank" rel="noopener" href="https://download.csdn.net/download/ZhuanShangNiDeXin/85149846">CSDN</a></p>
 
                 
             </div>
@@ -530,7 +630,7 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/13.html">https://lightningleader.github.io/posts/13.html</a>
+                    <a href="https://lightningleader.github.io/posts/18.html">https://lightningleader.github.io/posts/18.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -572,8 +672,12 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                                     <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
-                                <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
-                                    <span class="chip bg-color">图像处理</span>
+                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">深度学习</span>
+                                </a>
+                            
+                                <a href="/tags/MindSpore/">
+                                    <span class="chip bg-color">MindSpore</span>
                                 </a>
                             
                         </div>
@@ -882,29 +986,30 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/14.html">
+                <a href="/posts/18.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="C语言实现堆栈和队列">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【MindSpore】简单使用Resnet50实现狗狼图片分类">
                         
-                        <span class="card-title">C语言实现堆栈和队列</span>
+                        <span class="card-title">【MindSpore】简单使用Resnet50实现狗狼图片分类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            C语言实现堆栈和队列
+                            【MindSpore】简单使用Resnet50实现狗狼图片分类
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -913,19 +1018,20 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/C%E8%AF%AD%E8%A8%80/">
-                        <span class="chip bg-color">C语言</span>
-                    </a>
                     
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="chip bg-color">数据结构</span>
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
+                    </a>
+                    
+                    <a href="/tags/MindSpore/">
+                        <span class="chip bg-color">MindSpore</span>
                     </a>
                     
                 </div>
@@ -939,24 +1045,24 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/12.html">
+                <a href="/posts/17.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="OpenCV实现连通区域填充">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="PX4飞控-uORB主题的发布与订阅">
                         
-                        <span class="card-title">OpenCV实现连通区域填充</span>
+                        <span class="card-title">PX4飞控-uORB主题的发布与订阅</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            OpenCV实现连通区域填充
+                            PX4飞控-uORB主题的发布与订阅
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
                             </span>
                         <span class="publish-author">
                             
@@ -969,20 +1075,16 @@ cv2.destroyAllWindows()<span aria-hidden="true" class="line-numbers-rows"><span>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
-                        <span class="chip bg-color">图像处理</span>
+                    <a href="/tags/PX4/">
+                        <span class="chip bg-color">PX4</span>
                     </a>
                     
-                    <a href="/tags/OpenCV/">
-                        <span class="chip bg-color">OpenCV</span>
+                    <a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/">
+                        <span class="chip bg-color">无人机</span>
                     </a>
                     
                 </div>
