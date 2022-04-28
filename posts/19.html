@@ -369,51 +369,51 @@
                 <h1 id="华为云ModelAtrs创建GPU环境训练模型"><a href="#华为云ModelAtrs创建GPU环境训练模型" class="headerlink" title="华为云ModelAtrs创建GPU环境训练模型"></a>华为云ModelAtrs创建GPU环境训练模型</h1><a id="more"></a>
 
 <h2 id="创建Notebook"><a href="#创建Notebook" class="headerlink" title="创建Notebook"></a>创建Notebook</h2><p>首先需要创建新的Notebook</p>
-<p><img src="/posts/posts%5C19%5C1.png" alt="创建"></p>
+<p><img src="/posts/19/1.png" alt="创建"></p>
 <p>然后根据自己的训练需求选择要创建的镜像和规格。我这里选择mindspore的GPU进行创建，规格选择64GB的。</p>
-<p><img src="/posts/posts%5C19%5C2.png"></p>
-<p><img src="/posts/posts%5C19%5C3.png"></p>
+<p><img src="/posts/19/2.png"></p>
+<p><img src="/posts/19/3.png"></p>
 <p>如果要选择SSH远程开发的话需要填写这个密钥对，没有的话选择点击立即创建之后就按照它的要求走就行。</p>
-<h2 id="添加数据存储"><a href="#添加数据存储" class="headerlink" title="添加数据存储"></a>添加数据存储</h2><p><img src="/posts/posts%5C19%5C4.png"></p>
+<h2 id="添加数据存储"><a href="#添加数据存储" class="headerlink" title="添加数据存储"></a>添加数据存储</h2><p><img src="/posts/19/4.png"></p>
 <p>点击添加数据存储。如果没有并行文件系统，就选择新建并行文件系统。创建过程很简单就不多说了。</p>
 <p>可以把我们的文件上传到这个并行文件系统，然后在这个选择需要挂载的文件夹目录，这样就可以在镜像中使用这些文件了。</p>
 <h3 id="上传文件至并行文件系统"><a href="#上传文件至并行文件系统" class="headerlink" title="上传文件至并行文件系统"></a>上传文件至并行文件系统</h3><p>上传方式推荐使用<code>OBS Browser+</code>，这个软件可以在华为云的官网下载。安装后打开，界面如下图所示。</p>
-<p><img src="/posts/posts%5C19%5C5.png"></p>
+<p><img src="/posts/19/5.png"></p>
 <p>然后选择一种方式进行登录。</p>
 <p>如果使用AK方式登录的话需要AccessKey，这个东西可以点击界面上的<code>获取AccessKey</code>进行获取，然后输入进去登录就可以了。</p>
 <p>登录之后，选择左侧的并行文件系统。</p>
-<p><img src="/posts/posts%5C19%5C6.png"></p>
+<p><img src="/posts/19/6.png"></p>
 <p>找到自己需要的那个并行文件系统，然后点击进去。之后就可以选择上传，可以上传文件也可以上传整个文件夹。</p>
 <p>上传结束后就可以在里面看到自己上传的文件或文件夹了。</p>
-<p><img src="/posts/posts%5C19%5C7.png"></p>
+<p><img src="/posts/19/7.png"></p>
 <h3 id="选择挂载文件目录"><a href="#选择挂载文件目录" class="headerlink" title="选择挂载文件目录"></a>选择挂载文件目录</h3><p>之后就可以返回刚才的界面选择并行文件系统中自己想要挂载的文件夹目录。本地挂载目录也可以按照自己的需求更改。</p>
-<p><img src="/posts/posts%5C19%5C8.png"></p>
+<p><img src="/posts/19/8.png"></p>
 <p>点击确定后等他挂载成功后就可以了，不想要的时候可以卸载。</p>
-<h3 id="找到挂载的文件"><a href="#找到挂载的文件" class="headerlink" title="找到挂载的文件"></a>找到挂载的文件</h3><p><img src="/posts/posts%5C19%5C9.png"></p>
-<h2 id="使用WinSCP连接镜像"><a href="#使用WinSCP连接镜像" class="headerlink" title="使用WinSCP连接镜像"></a>使用WinSCP连接镜像</h2><p><img src="/posts/posts%5C19%5C10.png"></p>
+<h3 id="找到挂载的文件"><a href="#找到挂载的文件" class="headerlink" title="找到挂载的文件"></a>找到挂载的文件</h3><p><img src="/posts/19/9.png"></p>
+<h2 id="使用WinSCP连接镜像"><a href="#使用WinSCP连接镜像" class="headerlink" title="使用WinSCP连接镜像"></a>使用WinSCP连接镜像</h2><p><img src="/posts/19/10.png"></p>
 <p>获得图中的信息然后依次填写</p>
-<p><img src="/posts/posts%5C19%5C11.png"></p>
+<p><img src="/posts/19/11.png"></p>
 <p>需要注意的是，在连接的时候需要一个密钥文件，这个密钥文件就是之前创建密钥时下载的那个文件。这里需要将那个密钥文件加载进来。第一次加载可能会提示你格式不对需要转换之类的信息，只需要点击确定就行。</p>
-<p><img src="/posts/posts%5C19%5C12.png"></p>
+<p><img src="/posts/19/12.png"></p>
 <p>填完密钥后点击确定，之后就可以正常登录了。</p>
-<p><img src="/posts/posts%5C19%5C13.png"></p>
+<p><img src="/posts/19/13.png"></p>
 <h2 id="使用VScode连接镜像"><a href="#使用VScode连接镜像" class="headerlink" title="使用VScode连接镜像"></a>使用VScode连接镜像</h2><p>使用VScode通过ssh连接镜像需要下载插件。</p>
-<p><img src="/posts/posts%5C19%5C14.png"></p>
+<p><img src="/posts/19/14.png"></p>
 <p>安装完之后</p>
-<p><img src="/posts/posts%5C19%5C15.png"></p>
-<p><img src="/posts/posts%5C19%5C16.png"></p>
+<p><img src="/posts/19/15.png"></p>
+<p><img src="/posts/19/16.png"></p>
 <p>配置完之后保存文件，就可以在左侧看到相应名称的对象了。</p>
 <p>右击它然后选择第一个（在本窗口连接），第一次连接会让你选择平台，这里选择Linux就行。然后会询问你一个东西，输入yes就行。</p>
 <p>之后慢慢等待一下就可以正常连接上去了。</p>
 <p>之后选择打开文件夹，可以直接打开到我们之前挂载的文件夹目录，这样方便修改调试里面的代码。</p>
 <h2 id="使用MobaXterm连接镜像"><a href="#使用MobaXterm连接镜像" class="headerlink" title="使用MobaXterm连接镜像"></a>使用MobaXterm连接镜像</h2><p>打开软件，选择左上角的Session，再选择SSH。</p>
-<p><img src="/posts/posts%5C19%5C17.png"></p>
+<p><img src="/posts/19/17.png"></p>
 <p>按照要求填写内容以及添加密钥文件后点击OK。</p>
-<p><img src="/posts/posts%5C19%5C18.png"></p>
+<p><img src="/posts/19/18.png"></p>
 <p>成功连接。</p>
 <h2 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h2><p>使用MobaXterm或者镜像自带的命令行进入挂载目录。</p>
 <p>然后运行train.py（已经修改成使用GPU训练），查看训练结果。</p>
-<p><img src="/posts/posts%5C19%5C19.png"></p>
+<p><img src="/posts/19/19.png"></p>
 
                 
             </div>
