@@ -332,7 +332,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    375
+                    652
                 </div>
                 
 
@@ -378,6 +378,10 @@
 <p>参考链接：</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42800966/article/details/122587832">华为Atlas200DK的环境部署与运行demo（人脸识别）_Quinton123的博客-CSDN博客_华为atlas200dk</a></p>
 <p><a target="_blank" rel="noopener" href="https://toscode.gitee.com/ascend/samples/tree/master/python/environment">python/environment · Ascend/samples - 码云 - 开源中国 (gitee.com)</a></p>
+<h2 id="模型转换"><a href="#模型转换" class="headerlink" title="模型转换"></a>模型转换</h2><p>在windows训练得到的模型是ckpt格式的，这种格式的模型文件是无法在开发板上运行，因此需要转换格式。</p>
+<p>可以转换的总共有四种模型文件，分别是MindIR、AIR、ONNX和OM。这四种格式对应了不同的应用场景。我在这里只简单介绍AIR和OM两种文件格式，因为本实验只用到了这两种。</p>
+<p>AIR格式只能Ascend910环境中上才能导出，是官网推荐的模型格式，可以转换成OM格式。而OM格式可以在Ascend310上推理使用，也是本次实验使用的模型格式。</p>
+<p>为了获得AIR格式模型需要创建华为云的Ascend910环境，然后在这个环境中训练并得到ckpt模型。再将ckpt模型转换成air格式模型并传到开发板中。最后将这个air格式模型转换成om格式才结束。整个过程需要两次模型转换，好在这个模型转换操作不算复杂，就是转换时间可能需要耐心等下。</p>
 <h2 id="其它参考链接"><a href="#其它参考链接" class="headerlink" title="其它参考链接"></a>其它参考链接</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42703283/article/details/110389270">华为Atlas200DK环境配置指南(版本20.0.0)_ChrisLiu__的博客-CSDN博客_华为atlas200dk</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hariod/article/details/119721967">华为Atlas 200 DK开发者套件踩坑记(持续更新)_Hariod的博客-CSDN博客</a></p>
 
@@ -989,7 +993,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">38.9k</span>&nbsp;字
+                class="white-color">39.2k</span>&nbsp;字
             
             
             
