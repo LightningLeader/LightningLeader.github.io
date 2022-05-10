@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Atlas200DK环境配置</title>
+      <link href="posts/20.html"/>
+      <url>posts/20.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="Atlas200DK环境配置"><a href="#Atlas200DK环境配置" class="headerlink" title="Atlas200DK环境配置"></a>Atlas200DK环境配置</h1><a id="more"></a><h2 id="dd镜像安装"><a href="#dd镜像安装" class="headerlink" title="dd镜像安装"></a>dd镜像安装</h2><p>推荐使用dd镜像安装环境，这种方式更快更方便。</p><p>直接去网站下载需要版本的dd镜像，然后利用Etcher烧录到sd卡中就行。</p><p>参考链接：</p><p><a href="https://www.bilibili.com/video/BV1g3411r7Vz/">Atlas 200DK样例速跑_哔哩哔哩_bilibili</a></p><p><a href="https://bbs.huaweicloud.com/forum/thread-139685-1-1.html">更方便的200DK合设环境搭建方法——dd镜像_Atlas 200 DK_昇腾论坛_华为云论坛 (huaweicloud.com)</a></p><h2 id="MindSpore安装"><a href="#MindSpore安装" class="headerlink" title="MindSpore安装"></a>MindSpore安装</h2><p>不推荐在该开发板上安装MindSpore，安装之后可能无法正常使用。</p><p>非要安装的话需要把MindSpore和环境版本对应，建议安装低版本的MindSpore。</p><h2 id="联网方式"><a href="#联网方式" class="headerlink" title="联网方式"></a>联网方式</h2><p>使用网络共享的话可能会出现开发板重启后网络无法正常连接的问题，这个时候只需要在PC端先关闭共享网络，再重新打开即可（重启共享网络）。</p><p>参考链接：</p><p><a href="https://www.bilibili.com/video/BV1u3411B7CY/?spm_id_from=333.788.recommend_more_video.-1">Atlas 200 DK的多种联网方式_哔哩哔哩_bilibili</a></p><h2 id="代码运行环境配置"><a href="#代码运行环境配置" class="headerlink" title="代码运行环境配置"></a>代码运行环境配置</h2><p>如果需要运行cv方向的代码需要安装对应的环境配置。这个具体的环境配置可以在官方gitee中找到。</p><p>参考链接：</p><p><a href="https://blog.csdn.net/weixin_42800966/article/details/122587832">华为Atlas200DK的环境部署与运行demo（人脸识别）_Quinton123的博客-CSDN博客_华为atlas200dk</a></p><p><a href="https://toscode.gitee.com/ascend/samples/tree/master/python/environment">python/environment · Ascend/samples - 码云 - 开源中国 (gitee.com)</a></p><h2 id="其它参考链接"><a href="#其它参考链接" class="headerlink" title="其它参考链接"></a>其它参考链接</h2><p><a href="https://blog.csdn.net/qq_42703283/article/details/110389270">华为Atlas200DK环境配置指南(版本20.0.0)_ChrisLiu__的博客-CSDN博客_华为atlas200dk</a></p><p><a href="https://blog.csdn.net/Hariod/article/details/119721967">华为Atlas 200 DK开发者套件踩坑记(持续更新)_Hariod的博客-CSDN博客</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 学习笔记 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>华为云ModelAtrs创建GPU环境训练模型</title>
       <link href="posts/19.html"/>
       <url>posts/19.html</url>
@@ -127,9 +146,9 @@
       
         <tags>
             
-            <tag> C语言 </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> C语言 </tag>
             
             <tag> 数据结构 </tag>
             
@@ -221,9 +240,9 @@
       
         <tags>
             
-            <tag> C语言 </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> C语言 </tag>
             
             <tag> 数据结构 </tag>
             
