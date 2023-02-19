@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Markdown学习笔记, LightningMaster">
+    <meta name="keywords" content="Matlab搭建AlexNet实现手写数字识别, LightningMaster">
     <meta name="description" content="寄">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Markdown学习笔记 | LightningMaster</title>
+    <title>Matlab搭建AlexNet实现手写数字识别 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Markdown学习笔记</h1>
+                    <h1 class="description center-align post-title">Matlab搭建AlexNet实现手写数字识别</h1>
                 </div>
             </div>
         </div>
@@ -302,12 +302,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
-                            </a>
-                        
                             <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                 <span class="chip bg-color">学习笔记</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">机器学习</span>
                             </a>
                         
                     </div>
@@ -322,21 +322,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-08
+                    2023-02-19
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-09
+                    2023-02-19
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    328
+                    1.4k
                 </div>
                 
 
@@ -366,94 +366,130 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Markdown学习笔记"><a href="#Markdown学习笔记" class="headerlink" title="Markdown学习笔记"></a>Markdown学习笔记</h1><a id="more"></a>
+                <h1 id="Matlab搭建AlexNet实现手写数字识别"><a href="#Matlab搭建AlexNet实现手写数字识别" class="headerlink" title="Matlab搭建AlexNet实现手写数字识别"></a>Matlab搭建AlexNet实现手写数字识别</h1><a id="more"></a>
 
-<h2 id="1、代码块"><a href="#1、代码块" class="headerlink" title="1、代码块"></a>1、代码块</h2><p><strong>代码块语法：</strong></p>
-<p>“ ``` ” 三个这个号（ESC下面的）加上想写的语言，就可以生成代码块区域</p>
-<h2 id="2、标题"><a href="#2、标题" class="headerlink" title="2、标题"></a>2、标题</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 一级标题
-## 二级标题
-### 三级标题
-#### 四级标题
-##### 五级标题
-###### 六级标题<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h2 id="3、字体"><a href="#3、字体" class="headerlink" title="3、字体"></a>3、字体</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 加粗
-**闪电丶教主**
-# 代码高亮显示
-&#x3D;&#x3D;闪电丶教主&#x3D;&#x3D;
-# 删除线
-~~闪电丶教主~~
-# 斜体
-*闪电丶教主*<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="加粗"><a href="#加粗" class="headerlink" title="加粗"></a>加粗</h3><p><strong>闪电丶教主</strong></p>
-<h3 id="代码高亮显示"><a href="#代码高亮显示" class="headerlink" title="代码高亮显示"></a>代码高亮显示</h3><p><code>闪电丶教主</code></p>
-<h3 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h3><p><del>闪电丶教主</del></p>
-<h3 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h3><p><em>闪电丶教主</em></p>
-<h2 id="4、引用"><a href="#4、引用" class="headerlink" title="4、引用"></a>4、引用</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 引用语法
-&gt;作者：闪电丶教主
-&gt;&gt;作者：闪电丶教主
-&gt;&gt;&gt;作者：闪电丶教主<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>作者：闪电丶教主</p>
-<blockquote>
-<p>作者：闪电丶教主</p>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>作者：闪电丶教主</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<h2 id="5、分割线"><a href="#5、分割线" class="headerlink" title="5、分割线"></a>5、分割线</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 分割线 比较常用
----
-# 分割线2
-***<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<hr>
-<hr>
-<h2 id="6、图片插入"><a href="#6、图片插入" class="headerlink" title="6、图片插入"></a>6、图片插入</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 在线图片 # 本地图片
-![图片名称](图片路径)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img src="/posts/1/666.png" alt="测试图片"></p>
-<p><img src="/posts/1/%E5%B0%8F%E6%81%B6%E9%AD%94.png" alt="就这¿"></p>
-<h2 id="7、超链接"><a href="#7、超链接" class="headerlink" title="7、超链接"></a>7、超链接</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 超链接
-[名称](地址)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="8、列表语法"><a href="#8、列表语法" class="headerlink" title="8、列表语法"></a>8、列表语法</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 无序列表
-- 目录1
-- 目录2
-- 目录3
-# 1+. +名称
-1. 闪电丶教主<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>目录1</li>
-<li>目录2</li>
-<li>目录3</li>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><ul>
+<li>Matlab 2020a</li>
+<li>Windows10</li>
 </ul>
-<ol>
-<li>闪电丶教主</li>
-</ol>
-<h2 id="9、表格"><a href="#9、表格" class="headerlink" title="9、表格"></a>9、表格</h2><table>
-<thead>
-<tr>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>6</td>
-<td>6</td>
-<td>6</td>
-</tr>
-<tr>
-<td>6</td>
-<td>6</td>
-<td>6</td>
-</tr>
-<tr>
-<td>6</td>
-<td>6</td>
-<td>6</td>
-</tr>
-</tbody></table>
-<p>ctrl+/ 查看源代码</p>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><p>使用Matlab对MNIST数据集进行预处理，搭建卷积神经网络进行训练，实现识别手写数字的任务。在训练过程中，每隔30个batch输出一次模型在验证集上的准确率和损失值。在训练结束后会输出验证集中每个数字的真实值、网络预测值和判定概率，并给出总的识别准确率。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="准备MNIST数据集"><a href="#准备MNIST数据集" class="headerlink" title="准备MNIST数据集"></a>准备MNIST数据集</h3><p>为了方便进行测试，本次只选用500张MNIST数据集，每个数字50张。</p>
+<p><strong><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1COuYnUrywAbCqWoDMkwQig?pwd=af6n">数据集下载地址</a>  提取码：af6n</strong></p>
+<p>下载数据集后并解压，为每个数字创建单独文件夹并将该数字的所有图片放在对应的文件夹下，如图1所示。</p>
+<p><img src="/posts/19/1.png" alt="图1 将图片按数字分类"></p>
+<p>手动分类结束后每个文件夹中应有50张图片。</p>
+<h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">% 加载数据集
+imds &#x3D; imageDatastore(...
+    &quot;.&#x2F;data&quot;,...
+    &#39;IncludeSubfolders&#39;, true,...
+    &#39;LabelSource&#39;,&#39;foldernames&#39;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用<code>imageDatastore</code>加载数据集。第一个参数填写数据集路径。由于本次实验data目录下含有子文件夹所以<code>IncludeSubfolders</code>需要指定为true。<code>LabelSource</code>表示标签来源，这里使用文件夹名字来代表标签。</p>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">ImageDatastore - 属性:
+
+                     Files: &#123;
+                            &#39;D:\data\0\0_1.bmp&#39;;
+                            &#39;D:\data\0\0_10.bmp&#39;;
+                            &#39;D:\data\0\0_11.bmp&#39;
+                             ... and 497 more
+                            &#125;
+                   Folders: &#123;
+                            &#39;D:\data&#39;
+                            &#125;
+                    Labels: [0; 0; 0 ... and 497 more categorical]
+  AlternateFileSystemRoots: &#123;&#125;
+                  ReadSize: 1
+    SupportedOutputFormats: [1×5 string]
+       DefaultOutputFormat: &quot;png&quot;
+                   ReadFcn: @readDatastoreImage
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上面内容为执行imageDatastore后返回变量的属性。可以看出已经成功将数据集读入并对每张图片进行label处理。</p>
+<p>由于每个数字有50张图像，因此本次实验每个数字选用30张进行训练，另20张进行验证。使用splitEachLabel进行划分，得到训练集和验证集。</p>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">% 数据打乱
+imds &#x3D; shuffle(imds);
+
+% 划分训练集和验证集。每一个类别训练集有30个，验证集有20个
+[imdsTrain,imdsValidation] &#x3D; splitEachLabel(imds, 30);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用shuffle进行数据打乱。得到的imdsTrain和imdsValidation分别有300和200张图片。</p>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">% 将训练集与验证集中图像的大小调整成与输入层的大小相同
+augimdsTrain &#x3D; augmentedImageDatastore([28 28],imdsTrain);
+augimdsValidation &#x3D; augmentedImageDatastore([28 28],imdsValidation);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="定义网络模型"><a href="#定义网络模型" class="headerlink" title="定义网络模型"></a>定义网络模型</h3><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">% 构建alexnet卷积网络 
+alexnet &#x3D; [
+    imageInputLayer([56,56,1], &#39;Name&#39;, &#39;Input&#39;)
+    convolution2dLayer([11,11],48,&#39;Padding&#39;,&#39;same&#39;,&#39;Stride&#39;,4, &#39;Name&#39;, &#39;Conv_1&#39;)
+    batchNormalizationLayer(&#39;Name&#39;, &#39;BN_1&#39;)
+    reluLayer(&#39;Name&#39;, &#39;Relu_1&#39;)
+    maxPooling2dLayer(3,&#39;Padding&#39;,&#39;same&#39;,&#39;Stride&#39;,2, &#39;Name&#39;, &#39;MaxPooling_1&#39;)
+    convolution2dLayer([5,5],128,&#39;Padding&#39;,2,&#39;Stride&#39;,1, &#39;Name&#39;, &#39;Conv_2&#39;)
+    batchNormalizationLayer(&#39;Name&#39;, &#39;BN_2&#39;)
+    reluLayer(&#39;Name&#39;, &#39;Relu_2&#39;)
+    maxPooling2dLayer(3,&#39;Padding&#39;,&#39;same&#39;,&#39;Stride&#39;,2, &#39;Name&#39;, &#39;MaxPooling_2&#39;)
+    convolution2dLayer([3 3],192,&#39;Padding&#39;,1,&#39;Stride&#39;,1, &#39;Name&#39;, &#39;Conv_3&#39;)
+    batchNormalizationLayer(&#39;Name&#39;, &#39;BN_3&#39;)
+    reluLayer(&#39;Name&#39;, &#39;Relu_3&#39;)
+    convolution2dLayer([3 3],192,&#39;Padding&#39;,1,&#39;Stride&#39;,1, &#39;Name&#39;, &#39;Conv_4&#39;)
+    batchNormalizationLayer(&#39;Name&#39;, &#39;BN_4&#39;)
+    reluLayer(&#39;Name&#39;, &#39;Relu_4&#39;)
+    convolution2dLayer([3 3],128,&#39;Stride&#39;,1,&#39;Padding&#39;,1, &#39;Name&#39;, &#39;Conv_5&#39;)
+    batchNormalizationLayer(&#39;Name&#39;, &#39;BN_5&#39;)
+    reluLayer(&#39;Name&#39;, &#39;Relu_5&#39;)
+    maxPooling2dLayer(3,&#39;Padding&#39;,&#39;same&#39;,&#39;Stride&#39;,2, &#39;Name&#39;, &#39;MaxPooling_3&#39;)
+    fullyConnectedLayer(4096, &#39;Name&#39;, &#39;FC_1&#39;)
+    reluLayer(&#39;Name&#39;, &#39;Relu_6&#39;)
+    fullyConnectedLayer(4096, &#39;Name&#39;, &#39;FC_2&#39;)
+    reluLayer(&#39;Name&#39;, &#39;Relu_7&#39;)
+    fullyConnectedLayer(10, &#39;Name&#39;, &#39;FC_3&#39;)    % 将新的全连接层的输出设置为训练数据中的种类
+    softmaxLayer(&#39;Name&#39;, &#39;Softmax&#39;)            % 添加新的Softmax层
+    classificationLayer(&#39;Name&#39;, &#39;Output&#39;) ];   % 添加新的分类层<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用上面的代码即可构建AlexNet模型。</p>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">% 对构建的网络进行可视化分析
+lgraph &#x3D; layerGraph(mynet);
+analyzeNetwork(lgraph)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<img src="/posts/21\2.png" alt="2" style="zoom:50%;">
+
+<h3 id="定义训练超参数"><a href="#定义训练超参数" class="headerlink" title="定义训练超参数"></a>定义训练超参数</h3><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">% 配置训练选项   
+options &#x3D; trainingOptions(&#39;sgdm&#39;, ...
+    &#39;InitialLearnRate&#39;,0.001, ...    
+    &#39;MaxEpochs&#39;,100, ...               
+    &#39;Shuffle&#39;,&#39;every-epoch&#39;, ...
+    &#39;ValidationData&#39;,augimdsValidation, ...
+    &#39;ValidationFrequency&#39;,30, ...
+    &#39;Verbose&#39;,true, ...
+    &#39;Plots&#39;,&#39;training-progress&#39;); <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>本次实验选用sgdm作为优化器，初始学习率设置为0.001，最大迭代次数为100，每次迭代都会打乱数据，每隔30个batch进行一次验证。</p>
+<h3 id="网络训练和预测"><a href="#网络训练和预测" class="headerlink" title="网络训练和预测"></a>网络训练和预测</h3><pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">% 对网络进行训练
+net &#x3D; trainNetwork(augimdsTrain, mynet, options); 
+
+% 将训练好的网络用于对新的输入图像进行分类，得到预测结果和判定概率
+[YPred, err] &#x3D; classify(net, augimdsValidation);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中，YPred是存放网络对验证集预测结果的数组，err存放着每个数字的判定概率。</p>
+<p><img src="/posts/posts%5C21%5C3.png" alt="3"></p>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">% 打印真实数字、预测数字、判定概率和准确率
+YValidation &#x3D; imdsValidation.Labels;
+for i&#x3D;1:200
+fprintf(&quot;真实数字：%d  预测数字：%d&quot;, double(YValidation(i,1))-1, double(YPred(i, 1))-1);
+fprintf(&quot;  判定概率：%f\n&quot;, max(err(i, :)));
+end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行上面代码即可打印相关结果。</p>
+<pre class="line-numbers language-matlab" data-language="matlab"><code class="language-matlab">... ...
+真实数字：4  预测数字：4  判定概率：0.814434
+真实数字：0  预测数字：0  判定概率：0.657829
+真实数字：8  预测数字：8  判定概率：0.874560
+真实数字：0  预测数字：0  判定概率：0.988826
+真实数字：6  预测数字：6  判定概率：0.970034
+... ...
+真实数字：5  预测数字：5  判定概率：0.806220
+真实数字：4  预测数字：4  判定概率：0.938233
+真实数字：7  预测数字：7  判定概率：0.906994
+真实数字：7  预测数字：7  判定概率：0.837794
+真实数字：6  预测数字：6  判定概率：0.951572
+真实数字：6  预测数字：1  判定概率：0.415834
+真实数字：5  预测数字：5  判定概率：0.789031
+真实数字：2  预测数字：2  判定概率：0.363526
+真实数字：7  预测数字：7  判定概率：0.930049
+
+准确率：0.880000<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="代码下载"><a href="#代码下载" class="headerlink" title="代码下载"></a>代码下载</h2><p><a target="_blank" rel="noopener" href="https://github.com/LightningLeader/Matlab-builds-AlexNet-to-realize-handwritten-digit-recognition">GitHub下载</a></p>
 
                 
             </div>
@@ -480,7 +516,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/1.html">https://lightningleader.github.io/posts/1.html</a>
+                    <a href="https://lightningleader.github.io/posts/21.html">https://lightningleader.github.io/posts/21.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -518,12 +554,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
-                                </a>
-                            
                                 <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                     <span class="chip bg-color">学习笔记</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">机器学习</span>
                                 </a>
                             
                         </div>
@@ -832,80 +868,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/2.html">
+                <a href="/posts/21.html">
                     <div class="card-image">
                         
-                        <img src="/images/4%E8%B7%AF%E7%BA%A2%E5%A4%96%E5%BE%AA%E8%BF%B9%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/1.jpg" class="responsive-img" alt="4路红外循迹模块使用教程">
                         
-                        <span class="card-title">4路红外循迹模块使用教程</span>
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Matlab搭建AlexNet实现手写数字识别">
+                        
+                        <span class="card-title">Matlab搭建AlexNet实现手写数字识别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            4路红外循迹模块使用教程
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            LightningMaster
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%A1%AC%E4%BB%B6%E4%BD%BF%E7%94%A8/">
-                        <span class="chip bg-color">硬件使用</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                        <span class="chip bg-color">单片机</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/posts/1.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Markdown学习笔记">
-                        
-                        <span class="card-title">Markdown学习笔记</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Markdown学习笔记
+                            Matlab搭建AlexNet实现手写数字识别
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-19
                             </span>
                         <span class="publish-author">
                             
@@ -919,9 +904,54 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
                     </a>
+                    
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/posts/20.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Atlas200DK环境配置">
+                        
+                        <span class="card-title">Atlas200DK环境配置</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Atlas200DK环境配置
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            LightningMaster
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
                     
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
