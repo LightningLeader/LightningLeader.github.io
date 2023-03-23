@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="树莓派串口通信 USB串口通信, LightningMaster">
+    <meta name="keywords" content="sklearn实现基于TF-IDF的KNN新闻标题文本分类, LightningMaster">
     <meta name="description" content="寄">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>树莓派串口通信 USB串口通信 | LightningMaster</title>
+    <title>sklearn实现基于TF-IDF的KNN新闻标题文本分类 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">树莓派串口通信 USB串口通信</h1>
+                    <h1 class="description center-align post-title">sklearn实现基于TF-IDF的KNN新闻标题文本分类</h1>
                 </div>
             </div>
         </div>
@@ -302,16 +302,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
+                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">机器学习</span>
                             </a>
                         
-                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                                <span class="chip bg-color">学习笔记</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                                <span class="chip bg-color">树莓派</span>
+                            <a href="/tags/NLP/">
+                                <span class="chip bg-color">NLP</span>
                             </a>
                         
                     </div>
@@ -326,21 +322,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2023-03-23
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2023-03-24
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    597
+                    1.4k
                 </div>
                 
 
@@ -370,71 +366,129 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="树莓派串口通信-USB串口通信"><a href="#树莓派串口通信-USB串口通信" class="headerlink" title="树莓派串口通信 USB串口通信"></a>树莓派串口通信 USB串口通信</h1><a id="more"></a>
+                <h1 id="sklearn实现基于TF-IDF的KNN新闻标题文本分类"><a href="#sklearn实现基于TF-IDF的KNN新闻标题文本分类" class="headerlink" title="sklearn实现基于TF-IDF的KNN新闻标题文本分类"></a>sklearn实现基于TF-IDF的KNN新闻标题文本分类</h1><a id="more"></a>
 
-<p>如果不知道树莓派怎么使用USB串口通信的，欢迎浏览我的另一篇博客文章：<a href="https://lightningleader.github.io/posts/4.html">树莓派使用USB串口通信 CH340</a></p>
-<p>这篇文章就以USB串口为例，简单的说下串口通信时常用的几个命令。注意：代码均为Python编写。</p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
-<li>树莓派4</li>
-<li>两个CH340</li>
-<li>串口助手</li>
-</ul>
-<h2 id="发送数据"><a href="#发送数据" class="headerlink" title="发送数据"></a>发送数据</h2><ol>
-<li><p>最基础的发送数据方式</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;
-ser.write(data)    # 发送数据data，data为字节型
-&#39;&#39;&#39;
-import serial
-ser &#x3D; serial.Serial(&quot;&#x2F;dev&#x2F;ttyUSB0&quot;, 115200)
-ser.flushInput()    # 清除缓存
-ser.write(&quot;LightningMaster\r\n&quot;.encode())    # 发送数据  \r\n可以实现换行  encode()默认是&#39;utf-8&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行这个代码就可以在串口助手上收到数据。</p>
-<p><img src="/posts/5/1.jpg" alt="最基础发送数据"></p>
-</li>
-<li><p>发送中文</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import serial
-ser &#x3D; serial.Serial(&quot;&#x2F;dev&#x2F;ttyUSB0&quot;, 115200)
-ser.flushInput()    # 清除缓存
-ser.write(&quot;闪电丶教主\r\n&quot;.encode(&#39;gb2312&#39;))    # 发送数据  \r\n可以实现换行<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/5/2.jpg" alt="发送中文"></p>
-</li>
-<li><p>发送数据包 十六进制</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import serial
-import struct
-ser &#x3D; serial.Serial(&quot;&#x2F;dev&#x2F;ttyUSB0&quot;, 115200)
-ser.flushInput()    # 清除缓存
-pack &#x3D; struct.pack(&#39;BBBB&#39;, 0xaa, 6, 7, 0x55)    # 将数据打包 格式是unsigned char
-ser.write(pack)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/posts/5/3.jpg" alt="发送数据包"></p>
-<p>这个地方使用到了struct.pack，具体有啥作用可以自行百度去看看，我在这就不多说了。这里的作用就是将数据打包，返回格式是unsigned char 的字节串。</p>
-<p>可以使用这个函数给数据加上“头”“尾”之类的东西。</p>
-</li>
-</ol>
-<h2 id="接收数据"><a href="#接收数据" class="headerlink" title="接收数据"></a>接收数据</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">&#39;&#39;&#39;
-ser.read(num)    # 读取收到的num个字节的数据
-ser.inWaiting()    # 可以获取还未读出的数据
-&#39;&#39;&#39;
-import serial
-import struct
-import time
-ser &#x3D; serial.Serial(&quot;&#x2F;dev&#x2F;ttyUSB0&quot;, 115200)
-ser.flushInput()    # 清除缓存
-while True:
-    count &#x3D; ser.inWaiting()    # 获取还有多少字符未读
-    if count !&#x3D; 0:
-        data &#x3D; ser.read(count)    # 读取数据存到data中
-        print(data)    # 打印接受到的数据
-    time.sleep(0.1)    # 系统等待<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>运行代码，使用串口助手发送数据，可以在树莓派中看到返回值。</p>
-<p><img src="/posts/5/4.jpg" alt="接收数据"></p>
-<p>可以看到树莓派成功接收到了数据。</p>
-<p>如果想把b’ ‘去掉可以使用代码</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">print(data.decode(&#39;utf-8&#39;))<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="/posts/5/5.jpg" alt="去掉b&#39;&#39;"></p>
-<p>接收中文的话需要使用下面的代码</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">print(data.decode(&#39;gb2312&#39;))<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img src="/posts/5/6.jpg" alt="接收中文"></p>
-<p>具体为什么使用encode和decode，可以自行查阅Python相关资料。</p>
+<h2 id="数据集下载"><a href="#数据集下载" class="headerlink" title="数据集下载"></a>数据集下载</h2><p><a target="_blank" rel="noopener" href="https://wwxy.lanzouf.com/iJcVB0qx5v5g">点我下载</a></p>
+<p>数据集已经分好了训练集和测试集，一共有10个类别。训练集每个类别有180000条数据，测试集每个类别有1000条数据。</p>
+<h2 id="读取数据集"><a href="#读取数据集" class="headerlink" title="读取数据集"></a>读取数据集</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import pandas as pd
+
+
+# 读取训练集和测试集，并进行分词处理
+# train_text[0]是新闻文本 train_text[1]是类别标签
+train_text &#x3D; pd.read_table(&quot;data&#x2F;新闻标题文本分类&#x2F;4分类_72000&#x2F;train_4_72000.txt&quot;, header&#x3D;None, sep&#x3D;&quot; &quot;)
+test_text &#x3D; pd.read_table(&quot;data&#x2F;新闻标题文本分类&#x2F;4分类_72000&#x2F;test_4_4000.txt&quot;, header&#x3D;None, sep&#x3D;&quot; &quot;)
+
+print(train_text.head(5))
+print(&quot;*&quot;*50)
+print(test_text.head(5))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>本次演示使用的是4分类的数据集。运行上面代码，得到下面的输出：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">                           0  1
+0         中华女子学院：本科层次仅1专业招男生  3
+1  卡佩罗：告诉你德国脚生猛的原因 不希望英德战踢点球  7
+2           《赤壁OL》攻城战诸侯战硝烟又起  8
+3    上海2010上半年四六级考试报名4月8日前完成  3
+4    李永波称李宗伟难阻林丹取胜 透露谢杏芳有望出战  7
+**************************************************
+                         0  1
+0   词汇阅读是关键 08年考研暑期英语复习全指南  3
+1  中国人民公安大学2012年硕士研究生目录及书目  3
+2       日本地震：金吉列关注在日学子系列报道  3
+3    名师辅导：2012考研英语虚拟语气三种用法  3
+4        自考经验谈：自考生毕业论文选题技巧  3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到数据集主要由两部分组成，前面部分是新闻标题文本，后面部分是类别标签。</p>
+<p>使用pandas加载后train_text[0]和test_text[0]代表的就是新闻标题文本，train_text[1]和test_text[1]代表的是类别标签。</p>
+<h2 id="中文分词"><a href="#中文分词" class="headerlink" title="中文分词"></a>中文分词</h2><p>使用<strong>jieba</strong>对新闻标题文本分词。jieba一共提供了四种分词模式，默认使用的是精确模式，效果还不错。此外，jieba还提供了paddle模式的分词，我自己使用下来的效果是和精确模式差不多。（不过paddle模式的分词感觉确实要比精确模式好一点的。）</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import jieba
+
+
+# 使用jieba分词
+def new_cut(text):
+    return &quot; &quot;.join(list(jieba.cut(train_text)))
+
+train_text[&quot;分词结果&quot;] &#x3D; train_text[0].map(new_cut)
+test_text[&quot;分词结果&quot;] &#x3D; test_text[0].map(new_cut)
+print(train_text[&quot;分词结果&quot;].head(5))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>分词结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">0                中华 女子 学院 ： 本科 层次 仅 1 专业 招 男生
+1    卡佩罗 ： 告诉 你 德国 脚 生猛 的 原因   不 希望 英德 战 踢 点球
+2                   《 赤壁 OL 》 攻城战 诸侯 战 硝烟 又 起
+3           上海 2010 上半年 四六级 考试 报名 4 月 8 日前 完成
+4           李永波 称 李宗伟 难 阻林丹 取胜   透露 谢杏芳 有望 出战<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="去除停用词"><a href="#去除停用词" class="headerlink" title="去除停用词"></a>去除停用词</h2><p>本次使用的停用词表是哈工大停用词表，<a target="_blank" rel="noopener" href="https://wwxy.lanzouf.com/iHDvo0qx76fi">点我下载</a></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># 加载停用词
+def get_custom_stopwords(stop_words_file):
+    with open(stop_words_file, encoding&#x3D;&quot;gbk&quot;) as f:
+        stopwords &#x3D; f.read()
+    stopwords_list &#x3D; stopwords.split(&#39;\n&#39;)
+    custom_stopwords_list &#x3D; [i for i in stopwords_list]
+    return custom_stopwords_list
+
+stop_words_file &#x3D; &quot;stopwords.txt&quot;
+stopwords &#x3D; get_custom_stopwords(stop_words_file)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="TF-IDF算法提取文本特征"><a href="#TF-IDF算法提取文本特征" class="headerlink" title="TF-IDF算法提取文本特征"></a>TF-IDF算法提取文本特征</h2><p>具体<strong>TfidfVectorizer</strong>的配置参数可以去参考[官方文档](<a target="_blank" rel="noopener" href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html#sklearn.feature_extraction.text.TfidfVectorizer">sklearn.feature_extraction.text.TfidfVectorizer — scikit-learn 1.2.2 documentation</a>)，或者其他的博客。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from sklearn.feature_extraction.text import TfidfVectorizer
+
+
+# 使用TF-IDF将文本处理成向量格式
+tfidf_vectorizer  &#x3D; TfidfVectorizer(max_df&#x3D;0.8,
+                                    min_df&#x3D;3,
+                                    token_pattern&#x3D;u&#39;(?u)\\b[^\\d\\W]\\w+\\b&#39;,
+                                    stop_words&#x3D;frozenset(stopwords),
+                                    # max_features&#x3D;1000) # 最大提取特征，默认就是没有限制
+                                    )
+train_weight &#x3D; tfidf_vectorizer.fit_transform(train_text[&quot;分词结果&quot;])
+test_weight &#x3D; tfidf_vectorizer.transform(test_text[&quot;分词结果&quot;])
+
+print(&quot;train:\n&quot;, f&quot;数据集大小：&#123;train_weight.toarray().shape[0]&#125; 提取特征数量：&#123;train_weight.toarray().shape[1]&#125;&quot;)
+print(&quot;test:\n&quot;, f&quot;数据集大小：&#123;test_weight.toarray().shape[0]&#125; 提取特征数量：&#123;test_weight.toarray().shape[1]&#125;&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>输出结果：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">train:
+ 数据集大小：72000 提取特征数量：20677
+test:
+ 数据集大小：4000 提取特征数量：20677<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="KNN分类器的设计"><a href="#KNN分类器的设计" class="headerlink" title="KNN分类器的设计"></a>KNN分类器的设计</h2><p>KNN分类器的K值（<em>n_neighbors</em>参数）取3，距离计算方式（<em>metric</em>参数）选择余弦距离，其他的参数默认就行。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, recall_score, f1_score, precision_score
+import pickle
+
+
+save_model &#x3D; False
+k &#x3D; 3
+knn &#x3D; KNeighborsClassifier(n_neighbors&#x3D;k, metric&#x3D;&quot;cosine&quot;)
+
+# 训练
+knn.fit(train_weight, train_text[1])
+# 预测
+test_pred &#x3D; knn.predict(test_weight)
+
+# 计算准确率、召回率、精确率和F1值
+accuracy &#x3D; accuracy_score(test_pred, test_text[1])
+recall &#x3D; recall_score(test_pred, test_text[1], average&#x3D;&#39;macro&#39;)
+precision &#x3D; precision_score(test_pred, test_text[1], average&#x3D;&#39;macro&#39;)
+f1 &#x3D; f1_score(test_pred, test_text[1], average&#x3D;&#39;macro&#39;)
+
+# 输出训练日志
+with open(&quot;output_logs&#x2F;knn_cls.txt&quot;, &quot;a+&quot;) as log_txt:
+    log_txt.write(f&quot;k &#x3D; &#123;k&#125;\n&quot;)
+    log_txt.write(f&quot;accuracy &#x3D; &#123;accuracy&#125;\n&quot;)
+    log_txt.write(f&quot;recall &#x3D; &#123;recall&#125;\n&quot;)
+    log_txt.write(f&quot;precision &#x3D; &#123;precision&#125;\n&quot;)
+    log_txt.write(f&quot;f1 &#x3D; &#123;f1&#125;\n&quot;)
+    log_txt.close()
+    # 保存训练模型
+if save_model:
+    with open(f&quot;output_models&#x2F;knn_&#123;k&#125;.pkl&quot;, &quot;wb&quot;) as f:
+        pickle.dump(knn, f)
+    print(&quot;Save model sucess!&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>结果日志输出：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">k &#x3D; 3
+accuracy &#x3D; 0.8945
+recall &#x3D; 0.9015750424563225
+precision &#x3D; 0.8945
+f1 &#x3D; 0.8939859931730288<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>现在的模型分类效果可以在调调参数，比如把k值调大一点等。</p>
+<h2 id="完整代码下载"><a href="#完整代码下载" class="headerlink" title="完整代码下载"></a>完整代码下载</h2><p><a target="_blank" rel="noopener" href="https://download.csdn.net/download/ZhuanShangNiDeXin/87609588">CSDN下载（只需1积分）</a></p>
+<p><a target="_blank" rel="noopener" href="https://wwxy.lanzouf.com/iy8l20qx8syf">蓝奏云下载</a></p>
 
                 
             </div>
@@ -461,7 +515,7 @@ while True:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/5.html">https://lightningleader.github.io/posts/5.html</a>
+                    <a href="https://lightningleader.github.io/posts/22.html">https://lightningleader.github.io/posts/22.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -499,16 +553,12 @@ while True:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
+                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">机器学习</span>
                                 </a>
                             
-                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                                    <span class="chip bg-color">学习笔记</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                                    <span class="chip bg-color">树莓派</span>
+                                <a href="/tags/NLP/">
+                                    <span class="chip bg-color">NLP</span>
                                 </a>
                             
                         </div>
@@ -817,29 +867,30 @@ while True:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/6.html">
+                <a href="/posts/22.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="OpenCV学习笔记">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="sklearn实现基于TF-IDF的KNN新闻标题文本分类">
                         
-                        <span class="card-title">OpenCV学习笔记</span>
+                        <span class="card-title">sklearn实现基于TF-IDF的KNN新闻标题文本分类</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            OpenCV学习笔记
+                            sklearn实现基于TF-IDF的KNN新闻标题文本分类
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-23
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -848,19 +899,16 @@ while True:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
                     </a>
                     
-                    <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">
-                        <span class="chip bg-color">图像处理</span>
-                    </a>
-                    
-                    <a href="/tags/OpenCV/">
-                        <span class="chip bg-color">OpenCV</span>
+                    <a href="/tags/NLP/">
+                        <span class="chip bg-color">NLP</span>
                     </a>
                     
                 </div>
@@ -874,24 +922,24 @@ while True:
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/4.html">
+                <a href="/posts/21.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="树莓派使用USB串口通信 CH340">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Matlab搭建AlexNet实现手写数字识别">
                         
-                        <span class="card-title">树莓派使用USB串口通信 CH340</span>
+                        <span class="card-title">Matlab搭建AlexNet实现手写数字识别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            树莓派使用USB串口通信 CH340
+                            Matlab搭建AlexNet实现手写数字识别
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-19
                             </span>
                         <span class="publish-author">
                             
@@ -904,16 +952,12 @@ while True:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">
-                        <span class="chip bg-color">树莓派</span>
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
                     </a>
                     
                 </div>
