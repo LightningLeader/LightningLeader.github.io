@@ -340,7 +340,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    763
+                    760
                 </div>
                 
 
@@ -387,7 +387,7 @@
 <h1 id="BoxCoder算法"><a href="#BoxCoder算法" class="headerlink" title="BoxCoder算法"></a>BoxCoder算法</h1><p>由于Anchor的框往往不会完美匹配真实目标，也就是说Anchor的框是有可能不会完美框中真是目标的，有可能会只框住大部分，这样是没法获取到检测目标准确的位置信息的。因此为了获取目标的准确位置需要用模型再预测出Anchor与目标GT的位置偏移量。</p>
 <p>也就是说现在的模型需要预测两个值，一个是Anchor的类别，另一个是Anchor与目标GT的位置偏移量。</p>
 <p>与之前说的类似，我们也不可能为每一个Anchor标注出其与目标GT的位置偏移量，因此需要使用BoxCoder算法将Anchor的坐标与GT坐标之间的偏移量编码成模型可以预测的变量。</p>
-<h1 id="Anchor生成"><a href="#Anchor生成" class="headerlink" title="Anchor生成"></a>Anchor生成</h1><p>Anchor一般有3种不同的面积，$area_{1}&lt;area_{2}&lt;area_{3}$，每一种面积又有3种不同长宽比的Anchor，$1:1$、$1:2$、$2:1$。因此一般来说对于某一个锚点会生成9张Anchor。</p>
+<h1 id="Anchor生成"><a href="#Anchor生成" class="headerlink" title="Anchor生成"></a>Anchor生成</h1><p>Anchor一般有3种不同的面积，area1&lt;area2&lt;area3，每一种面积又有3种不同长宽比的Anchor，1:1、1:2$、$2:1。因此一般来说对于某一个锚点会生成9张Anchor。</p>
 <p>一般来说，对于特征图上的每一个像素点都会生成一系列的Anchor。但这不意味每个像素点都会生成9种Anchor，对于不同的特征图只需要生成一种面积的特征图就行。一般来说，对于尺度大的特征图，会生成小面积的Anchor；尺度小的特征图，会生成大面积的Anchor。</p>
 
                 
