@@ -563,31 +563,30 @@
 <h3 id="自己测试模型效果"><a href="#自己测试模型效果" class="headerlink" title="自己测试模型效果"></a>自己测试模型效果</h3><p>这个比较简单。就按照之前介绍detect.py里面的参数填写最后运行就行。但要主要路径不要出现中文，不然可能会报错。</p>
 <p>最后效果会生成在run文件夹下，如果测试的是视频那最终就是生成视频，如果是图片就会生成图片。</p>
 <p>这个是我自己随便搞得一个，效果就是这样。</p>
-<p><img src="/posts/15/10.png"></p>
-<p>图片大概就这样。</p>
+<p><img src="/posts/15/9.png"></p>
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"># Write results
-                for *xyxy, conf, cls in reversed(det):
-                    # 标出目标中心点坐标
-                    # c1, c2 &#x3D; (int(xyxy[0]), int(xyxy[1])), (int(xyxy[2]), int(xyxy[3]))
-                    # w &#x3D; c2[0] - c1[0]
-                    # h &#x3D; c1[1] - c2[1]
-                    # cv2.circle(im0, (int(c1[0] + w &#x2F; 2), int(c1[1] - h &#x2F; 2)), 1, (0, 255, 0), 2)
+for *xyxy, conf, cls in reversed(det):
+    # 标出目标中心点坐标
+    # c1, c2 &#x3D; (int(xyxy[0]), int(xyxy[1])), (int(xyxy[2]), int(xyxy[3]))
+    # w &#x3D; c2[0] - c1[0]
+    # h &#x3D; c1[1] - c2[1]
+    # cv2.circle(im0, (int(c1[0] + w &#x2F; 2), int(c1[1] - h &#x2F; 2)), 1, (0, 255, 0), 2)
 
-                    # 根据cls判断目标类型  names[int(cls)] 这个类型与标注对应
-                    # print(&quot;\n&quot; + &quot;class:&quot; + str(int(cls)) + &quot;\n&quot;)
+    # 根据cls判断目标类型  names[int(cls)] 这个类型与标注对应
+    # print(&quot;\n&quot; + &quot;class:&quot; + str(int(cls)) + &quot;\n&quot;)
 
-                    if save_txt:  # Write to file
-                        xywh &#x3D; (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) &#x2F; gn).view(-1).tolist()  # normalized xywh
-                        line &#x3D; (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
-                        with open(txt_path + &#39;.txt&#39;, &#39;a&#39;) as f:
-                            f.write((&#39;%g &#39; * len(line)).rstrip() % line + &#39;\n&#39;)
+    if save_txt:  # Write to file
+        xywh &#x3D; (xyxy2xywh(torch.tensor(xyxy).view(1, 4)) &#x2F; gn).view(-1).tolist()  # normalized xywh
+        line &#x3D; (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
+        with open(txt_path + &#39;.txt&#39;, &#39;a&#39;) as f:
+            f.write((&#39;%g &#39; * len(line)).rstrip() % line + &#39;\n&#39;)
 
-                    if save_img or save_crop or view_img:  # Add bbox to image
-                        c &#x3D; int(cls)  # integer class
-                        label &#x3D; None if hide_labels else (names[c] if hide_conf else f&#39;&#123;names[c]&#125; &#123;conf:.2f&#125;&#39;)
-                        im0 &#x3D; plot_one_box(xyxy, im0, label&#x3D;label, color&#x3D;colors(c, True), line_width&#x3D;line_thickness)
-                        if save_crop:
-                            save_one_box(xyxy, imc, file&#x3D;save_dir &#x2F; &#39;crops&#39; &#x2F; names[c] &#x2F; f&#39;&#123;p.stem&#125;.jpg&#39;, BGR&#x3D;True)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    if save_img or save_crop or view_img:  # Add bbox to image
+        c &#x3D; int(cls)  # integer class
+        label &#x3D; None if hide_labels else (names[c] if hide_conf else f&#39;&#123;names[c]&#125; &#123;conf:.2f&#125;&#39;)
+        im0 &#x3D; plot_one_box(xyxy, im0, label&#x3D;label, color&#x3D;colors(c, True), line_width&#x3D;line_thickness)
+        if save_crop:
+            save_one_box(xyxy, imc, file&#x3D;save_dir &#x2F; &#39;crops&#39; &#x2F; names[c] &#x2F; f&#39;&#123;p.stem&#125;.jpg&#39;, BGR&#x3D;True)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
