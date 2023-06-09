@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Atlas200DK环境配置, LightningMaster">
+    <meta name="keywords" content="open3d可视化点云, LightningMaster">
     <meta name="description" content="寄">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Atlas200DK环境配置 | LightningMaster</title>
+    <title>open3d可视化点云 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Atlas200DK环境配置</h1>
+                    <h1 class="description center-align post-title">open3d可视化点云</h1>
                 </div>
             </div>
         </div>
@@ -306,6 +306,10 @@
                                 <span class="chip bg-color">学习笔记</span>
                             </a>
                         
+                            <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                                <span class="chip bg-color">三维点云</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -318,21 +322,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-10
+                    2023-06-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-10
+                    2023-06-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    652
+                    820
                 </div>
                 
 
@@ -362,28 +366,171 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Atlas200DK环境配置"><a href="#Atlas200DK环境配置" class="headerlink" title="Atlas200DK环境配置"></a>Atlas200DK环境配置</h1><a id="more"></a>
+                <h1 id="open3d可视化点云"><a href="#open3d可视化点云" class="headerlink" title="open3d可视化点云"></a>open3d可视化点云</h1><a id="more"></a>
 
-<h2 id="dd镜像安装"><a href="#dd镜像安装" class="headerlink" title="dd镜像安装"></a>dd镜像安装</h2><p>推荐使用dd镜像安装环境，这种方式更快更方便。</p>
-<p>直接去网站下载需要版本的dd镜像，然后利用Etcher烧录到sd卡中就行。</p>
-<p>参考链接：</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1g3411r7Vz/">Atlas 200DK样例速跑_哔哩哔哩_bilibili</a></p>
-<p><a target="_blank" rel="noopener" href="https://bbs.huaweicloud.com/forum/thread-139685-1-1.html">更方便的200DK合设环境搭建方法——dd镜像_Atlas 200 DK_昇腾论坛_华为云论坛 (huaweicloud.com)</a></p>
-<h2 id="MindSpore安装"><a href="#MindSpore安装" class="headerlink" title="MindSpore安装"></a>MindSpore安装</h2><p>不推荐在该开发板上安装MindSpore，安装之后可能无法正常使用。</p>
-<p>非要安装的话需要把MindSpore和环境版本对应，建议安装低版本的MindSpore。</p>
-<h2 id="联网方式"><a href="#联网方式" class="headerlink" title="联网方式"></a>联网方式</h2><p>使用网络共享的话可能会出现开发板重启后网络无法正常连接的问题，这个时候只需要在PC端先关闭共享网络，再重新打开即可（重启共享网络）。</p>
-<p>参考链接：</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1u3411B7CY/?spm_id_from=333.788.recommend_more_video.-1">Atlas 200 DK的多种联网方式_哔哩哔哩_bilibili</a></p>
-<h2 id="代码运行环境配置"><a href="#代码运行环境配置" class="headerlink" title="代码运行环境配置"></a>代码运行环境配置</h2><p>如果需要运行cv方向的代码需要安装对应的环境配置。这个具体的环境配置可以在官方gitee中找到。</p>
-<p>参考链接：</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42800966/article/details/122587832">华为Atlas200DK的环境部署与运行demo（人脸识别）_Quinton123的博客-CSDN博客_华为atlas200dk</a></p>
-<p><a target="_blank" rel="noopener" href="https://toscode.gitee.com/ascend/samples/tree/master/python/environment">python/environment · Ascend/samples - 码云 - 开源中国 (gitee.com)</a></p>
-<h2 id="模型转换"><a href="#模型转换" class="headerlink" title="模型转换"></a>模型转换</h2><p>在windows训练得到的模型是ckpt格式的，这种格式的模型文件是无法在开发板上运行，因此需要转换格式。</p>
-<p>可以转换的总共有四种模型文件，分别是MindIR、AIR、ONNX和OM。这四种格式对应了不同的应用场景。我在这里只简单介绍AIR和OM两种文件格式，因为本实验只用到了这两种。</p>
-<p>AIR格式只能Ascend910环境中上才能导出，是官网推荐的模型格式，可以转换成OM格式。而OM格式可以在Ascend310上推理使用，也是本次实验使用的模型格式。</p>
-<p>为了获得AIR格式模型需要创建华为云的Ascend910环境，然后在这个环境中训练并得到ckpt模型。再将ckpt模型转换成air格式模型并传到开发板中。最后将这个air格式模型转换成om格式才结束。整个过程需要两次模型转换，好在这个模型转换操作不算复杂，就是转换时间可能需要耐心等下。</p>
-<h2 id="其它参考链接"><a href="#其它参考链接" class="headerlink" title="其它参考链接"></a>其它参考链接</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42703283/article/details/110389270">华为Atlas200DK环境配置指南(版本20.0.0)_ChrisLiu__的博客-CSDN博客_华为atlas200dk</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Hariod/article/details/119721967">华为Atlas 200 DK开发者套件踩坑记(持续更新)_Hariod的博客-CSDN博客</a></p>
+<h2 id="将pcd文件转换成bin文件"><a href="#将pcd文件转换成bin文件" class="headerlink" title="将pcd文件转换成bin文件"></a>将pcd文件转换成bin文件</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import open3d as o3d
+import numpy as np
+
+
+pcd &#x3D; o3d.io.read_point_cloud(&quot;data&#x2F;output.pcd&quot;)
+points &#x3D; np.array(pcd.points)
+
+lidar &#x3D; []
+for linestr in points:
+    if len(linestr) &#x3D;&#x3D; 3:  # only x,y,z
+        linestr_convert &#x3D; list(map(float, linestr))
+        linestr_convert.append(0)
+        lidar.append(linestr_convert)
+    if len(linestr) &#x3D;&#x3D; 4:  # x,y,z,i
+        linestr_convert &#x3D; list(map(float, linestr))
+lidar &#x3D; np.array(lidar).astype(np.float32)
+lidar.tofile(&quot;666.bin&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="将pcd文件转化成npy文件"><a href="#将pcd文件转化成npy文件" class="headerlink" title="将pcd文件转化成npy文件"></a>将pcd文件转化成npy文件</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import open3d as o3d
+import numpy as np
+
+lidar &#x3D; []
+pcd &#x3D; o3d.io.read_point_cloud(&quot;data&#x2F;output.pcd&quot;)
+points &#x3D; np.array(pcd.points)
+
+for linestr in points:
+    if len(linestr) &#x3D;&#x3D; 3:  # only x,y,z
+        linestr_convert &#x3D; list(map(float, linestr))
+        linestr_convert.append(0)
+        lidar.append(linestr_convert)
+    if len(linestr) &#x3D;&#x3D; 4:  # x,y,z,i
+        linestr_convert &#x3D; list(map(float, linestr))
+
+lidar &#x3D; np.array(lidar).astype(np.float32)
+np.save(&quot;666.npy&quot;, lidar)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="同时显示多个可视化窗口"><a href="#同时显示多个可视化窗口" class="headerlink" title="同时显示多个可视化窗口"></a>同时显示多个可视化窗口</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 同时显示两个窗口，按ESC退出
+import open3d as o3d
+from pynput import keyboard    # 加载pynput用于键盘监听
+
+
+# 当键盘按下时的回调函数
+def on_press(key):
+    global stop_flag
+    if key &#x3D;&#x3D; keyboard.Key.esc:
+        stop_flag &#x3D; True
+
+
+pcd_1 &#x3D; o3d.io.read_point_cloud(&quot;data&#x2F;room.pcd&quot;)
+vis_1 &#x3D; o3d.visualization.Visualizer()
+
+pcd_2 &#x3D; o3d.io.read_point_cloud(&quot;data&#x2F;bunny.pcd&quot;)
+vis_2 &#x3D; o3d.visualization.Visualizer()
+
+# 创建窗口
+vis_1.create_window(window_name&#x3D;&quot;Window 1&quot;, width&#x3D;1080, height&#x3D;720)
+vis_2.create_window(window_name&#x3D;&quot;Window 2&quot;, width&#x3D;1080, height&#x3D;720)
+
+# 添加点云数据
+vis_1.add_geometry(pcd_1)
+vis_2.add_geometry(pcd_2)
+
+# 开始键盘监听
+listener &#x3D; keyboard.Listener(on_press&#x3D;on_press)
+listener.start()
+
+# 窗口循环渲染
+stop_flag &#x3D; False
+while not stop_flag:
+    vis_1.poll_events()
+    vis_1.update_renderer()
+    
+    vis_2.poll_events()
+    vis_2.update_renderer()
+
+# 销毁窗口
+vis_1.destroy_window()
+vis_2.destroy_window()
+
+# 停止监听
+listener.stop()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/24/1.png"></p>
+<h2 id="根据最大边界点和最小边界点画边界框"><a href="#根据最大边界点和最小边界点画边界框" class="headerlink" title="根据最大边界点和最小边界点画边界框"></a>根据最大边界点和最小边界点画边界框</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import open3d as o3d
+import numpy as np
+
+# 生成一个随机点云
+pcd &#x3D; o3d.geometry.PointCloud()
+points &#x3D; np.random.rand(100, 3)
+pcd.points &#x3D; o3d.utility.Vector3dVector(points)
+
+# 获取点云边界框的对角线两个点
+min_bound &#x3D; np.min(points, axis&#x3D;0)
+max_bound &#x3D; np.max(points, axis&#x3D;0)
+
+# 使用对角线的两个点创建一个包围盒
+bbox &#x3D; o3d.geometry.AxisAlignedBoundingBox(min_bound, max_bound)
+
+# 创建一个边界框
+bbox_lines &#x3D; o3d.geometry.LineSet.create_from_axis_aligned_bounding_box(bbox)
+bbox_lines.paint_uniform_color([1, 0, 0])
+# 可视化结果
+o3d.visualization.draw_geometries([pcd, bbox_lines])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/24/2.png"></p>
+<h2 id="根据长宽高画边界框"><a href="#根据长宽高画边界框" class="headerlink" title="根据长宽高画边界框"></a>根据长宽高画边界框</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import open3d as o3d
+import numpy as np
+
+x &#x3D; 10
+y &#x3D; 10
+z &#x3D; 10
+# 创建立方体网格
+mesh_box &#x3D; o3d.geometry.TriangleMesh.create_box(width&#x3D;x, height&#x3D;y, depth&#x3D;z)
+
+# 将网格放置在原点
+mesh_box.translate([-x&#x2F;2, -y&#x2F;2, -z&#x2F;2])
+
+# 创建一个边界框
+bbox_lines &#x3D; o3d.geometry.LineSet.create_from_triangle_mesh(mesh_box)
+bbox_lines.paint_uniform_color([1, 0, 0])
+
+# 可视化结果
+o3d.visualization.draw_geometries([bbox_lines], width&#x3D;1080, height&#x3D;720)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/24/3.png"></p>
+<h2 id="将可视化结果保存成图片"><a href="#将可视化结果保存成图片" class="headerlink" title="将可视化结果保存成图片"></a>将可视化结果保存成图片</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import open3d as o3d
+
+
+pcd &#x3D; o3d.io.read_point_cloud(&quot;data&#x2F;bun_zipper.ply&quot;)
+
+# 获取边界框
+obb &#x3D; pcd.get_oriented_bounding_box()
+
+# 设置边界框颜色
+obb.color &#x3D; [1, 0, 0]
+
+vis &#x3D; o3d.visualization.Visualizer()
+vis.create_window(width&#x3D;1080, height&#x3D;720)
+vis.add_geometry(pcd)
+vis.add_geometry(obb)
+vis.run()
+# 保存图片
+vis.capture_screen_image(&quot;output.png&quot;)
+vis.destroy_window()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/24/4.png"></p>
+<h2 id="画坐标轴"><a href="#画坐标轴" class="headerlink" title="画坐标轴"></a>画坐标轴</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import open3d as o3d
+
+vis &#x3D; o3d.visualization.Visualizer()
+vis.create_window(width&#x3D;1080, height&#x3D;720)
+
+vis.get_render_option().point_size &#x3D; 1
+vis.get_render_option().background_color &#x3D; [0, 0, 0]
+
+bin_path &#x3D; &#39;&#x2F;home&#x2F;lightning&#x2F;work&#x2F;bishe&#x2F;VLP16&#x2F;cap_data&#x2F;17.bin&#39;
+bin &#x3D; np.fromfile(bin_path, dtype&#x3D;np.float32, count&#x3D;-1).reshape(-1, 4)
+bin_xyz &#x3D; bin[:, :3]
+pcd &#x3D; o3d.open3d.geometry.PointCloud()
+pcd.points &#x3D; o3d.utility.Vector3dVector(bin_xyz)
+
+vis.add_geometry(pcd)
+
+# 画坐标轴，蓝色Z轴 绿色Y轴 红色X轴
+axis_pcd &#x3D; o3d.geometry.TriangleMesh.create_coordinate_frame(size&#x3D;5, origin&#x3D;[0, 0, 0])
+vis.add_geometry(axis_pcd)
+
+vis.run()
+vis.destroy_window()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/24/5.png"></p>
 
                 
             </div>
@@ -410,7 +557,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/20.html">https://lightningleader.github.io/posts/20.html</a>
+                    <a href="https://lightningleader.github.io/posts/24.html">https://lightningleader.github.io/posts/24.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -450,6 +597,10 @@
                             
                                 <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                                     <span class="chip bg-color">学习笔记</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                                    <span class="chip bg-color">三维点云</span>
                                 </a>
                             
                         </div>
@@ -758,29 +909,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/21.html">
+                <a href="/posts/24.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Matlab搭建AlexNet实现手写数字识别">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="open3d可视化点云">
                         
-                        <span class="card-title">Matlab搭建AlexNet实现手写数字识别</span>
+                        <span class="card-title">open3d可视化点云</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Matlab搭建AlexNet实现手写数字识别
+                            open3d可视化点云
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-02-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -789,6 +941,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -796,8 +949,8 @@
                         <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">机器学习</span>
+                    <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                        <span class="chip bg-color">三维点云</span>
                     </a>
                     
                 </div>
@@ -811,24 +964,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/19.html">
+                <a href="/posts/23.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="华为云ModelAtrs创建GPU环境训练模型">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Anchor-Based目标检测学习记录">
                         
-                        <span class="card-title">华为云ModelAtrs创建GPU环境训练模型</span>
+                        <span class="card-title">Anchor-Based目标检测学习记录</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            华为云ModelAtrs创建GPU环境训练模型
+                            Anchor-Based目标检测学习记录
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-27
                             </span>
                         <span class="publish-author">
                             
@@ -841,12 +994,16 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-                        <span class="chip bg-color">学习笔记</span>
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
                     </a>
                     
-                    <a href="/tags/%E5%8D%8E%E4%B8%BA%E4%BA%91/">
-                        <span class="chip bg-color">华为云</span>
+                    <a href="/tags/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
+                        <span class="chip bg-color">目标检测</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
                     </a>
                     
                 </div>
