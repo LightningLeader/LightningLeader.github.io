@@ -396,7 +396,7 @@ catkin_make<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <p><img src="/posts/25/2.png"></p>
 <p>之后就可以在右侧看到可视化点云了。</p>
 <p><img src="/posts/25/3.png"></p>
-<h3 id="录制和播放点云"><a href="#录制和播放点云" class="headerlink" title="录制和播放点云"></a>录制和播放点云</h3><p>在终端运行下面命令可以录制点云，点云记录会默认生成在运行目录。可以使用Crtl+C结束录制。</p>
+<h2 id="录制和播放点云"><a href="#录制和播放点云" class="headerlink" title="录制和播放点云"></a>录制和播放点云</h2><p>在终端运行下面命令可以录制点云，点云记录会默认生成在运行目录。可以使用Crtl+C结束录制。</p>
 <pre class="line-numbers language-none"><code class="language-none">rosbag record out &#x2F;velodyne_points<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在终端运行下面命令可以播放点云，第一个参数填写要播放的点云记录。可以在rviz中看到播放的结果。按空格键可以暂停播放。</p>
 <pre class="line-numbers language-none"><code class="language-none">rosbag play 2023-03-28-22-49-58.bag<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -407,11 +407,11 @@ catkin_make<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <p>点开左侧的<em>PointCloud2</em>，将<em>Topic</em>的内容改为*/velodyne_points*</p>
 <p><img src="/posts/25/5.png"></p>
 <p>之后在终端中输入播放命令<code>rosbag play 2023-03-28-22-49-58.bag</code>，就可以在该窗口的右侧看到播放画面了。</p>
-<h3 id="将bag文件转化成pcd文件"><a href="#将bag文件转化成pcd文件" class="headerlink" title="将bag文件转化成pcd文件"></a>将bag文件转化成pcd文件</h3><p>录制点云会生成bag文件，可以将该文件记录的每一帧点云转换成pcd格式并保存下来。</p>
+<h2 id="将bag文件转化成pcd文件"><a href="#将bag文件转化成pcd文件" class="headerlink" title="将bag文件转化成pcd文件"></a>将bag文件转化成pcd文件</h2><p>录制点云会生成bag文件，可以将该文件记录的每一帧点云转换成pcd格式并保存下来。</p>
 <p>首先在终端中输入<code>roscore</code>命令</p>
 <p>再开启一个终端输入下面的命令。<em>output.bag</em>为要处理的bag文件；*pcd/*为最终pcd文件的输出目录</p>
 <pre class="line-numbers language-none"><code class="language-none">rosrun pcl_ros bag_to_pcd output.bag &#x2F;velodyne_points pcd&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="python获取实时点云数据并保存成pcd文件"><a href="#python获取实时点云数据并保存成pcd文件" class="headerlink" title="python获取实时点云数据并保存成pcd文件"></a>python获取实时点云数据并保存成pcd文件</h3><p>使用python获取VLP16返回的实时点云数据，并把每一帧数据保存成pcd文件。下面介绍两种方式：</p>
+<h2 id="python获取实时点云数据并保存成pcd文件"><a href="#python获取实时点云数据并保存成pcd文件" class="headerlink" title="python获取实时点云数据并保存成pcd文件"></a>python获取实时点云数据并保存成pcd文件</h2><p>使用python获取VLP16返回的实时点云数据，并把每一帧数据保存成pcd文件。下面介绍两种方式：</p>
 <p><strong>方式一：</strong></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">#!&#x2F;usr&#x2F;bin&#x2F;env python
 
@@ -492,7 +492,7 @@ def listener():
 
 if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
     listener()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="实时可视化激光雷达点云数据"><a href="#实时可视化激光雷达点云数据" class="headerlink" title="实时可视化激光雷达点云数据"></a>实时可视化激光雷达点云数据</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">from sensor_msgs.msg import PointCloud2
+<h2 id="实时可视化激光雷达点云数据"><a href="#实时可视化激光雷达点云数据" class="headerlink" title="实时可视化激光雷达点云数据"></a>实时可视化激光雷达点云数据</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">from sensor_msgs.msg import PointCloud2
 import sensor_msgs.point_cloud2 as pc2
 import numpy as np
 import open3d as o3d
