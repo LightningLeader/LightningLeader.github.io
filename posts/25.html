@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="4路红外循迹模块使用教程, LightningMaster">
+    <meta name="keywords" content="ROS中使用VLP16激光雷达获取点云数据, LightningMaster">
     <meta name="description" content="寄">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>4路红外循迹模块使用教程 | LightningMaster</title>
+    <title>ROS中使用VLP16激光雷达获取点云数据 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/images/4%E8%B7%AF%E7%BA%A2%E5%A4%96%E5%BE%AA%E8%BF%B9%E6%A8%A1%E5%9D%97%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">4路红外循迹模块使用教程</h1>
+                    <h1 class="description center-align post-title">ROS中使用VLP16激光雷达获取点云数据</h1>
                 </div>
             </div>
         </div>
@@ -302,16 +302,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">学习笔记</span>
                             </a>
                         
-                            <a href="/tags/%E7%A1%AC%E4%BB%B6%E4%BD%BF%E7%94%A8/">
-                                <span class="chip bg-color">硬件使用</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                <span class="chip bg-color">单片机</span>
+                            <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                                <span class="chip bg-color">三维点云</span>
                             </a>
                         
                     </div>
@@ -326,21 +322,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-09
+                    2023-06-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-02-09
+                    2023-06-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    722
+                    1.7k
                 </div>
                 
 
@@ -370,62 +366,184 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="4路红外循迹模块使用教程"><a href="#4路红外循迹模块使用教程" class="headerlink" title="4路红外循迹模块使用教程"></a>4路红外循迹模块使用教程</h1><a id="more"></a>
+                <h1 id="ROS中使用VLP16激光雷达获取点云数据"><a href="#ROS中使用VLP16激光雷达获取点云数据" class="headerlink" title="ROS中使用VLP16激光雷达获取点云数据"></a>ROS中使用VLP16激光雷达获取点云数据</h1><a id="more"></a>
 
-<h2 id="模块详细信息："><a href="#模块详细信息：" class="headerlink" title="模块详细信息："></a>模块详细信息：</h2><p>工作电压：DC 3.3V~5V</p>
-<p>工作电流：尽量选择1A以上电源供电</p>
-<p>工作温度：-10℃~+50℃</p>
-<p>安装孔径：M3螺丝</p>
-<p>检测距离：1mm~30cm可调，距离越近2性能越稳定，白色反射距离远</p>
-<p>尺寸大小：中控板42mmX38mmX12mm（长X宽X高）；小板向前25mmX12mmX12mm（长X宽X高）</p>
-<p>输出接口：6线制接口（1、2、3、4为4路信号输出端，VCC接正电源，GND接GND）</p>
-<p>输出信号：TTL电平，可直接连接单片机IO口，感应到传感器反射回来的红外光时，红指示灯亮，输出低电平；没有红外光时，指示灯不亮，输出高电平。</p>
-<h2 id="模块接线"><a href="#模块接线" class="headerlink" title="模块接线"></a>模块接线</h2><p><img src="/posts/2/1.png" alt="4路红外循迹模块"></p>
-<p>图中主控板左侧分别为，VCC、GND、OUT1、OUT2、OUT3、OUT4，其中OUT1、2、3、4分别连接单片机的IO口，用于检测输出电平。主控板右侧分别与四个小板连接，用于采集信息。</p>
-<h2 id="模块使用"><a href="#模块使用" class="headerlink" title="模块使用"></a>模块使用</h2><p>模块正确连接并通电后，小板传感器开始工作。模块感应到传感器反射回来的红外光时，红指示灯亮，输出低电平；没有红外光时，指示灯不亮，输出高电平。以检测黑线为例，如果传感器检测到黑线，红外光无法反射回来则模块红指示灯熄灭，同时小板对应的OUT口输出高电平；如果未检测到黑线，红外光可以反射回来则模块红指示灯亮，小板对应的OUT口输出低电平。其中需要注意一种特殊情况，也就是说当测量物体超出测量范围时，此时红指示灯熄灭，OUT口输出高电平。</p>
-<p>每个小板前面对应的电位器可以用来调整使用精度。</p>
-<h2 id="相关代码"><a href="#相关代码" class="headerlink" title="相关代码"></a>相关代码</h2><p>代码使用的单片机型号：STC16F40K128</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">#include &quot;headfile.h&quot;
-&#x2F;*
-* OUT1 P27
-* OUT2 P26
-* OUT3 P25
-* OUT4 P24
-* 检测到黑线或悬空LED灭，输出高电平
-*&#x2F;
- int main()
- &#123;
-	DisableGlobalIRQ();		&#x2F;&#x2F;关闭总中断
-	
-	board_init();			&#x2F;&#x2F;初始化寄存器
-	&#x2F;&#x2F;总中断最后开启
-	EnableGlobalIRQ();		&#x2F;&#x2F;开启总中断
-    while(1)
-	&#123;
-        &#x2F;&#x2F; 判断IO口电平状态
-		if (P27 &#x3D;&#x3D; 1)
-        &#123;
-			printf(&quot;OUT1 NO\r\n&quot;);
-		&#125;
-		if (P26 &#x3D;&#x3D; 1)
-		&#123;
-			printf(&quot;OUT2 NO\r\n&quot;);
-		&#125;
-		if (P25 &#x3D;&#x3D; 1)
-		&#123;
-			printf(&quot;OUT3 NO\r\n&quot;);
-		&#125;
-		if (P24 &#x3D;&#x3D; 1)
-		&#123;
-			printf(&quot;OUT4 NO\r\n&quot;);
-		&#125;
-		if ((P27 &#x3D;&#x3D; 0)&amp;&amp;(P26 &#x3D;&#x3D; 0)&amp;&amp;(P25 &#x3D;&#x3D; 0)&amp;&amp;(P24 &#x3D;&#x3D; 0))
-		&#123;
-			printf(&quot;OFF\r\n&quot;);
-		&#125;
-  &#125;
- &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>代码是比较简单的，就是判断单片机IO口状态。如果IO口是高电平则表示传感器检测到黑线，否则没有检测到黑线。理解了这个原理就可以在其他型号的单片机上使用这个模块。</p>
+<p>本文测试环境为：<strong>Ubuntu20.04</strong>    <strong>ROS Noetic</strong></p>
+<hr>
+<p>需要将激光雷达与PC连接，然后在设置=&gt;网络=&gt;有线中将IPv4改为手动，并且地址为<strong>192.168.1.100</strong>，子网掩码为<strong>255.255.255.0</strong>，点击应用。然后在浏览器输入192.168.1.201，如果成功进入配置界面则表示连接成功。</p>
+<h2 id="安装VLP驱动"><a href="#安装VLP驱动" class="headerlink" title="安装VLP驱动"></a>安装VLP驱动</h2><pre class="line-numbers language-none"><code class="language-none">cd catkin_ws&#x2F;src
+git clone https:&#x2F;&#x2F;github.com&#x2F;ros-drivers&#x2F;velodyne.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>继续执行下面命令。如果在执行第二条命令的时候报错了，需要根据终端的提示安装一些包或者可以看看这篇文章<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/546426618">点我</a></p>
+<pre class="line-numbers language-none"><code class="language-none">cd ..
+rosdep install --from-paths src --ignore-src --rosdistro noetic -y
+catkin_make<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>报错处理：</strong></p>
+<p>如果<code>catkin_make</code>命令找不到，就需要看<a href="#%E5%AE%89%E8%A3%85ROS%E4%BE%9D%E8%B5%96">安装ROS依赖</a>最后source脚本部分有没有完成。</p>
+<p>编译中间如果出现找不到文件的报错，大概率是没有安装对应的包。</p>
+<p>例如出现“Could NOT find image_transport (missing: image_transport_DIR)”错误，那就需要在终端输入<code>sudo apt install ros-noetic-image-transport</code>.</p>
+<p>如果遇到“Could NOT find PY_em (missing: PY_EM)”错误，就需要运行<code>catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3</code>。</p>
+<p>报错参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/tanmx219/article/details/122765853">ROS报错：– Could NOT find PY_em (missing: PY_EM)</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44388819/article/details/119668822">ROS报错：Command ‘catkin_make‘ not found</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/546426618">【ROS】解决rosdep无法更新、缺少依赖问题</a></p>
+<h2 id="可视化测试"><a href="#可视化测试" class="headerlink" title="可视化测试"></a>可视化测试</h2><p>运行<code>rosrun</code>找不到命令的话，可以使用<code>sudo apt install ros-noetic-rosbash</code>安装。</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo apt-get install ros-noetic-rviz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在终端输入下面命令，这个命令会一直运行，可以用Ctrl+C结束。要在<strong>catkin_velodyne</strong>目录下运行。</p>
+<pre class="line-numbers language-none"><code class="language-none">roslaunch velodyne_pointcloud VLP16_points.launch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>运行后会出现一个窗口，将其左上角<em>Fixed Frame</em>的<em>map</em>修改为<em>velodyne</em>。如果是运行<code>rosrun rviz rviz -f velodyne</code>命令话就不用做这一步了。</p>
+<p><img src="/posts/25/1.png"></p>
+<p>再点击左下角的<em>Add</em>，在弹出的窗口中选择<em>By topic</em>，再选择<em>PointCloud2</em>，最后点击OK</p>
+<p><img src="/posts/25/2.png"></p>
+<p>之后就可以在右侧看到可视化点云了。</p>
+<p><img src="/posts/25/3.png"></p>
+<h3 id="录制和播放点云"><a href="#录制和播放点云" class="headerlink" title="录制和播放点云"></a>录制和播放点云</h3><p>在终端运行下面命令可以录制点云，点云记录会默认生成在运行目录。可以使用Crtl+C结束录制。</p>
+<pre class="line-numbers language-none"><code class="language-none">rosbag record out &#x2F;velodyne_points<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在终端运行下面命令可以播放点云，第一个参数填写要播放的点云记录。可以在rviz中看到播放的结果。按空格键可以暂停播放。</p>
+<pre class="line-numbers language-none"><code class="language-none">rosbag play 2023-03-28-22-49-58.bag<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>但是如果是在一直可视化显示点云的rviz下播放记录会出现重叠现象，看起来非常不舒服，因此最好是再重新开一个rviz窗口进行播放。</p>
+<p>在终端输入<code>roscore</code>命令，然后再重新开一个终端输入<code>rosrun rviz rviz -f velodyne</code>命令。</p>
+<p>点击左下角的<em>Add</em>，在弹出的窗口中选择<em>PointCloud2</em>，最后点击OK</p>
+<p><img src="/posts/25/4.png"></p>
+<p>点开左侧的<em>PointCloud2</em>，将<em>Topic</em>的内容改为*/velodyne_points*</p>
+<p><img src="/posts/25/5.png"></p>
+<p>之后在终端中输入播放命令<code>rosbag play 2023-03-28-22-49-58.bag</code>，就可以在该窗口的右侧看到播放画面了。</p>
+<h3 id="将bag文件转化成pcd文件"><a href="#将bag文件转化成pcd文件" class="headerlink" title="将bag文件转化成pcd文件"></a>将bag文件转化成pcd文件</h3><p>录制点云会生成bag文件，可以将该文件记录的每一帧点云转换成pcd格式并保存下来。</p>
+<p>首先在终端中输入<code>roscore</code>命令</p>
+<p>再开启一个终端输入下面的命令。<em>output.bag</em>为要处理的bag文件；*pcd/*为最终pcd文件的输出目录</p>
+<pre class="line-numbers language-none"><code class="language-none">rosrun pcl_ros bag_to_pcd output.bag &#x2F;velodyne_points pcd&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="python获取实时点云数据并保存成pcd文件"><a href="#python获取实时点云数据并保存成pcd文件" class="headerlink" title="python获取实时点云数据并保存成pcd文件"></a>python获取实时点云数据并保存成pcd文件</h3><p>使用python获取VLP16返回的实时点云数据，并把每一帧数据保存成pcd文件。下面介绍两种方式：</p>
+<p><strong>方式一：</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">#!&#x2F;usr&#x2F;bin&#x2F;env python
+
+import rospy
+from sensor_msgs.msg import PointCloud2
+import sensor_msgs.point_cloud2 as pc2
+
+
+counts &#x3D; 0
+def callback(data):
+    global counts
+    counts +&#x3D; 1
+    gen &#x3D; pc2.read_points(data, skip_nans&#x3D;True)
+    cloud &#x3D; []
+    for p in gen:
+        # p是元组类型，代表一个点云数据，一共有6个元素，分别为x, y, z, intensity, ring, time
+        cloud.append([p[0], p[1], p[2]])
+    # pcd_name &#x3D; str(counts) + &quot;.pcd&quot;
+    with open(&#39;output.pcd&#39;, &#39;w&#39;) as f:
+        f.write(&#39;# .PCD v.7 - Point Cloud Data file format\n&#39;)
+        f.write(&#39;VERSION .7\n&#39;)
+        f.write(&#39;FIELDS x y z\n&#39;)
+        f.write(&#39;SIZE 4 4 4\n&#39;)
+        f.write(&#39;TYPE F F F\n&#39;)
+        f.write(&#39;COUNT 1 1 1\n&#39;)
+        f.write(&#39;WIDTH %d\n&#39; % len(cloud))
+        f.write(&#39;HEIGHT 1\n&#39;)
+        f.write(&#39;VIEWPOINT 0 0 0 1 0 0 0\n&#39;)
+        f.write(&#39;POINTS %d\n&#39; % len(cloud))
+        f.write(&#39;DATA ascii\n&#39;)
+        for p in cloud:
+            f.write(&#39;%f %f %f\n&#39; % (p[0], p[1], p[2]))
+    print(counts)
+
+
+def listener():
+    rospy.init_node(&#39;velodyne_listener&#39;, anonymous&#x3D;True)
+    rospy.Subscriber(&#39;&#x2F;velodyne_points&#39;, PointCloud2, callback)
+    rospy.spin()
+
+if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+    listener()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>方式二：</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import rospy
+from sensor_msgs.msg import PointCloud2
+import sensor_msgs.point_cloud2 as pc2
+
+
+counts &#x3D; 0
+def callback(data):
+    global counts
+    counts +&#x3D; 1
+    # cloud_list是列表类型，其存放着每个点云数据
+    # 每个点云数据是sensor_msgs.point_cloud2.Point类型，共有6个元素，分别为x, y, z, intensity, ring, time
+    cloud_list &#x3D; pc2.read_points_list(data, skip_nans&#x3D;True)
+    # pcd_name &#x3D; str(counts) + &quot;.pcd&quot;
+    with open(&#39;output_list.pcd&#39;, &#39;w&#39;) as f:
+        f.write(&#39;# .PCD v.7 - Point Cloud Data file format\n&#39;)
+        f.write(&#39;VERSION .7\n&#39;)
+        f.write(&#39;FIELDS x y z\n&#39;)
+        f.write(&#39;SIZE 4 4 4\n&#39;)
+        f.write(&#39;TYPE F F F\n&#39;)
+        f.write(&#39;COUNT 1 1 1\n&#39;)
+        f.write(&#39;WIDTH %d\n&#39; % len(cloud_list))
+        f.write(&#39;HEIGHT 1\n&#39;)
+        f.write(&#39;VIEWPOINT 0 0 0 1 0 0 0\n&#39;)
+        f.write(&#39;POINTS %d\n&#39; % len(cloud_list))
+        f.write(&#39;DATA ascii\n&#39;)
+        for i in range(len(cloud_list)):
+            f.write(&#39;%f %f %f\n&#39; % (cloud_list[i][0], cloud_list[i][1], cloud_list[i][2]))
+    print(counts)
+
+
+def listener():
+    rospy.init_node(&#39;velodyne_listener&#39;, anonymous&#x3D;True)
+    rospy.Subscriber(&#39;&#x2F;velodyne_points&#39;, PointCloud2, callback)
+    rospy.spin()
+
+if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+    listener()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="实时可视化激光雷达点云数据"><a href="#实时可视化激光雷达点云数据" class="headerlink" title="实时可视化激光雷达点云数据"></a>实时可视化激光雷达点云数据</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">from sensor_msgs.msg import PointCloud2
+import sensor_msgs.point_cloud2 as pc2
+import numpy as np
+import open3d as o3d
+import rospy
+import cv2
+
+
+# 按下B结束运行
+def key_callback(vis):
+    global stop_flag
+    stop_flag &#x3D; True
+    print(&quot;Stop&quot;)
+
+
+if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
+    # 创建可视化窗口和点云
+    vis &#x3D; o3d.visualization.VisualizerWithKeyCallback()
+    vis.create_window(width&#x3D;1080, height&#x3D;720)
+    vis_render &#x3D; vis.get_render_option()
+    vis_render.background_color &#x3D; (0, 0, 0)
+    vis.register_key_callback(ord(&#39;B&#39;), key_callback)
+    pcd &#x3D; o3d.geometry.PointCloud()
+
+    # 标记
+    add_flag &#x3D; False    # 首次vis.add标记
+    stop_flag &#x3D; False    # 停止标记
+
+    # 初始化ros节点
+    rospy.init_node(&#39;velodyne_listener&#39;, anonymous&#x3D;True)
+
+    while not stop_flag:      
+        # 等待一次消息
+        data &#x3D; rospy.wait_for_message(&#39;&#x2F;velodyne_points&#39;, PointCloud2, timeout&#x3D;None)
+        gen &#x3D; pc2.read_points(data, skip_nans&#x3D;True)
+        cloud &#x3D; []
+        for p in gen:
+            cloud.append([p[0], p[1], p[2], p[3]])
+        points &#x3D; np.array(cloud).astype(np.float32)
+        # 提取xyz，暂时不需要强度
+        points_xyz &#x3D; points[:, :3]
+
+        pcd.points &#x3D; o3d.utility.Vector3dVector(points_xyz)
+        if not add_flag:
+            vis.add_geometry(pcd)
+            add_flag &#x3D; True
+        vis.update_geometry(pcd)
+        vis.poll_events()
+        vis.update_renderer()
+    vis.destroy_window()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在这里使用的是<code>rospy.wait_for_message</code>用于接收一次消息，该函数会返回接收到的消息。可以设置*timeout=rospy.Duration(1)*，代表超时时间为1秒钟。如果在1秒内没有收到消息，则函数会返回None。</p>
+<p>如果使用<code>rospy.spin</code>的话，程序运行到这行代码就会卡死，不会往下执行其他代码，所以在实时可视化的时候不能使用。</p>
 
                 
             </div>
@@ -452,7 +570,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/2.html">https://lightningleader.github.io/posts/2.html</a>
+                    <a href="https://lightningleader.github.io/posts/25.html">https://lightningleader.github.io/posts/25.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -490,16 +608,12 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
-                                <a href="/tags/%E7%A1%AC%E4%BB%B6%E4%BD%BF%E7%94%A8/">
-                                    <span class="chip bg-color">硬件使用</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                                    <span class="chip bg-color">单片机</span>
+                                <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                                    <span class="chip bg-color">三维点云</span>
                                 </a>
                             
                         </div>
@@ -808,28 +922,30 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/3.html">
+                <a href="/posts/25.html">
                     <div class="card-image">
                         
-                        <img src="/images/%E5%BE%AA%E8%BF%B9%E6%99%BA%E8%83%BD%E5%B0%8F%E8%BD%A6%20%E5%BE%AA%E9%BB%91%E7%BA%BF/1.jpg" class="responsive-img" alt="循迹智能小车 循黑线">
                         
-                        <span class="card-title">循迹智能小车 循黑线</span>
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="ROS中使用VLP16激光雷达获取点云数据">
+                        
+                        <span class="card-title">ROS中使用VLP16激光雷达获取点云数据</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            循迹智能小车 循黑线
+                            ROS中使用VLP16激光雷达获取点云数据
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -838,15 +954,16 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA/">
-                        <span class="chip bg-color">单片机</span>
+                    <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                        <span class="chip bg-color">三维点云</span>
                     </a>
                     
                 </div>
@@ -860,24 +977,24 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/1.html">
+                <a href="/posts/24.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="Markdown学习笔记">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="open3d可视化点云">
                         
-                        <span class="card-title">Markdown学习笔记</span>
+                        <span class="card-title">open3d可视化点云</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Markdown学习笔记
+                            open3d可视化点云
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-09
                             </span>
                         <span class="publish-author">
                             
@@ -890,12 +1007,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
-                    </a>
-                    
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                        <span class="chip bg-color">三维点云</span>
                     </a>
                     
                 </div>
