@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="ROS中使用VLP16激光雷达获取点云数据, LightningMaster">
+    <meta name="keywords" content="OpenPCDet安装、使用方式及自定义数据集训练, LightningMaster">
     <meta name="description" content="寄">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>ROS中使用VLP16激光雷达获取点云数据 | LightningMaster</title>
+    <title>OpenPCDet安装、使用方式及自定义数据集训练 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">ROS中使用VLP16激光雷达获取点云数据</h1>
+                    <h1 class="description center-align post-title">OpenPCDet安装、使用方式及自定义数据集训练</h1>
                 </div>
             </div>
         </div>
@@ -310,6 +310,10 @@
                                 <span class="chip bg-color">三维点云</span>
                             </a>
                         
+                            <a href="/tags/%E4%B8%89%E7%BB%B4%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
+                                <span class="chip bg-color">三维目标检测</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -336,7 +340,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    3.6k
                 </div>
                 
 
@@ -366,184 +370,386 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="ROS中使用VLP16激光雷达获取点云数据"><a href="#ROS中使用VLP16激光雷达获取点云数据" class="headerlink" title="ROS中使用VLP16激光雷达获取点云数据"></a>ROS中使用VLP16激光雷达获取点云数据</h1><a id="more"></a>
+                <h1 id="OpenPCDet安装、使用方式及自定义数据集训练"><a href="#OpenPCDet安装、使用方式及自定义数据集训练" class="headerlink" title="OpenPCDet安装、使用方式及自定义数据集训练"></a>OpenPCDet安装、使用方式及自定义数据集训练</h1><a id="more"></a>
 
-<p>本文测试环境为：<strong>Ubuntu20.04</strong>    <strong>ROS Noetic</strong></p>
-<hr>
-<p>需要将激光雷达与PC连接，然后在设置=&gt;网络=&gt;有线中将IPv4改为手动，并且地址为<strong>192.168.1.100</strong>，子网掩码为<strong>255.255.255.0</strong>，点击应用。然后在浏览器输入192.168.1.201，如果成功进入配置界面则表示连接成功。</p>
-<h2 id="安装VLP驱动"><a href="#安装VLP驱动" class="headerlink" title="安装VLP驱动"></a>安装VLP驱动</h2><pre class="line-numbers language-none"><code class="language-none">cd catkin_ws&#x2F;src
-git clone https:&#x2F;&#x2F;github.com&#x2F;ros-drivers&#x2F;velodyne.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>继续执行下面命令。如果在执行第二条命令的时候报错了，需要根据终端的提示安装一些包或者可以看看这篇文章<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/546426618">点我</a></p>
-<pre class="line-numbers language-none"><code class="language-none">cd ..
-rosdep install --from-paths src --ignore-src --rosdistro noetic -y
-catkin_make<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p><strong>报错处理：</strong></p>
-<p>如果<code>catkin_make</code>命令找不到，就需要看<a href="#%E5%AE%89%E8%A3%85ROS%E4%BE%9D%E8%B5%96">安装ROS依赖</a>最后source脚本部分有没有完成。</p>
-<p>编译中间如果出现找不到文件的报错，大概率是没有安装对应的包。</p>
-<p>例如出现“Could NOT find image_transport (missing: image_transport_DIR)”错误，那就需要在终端输入<code>sudo apt install ros-noetic-image-transport</code>.</p>
-<p>如果遇到“Could NOT find PY_em (missing: PY_EM)”错误，就需要运行<code>catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python3</code>。</p>
-<p>报错参考文章：</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/tanmx219/article/details/122765853">ROS报错：– Could NOT find PY_em (missing: PY_EM)</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44388819/article/details/119668822">ROS报错：Command ‘catkin_make‘ not found</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/546426618">【ROS】解决rosdep无法更新、缺少依赖问题</a></p>
-<h2 id="可视化测试"><a href="#可视化测试" class="headerlink" title="可视化测试"></a>可视化测试</h2><p>运行<code>rosrun</code>找不到命令的话，可以使用<code>sudo apt install ros-noetic-rosbash</code>安装。</p>
-<pre class="line-numbers language-none"><code class="language-none">sudo apt-get install ros-noetic-rviz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>在终端输入下面命令，这个命令会一直运行，可以用Ctrl+C结束。要在<strong>catkin_velodyne</strong>目录下运行。</p>
-<pre class="line-numbers language-none"><code class="language-none">roslaunch velodyne_pointcloud VLP16_points.launch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>运行后会出现一个窗口，将其左上角<em>Fixed Frame</em>的<em>map</em>修改为<em>velodyne</em>。如果是运行<code>rosrun rviz rviz -f velodyne</code>命令话就不用做这一步了。</p>
-<p><img src="/posts/25/1.png"></p>
-<p>再点击左下角的<em>Add</em>，在弹出的窗口中选择<em>By topic</em>，再选择<em>PointCloud2</em>，最后点击OK</p>
-<p><img src="/posts/25/2.png"></p>
-<p>之后就可以在右侧看到可视化点云了。</p>
-<p><img src="/posts/25/3.png"></p>
-<h2 id="录制和播放点云"><a href="#录制和播放点云" class="headerlink" title="录制和播放点云"></a>录制和播放点云</h2><p>在终端运行下面命令可以录制点云，点云记录会默认生成在运行目录。可以使用Crtl+C结束录制。</p>
-<pre class="line-numbers language-none"><code class="language-none">rosbag record out &#x2F;velodyne_points<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>在终端运行下面命令可以播放点云，第一个参数填写要播放的点云记录。可以在rviz中看到播放的结果。按空格键可以暂停播放。</p>
-<pre class="line-numbers language-none"><code class="language-none">rosbag play 2023-03-28-22-49-58.bag<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>但是如果是在一直可视化显示点云的rviz下播放记录会出现重叠现象，看起来非常不舒服，因此最好是再重新开一个rviz窗口进行播放。</p>
-<p>在终端输入<code>roscore</code>命令，然后再重新开一个终端输入<code>rosrun rviz rviz -f velodyne</code>命令。</p>
-<p>点击左下角的<em>Add</em>，在弹出的窗口中选择<em>PointCloud2</em>，最后点击OK</p>
-<p><img src="/posts/25/4.png"></p>
-<p>点开左侧的<em>PointCloud2</em>，将<em>Topic</em>的内容改为*/velodyne_points*</p>
-<p><img src="/posts/25/5.png"></p>
-<p>之后在终端中输入播放命令<code>rosbag play 2023-03-28-22-49-58.bag</code>，就可以在该窗口的右侧看到播放画面了。</p>
-<h2 id="将bag文件转化成pcd文件"><a href="#将bag文件转化成pcd文件" class="headerlink" title="将bag文件转化成pcd文件"></a>将bag文件转化成pcd文件</h2><p>录制点云会生成bag文件，可以将该文件记录的每一帧点云转换成pcd格式并保存下来。</p>
-<p>首先在终端中输入<code>roscore</code>命令</p>
-<p>再开启一个终端输入下面的命令。<em>output.bag</em>为要处理的bag文件；*pcd/*为最终pcd文件的输出目录</p>
-<pre class="line-numbers language-none"><code class="language-none">rosrun pcl_ros bag_to_pcd output.bag &#x2F;velodyne_points pcd&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="python获取实时点云数据并保存成pcd文件"><a href="#python获取实时点云数据并保存成pcd文件" class="headerlink" title="python获取实时点云数据并保存成pcd文件"></a>python获取实时点云数据并保存成pcd文件</h2><p>使用python获取VLP16返回的实时点云数据，并把每一帧数据保存成pcd文件。下面介绍两种方式：</p>
-<p><strong>方式一：</strong></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">#!&#x2F;usr&#x2F;bin&#x2F;env python
+<h2 id="OpenPCDet安装"><a href="#OpenPCDet安装" class="headerlink" title="OpenPCDet安装"></a>OpenPCDet安装</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"># 先根据自己的cuda版本，安装对应的spconv
+pip install spconv-cu113
 
-import rospy
-from sensor_msgs.msg import PointCloud2
-import sensor_msgs.point_cloud2 as pc2
+# 下载OpenPCDet并安装
+git clone https:&#x2F;&#x2F;github.com&#x2F;open-mmlab&#x2F;OpenPCDet.git
+cd OpenPCDet
+pip install -r requirements.txt 
+python setup.py develop
 
+# 安装open3d（可视化工具）（推荐）
+pip install open3d
 
-counts &#x3D; 0
-def callback(data):
-    global counts
-    counts +&#x3D; 1
-    gen &#x3D; pc2.read_points(data, skip_nans&#x3D;True)
-    cloud &#x3D; []
-    for p in gen:
-        # p是元组类型，代表一个点云数据，一共有6个元素，分别为x, y, z, intensity, ring, time
-        cloud.append([p[0], p[1], p[2]])
-    # pcd_name &#x3D; str(counts) + &quot;.pcd&quot;
-    with open(&#39;output.pcd&#39;, &#39;w&#39;) as f:
-        f.write(&#39;# .PCD v.7 - Point Cloud Data file format\n&#39;)
-        f.write(&#39;VERSION .7\n&#39;)
-        f.write(&#39;FIELDS x y z\n&#39;)
-        f.write(&#39;SIZE 4 4 4\n&#39;)
-        f.write(&#39;TYPE F F F\n&#39;)
-        f.write(&#39;COUNT 1 1 1\n&#39;)
-        f.write(&#39;WIDTH %d\n&#39; % len(cloud))
-        f.write(&#39;HEIGHT 1\n&#39;)
-        f.write(&#39;VIEWPOINT 0 0 0 1 0 0 0\n&#39;)
-        f.write(&#39;POINTS %d\n&#39; % len(cloud))
-        f.write(&#39;DATA ascii\n&#39;)
-        for p in cloud:
-            f.write(&#39;%f %f %f\n&#39; % (p[0], p[1], p[2]))
-    print(counts)
+# （可选）安装mayavi（可视化工具）
+pip install vtk
+pip install mayavi
+pip install PyQt5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>安装完，就可以运行<strong>demo.py</strong>，测试一下。（需要准备好模型和数据文件）</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">python demo.py --cfg_file cfgs&#x2F;kitti_models&#x2F;pv_rcnn.yaml --ckpt pv_rcnn_8369.pth --data_path ..&#x2F;data&#x2F;kitti&#x2F;testing&#x2F;velodyne&#x2F;000001.bin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果出现<strong>SharedArray</strong>相关的错误的话，可以适当的降低其版本。例如<code>pip install -U SharedArray==3.1</code></p>
+<p>注意，<strong>demo.py</strong>运行成功需要在具有显示设备的条件下，如果只有终端的话是无法运行成功的。</p>
+<h2 id="KITTI数据集训练"><a href="#KITTI数据集训练" class="headerlink" title="KITTI数据集训练"></a>KITTI数据集训练</h2><p>首先需要准备KITTI数据集，为了快速训练演示，选取100个数据进行训练。将数据集按照以下目录格式存放。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">OpenPCDet
+├── data
+│   ├── kitti
+│   │   │── ImageSets
+│   │   │── training
+│   │   │   ├──calib &amp; velodyne &amp; label_2 &amp; image_2 &amp; (optional: planes) &amp; (optional: depth_2)
+│   │   │── testing
+│   │   │   ├──calib &amp; velodyne &amp; image_2
+├── pcdet
+├── tools<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>ImageSets</strong>中存在<strong>train.txt val.txt test.txt</strong>文本，其内容为训练、验证和测试使用的数据。</p>
+<p>运行下面的代码以生成infos，生成的文件可在<strong>data/kitti</strong>找到。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">python -m pcdet.datasets.kitti.kitti_dataset create_kitti_infos tools&#x2F;cfgs&#x2F;dataset_configs&#x2F;kitti_dataset.yaml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>openPCDet的可训练网络配置（KITTI数据集）存放在<strong>cfgs/kitti_models</strong>目录下。以<strong>pv_rcnn</strong>训练为例，由于本次没有使用planes数据，将pv_rcnn.yaml中的<strong>USE_ROAD_PLANE</strong>改成False。之后在tools目录下运行下面代码即可进行训练。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">python train.py --cfg_file cfgs&#x2F;kitti_models&#x2F;pv_rcnn.yaml --batch_size 1 --workers 1 --epochs 10<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img src="/posts/26/1.png"></p>
+<p>训练结束后可以在<strong>output/kitti_models</strong>目录中找到模型文件。</p>
+<h2 id="训练注意事项—train-py（以KITTI数据集为例）"><a href="#训练注意事项—train-py（以KITTI数据集为例）" class="headerlink" title="训练注意事项—train.py（以KITTI数据集为例）"></a>训练注意事项—train.py（以KITTI数据集为例）</h2><ol>
+<li><p>如果不指定具体的ckpt，<strong>train.py</strong>中会默认加载最新的ckpt。换句话说，如果上一次训练pv_rcnn网络的epochs为5，得到了5个ckpt，下一次训练pv_rcnn的时候没有指定ckpt且epochs值小于等于5，那么就不会进入训练而是直接进入eval。如果本次epochs为大于5的值，则会接着epochs=5的ckpt训练。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># trian.py中的相关代码
+# 如果ckpt不为None的话，就加载该ckpt，并从指定ckpt的epoch开始训练
+if args.ckpt is not None:
+    it, start_epoch &#x3D; model.load_params_with_optimizer(args.ckpt, to_cpu&#x3D;dist_train, optimizer&#x3D;optimizer, logger&#x3D;logger)
+    last_epoch &#x3D; start_epoch + 1
+else:
+    # 如果为None的话，会默认加载最新的ckpt
+    ckpt_list &#x3D; glob.glob(str(ckpt_dir &#x2F; &#39;*.pth&#39;))
 
+    if len(ckpt_list) &gt; 0:
+        # 按时间进行排序
+        ckpt_list.sort(key&#x3D;os.path.getmtime)
+        while len(ckpt_list) &gt; 0:
+            try:
+                it, start_epoch &#x3D; model.load_params_with_optimizer(
+                    ckpt_list[-1], to_cpu&#x3D;dist_train, optimizer&#x3D;optimizer, logger&#x3D;logger
+                )
+                last_epoch &#x3D; start_epoch + 1
+                break
+            except:
+                ckpt_list &#x3D; ckpt_list[:-1]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><strong>max_ckpt_save_num</strong>参数代表最大保存ckpt的数量。如果当前ckpt的数量多于最大保存ckpt数量，那么会删除几个时间最早的ckpt。默认为30.</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># train_utils.py中的相关代码
+ckpt_list &#x3D; glob.glob(str(ckpt_save_dir &#x2F; &#39;checkpoint_epoch_*.pth&#39;))
+ckpt_list.sort(key&#x3D;os.path.getmtime)
 
-def listener():
-    rospy.init_node(&#39;velodyne_listener&#39;, anonymous&#x3D;True)
-    rospy.Subscriber(&#39;&#x2F;velodyne_points&#39;, PointCloud2, callback)
-    rospy.spin()
+# 如果当前ckpt的数量多于最大保存ckpt数量，那么会删除几个时间最早的ckpt
+if ckpt_list.__len__() &gt;&#x3D; max_ckpt_save_num:
+    for cur_file_idx in range(0, len(ckpt_list) - max_ckpt_save_num + 1):
+        os.remove(ckpt_list[cur_file_idx])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><strong>ckpt_save_time_interval</strong>参数代表每隔{ckpt_save_time_interval}秒保存一次ckpt。默认为300</p>
+</li>
+<li><p>train.py中的eval使用的数据集是kitti_dataset.yaml中的test值。默认配置下，kitti_dataset.yaml中test值为val，如下面代码所示：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># kitti_dataset.yaml
+&quot;&quot;&quot;
+总得来说，在训练的时候&#39;train&#39;和&#39;test&#39;分别对应训练集和验证集；在测试的时候&#39;test&#39;对应测试集。
+所以需要根据训练和测试任务更换test的配置。
+&quot;&quot;&quot;
 
-if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
-    listener()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>方式二：</strong></p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">import rospy
-from sensor_msgs.msg import PointCloud2
-import sensor_msgs.point_cloud2 as pc2
+# 需要加载的文件名称，默认为train.txt val.txt
+DATA_SPLIT: &#123;
+    &#39;train&#39;: train,
+    &#39;test&#39;: val
+&#125;
 
+# 需要加载的pkl文件 可以设置多个
+INFO_PATH: &#123;
+    &#39;train&#39;: [kitti_infos_train.pkl],
+    &#39;test&#39;: [kitti_infos_val.pkl],
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果想要修改val数据集，就需要修改<strong>DATA_SPLIT</strong>和<strong>INFO_PATH</strong>中的test值。</p>
+</li>
+<li><p><strong>num_epochs_to_eval</strong>参数代表只评估最后{num_epochs_to_eval}个epoch。比如当num_epochs_to_eval为1的时候，总epochs为5，那么只会评估后面4个epoch。默认为0，也就是每个epoch都评估。</p>
+</li>
+<li><p><em>build_dataloader</em>函数中</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># 使用变量 dataset_cfg.DATASET 中指定的数据集类型，创建一个数据集对象 dataset
+# 如果dataset_cfg.DATASET为KittiDataset，那么返回的dataset为kitti_dataset.py中的KittiDataset类型
+dataset &#x3D; __all__[dataset_cfg.DATASET](
+    dataset_cfg&#x3D;dataset_cfg,
+    class_names&#x3D;class_names,
+    root_path&#x3D;root_path,
+    training&#x3D;training,
+    logger&#x3D;logger,
+)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><em>cfg_from_yaml_file</em>函数将网络yaml和数据集yaml合并在一起，如果存在相同的key，则用网络yaml相应的val替换。因此如果网络yaml和数据集yaml中存在相同类型的配置，比如数据增强，那么最终训练使用的配置是网络yaml中的配置。实现这部分的相关代码可以在<strong>config.py</strong>中找到。</p>
+</li>
+</ol>
+<h2 id="测试注意事项—test-py（以KITTI数据集为例）"><a href="#测试注意事项—test-py（以KITTI数据集为例）" class="headerlink" title="测试注意事项—test.py（以KITTI数据集为例）"></a>测试注意事项—test.py（以KITTI数据集为例）</h2><ol>
+<li><p>运行<strong>test.py</strong>使用的测试数据集可以在<strong>kitti_dataset.yaml</strong>中的<strong>DATA_SPLIT</strong>和<strong>INFO_PATH</strong>找到相关配置。其中，它加载的测试数据集是<strong>INFO_PATH</strong>中的test值，这个值是一个列表，里面可以填多个.pkl文件，这部分的加载代码可以在<strong>kitti_dataset.py</strong>的<strong>include_kitti_data</strong>函数中找到；<strong>DATA_SPLIT</strong>中的test值默认为val，表示加载val.txt。</p>
+<p>所以说如果想要修改测试数据集就需要修改<strong>DATA_SPLIT</strong>和<strong>INFO_PATH</strong>中的test值。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># kitti_dataset.yaml
+&quot;&quot;&quot;
+总得来说，在训练的时候&#39;train&#39;和&#39;test&#39;分别对应训练集和验证集；在测试的时候&#39;test&#39;对应测试集。
+所以需要根据训练和测试任务更换test的配置。
+&quot;&quot;&quot;
+# 需要加载的文件名称，默认为train.txt val.txt
+DATA_SPLIT: &#123;
+    &#39;train&#39;: train,
+    &#39;test&#39;: val
+&#125;
 
-counts &#x3D; 0
-def callback(data):
-    global counts
-    counts +&#x3D; 1
-    # cloud_list是列表类型，其存放着每个点云数据
-    # 每个点云数据是sensor_msgs.point_cloud2.Point类型，共有6个元素，分别为x, y, z, intensity, ring, time
-    cloud_list &#x3D; pc2.read_points_list(data, skip_nans&#x3D;True)
-    # pcd_name &#x3D; str(counts) + &quot;.pcd&quot;
-    with open(&#39;output_list.pcd&#39;, &#39;w&#39;) as f:
-        f.write(&#39;# .PCD v.7 - Point Cloud Data file format\n&#39;)
-        f.write(&#39;VERSION .7\n&#39;)
-        f.write(&#39;FIELDS x y z\n&#39;)
-        f.write(&#39;SIZE 4 4 4\n&#39;)
-        f.write(&#39;TYPE F F F\n&#39;)
-        f.write(&#39;COUNT 1 1 1\n&#39;)
-        f.write(&#39;WIDTH %d\n&#39; % len(cloud_list))
-        f.write(&#39;HEIGHT 1\n&#39;)
-        f.write(&#39;VIEWPOINT 0 0 0 1 0 0 0\n&#39;)
-        f.write(&#39;POINTS %d\n&#39; % len(cloud_list))
-        f.write(&#39;DATA ascii\n&#39;)
-        for i in range(len(cloud_list)):
-            f.write(&#39;%f %f %f\n&#39; % (cloud_list[i][0], cloud_list[i][1], cloud_list[i][2]))
-    print(counts)
+# 需要加载的pkl文件 可以设置多个
+INFO_PATH: &#123;
+    &#39;train&#39;: [kitti_infos_train.pkl],
+    &#39;test&#39;: [kitti_infos_val.pkl],
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+</li>
+</ol>
+<h2 id="demo-py和open3d-vis-utils-py分析（以KITTI数据集为例）"><a href="#demo-py和open3d-vis-utils-py分析（以KITTI数据集为例）" class="headerlink" title="demo.py和open3d_vis_utils.py分析（以KITTI数据集为例）"></a>demo.py和open3d_vis_utils.py分析（以KITTI数据集为例）</h2><ol>
+<li><p>使用Demo.py时，如果传入数据集参数时文件夹，则会获取文件夹所有符合后缀条件（.bin/.npy）的文件。</p>
+</li>
+<li><p>模型预测结果pred_dicts是一个列表，列表元素为字典，字典包含’pred_boxes’, ‘pred_scores’, ‘pred_labels’三个键。</p>
+</li>
+<li><p>在open3d_vis_utils.py开头加入下面代码，目的是方式警告。不知道是什么原因，使用的时候一直会报颜色设置错误的警告。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># 关闭警告
+open3d.utility.set_verbosity_level(open3d.utility.VerbosityLevel.Error)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li><p>在<em>draw_box</em>函数中可以得到box3d，它是OrientedBoundingBox类型，所以可以通过<em>get_box_points</em>、<em>get_center</em>等函数获得相应的点坐标。</p>
+</li>
+<li><p>可以在<em>draw_box</em>函数中加入下面代码，功能是给方框标记中心点，中心点的颜色与方框相同。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># 给方框标记中心点
+if center:
+    sphere_center &#x3D; open3d.geometry.TriangleMesh.create_sphere(radius&#x3D;0.1)
+    sphere_center.paint_uniform_color(box_colormap[ref_labels[i]])
+    sphere_center.translate(box3d.get_center())
+    vis.add_geometry(sphere_center)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>可以在open3d_vis_utils.py中添加下面的代码用于绘制<strong>POINT_CLOUD_RANGE</strong>。如图所示，红色框为点云边界框。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># 根据最大边界点和最小边界点画出方框---在这里是用于画POINT_CLOUD_RANGE的，该参数配置于voxset.yaml
+min_bound &#x3D; [0, -39.68, -3]
+max_bound &#x3D; [69.12, 39.68, 1]
+bbox &#x3D; open3d.geometry.AxisAlignedBoundingBox(min_bound, max_bound)
+bbox_lines &#x3D; open3d.geometry.LineSet.create_from_axis_aligned_bounding_box(bbox)
+bbox_lines.paint_uniform_color([1, 0, 0])
+vis.add_geometry(bbox_lines)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/posts/26/2.png"></p>
+</li>
+</ol>
+<h2 id="使用自定义数据集进行训练"><a href="#使用自定义数据集进行训练" class="headerlink" title="使用自定义数据集进行训练"></a>使用自定义数据集进行训练</h2><p><a target="_blank" rel="noopener" href="https://github.com/open-mmlab/OpenPCDet/blob/master/docs/CUSTOM_DATASET_TUTORIAL.md">官方教程</a></p>
+<h3 id="准备数据集"><a href="#准备数据集" class="headerlink" title="准备数据集"></a>准备数据集</h3><p>首先需要按照官方教程创建文件目录，如下所示。</p>
+<pre class="line-numbers language-none"><code class="language-none">OpenPCDet
+├── data
+│   ├── custom
+│   │   │── ImageSets
+│   │   │   │── train.txt
+│   │   │   │── val.txt
+│   │   │── points
+│   │   │   │── 000000.npy
+│   │   │   │── 999999.npy
+│   │   │── labels
+│   │   │   │── 000000.txt
+│   │   │   │── 999999.txt
+├── pcdet
+├── tools<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用SUSTechPOINTS标注完后会得到json格式的标签文件，我们需要提取有用的内容再保存成txt格式。</p>
+<p>OpenPCDet支持的自定义label文件格式如下所示</p>
+<pre class="line-numbers language-none"><code class="language-none"># format: [x y z dx dy dz heading_angle category_name]
+1.50 1.46 0.10 5.12 1.85 4.13 1.56 Vehicle
+5.54 0.57 0.41 1.08 0.74 1.95 1.57 Pedestrian<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>其中最后一个heading_angle，就是json标签文件中的rotation的z值。不过这个地方需要确保自己点云坐标系（激光雷达坐标系）与OpenPCDet中规定的坐标系是一致的，不然还需要转换成OpenPCDet坐标系。</p>
+<p><img src="/posts/26/3.png"></p>
+<p>可以使用下面这个函数实现将json格式的标签文件转换成符合OpenPCDet训练的标签文件。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def json_to_txt(json_path, txt_path):
+    &quot;&quot;&quot;
+    将json文件转化成符合OpenPCDet训练的标签文件
+    	json_path: json文件所在目录
+    	txt_path： 生成txt文件目录
+    &quot;&quot;&quot;
+    json_list &#x3D; os.listdir(json_path)
+    for json_name in json_list:
+        json_file &#x3D; os.path.join(json_path, json_name)
+        
+        with open(json_file, &#39;r&#39;) as f:
+            data &#x3D; json.load(f)
+        label_list &#x3D; []
+        for obj_dict in data:
+            label_name &#x3D; obj_dict[&quot;obj_type&quot;]
+            pos_xyz &#x3D; obj_dict[&quot;psr&quot;][&quot;position&quot;]
+            rot_xyz &#x3D; obj_dict[&quot;psr&quot;][&quot;rotation&quot;]
+            scale_xyz &#x3D; obj_dict[&quot;psr&quot;][&quot;scale&quot;]
+            
+            temp &#x3D; &quot;&quot;
+            for xyz_dict in [pos_xyz, scale_xyz]:
+                for key in [&quot;x&quot;, &quot;y&quot;, &quot;z&quot;]:
+                    temp +&#x3D; str(xyz_dict[key])
+                    temp +&#x3D; &quot; &quot;
+            temp +&#x3D; str(rot_xyz[&quot;z&quot;]) + &quot; &quot; + str(label_name) + &quot;\n&quot;
+            label_list.append(temp)
 
-def listener():
-    rospy.init_node(&#39;velodyne_listener&#39;, anonymous&#x3D;True)
-    rospy.Subscriber(&#39;&#x2F;velodyne_points&#39;, PointCloud2, callback)
-    rospy.spin()
+        txt_name &#x3D; json_name.split(&quot;.&quot;)[0] + &quot;.txt&quot;
+        with open(os.path.join(txt_path, txt_name), &quot;w&quot;) as f:
+            for label in label_list:
+                f.write(label)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>除了需要转换标签文件，还需要将pcd格式的点云转换成npy格式。可以使用下面的函数实现。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def pcd_to_npy(pcd_path, npy_path):
+    &quot;&quot;&quot;
+        将pcd文件转换成npy文件
+        pcd_path: pcd格式点云目录
+        npy_path: npy格式点云输出目录
+    &quot;&quot;&quot;
+    pcd_list &#x3D; os.listdir(pcd_path)
+    for pcd_name in pcd_list:
+        pcd_file &#x3D; os.path.join(pcd_path, pcd_name)
+        lidar &#x3D; []
+        pcd &#x3D; o3d.io.read_point_cloud(pcd_file)
+        points &#x3D; np.array(pcd.points)
 
-if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
-    listener()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="实时可视化激光雷达点云数据"><a href="#实时可视化激光雷达点云数据" class="headerlink" title="实时可视化激光雷达点云数据"></a>实时可视化激光雷达点云数据</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">from sensor_msgs.msg import PointCloud2
-import sensor_msgs.point_cloud2 as pc2
-import numpy as np
-import open3d as o3d
-import rospy
-import cv2
+        for linestr in points:
+            if len(linestr) &#x3D;&#x3D; 3:  # only x,y,z
+                linestr_convert &#x3D; list(map(float, linestr))
+                linestr_convert.append(0)
+                lidar.append(linestr_convert)
+            if len(linestr) &#x3D;&#x3D; 4:  # x,y,z,i
+                linestr_convert &#x3D; list(map(float, linestr))
 
+        lidar &#x3D; np.array(lidar).astype(np.float32)
+        np.save(os.path.join(npy_path, pcd_name[:-4]+&quot;.npy&quot;), lidar)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以使用下面的函数快速生成train.txt和val.txt</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">def get_train_val_txt(src_path, dst_path, num_of_train):
+    &quot;&quot;&quot;
+    	src_path: 标签文件目录
+    	dst_path: 输出文件目录
+    	num_of_train: 训练集样本数量
+    &quot;&quot;&quot;
+    src_list &#x3D; os.listdir(src_path)
+    random.shuffle(src_list)
+    with open(os.path.join(dst_path, &quot;train.txt&quot;), &#39;w&#39;) as f:
+        for index in range(num_of_train):
+            f.write(src_list[index].split(&quot;.&quot;)[0])
+            f.write(&#39;\n&#39;)
+    with open(os.path.join(dst_path, &quot;val.txt&quot;), &#39;w&#39;) as f:
+        for index in range(num_of_train, len(src_list)):
+            f.write(src_list[index].split(&quot;.&quot;)[0])
+            f.write(&#39;\n&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>将npy点云、txt标签、train.txt和val.txt放到指定目录下。修改<strong>custom_dataset.py</strong>，需要根据自己数据集修改分类类别。</p>
+<p><img src="/posts/26/4.png"></p>
+<p>修改<strong>custom_dataset.yaml</strong>。主要关注以下内容：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"># 与KITTI数据集映射   左边是自己数据集   右边是KITTI数据集
+# 这个地方只会在eval阶段会用到，所以如果自己不需要eval的话可以不加
+MAP_CLASS_TO_KITTI: &#123;
+    # &#39;Vehicle&#39;: &#39;Car&#39;
+    &#39;Pedestrian&#39;: &#39;Pedestrian&#39;,
+    &#39;BicycleRider&#39;: &#39;Cyclist&#39;,
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"># 需要与自己的点云数据格式对应，一般不需要改
+POINT_FEATURE_ENCODING: &#123;
+    encoding_type: absolute_coordinates_encoding,
+    used_feature_list: [&#39;x&#39;, &#39;y&#39;, &#39;z&#39;, &#39;intensity&#39;],
+    src_feature_list: [&#39;x&#39;, &#39;y&#39;, &#39;z&#39;, &#39;intensity&#39;],
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml">DATA_AUGMENTOR:
+    DISABLE_AUG_LIST: [&#39;placeholder&#39;]
+    AUG_CONFIG_LIST:
+        - NAME: gt_sampling
+          USE_ROAD_PLANE: False
+          DB_INFO_PATH:
+              - custom_dbinfos_train.pkl
+          PREPARE: &#123;
+          	# 需要改成自己的数据集类别
+            filter_by_min_points: [&#39;Pedestrian:5&#39;, &#39;BicycleRider:5&#39;],
+            # filter_by_difficulty: [-1], # 这个地方如果不注释的话训练可能会报错，可以自己尝试一下
+          &#125;
+		  # 需要改成自己的数据集类别
+          SAMPLE_GROUPS: [Pedestrian:15&#39;, &#39;BicycleRider:15&#39;]
+          NUM_POINT_FEATURES: 4
+          DATABASE_WITH_FAKELIDAR: False
+          REMOVE_EXTRA_WIDTH: [0.0, 0.0, 0.0]
+          LIMIT_WHOLE_SCENE: True<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最后在命令行运行下面命令。如果不报错的话就可以得到训练数据集了。</p>
+<pre class="line-numbers language-none"><code class="language-none">python -m pcdet.datasets.custom.custom_dataset create_custom_infos tools&#x2F;cfgs&#x2F;dataset_configs&#x2F;custom_dataset.yaml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="修改网络yaml配置文件"><a href="#修改网络yaml配置文件" class="headerlink" title="修改网络yaml配置文件"></a>修改网络yaml配置文件</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"># 要改成自己的类别
+CLASS_NAMES: [&#39;Pedestrian&#39;, &#39;BicycleRider&#39;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"># 需要修改成custom_dataset.yaml
+_BASE_CONFIG_: cfgs&#x2F;dataset_configs&#x2F;custom_dataset.yaml
+# 点云范围 [x_min, y_min, z_min, x_max, y_max, z_max]
+# 需要和VOXEL_SIZE满足倍数关系。X和Y轴与体素需要满足16倍的关系。详细配置可以看官方教程。
+POINT_CLOUD_RANGE: [0, -15.36, -2, 15.36, 15.36, 2]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"># 按照自己数据集修改
+DATA_AUGMENTOR:
+    DISABLE_AUG_LIST: [&#39;placeholder&#39;]
+    AUG_CONFIG_LIST:
+        - NAME: gt_sampling
+        # 该数据增强方法起源于SECOND网络，作者将其他帧ground truth矩形框内的点云抽取出来放在当前帧的空余位置，
+        # 以此来形成“新”一帧的训练数据，达到数据增强的目的。
+          USE_ROAD_PLANE: False
+          DB_INFO_PATH:
+              - custom_dbinfos_train.pkl
+          PREPARE: &#123;
+            # 保留至少5个点的车辆、行人和骑行者
+            filter_by_min_points: [&#39;Pedestrian:5&#39;, &#39;BicycleRider:5&#39;],
+            # filter_by_difficulty: [-1],
+          &#125;
+            # 指定需要采样的物体类别和数量
+          SAMPLE_GROUPS: [&#39;Pedestrian:15&#39;, &#39;BicycleRider:15&#39;]
+          NUM_POINT_FEATURES: 4
+          DATABASE_WITH_FAKELIDAR: False
+          REMOVE_EXTRA_WIDTH: [0.0, 0.0, 0.0]
+          LIMIT_WHOLE_SCENE: False<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"># anchor配置，需要适配自己的数据集
+ANCHOR_GENERATOR_CONFIG: [
+    &#123;
+        &#39;class_name&#39;: &#39;Pedestrian&#39;,
+        # 尺寸 长宽高 单位为米
+        &#39;anchor_sizes&#39;: [[0.75, 0.66, 1.73]],
+        &#39;anchor_rotations&#39;: [0, 1.57],    # 旋转角度 0°和90°(弧度π&#x2F;2&#x3D;1.57）表示anchor可以沿水平和垂直方向旋转
+        &#39;anchor_bottom_heights&#39;: [-0.6],    # 底部高度，离地面的高度
+        &#39;align_center&#39;: False,    # 居中对齐
+        &#39;feature_map_stride&#39;: 1,    # 特征图步幅
+        &#39;matched_threshold&#39;: 0.5,    # 匹配阈值    高于这个阈值的被认为是正样本
+        &#39;unmatched_threshold&#39;: 0.35    # 不匹配阈值    低于这个阈值的被认为是负样本
+    &#125;,
+    &#123;
+        &#39;class_name&#39;: &#39;BicycleRider&#39;,
+        &#39;anchor_sizes&#39;: [[1.83, 0.74, 1.64]],
+        &#39;anchor_rotations&#39;: [0, 1.57],
+        &#39;anchor_bottom_heights&#39;: [-0.6],
+        &#39;align_center&#39;: False,
+        &#39;feature_map_stride&#39;: 1,
+        &#39;matched_threshold&#39;: 0.5,
+        &#39;unmatched_threshold&#39;: 0.35
+    &#125;
+]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以使用下面的代码获取自己类别的平均anchor</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"># 获取每个类别的评价lwh，以此来设置anchor
 
-# 按下B结束运行
-def key_callback(vis):
-    global stop_flag
-    stop_flag &#x3D; True
-    print(&quot;Stop&quot;)
+import os
 
+if __name__ &#x3D;&#x3D; &quot;__main__&quot;:
+    label_path &#x3D; &quot;data&#x2F;custom&#x2F;labels&quot;
+    label_list &#x3D; os.listdir(label_path)
+    # l w h
+    P_counts &#x3D; 0
+    Pedestrian &#x3D; [0.0, 0.0, 0.0]
+    B_counts &#x3D; 0
+    BicycleRider &#x3D; [0.0, 0.0, 0.0]
 
-if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
-    # 创建可视化窗口和点云
-    vis &#x3D; o3d.visualization.VisualizerWithKeyCallback()
-    vis.create_window(width&#x3D;1080, height&#x3D;720)
-    vis_render &#x3D; vis.get_render_option()
-    vis_render.background_color &#x3D; (0, 0, 0)
-    vis.register_key_callback(ord(&#39;B&#39;), key_callback)
-    pcd &#x3D; o3d.geometry.PointCloud()
+    for label_name in label_list:
+        label_file &#x3D; os.path.join(label_path, label_name)
+        with open(label_file, &#39;r&#39;) as f:
+            data &#x3D; f.readlines()
+            for line in data:
+                temp_list &#x3D; line.split(&quot; &quot;)
+                cls_name &#x3D; temp_list[-1][:-1]
+                if cls_name &#x3D;&#x3D; &quot;Pedestrian&quot;:
+                    Pedestrian[0] +&#x3D; float(temp_list[3])
+                    Pedestrian[1] +&#x3D; float(temp_list[4])
+                    Pedestrian[2] +&#x3D; float(temp_list[5])
+                    P_counts +&#x3D; 1
+                else:
+                    BicycleRider[0] +&#x3D; float(temp_list[3])
+                    BicycleRider[1] +&#x3D; float(temp_list[4])
+                    BicycleRider[2] +&#x3D; float(temp_list[5])
+                    B_counts +&#x3D; 1
 
-    # 标记
-    add_flag &#x3D; False    # 首次vis.add标记
-    stop_flag &#x3D; False    # 停止标记
-
-    # 初始化ros节点
-    rospy.init_node(&#39;velodyne_listener&#39;, anonymous&#x3D;True)
-
-    while not stop_flag:      
-        # 等待一次消息
-        data &#x3D; rospy.wait_for_message(&#39;&#x2F;velodyne_points&#39;, PointCloud2, timeout&#x3D;None)
-        gen &#x3D; pc2.read_points(data, skip_nans&#x3D;True)
-        cloud &#x3D; []
-        for p in gen:
-            cloud.append([p[0], p[1], p[2], p[3]])
-        points &#x3D; np.array(cloud).astype(np.float32)
-        # 提取xyz，暂时不需要强度
-        points_xyz &#x3D; points[:, :3]
-
-        pcd.points &#x3D; o3d.utility.Vector3dVector(points_xyz)
-        if not add_flag:
-            vis.add_geometry(pcd)
-            add_flag &#x3D; True
-        vis.update_geometry(pcd)
-        vis.poll_events()
-        vis.update_renderer()
-    vis.destroy_window()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在这里使用的是<code>rospy.wait_for_message</code>用于接收一次消息，该函数会返回接收到的消息。可以设置*timeout=rospy.Duration(1)*，代表超时时间为1秒钟。如果在1秒内没有收到消息，则函数会返回None。</p>
-<p>如果使用<code>rospy.spin</code>的话，程序运行到这行代码就会卡死，不会往下执行其他代码，所以在实时可视化的时候不能使用。</p>
+    print(f&quot;P l&#123;Pedestrian[0]&#x2F;P_counts&#125; w&#123;Pedestrian[1]&#x2F;P_counts&#125; h&#123;Pedestrian[2]&#x2F;P_counts&#125;&quot;)
+    print(f&quot;B l&#123;BicycleRider[0]&#x2F;B_counts&#125; w&#123;BicycleRider[1]&#x2F;B_counts&#125; h&#123;BicycleRider[2]&#x2F;B_counts&#125;&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>按照上述要求修改完就可以训练了。</p>
+<p>最后分享一下我自己拍摄标注的数据集：<a target="_blank" rel="noopener" href="https://wwxy.lanzouj.com/ihG600yp8kve">点我下载</a></p>
+<p>这个数据集是以树为目标的，已经处理成自定义数据集的格式了，可以直接使用。</p>
 
                 
             </div>
@@ -570,7 +776,7 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/25.html">https://lightningleader.github.io/posts/25.html</a>
+                    <a href="https://lightningleader.github.io/posts/26.html">https://lightningleader.github.io/posts/26.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -614,6 +820,10 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                             
                                 <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
                                     <span class="chip bg-color">三维点云</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%B8%89%E7%BB%B4%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
+                                    <span class="chip bg-color">三维目标检测</span>
                                 </a>
                             
                         </div>
@@ -922,9 +1132,10 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/posts/26.html">
                     <div class="card-image">
@@ -942,9 +1153,9 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-06-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -953,6 +1164,7 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -979,19 +1191,19 @@ if __name__ &#x3D;&#x3D; &#39;__main__&#39;:
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/24.html">
+                <a href="/posts/25.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="open3d可视化点云">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="ROS中使用VLP16激光雷达获取点云数据">
                         
-                        <span class="card-title">open3d可视化点云</span>
+                        <span class="card-title">ROS中使用VLP16激光雷达获取点云数据</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            open3d可视化点云
+                            ROS中使用VLP16激光雷达获取点云数据
                         
                     </div>
                     <div class="publish-info">
