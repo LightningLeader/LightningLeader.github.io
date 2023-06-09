@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="PX4飞控-自定义发送MavLink消息, LightningMaster">
+    <meta name="keywords" content="SUSTechPOINTS三维点云标注工具使用, LightningMaster">
     <meta name="description" content="寄">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>PX4飞控-自定义发送MavLink消息 | LightningMaster</title>
+    <title>SUSTechPOINTS三维点云标注工具使用 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -181,12 +181,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">PX4飞控-自定义发送MavLink消息</h1>
+                    <h1 class="description center-align post-title">SUSTechPOINTS三维点云标注工具使用</h1>
                 </div>
             </div>
         </div>
@@ -306,12 +306,12 @@
                                 <span class="chip bg-color">学习笔记</span>
                             </a>
                         
-                            <a href="/tags/PX4/">
-                                <span class="chip bg-color">PX4</span>
+                            <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                                <span class="chip bg-color">三维点云</span>
                             </a>
                         
-                            <a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/">
-                                <span class="chip bg-color">无人机</span>
+                            <a href="/tags/%E4%B8%89%E7%BB%B4%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
+                                <span class="chip bg-color">三维目标检测</span>
                             </a>
                         
                     </div>
@@ -326,21 +326,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-23
+                    2023-06-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-23
+                    2023-06-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    836
+                    659
                 </div>
                 
 
@@ -370,106 +370,91 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="PX4飞控-自定义发送MavLink消息"><a href="#PX4飞控-自定义发送MavLink消息" class="headerlink" title="PX4飞控-自定义发送MavLink消息"></a>PX4飞控-自定义发送MavLink消息</h1><a id="more"></a>
+                <h1 id="SUSTechPOINTS三维点云标注工具使用"><a href="#SUSTechPOINTS三维点云标注工具使用" class="headerlink" title="SUSTechPOINTS三维点云标注工具使用"></a>SUSTechPOINTS三维点云标注工具使用</h1><a id="more"></a>
 
-<h3 id="一、自定义XML文件"><a href="#一、自定义XML文件" class="headerlink" title="一、自定义XML文件"></a>一、自定义XML文件</h3><p><img src="/posts/16/1.png" alt="1"></p>
-<p>如图所示。</p>
-<p>这相当于定义了一个结构体，结构体里面就有一个类型为uint8_t的u8元素。</p>
-<p>使用的id端口为150，这里注意不要与已经存在的id重复。</p>
-<h3 id="二、使用XML文件生成对应的头文件"><a href="#二、使用XML文件生成对应的头文件" class="headerlink" title="二、使用XML文件生成对应的头文件"></a>二、使用XML文件生成对应的头文件</h3><p>在这里需要使用到一个工具<code>mavlink_generator</code>，它的安装方法比较简单。</p>
-<p>在命令行依次输入下方命令即可完成安装：</p>
-<pre class="line-numbers language-c" data-language="c"><code class="language-c">git clone https:&#x2F;&#x2F;github.com&#x2F;mavlink&#x2F;mavlink.git
+<h1 id="SUSTechPOINTS使用"><a href="#SUSTechPOINTS使用" class="headerlink" title="SUSTechPOINTS使用"></a>SUSTechPOINTS使用</h1><p>官方地址：<a target="_blank" rel="noopener" href="https://github.com/naurril/SUSTechPOINTS">SUSTechPOINTS</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/naurril/SUSTechPOINTS/blob/dev-auto-annotate/README_guide.md">官方中文教程</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;naurril&#x2F;SUSTechPOINTS
+cd SUSTechPOINTS
+pip install -r requirement.txt
+wget https:&#x2F;&#x2F;github.com&#x2F;naurril&#x2F;SUSTechPOINTS&#x2F;releases&#x2F;download&#x2F;0.1&#x2F;deep_annotation_inference.h5  -P algos&#x2F;models<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><pre class="line-numbers language-none"><code class="language-none">python main.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后浏览器打开<a target="_blank" rel="noopener" href="http://127.0.0.1:8081/">http://127.0.0.1:8081</a></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="准备数据集"><a href="#准备数据集" class="headerlink" title="准备数据集"></a>准备数据集</h3><p>在<strong>SUSTechPOINTS/data</strong>目录下添加准备标注的数据集。详细的目录结构可以参考下面的结构。</p>
+<pre class="line-numbers language-none"><code class="language-none">+- data
+    +- scene1
+       +- lidar
+            +- 0000.pcd
+            +- 0001.pcd
+       +- camera
+            +- front
+                 +- 0000.jpg
+                 +- 0001.jpg
+            +- left
+                 +- ...
+       +- aux_lidar
+            +- front
+                 +- 0000.pcd
+                 +- 0001.pcd
+       +- radar
+            +- front_points
+                 +- 0000.pcd
+                 +- 0001.pcd
+            +- front_tracks
+                 +- ...
+       +- calib
+            +- camera
+                 +- front.json
+                 +- left.json
+            +- radar
+                 +- front_points.json
+                 +- front_tracks.json
+       +- label
+            +- 0000.json
+            +- 0001.json
+    +- scene2
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>label</strong>文件夹下存放的是每个点云的标签文件。</p>
+<p>如果只有激光雷达数据，可以只新建一个<strong>lidar</strong>和<strong>label</strong>文件夹。</p>
+<h3 id="标注过程"><a href="#标注过程" class="headerlink" title="标注过程"></a>标注过程</h3><p><img src="/posts/27/1.png"></p>
+<p>在浏览器页面的左上角，可以找到<em>选择数据集文件夹</em>和<em>选择要标注的点云文件</em>的下拉框按钮。选择完毕后就可以在页面中看到点云被加载进来了。</p>
+<p>鼠标右键选择New，可以看到预定义了许多标注类别，这些标注类别可以在<strong>obj_cfg.js</strong>文件中找到定义。</p>
+<p>选择新建一个Pedestrian类别，可以看到多了一个3D框。选择这个3D框，可以在左侧三个不同视图下调整方框的大小和位置。</p>
+<p><img src="/posts/27/2.png"></p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/naurril/SUSTechPOINTS/blob/dev-auto-annotate/doc/shortcuts_cn.md">快捷键</a></strong></p>
+<p>可以按住Ctrl，使用鼠标左键选中点云，可以进行快速框选。之后可以在这个基础上进行微调。</p>
+<p>q ==&gt; 逆时针旋转       e ==&gt; 顺时针旋转</p>
+<p>r ==&gt; 逆时针旋转同时自动调整box大小         f ==&gt;  顺时针选择同时自动调整box大小</p>
+<p>g ==&gt; 反向</p>
+<p>1 ==&gt; 前一个box    2 ==&gt; 后一个box</p>
+<p>3/PageUP ==&gt; 前一帧点云    4/PageDown ==&gt; 后一帧点云</p>
+<p>先标号一个物体后，按<em>V</em>键进入批量操作，然后可以选择多个点云，右键选择<em>Auto annotate</em>，可以实现自动标注。</p>
+<h2 id="将label文件转化成OpenPCDet的格式"><a href="#将label文件转化成OpenPCDet的格式" class="headerlink" title="将label文件转化成OpenPCDet的格式"></a>将label文件转化成OpenPCDet的格式</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import json
 
-cd mavlink
+filename &#x3D; &quot;777.json&quot;
+
+with open(filename, &#39;r&#39;) as f:
+    data &#x3D; json.load(f)
+
+label_list &#x3D; []
+for obj_dict in data:
+    label_name &#x3D; obj_dict[&quot;obj_type&quot;]
+    pos_xyz &#x3D; obj_dict[&quot;psr&quot;][&quot;position&quot;]
+    rot_xyz &#x3D; obj_dict[&quot;psr&quot;][&quot;rotation&quot;]
+    scale_xyz &#x3D; obj_dict[&quot;psr&quot;][&quot;scale&quot;]
     
-git submodule update --init --recursive
-    
-python -m mavgenerate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>之后会弹出下图界面：</p>
-<p><img src="/posts/16/2.png" alt="2"></p>
-<p>点击第一个Browse，选择之前新建的XML文件。</p>
-<p>点击第二个Browse，选择最终的输出文件夹。</p>
-<p>将Language切换为C，其他保持默认。</p>
-<p>最终选择界面如下图所示</p>
-<p><img src="/posts/16/3.png" alt="3"></p>
-<p>点击Generate按钮，会弹出一个窗口，点击OK即可。</p>
-<p><img src="/posts/16/4.png" alt="4"></p>
-<p>最后成功生成最终文件。</p>
-<h3 id="三、将生成的头文件添加到源代码中"><a href="#三、将生成的头文件添加到源代码中" class="headerlink" title="三、将生成的头文件添加到源代码中"></a>三、将生成的头文件添加到源代码中</h3><p>在生成目录找到<code>mavlink_msg_mytestmessage.h</code>（这个文件名不是固定的，根据个人定义而不同。）</p>
-<p>将这个文件复制到源代码/mavlink/include/mavlink/v2.0/common目录下。</p>
-<p>同时在同目录的<code>common.h</code>文件中添加刚才复制的头文件。</p>
-<p><img src="/posts/16/5.png" alt="5"></p>
-<h3 id="四、-修改mavlink-messages-cpp文件"><a href="#四、-修改mavlink-messages-cpp文件" class="headerlink" title="四、 修改mavlink_messages.cpp文件"></a>四、 修改mavlink_messages.cpp文件</h3><pre class="line-numbers language-C" data-language="C"><code class="language-C">class MavlinkMytestMessage : public MavlinkStream
-&#123;
-public:
-	const char *get_name() const override
-	&#123;
-		return MavlinkMytestMessage::get_name_static();
-	&#125;
+    temp &#x3D; str(label_name) + &quot; &quot;
+    for xyz_dict in [pos_xyz, scale_xyz]:
+        for key in [&quot;x&quot;, &quot;y&quot;, &quot;z&quot;]:
+            temp +&#x3D; str(xyz_dict[key])
+            temp +&#x3D; &quot; &quot;
+    temp +&#x3D; str(rot_xyz[&quot;z&quot;]) + &quot;\n&quot;
+    label_list.append(temp)
 
-	static constexpr const char *get_name_static()
-	&#123;
-		return &quot;MytestMessage&quot;;
-	&#125;
-
-	static constexpr uint16_t get_id_static()
-	&#123;
-		return MAVLINK_MSG_ID_TEST_TYPES;
-	&#125;
-
-	uint16_t get_id() override
-	&#123;
-		return get_id_static();
-	&#125;
-
-	bool const_rate() override
-	&#123;
-		return true;
-	&#125;
-
-	static MavlinkStream *new_instance(Mavlink *mavlink)
-	&#123;
-		return new MavlinkMytestMessage(mavlink);
-	&#125;
-
-	unsigned get_size() override
-	&#123;
-		return MAVLINK_MSG_ID_TEST_TYPES_LEN + MAVLINK_NUM_NON_PAYLOAD_BYTES;
-	&#125;
-
-private:
-	&#x2F;* do not allow top copying this class *&#x2F;
-	MavlinkMytestMessage(MavlinkMytestMessage &amp;) ;
-	MavlinkMytestMessage &amp;operator &#x3D; (const MavlinkMytestMessage &amp;) ;
-
-protected:
-	explicit MavlinkMytestMessage(Mavlink *mavlink) : MavlinkStream(mavlink)
-	&#123;&#125;
-	~MavlinkMytestMessage()
-	&#123;&#125;
-    &#x2F;* 发送函数 *&#x2F;
-	bool send(const hrt_abstime t) override
-	&#123;
-        &#x2F;* 创建结构体 *&#x2F;
-		mavlink_test_types_t test;
-        &#x2F;* 结构体变量赋值 *&#x2F;
-		test.u8 &#x3D; 150;
-        &#x2F;* 发送函数 *&#x2F;
-		mavlink_msg_test_types_send_struct(_mavlink-&gt;get_channel(), &amp;test);
-		return true;
-	&#125;
-&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在<code>mavlink_messages.cpp</code>文件中添加如上面代码差不多的类。有一些地方需要对应起来，也可以参考这个文件中其他类的定义来进行修改和理解。</p>
-<p>添加完自定义的类之后还需要修改<code>static const StreamListItem streams_list</code>这个列表。</p>
-<p>这个列表里面存放着目前所有需要输出的Mavlink消息，可以根据自己的需要进行取舍，注释掉不需要的消息。</p>
-<p>要发送自定义的消息，就需要把刚才自定义的类添加到这个列表中来。</p>
-<p><img src="/posts/16/6.png" alt="6"></p>
-<h3 id="五、-修改mavlink-main-cpp文件"><a href="#五、-修改mavlink-main-cpp文件" class="headerlink" title="五、 修改mavlink_main.cpp文件"></a>五、 修改mavlink_main.cpp文件</h3><p>需要在<code>Mavlink::configure_streams_to_default(const char *configure_single_stream)</code>这个函数里面添加要发送的消息。（位置差不多在函数尾处）</p>
-<p><img src="/posts/16/7.png" alt="7"></p>
-<p>这个函数第二个参数是发送速率，可以通过修改它来更改发送速率。</p>
-<h3 id="六、-上传固件"><a href="#六、-上传固件" class="headerlink" title="六、 上传固件"></a>六、 上传固件</h3><p>编译已经修改过的源代码，并上传到飞行器中。之后查看Mavlink消息就会找到自己定义的消息了。</p>
-<p>推荐测试的时候把其他所有消息全部注释，只留自己自定义的消息，这样可以更清晰的看到输出结果。</p>
-<p>QGC地面站可能无法正常查看到自己自定义的消息，可能还需要进一步修改地面站的配置。所以这里还是推荐使用串口助手直接调试查看。</p>
+txt_name &#x3D; filename.split(&quot;.&quot;)[0] + &quot;.txt&quot;
+with open(txt_name, &quot;w&quot;) as f:
+    for label in label_list:
+        f.write(label)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -496,7 +481,7 @@ protected:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/16.html">https://lightningleader.github.io/posts/16.html</a>
+                    <a href="https://lightningleader.github.io/posts/27.html">https://lightningleader.github.io/posts/27.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -538,12 +523,12 @@ protected:
                                     <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
-                                <a href="/tags/PX4/">
-                                    <span class="chip bg-color">PX4</span>
+                                <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                                    <span class="chip bg-color">三维点云</span>
                                 </a>
                             
-                                <a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/">
-                                    <span class="chip bg-color">无人机</span>
+                                <a href="/tags/%E4%B8%89%E7%BB%B4%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
+                                    <span class="chip bg-color">三维目标检测</span>
                                 </a>
                             
                         </div>
@@ -852,29 +837,30 @@ protected:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/17.html">
+                <a href="/posts/27.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="PX4飞控-uORB主题的发布与订阅">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="SUSTechPOINTS三维点云标注工具使用">
                         
-                        <span class="card-title">PX4飞控-uORB主题的发布与订阅</span>
+                        <span class="card-title">SUSTechPOINTS三维点云标注工具使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            PX4飞控-uORB主题的发布与订阅
+                            SUSTechPOINTS三维点云标注工具使用
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -883,6 +869,7 @@ protected:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -890,12 +877,12 @@ protected:
                         <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/PX4/">
-                        <span class="chip bg-color">PX4</span>
+                    <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                        <span class="chip bg-color">三维点云</span>
                     </a>
                     
-                    <a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/">
-                        <span class="chip bg-color">无人机</span>
+                    <a href="/tags/%E4%B8%89%E7%BB%B4%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
+                        <span class="chip bg-color">三维目标检测</span>
                     </a>
                     
                 </div>
@@ -909,24 +896,24 @@ protected:
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/15.html">
+                <a href="/posts/26.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="YOLOv5简易使用教程">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="OpenPCDet安装、使用方式及自定义数据集训练">
                         
-                        <span class="card-title">YOLOv5简易使用教程</span>
+                        <span class="card-title">OpenPCDet安装、使用方式及自定义数据集训练</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            YOLOv5简易使用笔记
+                            OpenPCDet安装、使用方式及自定义数据集训练
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-14
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-09
                             </span>
                         <span class="publish-author">
                             
@@ -943,12 +930,12 @@ protected:
                         <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/Python/">
-                        <span class="chip bg-color">Python</span>
+                    <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                        <span class="chip bg-color">三维点云</span>
                     </a>
                     
-                    <a href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">
-                        <span class="chip bg-color">人工智能</span>
+                    <a href="/tags/%E4%B8%89%E7%BB%B4%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
+                        <span class="chip bg-color">三维目标检测</span>
                     </a>
                     
                 </div>

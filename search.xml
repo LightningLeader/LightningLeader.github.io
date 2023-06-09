@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>SUSTechPOINTS三维点云标注工具使用</title>
+      <link href="posts/27.html"/>
+      <url>posts/27.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="SUSTechPOINTS三维点云标注工具使用"><a href="#SUSTechPOINTS三维点云标注工具使用" class="headerlink" title="SUSTechPOINTS三维点云标注工具使用"></a>SUSTechPOINTS三维点云标注工具使用</h1><a id="more"></a><h1 id="SUSTechPOINTS使用"><a href="#SUSTechPOINTS使用" class="headerlink" title="SUSTechPOINTS使用"></a>SUSTechPOINTS使用</h1><p>官方地址：<a href="https://github.com/naurril/SUSTechPOINTS">SUSTechPOINTS</a></p><p><a href="https://github.com/naurril/SUSTechPOINTS/blob/dev-auto-annotate/README_guide.md">官方中文教程</a></p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;naurril&#x2F;SUSTechPOINTScd SUSTechPOINTSpip install -r requirement.txtwget https:&#x2F;&#x2F;github.com&#x2F;naurril&#x2F;SUSTechPOINTS&#x2F;releases&#x2F;download&#x2F;0.1&#x2F;deep_annotation_inference.h5  -P algos&#x2F;models<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><pre class="line-numbers language-none"><code class="language-none">python main.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>然后浏览器打开<a href="http://127.0.0.1:8081/">http://127.0.0.1:8081</a></p><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="准备数据集"><a href="#准备数据集" class="headerlink" title="准备数据集"></a>准备数据集</h3><p>在<strong>SUSTechPOINTS/data</strong>目录下添加准备标注的数据集。详细的目录结构可以参考下面的结构。</p><pre class="line-numbers language-none"><code class="language-none">+- data    +- scene1       +- lidar            +- 0000.pcd            +- 0001.pcd       +- camera            +- front                 +- 0000.jpg                 +- 0001.jpg            +- left                 +- ...       +- aux_lidar            +- front                 +- 0000.pcd                 +- 0001.pcd       +- radar            +- front_points                 +- 0000.pcd                 +- 0001.pcd            +- front_tracks                 +- ...       +- calib            +- camera                 +- front.json                 +- left.json            +- radar                 +- front_points.json                 +- front_tracks.json       +- label            +- 0000.json            +- 0001.json    +- scene2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>label</strong>文件夹下存放的是每个点云的标签文件。</p><p>如果只有激光雷达数据，可以只新建一个<strong>lidar</strong>和<strong>label</strong>文件夹。</p><h3 id="标注过程"><a href="#标注过程" class="headerlink" title="标注过程"></a>标注过程</h3><p><img src="/posts/27/1.png"></p><p>在浏览器页面的左上角，可以找到<em>选择数据集文件夹</em>和<em>选择要标注的点云文件</em>的下拉框按钮。选择完毕后就可以在页面中看到点云被加载进来了。</p><p>鼠标右键选择New，可以看到预定义了许多标注类别，这些标注类别可以在<strong>obj_cfg.js</strong>文件中找到定义。</p><p>选择新建一个Pedestrian类别，可以看到多了一个3D框。选择这个3D框，可以在左侧三个不同视图下调整方框的大小和位置。</p><p><img src="/posts/27/2.png"></p><p><strong><a href="https://github.com/naurril/SUSTechPOINTS/blob/dev-auto-annotate/doc/shortcuts_cn.md">快捷键</a></strong></p><p>可以按住Ctrl，使用鼠标左键选中点云，可以进行快速框选。之后可以在这个基础上进行微调。</p><p>q ==&gt; 逆时针旋转       e ==&gt; 顺时针旋转</p><p>r ==&gt; 逆时针旋转同时自动调整box大小         f ==&gt;  顺时针选择同时自动调整box大小</p><p>g ==&gt; 反向</p><p>1 ==&gt; 前一个box    2 ==&gt; 后一个box</p><p>3/PageUP ==&gt; 前一帧点云    4/PageDown ==&gt; 后一帧点云</p><p>先标号一个物体后，按<em>V</em>键进入批量操作，然后可以选择多个点云，右键选择<em>Auto annotate</em>，可以实现自动标注。</p><h2 id="将label文件转化成OpenPCDet的格式"><a href="#将label文件转化成OpenPCDet的格式" class="headerlink" title="将label文件转化成OpenPCDet的格式"></a>将label文件转化成OpenPCDet的格式</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python">import jsonfilename &#x3D; &quot;777.json&quot;with open(filename, &#39;r&#39;) as f:    data &#x3D; json.load(f)label_list &#x3D; []for obj_dict in data:    label_name &#x3D; obj_dict[&quot;obj_type&quot;]    pos_xyz &#x3D; obj_dict[&quot;psr&quot;][&quot;position&quot;]    rot_xyz &#x3D; obj_dict[&quot;psr&quot;][&quot;rotation&quot;]    scale_xyz &#x3D; obj_dict[&quot;psr&quot;][&quot;scale&quot;]        temp &#x3D; str(label_name) + &quot; &quot;    for xyz_dict in [pos_xyz, scale_xyz]:        for key in [&quot;x&quot;, &quot;y&quot;, &quot;z&quot;]:            temp +&#x3D; str(xyz_dict[key])            temp +&#x3D; &quot; &quot;    temp +&#x3D; str(rot_xyz[&quot;z&quot;]) + &quot;\n&quot;    label_list.append(temp)txt_name &#x3D; filename.split(&quot;.&quot;)[0] + &quot;.txt&quot;with open(txt_name, &quot;w&quot;) as f:    for label in label_list:        f.write(label)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 学习笔记 </tag>
+            
+            <tag> 三维点云 </tag>
+            
+            <tag> 三维目标检测 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>OpenPCDet安装、使用方式及自定义数据集训练</title>
       <link href="posts/26.html"/>
       <url>posts/26.html</url>
