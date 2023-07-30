@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="PX4飞控-uORB主题的发布与订阅, LightningMaster">
+    <meta name="keywords" content="基于opencv与机器学习的摄像头实时识别数字, LightningMaster">
     <meta name="description" content="寄">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>PX4飞控-uORB主题的发布与订阅 | LightningMaster</title>
+    <title>基于opencv与机器学习的摄像头实时识别数字 | LightningMaster</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -186,7 +186,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">PX4飞控-uORB主题的发布与订阅</h1>
+                    <h1 class="description center-align post-title">基于opencv与机器学习的摄像头实时识别数字</h1>
                 </div>
             </div>
         </div>
@@ -306,12 +306,12 @@
                                 <span class="chip bg-color">学习笔记</span>
                             </a>
                         
-                            <a href="/tags/PX4/">
-                                <span class="chip bg-color">PX4</span>
+                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">机器学习</span>
                             </a>
                         
-                            <a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/">
-                                <span class="chip bg-color">无人机</span>
+                            <a href="/tags/opencv/">
+                                <span class="chip bg-color">opencv</span>
                             </a>
                         
                     </div>
@@ -326,21 +326,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-23
+                    2023-07-30
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-09-23
+                    2023-07-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    2k
                 </div>
                 
 
@@ -370,386 +370,283 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="PX4飞控-uORB主题的发布与订阅"><a href="#PX4飞控-uORB主题的发布与订阅" class="headerlink" title="PX4飞控-uORB主题的发布与订阅"></a>PX4飞控-uORB主题的发布与订阅</h1><a id="more"></a>
+                <h1 id="基于opencv与机器学习的摄像头实时识别数字"><a href="#基于opencv与机器学习的摄像头实时识别数字" class="headerlink" title="基于opencv与机器学习的摄像头实时识别数字"></a>基于opencv与机器学习的摄像头实时识别数字</h1><a id="more"></a>
 
-<h3 id="一、添加msg文件"><a href="#一、添加msg文件" class="headerlink" title="一、添加msg文件"></a>一、添加msg文件</h3><p>在<code>源代码目录/msg</code>文件夹下新建一个<code>.msg</code>文件。文件内容如下。</p>
-<p><img src="/posts/17/1.png" alt="1"></p>
-<p>其中test1、test2、test3均为自定义的变量。timestamp为时间戳。</p>
-<h3 id="二、-修改CMakeLists-txt文件"><a href="#二、-修改CMakeLists-txt文件" class="headerlink" title="二、 修改CMakeLists.txt文件"></a>二、 修改CMakeLists.txt文件</h3><p>在同目录下找到<code>CMakeLists.txt</code>文件，打开后添加刚才定义的<code>.msg</code>文件。</p>
-<p><img src="/posts/17/2.png" alt="2"></p>
-<h3 id="三、-编译源代码"><a href="#三、-编译源代码" class="headerlink" title="三、 编译源代码"></a>三、 编译源代码</h3><p>编译完源代码后，进入<code>源代码目录/build/px4_fmu-v2_default/uORB/topics</code>文件夹，找到与之前新建的<code>.msg</code>文件同名的<code>.h</code>文件。在我这里即为<code>test_uorb.h</code>文件。</p>
-<p>可以打开这个文件查看内容。</p>
-<p><img src="/posts/17/3.png" alt="3"></p>
-<p>里面有一个<code>test_uorb_s</code>的结构体，这个结构体里面包含之前定义的几个变量。</p>
-<h3 id="四、编写发布文件"><a href="#四、编写发布文件" class="headerlink" title="四、编写发布文件"></a>四、编写发布文件</h3><p><code>.c</code>文件编写：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">&#x2F;**
- * @file px4_uorb_adver_app.c
-
- *&#x2F;
-
-#include &lt;stdio.h&gt;
-#include &lt;termios.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;string.h&gt;
-#include &lt;stdbool.h&gt;
-#include &lt;errno.h&gt;
-#include &lt;drivers&#x2F;drv_hrt.h&gt;
-#include &lt;systemlib&#x2F;err.h&gt;
-#include &lt;fcntl.h&gt;
-#include &lt;systemlib&#x2F;mavlink_log.h&gt;
-#include &lt;uORB&#x2F;uORB.h&gt;
-#include &lt;uORB&#x2F;topics&#x2F;test_uorb.h&gt;
-#include &lt;px4_platform_common&#x2F;log.h&gt;
-#include  &lt;px4_platform_common&#x2F;px4_config.h&gt;
-#include  &lt;px4_platform_common&#x2F;tasks.h&gt;
-#include  &lt;px4_platform_common&#x2F;time.h&gt;
-#include  &lt;px4_platform_common&#x2F;posix.h&gt;
-&#x2F;&#x2F;#include  &lt;px4_platform_common&#x2F;shutdown.h&gt;    &#x2F;&#x2F; 包含就会报错
-#include  &lt;px4_platform_common&#x2F;defines.h&gt;
-
-static bool thread_should_exit &#x3D; false;		&#x2F;**&lt; daemon exit flag *&#x2F;
-static bool thread_running &#x3D; false;		&#x2F;**&lt; daemon status flag *&#x2F;
-static int px4_uorb_adver_task;				&#x2F;**&lt; Handle of daemon task &#x2F; thread *&#x2F;
-
-&#x2F;**
- * daemon management function.
- *&#x2F;
-__EXPORT int px4_uorb_adver_main(int argc, char *argv[]);
-
-&#x2F;**
- * Mainloop of daemon.
- *&#x2F;
-int px4_uorb_adver_thread_main(int argc, char *argv[]);
-
-&#x2F;**
- * Print the correct usage.
- *&#x2F;
-static void usage(const char *reason);
-
-static void
-usage(const char *reason)
-&#123;
-	if (reason) &#123;
-		warnx(&quot;%s\n&quot;, reason);
-	&#125;
-
-	warnx(&quot;usage: px4_uorb_adver &#123;start|stop|status&#125; [-p &lt;additional params&gt;]\n\n&quot;);
-&#125;
-
-&#x2F;**
-消息发布进程，会不断的发送自定义的消息
-**&#x2F;
-int px4_uorb_adver_main(int argc, char *argv[])
-&#123;
-	if (argc &lt; 2) &#123;
-		usage(&quot;missing command&quot;);
-		return 1;
-	&#125;
-
-	if (!strcmp(argv[1], &quot;start&quot;)) &#123;
-
-		if (thread_running) &#123;
-			warnx(&quot;daemon already running\n&quot;);
-			&#x2F;* this is not an error *&#x2F;
-			return 0;
-		&#125;
-
-		thread_should_exit &#x3D; false;&#x2F;&#x2F;定义一个守护进程
-		px4_uorb_adver_task &#x3D; px4_task_spawn_cmd(&quot;px4_uorb_adver&quot;,
-						 SCHED_DEFAULT,
-						 SCHED_PRIORITY_DEFAULT,&#x2F;&#x2F;调度优先级
-						 2000,&#x2F;&#x2F;堆栈分配大小
-						 px4_uorb_adver_thread_main,
-						 (argv) ? (char *const *)&amp;argv[2] : (char *const *)NULL);
-		return 0;
-	&#125;
-
-	if (!strcmp(argv[1], &quot;stop&quot;)) &#123;
-		thread_should_exit &#x3D; true;
-		return 0;
-	&#125;
-
-	if (!strcmp(argv[1], &quot;status&quot;)) &#123;
-		if (thread_running) &#123;
-			warnx(&quot;\trunning\n&quot;);
-
-		&#125; else &#123;
-			warnx(&quot;\tnot started\n&quot;);
-		&#125;
-
-		return 0;
-	&#125;
-
-	usage(&quot;unrecognized command&quot;);
-	return 1;
-&#125;
-
-int px4_uorb_adver_thread_main(int argc, char *argv[])
-&#123;
-
-        struct test_uorb_s test_uorb_ad;   &#x2F;&#x2F; 自定义消息的结构体
-        &#x2F;&#x2F; 初始化数据 全零
-        memset(&amp;test_uorb_ad, 0 , sizeof(test_uorb_ad));
-        &#x2F;&#x2F; 公告主题
-        orb_advert_t test_pub &#x3D; orb_advertise(ORB_ID(test_uorb), &amp;test_uorb_ad);
-	warnx(&quot;[daemon] starting\n&quot;);
-
-	thread_running &#x3D; true;
-
-	&#x2F;&#x2F; 每隔1s 发布一次新的数据
-	while (!thread_should_exit) &#123;
-        test_uorb_ad.test1 &#x3D; 5;
-        test_uorb_ad.test2 &#x3D; 6;
-        test_uorb_ad.test3 &#x3D; 7;
-	orb_publish(ORB_ID(test_uorb), test_pub, &amp;test_uorb_ad);
-	usleep(1000);
-	&#125;
-
-	warnx(&quot;[daemon] exiting.\n&quot;);
-
-	thread_running &#x3D; false;
-
-	return 0;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>CMakeLists.txt</code>文件编写：</p>
-<pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">############################################################################
-#
-#   Copyright (c) 2015 PX4 Development Team. All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions
-# are met:
-#
-# 1. Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-# 2. Redistributions in binary form must reproduce the above copyright
-#    notice, this list of conditions and the following disclaimer in
-#    the documentation and&#x2F;or other materials provided with the
-#    distribution.
-# 3. Neither the name PX4 nor the names of its contributors may be
-#    used to endorse or promote products derived from this software
-#    without specific prior written permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-# &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
-# OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
-# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
-#
-############################################################################
-px4_add_module(
-	MODULE modules__px4_uorb_adver
-	MAIN px4_uorb_adver
-	STACK_MAIN 2000  #程序堆栈大小
-	SRCS
-		px4_uorb_adver.c
-	DEPENDS
-	)
-# vim: set noet ft&#x3D;cmake fenc&#x3D;utf-8 ff&#x3D;unix : 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="五、-编写订阅文件"><a href="#五、-编写订阅文件" class="headerlink" title="五、 编写订阅文件"></a>五、 编写订阅文件</h3><p><code>.c</code>文件编写：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;**
- * @file px4_uorb_subs.c
-
- *&#x2F;
-
-#include &lt;stdio.h&gt;
-#include &lt;termios.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;string.h&gt;
-#include &lt;stdbool.h&gt;
-#include &lt;errno.h&gt;
-#include &lt;drivers&#x2F;drv_hrt.h&gt;
-#include &lt;systemlib&#x2F;err.h&gt;
-#include &lt;fcntl.h&gt;
-#include &lt;systemlib&#x2F;mavlink_log.h&gt;
-#include &lt;uORB&#x2F;uORB.h&gt;
-#include &lt;uORB&#x2F;topics&#x2F;test_uorb.h&gt;
-#include &lt;px4_platform_common&#x2F;log.h&gt;
-#include  &lt;px4_platform_common&#x2F;px4_config.h&gt;
-#include  &lt;px4_platform_common&#x2F;tasks.h&gt;
-#include  &lt;px4_platform_common&#x2F;time.h&gt;
-#include  &lt;px4_platform_common&#x2F;posix.h&gt;
-&#x2F;&#x2F;#include  &lt;px4_platform_common&#x2F;shutdown.h&gt;    &#x2F;&#x2F; 包含就会报错
-#include  &lt;px4_platform_common&#x2F;defines.h&gt;
-
-static bool thread_should_exit &#x3D; false;		&#x2F;**&lt; px4_uorb_subs exit flag *&#x2F;
-static bool thread_running &#x3D; false;		&#x2F;**&lt; px4_uorb_subs status flag *&#x2F;
-static int px4_uorb_subs_task;				&#x2F;**&lt; Handle of px4_uorb_subs task &#x2F; thread *&#x2F;
-
-&#x2F;**
- * daemon management function.
- *&#x2F;
-__EXPORT int px4_uorb_subs_main(int argc, char *argv[]);
-
-&#x2F;**
- * Mainloop of daemon.
- *&#x2F;
-int px4_uorb_subs_thread_main(int argc, char *argv[]);
-
-&#x2F;**
- * Print the correct usage.
- *&#x2F;
-static void usage(const char *reason);
-
-static void
-usage(const char *reason)
-&#123;
-	if (reason) &#123;
-		warnx(&quot;%s\n&quot;, reason);
-	&#125;
-
-	warnx(&quot;usage: px4_uorb_adver &#123;start|stop|status&#125; [-p &lt;additional params&gt;]\n\n&quot;);
-&#125;
-
-&#x2F;**
-消息发布进程，会不断的接收自定义消息
- *&#x2F;
-int px4_uorb_subs_main(int argc, char *argv[])
-&#123;
-	if (argc &lt; 2) &#123;
-		usage(&quot;missing command&quot;);
-		return 1;
-	&#125;
-
-	if (!strcmp(argv[1], &quot;start&quot;)) &#123;
-
-		if (thread_running) &#123;
-			warnx(&quot;px4_uorb_subs already running\n&quot;);
-			&#x2F;* this is not an error *&#x2F;
-			return 0;
-		&#125;
-
-		thread_should_exit &#x3D; false;&#x2F;&#x2F;定义一个守护进程
-		px4_uorb_subs_task &#x3D; px4_task_spawn_cmd(&quot;px4_uorb_subs&quot;,
-						 SCHED_DEFAULT,
-						 SCHED_PRIORITY_DEFAULT,&#x2F;&#x2F;调度优先级
-						 2000,&#x2F;&#x2F;堆栈分配大小
-						 px4_uorb_subs_thread_main,
-						 (argv) ? (char *const *)&amp;argv[2] : (char *const *)NULL);
-		return 0;
-	&#125;
-
-	if (!strcmp(argv[1], &quot;stop&quot;)) &#123;
-		thread_should_exit &#x3D; true;
-		return 0;
-	&#125;
-
-	if (!strcmp(argv[1], &quot;status&quot;)) &#123;
-		if (thread_running) &#123;
-			warnx(&quot;\trunning\n&quot;);
-
-		&#125; else &#123;
-			warnx(&quot;\tnot started\n&quot;);
-		&#125;
-
-		return 0;
-	&#125;
-
-	usage(&quot;unrecognized command&quot;);
-	return 1;
-&#125;
-
-int px4_uorb_subs_thread_main(int argc, char *argv[])
-&#123;
-
-	warnx(&quot;[px4_uorb_subs] starting\n&quot;);
-	&#x2F;&#x2F; 订阅主题
-    int test_sub_fd &#x3D; orb_subscribe(ORB_ID(test_uorb));
-    &#x2F;&#x2F; 初始化结构体
-    struct test_uorb_s test_uorb_sub;
-    &#x2F;&#x2F; 初始化数据 全零
-    memset(&amp;test_uorb_sub, 0 , sizeof(test_uorb_sub));
-    &#x2F;&#x2F; 定义变量
-    int test1 &#x3D; 0,test2 &#x3D; 0,test3 &#x3D; 0;
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用摄像头实时识别数字算是目标检测任务，总体上分为两步，第一步是检测到数字卡片的位置，第二步是对检测到的数字卡片进行分类以确定其是哪个数字。在第一步中主要涉及opencv的相关功能，第二步则使用机器学习的方式进行分类。</p>
+<h2 id="一、使用opencv捕捉（检测）数字卡片"><a href="#一、使用opencv捕捉（检测）数字卡片" class="headerlink" title="一、使用opencv捕捉（检测）数字卡片"></a>一、使用opencv捕捉（检测）数字卡片</h2><p>重点操作是使用轮廓查找函数，获取数字卡片的外轮廓。</p>
+<p><strong>在获取轮廓前的图像预处理步骤需要根据自己的实际应用场景进行调整。</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
+import imutils
 
 
+# 开启外接摄像头
+cap &#x3D; cv2.VideoCapture(1)
+rectKernel &#x3D; cv2.getStructuringElement(cv2.MORPH_RECT, (11, 11))
+while True:
+    flag, frame &#x3D; cap.read()
+    if frame is None:
+        continue
+    if flag is True:
+        frame_copy &#x3D; frame.copy()
+        frame_copy_2 &#x3D; frame.copy()
+        frame_copy_3 &#x3D; frame.copy()
+        # 自动阈值处理
+        frame_gray &#x3D; cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        frame_ths &#x3D; cv2.threshold(frame_gray, 0, 255, cv2.THRESH_BINARY_INV|cv2.THRESH_OTSU)[1]
+        # 闭操作
+        img_closed &#x3D; cv2.morphologyEx(frame_ths, cv2.MORPH_CLOSE, rectKernel)
+        # canny边缘检测；这里使用的imutils包，也可以使用opencv自带的canny
+        temp &#x3D; imutils.auto_canny(img_closed)
+        # 轮廓查找
+        contours, hierarchy &#x3D; cv2.findContours(temp, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        # 计算轮廓
+        for index, c in enumerate(contours):
+            area &#x3D; cv2.contourArea(c)
+            x, y, w, h &#x3D; cv2.boundingRect(c)
+            # 通过判断轮廓的外接矩形面积确定数字卡片的轮廓，实现过滤功能
+            if area &gt; 10000:
+                # img_out &#x3D; cv2.drawContours(frame_copy, contours, index, (0, 0, 255), 2)
+                img_out &#x3D; cv2.rectangle(frame_copy, (x, y), (x + w, y + h), (0, 0, 255), 2)
+        cv2.imshow(&quot;ths&quot;, frame_ths)
+        cv2.imshow(&quot;canny&quot;, temp)
+        cv2.imshow(&quot;closed&quot;, img_closed)
+        cv2.imshow(&quot;lun kuo&quot;, frame_copy)
+        if cv2.waitKey(1) &amp; 0xFF &#x3D;&#x3D; 27:
+            cap.release()
+            cv2.destroyAllWindows()
+            break
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>效果图如下：</p>
+<img src="/posts/28/1.png" alt="1" style="zoom:50%;">
 
-	thread_running &#x3D; true;
+<h2 id="二、制作数据集"><a href="#二、制作数据集" class="headerlink" title="二、制作数据集"></a>二、制作数据集</h2><p>在获取数字卡片轮廓的基础上，保存轮廓区域内的图片信息作为基础数据集。为了方便保存，可以使用<strong>pynput</strong>包完成键盘监控功能，按下一次回车即拍摄一张。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from pynput.keyboard import Key, Listener
+import cv2
+import imutils
 
-	while (!thread_should_exit) &#123;
-		warnx(&quot;Hello px4_uorb_subs!\n&quot;);
-        	bool updated;
 
-	&#x2F;* Check if vehicle control mode has changed *&#x2F;
-        &#x2F;&#x2F; 检查是否更新
-	orb_check(test_sub_fd, &amp;updated);
+# 按键获取数据集
+global res_img
+counts &#x3D; 0    # 图片计数
+def on_press(key):
+    global counts
+    # 回车触发
+    if key &#x3D;&#x3D; Key.enter:
+        # 保存图片路径
+        cv2.imwrite(f&quot;1&#x2F;1_&#123;counts&#125;.png&quot;, res_img)
+        counts +&#x3D; 1
+        print(f&quot;Save sucess &#123;counts&#125;&quot;)
 
-	if (updated)
-    &#123;
-    	&#x2F;&#x2F; copy数据
-        orb_copy(ORB_ID(test_uorb),test_sub_fd,&amp;test_uorb_sub);
-        &#x2F;&#x2F; 赋值到变量
-        test1 &#x3D; test_uorb_sub.test1;
-        test2 &#x3D; test_uorb_sub.test2;
-        test3 &#x3D;  test_uorb_sub.test3;
-	&#125;
-	&#x2F;&#x2F; 打印
-	warnx(&quot;test_uorb.test1 &#x3D; %d, test_uorb.test2 &#x3D; %d ,test_uorb.test3 &#x3D; %d\n&quot;,test1,test2,test3);
-    	usleep(500);
-	&#125;
+# 开启键盘监听
+listener &#x3D; Listener(on_press&#x3D;on_press)
+listener.start()
 
-	warnx(&quot;[px4_uorb_subs] exiting.\n&quot;);
+cap &#x3D; cv2.VideoCapture(1)
+rectKernel &#x3D; cv2.getStructuringElement(cv2.MORPH_RECT, (11, 11))
+while True:
+    flag, frame &#x3D; cap.read()
+    if frame is None:
+        continue
+    if flag is True:
+        frame_copy &#x3D; frame.copy()
+        frame_copy_2 &#x3D; frame.copy()
+        # 自动阈值处理
+        frame_gray &#x3D; cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        frame_ths &#x3D; cv2.threshold(frame_gray, 0, 255, cv2.THRESH_BINARY_INV|cv2.THRESH_OTSU)[1]
+        # 闭操作
+        img_closed &#x3D; cv2.morphologyEx(frame_ths, cv2.MORPH_CLOSE, rectKernel)
+        # canny边缘检测
+        temp &#x3D; imutils.auto_canny(img_closed)
+        # 轮廓查找
+        contours, hierarchy &#x3D; cv2.findContours(temp, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        # 计算轮廓
+        for index, c in enumerate(contours):
+            area &#x3D; cv2.contourArea(c)
+            x, y, w, h &#x3D; cv2.boundingRect(c)
+            if area &gt; 10000:
+                img_out &#x3D; cv2.rectangle(frame_copy, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                # 获取轮廓区域的图像
+                res_img &#x3D; frame_copy_2[y:y+h, x:x+w]
+        cv2.imshow(&quot;lun kuo&quot;, frame_copy)
+        if cv2.waitKey(1) &amp; 0xFF &#x3D;&#x3D; 27:
+            cap.release()
+            cv2.destroyAllWindows()
+            listener.stop()
+            break
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>每一个数字都要拍摄多张不同角度的图片，这个数据集的拍摄质量将影响最终识别的效果，所以拍摄时需要考虑实际的应用场景。</strong></p>
+<p>保存后的图片应该如下图所示。</p>
+<img src="/posts/28/2.png" alt="2" style="zoom:50%;">
 
-	thread_running &#x3D; false;
+<p>拍摄完之后，最好再对数据集进行数据增强，以扩充数据集，提高模型的训练效果。</p>
+<p>使用<strong>albumentations</strong>包进行数据增强，其具体的使用方式可以去<a target="_blank" rel="noopener" href="https://albumentations.ai/docs/">Albumentations Documentation</a>查看。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import albumentations as A
+import cv2
+import os
 
-	return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>CMakeLists.txt</code>文件编写：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">############################################################################
-#
-#   Copyright (c) 2015 PX4 Development Team. All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions
-# are met:
-#
-# 1. Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-# 2. Redistributions in binary form must reproduce the above copyright
-#    notice, this list of conditions and the following disclaimer in
-#    the documentation and&#x2F;or other materials provided with the
-#    distribution.
-# 3. Neither the name PX4 nor the names of its contributors may be
-#    used to endorse or promote products derived from this software
-#    without specific prior written permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-# &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-# LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
-# FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
-# COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
-# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-# BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
-# OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
-# AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-# ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-# POSSIBILITY OF SUCH DAMAGE.
-#
-############################################################################
-px4_add_module(
-	MODULE modules__px4_uorb_subs
-	MAIN px4_uorb_subs
-	STACK_MAIN 2000  #程序堆栈大小
-	SRCS
-		px4_uorb_subs.c
-	DEPENDS
-	)
-# vim: set noet ft&#x3D;cmake fenc&#x3D;utf-8 ff&#x3D;unix : 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="六、测试"><a href="#六、测试" class="headerlink" title="六、测试"></a>六、测试</h3><p>编写完之后就可以正常的进行调用然后测试效果了。</p>
-<p>需要先运行发布脚本再运行订阅脚本才能有效果。</p>
+# 设置需要使用的数据增强方式
+transform &#x3D; A.Compose([
+    A.Resize(height&#x3D;128, width&#x3D;128),    # 图片缩放
+    A.Rotate(limit&#x3D;[-70, 70], p&#x3D;0.5),   # 随机旋转
+    A.RandomBrightnessContrast(p&#x3D;0.3),  # 随机亮度对比度
+])
+
+# 遍历每一个数字文件夹
+for i in range(1, 9):
+    # 图片计数
+    counts &#x3D; 0
+    img_list &#x3D; os.listdir(f&quot;data&#x2F;&#123;i&#125;&quot;)
+    for temp in img_list:
+        image &#x3D; cv2.imread(f&quot;data&#x2F;&#123;i&#125;&#x2F;&#123;temp&#125;&quot;)
+        image &#x3D; cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        transformed &#x3D; transform(image&#x3D;image)[&#39;image&#39;]
+        # 保存数据增强后的图片
+        cv2.imwrite(f&quot;data&#x2F;&#123;i&#125;&#x2F;&#123;i&#125;_&#123;counts&#125;.png&quot;, transformed)
+        counts +&#x3D; 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在数据增强后，每个数字的数据集为220张。</p>
+<h2 id="三、使用sklearn建立机器学习模型实现数字分类"><a href="#三、使用sklearn建立机器学习模型实现数字分类" class="headerlink" title="三、使用sklearn建立机器学习模型实现数字分类"></a>三、使用sklearn建立机器学习模型实现数字分类</h2><p>常用的机器学习分类模型有KNN和SVM等，可以都试一下，选择效果最好的一个。</p>
+<p><strong>首先需要对数据集进行预处理</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
+import os
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.decomposition import PCA
+import joblib
+
+
+X_img &#x3D; []    # 用于存放图片信息
+y_img &#x3D; []    # 用于存放标签（label）信息
+
+# 遍历加载数据集
+for i in range(1, 9):
+    img_list &#x3D; os.listdir(f&quot;data&#x2F;&#123;i&#125;&quot;)
+    for temp in img_list:
+        image &#x3D; cv2.imread(f&quot;data&#x2F;&#123;i&#125;&#x2F;&#123;temp&#125;&quot;)
+        image &#x3D; cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        image &#x3D; cv2.resize(image, (128, 128))
+        X_img.append(image)
+        y_img.append(i)
+
+# 转换成二维数组   (1758, 128, 128) &#x3D;&#x3D;&gt; (1758, 16384)
+X_img &#x3D; np.array(X_img).reshape(len(X_img), -1)
+y_img &#x3D; np.array(y_img)
+print(X_img.shape)
+print(y_img.shape)
+
+# 划分数据集
+X_train, X_test, y_train, y_test &#x3D; train_test_split(X_img, y_img, test_size&#x3D;0.2)
+
+# PCA降维 可以降低计算量，提高训练速度，减小模型大小
+transfer &#x3D; PCA(n_components&#x3D;300)
+X_train &#x3D; transfer.fit_transform(X_train)
+X_test &#x3D; transfer.transform(X_test)
+print(X_train.shape)
+print(X_test.shape)
+
+# 保存PCA降维信息，后续在实时预测时会使用到该信息
+joblib.dump(transfer, &#39;pca_model.joblib&#39;)
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>之后建立SVM分类模型并进行训练和测试。</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
+
+
+# 建立svm分类器
+svm &#x3D; SVC(kernel&#x3D;&#39;linear&#39;)
+# 使用训练数据来训练SVM分类器
+svm.fit(X_train, y_train)
+
+# 使用测试数据进行预测
+y_pred &#x3D; svm.predict(X_test)
+
+# 计算准确率
+accuracy &#x3D; accuracy_score(y_test, y_pred)
+# 最终准确率为0.9573863636363636
+print(&quot;Accuracy:&quot;, accuracy)
+# 保存训练好的模型
+joblib.dump(svm, &#39;svm_model_PCA300.joblib&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>最后进行单张图片预测，查看预测效果。</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import joblib
+import cv2
+
+# 加载SVM分类模型
+loaded_svm &#x3D; joblib.load(&#39;svm_model_PCA300.joblib&#39;)
+# 加载PCA降维模型
+loaded_pca &#x3D; joblib.load(&#39;pca_model.joblib&#39;)
+# 读取图片并进行预处理
+img &#x3D; cv2.imread(&quot;data&#x2F;4&#x2F;4_39.png&quot;)
+img &#x3D; cv2.resize(img, (128, 128))
+img &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+temp &#x3D; img.reshape(1, -1)
+# PCA降维，保证格式与训练数据相同
+temp &#x3D; loaded_pca.transform(temp)
+print(temp.shape)
+y_new_pred &#x3D; loaded_svm.predict(temp)
+
+# 输出预测结果
+print(&quot;Predictions for new data:&quot;, y_new_pred)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="四、摄像头实时预测"><a href="#四、摄像头实时预测" class="headerlink" title="四、摄像头实时预测"></a>四、摄像头实时预测</h2><p>将前面的部分结合起来就可以实现摄像头实时预测的任务了。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2
+import imutils
+from pynput.keyboard import Key, Listener
+import joblib
+
+
+# 加载SVM和PCA模型
+loaded_svm &#x3D; joblib.load(&#39;svm_model_PCA300.joblib&#39;)
+loaded_pca &#x3D; joblib.load(&#39;pca_model.joblib&#39;)
+
+# 显示字体配置
+font &#x3D; cv2.FONT_HERSHEY_SIMPLEX
+font_scale &#x3D; 1
+font_thickness &#x3D; 2
+color &#x3D; (0, 255, 0)
+
+cap &#x3D; cv2.VideoCapture(1)
+rectKernel &#x3D; cv2.getStructuringElement(cv2.MORPH_RECT, (11, 11))
+while True:
+    flag, frame &#x3D; cap.read()
+    if frame is None:
+        continue
+    if flag is True:
+        frame_copy &#x3D; frame.copy()
+        frame_copy_2 &#x3D; frame.copy()
+        # 自动阈值处理
+        frame_gray &#x3D; cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        frame_ths &#x3D; cv2.threshold(frame_gray, 0, 255, cv2.THRESH_BINARY_INV|cv2.THRESH_OTSU)[1]
+        # 闭操作
+        img_closed &#x3D; cv2.morphologyEx(frame_ths, cv2.MORPH_CLOSE, rectKernel)
+        # canny边缘检测
+        temp &#x3D; imutils.auto_canny(img_closed)
+        # 轮廓查找
+        contours, hierarchy &#x3D; cv2.findContours(temp, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+        # 计算轮廓
+        for index, c in enumerate(contours):
+            area &#x3D; cv2.contourArea(c)
+            x, y, w, h &#x3D; cv2.boundingRect(c)
+            if area &gt; 10000:
+                img_out &#x3D; cv2.rectangle(frame_copy, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                res_img &#x3D; frame_copy_2[y:y+h, x:x+w]
+                # 图像预处理
+                img &#x3D; cv2.resize(res_img, (128, 128))
+                img &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                temp &#x3D; img.reshape(1, -1)
+                # PCA降维
+                temp &#x3D; loaded_pca.transform(temp)
+                y_new_pred &#x3D; loaded_svm.predict(temp)
+                cv2.putText(frame_copy, f&quot;Pred: &#123;y_new_pred&#125;&quot;, (int(x), int(y)),
+                            font, font_scale, color, font_thickness)
+
+        cv2.imshow(&quot;lun kuo&quot;, frame_copy)
+        if cv2.waitKey(1) &amp; 0xFF &#x3D;&#x3D; 27:
+            cap.release()
+            cv2.destroyAllWindows()
+            break
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="/posts/28/3.png" alt="3" style="zoom:50%;">
+
+<h2 id="五、完整的代码、数据集和训练模型下载地址"><a href="#五、完整的代码、数据集和训练模型下载地址" class="headerlink" title="五、完整的代码、数据集和训练模型下载地址"></a>五、完整的代码、数据集和训练模型下载地址</h2><p><a target="_blank" rel="noopener" href="https://wwxy.lanzouj.com/i0vm713wzb5i">蓝奏云下载地址</a></p>
+<p><a target="_blank" rel="noopener" href="https://download.csdn.net/download/ZhuanShangNiDeXin/88131966?spm=1001.2014.3001.5503">CSDN下载地址</a></p>
 
                 
             </div>
@@ -776,7 +673,7 @@ px4_add_module(
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://lightningleader.github.io/posts/17.html">https://lightningleader.github.io/posts/17.html</a>
+                    <a href="https://lightningleader.github.io/posts/28.html">https://lightningleader.github.io/posts/28.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -818,12 +715,12 @@ px4_add_module(
                                     <span class="chip bg-color">学习笔记</span>
                                 </a>
                             
-                                <a href="/tags/PX4/">
-                                    <span class="chip bg-color">PX4</span>
+                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">机器学习</span>
                                 </a>
                             
-                                <a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/">
-                                    <span class="chip bg-color">无人机</span>
+                                <a href="/tags/opencv/">
+                                    <span class="chip bg-color">opencv</span>
                                 </a>
                             
                         </div>
@@ -1132,29 +1029,30 @@ px4_add_module(
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/posts/18.html">
+                <a href="/posts/28.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="【MindSpore】简单使用Resnet50实现狗狼图片分类">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="基于opencv与机器学习的摄像头实时识别数字">
                         
-                        <span class="card-title">【MindSpore】简单使用Resnet50实现狗狼图片分类</span>
+                        <span class="card-title">基于opencv与机器学习的摄像头实时识别数字</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            【MindSpore】简单使用Resnet50实现狗狼图片分类
+                            基于opencv与机器学习的摄像头实时识别数字
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-15
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -1163,19 +1061,20 @@ px4_add_module(
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">深度学习</span>
-                    </a>
                     
                     <a href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
                         <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/MindSpore/">
-                        <span class="chip bg-color">MindSpore</span>
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                    <a href="/tags/opencv/">
+                        <span class="chip bg-color">opencv</span>
                     </a>
                     
                 </div>
@@ -1189,24 +1088,24 @@ px4_add_module(
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/posts/16.html">
+                <a href="/posts/27.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="PX4飞控-自定义发送MavLink消息">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="SUSTechPOINTS三维点云标注工具使用">
                         
-                        <span class="card-title">PX4飞控-自定义发送MavLink消息</span>
+                        <span class="card-title">SUSTechPOINTS三维点云标注工具使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            PX4飞控-自定义发送MavLink消息
+                            SUSTechPOINTS三维点云标注工具使用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-06-09
                             </span>
                         <span class="publish-author">
                             
@@ -1223,12 +1122,12 @@ px4_add_module(
                         <span class="chip bg-color">学习笔记</span>
                     </a>
                     
-                    <a href="/tags/PX4/">
-                        <span class="chip bg-color">PX4</span>
+                    <a href="/tags/%E4%B8%89%E7%BB%B4%E7%82%B9%E4%BA%91/">
+                        <span class="chip bg-color">三维点云</span>
                     </a>
                     
-                    <a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/">
-                        <span class="chip bg-color">无人机</span>
+                    <a href="/tags/%E4%B8%89%E7%BB%B4%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8B/">
+                        <span class="chip bg-color">三维目标检测</span>
                     </a>
                     
                 </div>

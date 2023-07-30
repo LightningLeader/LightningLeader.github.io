@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>基于opencv与机器学习的摄像头实时识别数字</title>
+      <link href="posts/28.html"/>
+      <url>posts/28.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="基于opencv与机器学习的摄像头实时识别数字"><a href="#基于opencv与机器学习的摄像头实时识别数字" class="headerlink" title="基于opencv与机器学习的摄像头实时识别数字"></a>基于opencv与机器学习的摄像头实时识别数字</h1><a id="more"></a><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>使用摄像头实时识别数字算是目标检测任务，总体上分为两步，第一步是检测到数字卡片的位置，第二步是对检测到的数字卡片进行分类以确定其是哪个数字。在第一步中主要涉及opencv的相关功能，第二步则使用机器学习的方式进行分类。</p><h2 id="一、使用opencv捕捉（检测）数字卡片"><a href="#一、使用opencv捕捉（检测）数字卡片" class="headerlink" title="一、使用opencv捕捉（检测）数字卡片"></a>一、使用opencv捕捉（检测）数字卡片</h2><p>重点操作是使用轮廓查找函数，获取数字卡片的外轮廓。</p><p><strong>在获取轮廓前的图像预处理步骤需要根据自己的实际应用场景进行调整。</strong></p><pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2import imutils# 开启外接摄像头cap &#x3D; cv2.VideoCapture(1)rectKernel &#x3D; cv2.getStructuringElement(cv2.MORPH_RECT, (11, 11))while True:    flag, frame &#x3D; cap.read()    if frame is None:        continue    if flag is True:        frame_copy &#x3D; frame.copy()        frame_copy_2 &#x3D; frame.copy()        frame_copy_3 &#x3D; frame.copy()        # 自动阈值处理        frame_gray &#x3D; cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)        frame_ths &#x3D; cv2.threshold(frame_gray, 0, 255, cv2.THRESH_BINARY_INV|cv2.THRESH_OTSU)[1]        # 闭操作        img_closed &#x3D; cv2.morphologyEx(frame_ths, cv2.MORPH_CLOSE, rectKernel)        # canny边缘检测；这里使用的imutils包，也可以使用opencv自带的canny        temp &#x3D; imutils.auto_canny(img_closed)        # 轮廓查找        contours, hierarchy &#x3D; cv2.findContours(temp, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)        # 计算轮廓        for index, c in enumerate(contours):            area &#x3D; cv2.contourArea(c)            x, y, w, h &#x3D; cv2.boundingRect(c)            # 通过判断轮廓的外接矩形面积确定数字卡片的轮廓，实现过滤功能            if area &gt; 10000:                # img_out &#x3D; cv2.drawContours(frame_copy, contours, index, (0, 0, 255), 2)                img_out &#x3D; cv2.rectangle(frame_copy, (x, y), (x + w, y + h), (0, 0, 255), 2)        cv2.imshow(&quot;ths&quot;, frame_ths)        cv2.imshow(&quot;canny&quot;, temp)        cv2.imshow(&quot;closed&quot;, img_closed)        cv2.imshow(&quot;lun kuo&quot;, frame_copy)        if cv2.waitKey(1) &amp; 0xFF &#x3D;&#x3D; 27:            cap.release()            cv2.destroyAllWindows()            break<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>效果图如下：</p><img src="/posts/28/1.png" alt="1" style="zoom:50%;"><h2 id="二、制作数据集"><a href="#二、制作数据集" class="headerlink" title="二、制作数据集"></a>二、制作数据集</h2><p>在获取数字卡片轮廓的基础上，保存轮廓区域内的图片信息作为基础数据集。为了方便保存，可以使用<strong>pynput</strong>包完成键盘监控功能，按下一次回车即拍摄一张。</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">from pynput.keyboard import Key, Listenerimport cv2import imutils# 按键获取数据集global res_imgcounts &#x3D; 0    # 图片计数def on_press(key):    global counts    # 回车触发    if key &#x3D;&#x3D; Key.enter:        # 保存图片路径        cv2.imwrite(f&quot;1&#x2F;1_&#123;counts&#125;.png&quot;, res_img)        counts +&#x3D; 1        print(f&quot;Save sucess &#123;counts&#125;&quot;)# 开启键盘监听listener &#x3D; Listener(on_press&#x3D;on_press)listener.start()cap &#x3D; cv2.VideoCapture(1)rectKernel &#x3D; cv2.getStructuringElement(cv2.MORPH_RECT, (11, 11))while True:    flag, frame &#x3D; cap.read()    if frame is None:        continue    if flag is True:        frame_copy &#x3D; frame.copy()        frame_copy_2 &#x3D; frame.copy()        # 自动阈值处理        frame_gray &#x3D; cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)        frame_ths &#x3D; cv2.threshold(frame_gray, 0, 255, cv2.THRESH_BINARY_INV|cv2.THRESH_OTSU)[1]        # 闭操作        img_closed &#x3D; cv2.morphologyEx(frame_ths, cv2.MORPH_CLOSE, rectKernel)        # canny边缘检测        temp &#x3D; imutils.auto_canny(img_closed)        # 轮廓查找        contours, hierarchy &#x3D; cv2.findContours(temp, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)        # 计算轮廓        for index, c in enumerate(contours):            area &#x3D; cv2.contourArea(c)            x, y, w, h &#x3D; cv2.boundingRect(c)            if area &gt; 10000:                img_out &#x3D; cv2.rectangle(frame_copy, (x, y), (x + w, y + h), (0, 0, 255), 2)                # 获取轮廓区域的图像                res_img &#x3D; frame_copy_2[y:y+h, x:x+w]        cv2.imshow(&quot;lun kuo&quot;, frame_copy)        if cv2.waitKey(1) &amp; 0xFF &#x3D;&#x3D; 27:            cap.release()            cv2.destroyAllWindows()            listener.stop()            break<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>每一个数字都要拍摄多张不同角度的图片，这个数据集的拍摄质量将影响最终识别的效果，所以拍摄时需要考虑实际的应用场景。</strong></p><p>保存后的图片应该如下图所示。</p><img src="/posts/28/2.png" alt="2" style="zoom:50%;"><p>拍摄完之后，最好再对数据集进行数据增强，以扩充数据集，提高模型的训练效果。</p><p>使用<strong>albumentations</strong>包进行数据增强，其具体的使用方式可以去<a href="https://albumentations.ai/docs/">Albumentations Documentation</a>查看。</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">import albumentations as Aimport cv2import os# 设置需要使用的数据增强方式transform &#x3D; A.Compose([    A.Resize(height&#x3D;128, width&#x3D;128),    # 图片缩放    A.Rotate(limit&#x3D;[-70, 70], p&#x3D;0.5),   # 随机旋转    A.RandomBrightnessContrast(p&#x3D;0.3),  # 随机亮度对比度])# 遍历每一个数字文件夹for i in range(1, 9):    # 图片计数    counts &#x3D; 0    img_list &#x3D; os.listdir(f&quot;data&#x2F;&#123;i&#125;&quot;)    for temp in img_list:        image &#x3D; cv2.imread(f&quot;data&#x2F;&#123;i&#125;&#x2F;&#123;temp&#125;&quot;)        image &#x3D; cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)        transformed &#x3D; transform(image&#x3D;image)[&#39;image&#39;]        # 保存数据增强后的图片        cv2.imwrite(f&quot;data&#x2F;&#123;i&#125;&#x2F;&#123;i&#125;_&#123;counts&#125;.png&quot;, transformed)        counts +&#x3D; 1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>在数据增强后，每个数字的数据集为220张。</p><h2 id="三、使用sklearn建立机器学习模型实现数字分类"><a href="#三、使用sklearn建立机器学习模型实现数字分类" class="headerlink" title="三、使用sklearn建立机器学习模型实现数字分类"></a>三、使用sklearn建立机器学习模型实现数字分类</h2><p>常用的机器学习分类模型有KNN和SVM等，可以都试一下，选择效果最好的一个。</p><p><strong>首先需要对数据集进行预处理</strong></p><pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2import osimport numpy as npfrom sklearn.model_selection import train_test_splitfrom sklearn.decomposition import PCAimport joblibX_img &#x3D; []    # 用于存放图片信息y_img &#x3D; []    # 用于存放标签（label）信息# 遍历加载数据集for i in range(1, 9):    img_list &#x3D; os.listdir(f&quot;data&#x2F;&#123;i&#125;&quot;)    for temp in img_list:        image &#x3D; cv2.imread(f&quot;data&#x2F;&#123;i&#125;&#x2F;&#123;temp&#125;&quot;)        image &#x3D; cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)        image &#x3D; cv2.resize(image, (128, 128))        X_img.append(image)        y_img.append(i)# 转换成二维数组   (1758, 128, 128) &#x3D;&#x3D;&gt; (1758, 16384)X_img &#x3D; np.array(X_img).reshape(len(X_img), -1)y_img &#x3D; np.array(y_img)print(X_img.shape)print(y_img.shape)# 划分数据集X_train, X_test, y_train, y_test &#x3D; train_test_split(X_img, y_img, test_size&#x3D;0.2)# PCA降维 可以降低计算量，提高训练速度，减小模型大小transfer &#x3D; PCA(n_components&#x3D;300)X_train &#x3D; transfer.fit_transform(X_train)X_test &#x3D; transfer.transform(X_test)print(X_train.shape)print(X_test.shape)# 保存PCA降维信息，后续在实时预测时会使用到该信息joblib.dump(transfer, &#39;pca_model.joblib&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>之后建立SVM分类模型并进行训练和测试。</strong></p><pre class="line-numbers language-python" data-language="python"><code class="language-python">from sklearn.svm import SVCfrom sklearn.metrics import accuracy_score# 建立svm分类器svm &#x3D; SVC(kernel&#x3D;&#39;linear&#39;)# 使用训练数据来训练SVM分类器svm.fit(X_train, y_train)# 使用测试数据进行预测y_pred &#x3D; svm.predict(X_test)# 计算准确率accuracy &#x3D; accuracy_score(y_test, y_pred)# 最终准确率为0.9573863636363636print(&quot;Accuracy:&quot;, accuracy)# 保存训练好的模型joblib.dump(svm, &#39;svm_model_PCA300.joblib&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>最后进行单张图片预测，查看预测效果。</strong></p><pre class="line-numbers language-python" data-language="python"><code class="language-python">import joblibimport cv2# 加载SVM分类模型loaded_svm &#x3D; joblib.load(&#39;svm_model_PCA300.joblib&#39;)# 加载PCA降维模型loaded_pca &#x3D; joblib.load(&#39;pca_model.joblib&#39;)# 读取图片并进行预处理img &#x3D; cv2.imread(&quot;data&#x2F;4&#x2F;4_39.png&quot;)img &#x3D; cv2.resize(img, (128, 128))img &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)temp &#x3D; img.reshape(1, -1)# PCA降维，保证格式与训练数据相同temp &#x3D; loaded_pca.transform(temp)print(temp.shape)y_new_pred &#x3D; loaded_svm.predict(temp)# 输出预测结果print(&quot;Predictions for new data:&quot;, y_new_pred)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h2 id="四、摄像头实时预测"><a href="#四、摄像头实时预测" class="headerlink" title="四、摄像头实时预测"></a>四、摄像头实时预测</h2><p>将前面的部分结合起来就可以实现摄像头实时预测的任务了。</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">import cv2import imutilsfrom pynput.keyboard import Key, Listenerimport joblib# 加载SVM和PCA模型loaded_svm &#x3D; joblib.load(&#39;svm_model_PCA300.joblib&#39;)loaded_pca &#x3D; joblib.load(&#39;pca_model.joblib&#39;)# 显示字体配置font &#x3D; cv2.FONT_HERSHEY_SIMPLEXfont_scale &#x3D; 1font_thickness &#x3D; 2color &#x3D; (0, 255, 0)cap &#x3D; cv2.VideoCapture(1)rectKernel &#x3D; cv2.getStructuringElement(cv2.MORPH_RECT, (11, 11))while True:    flag, frame &#x3D; cap.read()    if frame is None:        continue    if flag is True:        frame_copy &#x3D; frame.copy()        frame_copy_2 &#x3D; frame.copy()        # 自动阈值处理        frame_gray &#x3D; cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)        frame_ths &#x3D; cv2.threshold(frame_gray, 0, 255, cv2.THRESH_BINARY_INV|cv2.THRESH_OTSU)[1]        # 闭操作        img_closed &#x3D; cv2.morphologyEx(frame_ths, cv2.MORPH_CLOSE, rectKernel)        # canny边缘检测        temp &#x3D; imutils.auto_canny(img_closed)        # 轮廓查找        contours, hierarchy &#x3D; cv2.findContours(temp, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)        # 计算轮廓        for index, c in enumerate(contours):            area &#x3D; cv2.contourArea(c)            x, y, w, h &#x3D; cv2.boundingRect(c)            if area &gt; 10000:                img_out &#x3D; cv2.rectangle(frame_copy, (x, y), (x + w, y + h), (0, 0, 255), 2)                res_img &#x3D; frame_copy_2[y:y+h, x:x+w]                # 图像预处理                img &#x3D; cv2.resize(res_img, (128, 128))                img &#x3D; cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)                temp &#x3D; img.reshape(1, -1)                # PCA降维                temp &#x3D; loaded_pca.transform(temp)                y_new_pred &#x3D; loaded_svm.predict(temp)                cv2.putText(frame_copy, f&quot;Pred: &#123;y_new_pred&#125;&quot;, (int(x), int(y)),                            font, font_scale, color, font_thickness)        cv2.imshow(&quot;lun kuo&quot;, frame_copy)        if cv2.waitKey(1) &amp; 0xFF &#x3D;&#x3D; 27:            cap.release()            cv2.destroyAllWindows()            break<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><img src="/posts/28/3.png" alt="3" style="zoom:50%;"><h2 id="五、完整的代码、数据集和训练模型下载地址"><a href="#五、完整的代码、数据集和训练模型下载地址" class="headerlink" title="五、完整的代码、数据集和训练模型下载地址"></a>五、完整的代码、数据集和训练模型下载地址</h2><p><a href="https://wwxy.lanzouj.com/i0vm713wzb5i">蓝奏云下载地址</a></p><p><a href="https://download.csdn.net/download/ZhuanShangNiDeXin/88131966?spm=1001.2014.3001.5503">CSDN下载地址</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 学习笔记 </tag>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> opencv </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SUSTechPOINTS三维点云标注工具使用</title>
       <link href="posts/27.html"/>
       <url>posts/27.html</url>
@@ -343,9 +366,9 @@
       
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> 教程 </tag>
             
             <tag> 图像处理 </tag>
             
@@ -368,9 +391,9 @@
       
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> 教程 </tag>
             
             <tag> 图像处理 </tag>
             
@@ -458,9 +481,9 @@
       
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> 教程 </tag>
             
             <tag> 图像处理 </tag>
             
@@ -506,9 +529,9 @@
       
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> 教程 </tag>
             
             <tag> 树莓派 </tag>
             
@@ -529,9 +552,9 @@
       
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> 教程 </tag>
             
             <tag> 树莓派 </tag>
             
@@ -596,9 +619,9 @@
       
         <tags>
             
-            <tag> 教程 </tag>
-            
             <tag> 学习笔记 </tag>
+            
+            <tag> 教程 </tag>
             
         </tags>
       
