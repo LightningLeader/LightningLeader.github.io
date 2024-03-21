@@ -368,17 +368,17 @@
             <div id="articleContent">
                 <h1 id="【python-sc2】详细解析！！！手把手教你学会实现星际争霸2游戏AI智能体的基础知识！！！"><a href="#【python-sc2】详细解析！！！手把手教你学会实现星际争霸2游戏AI智能体的基础知识！！！" class="headerlink" title="【python-sc2】详细解析！！！手把手教你学会实现星际争霸2游戏AI智能体的基础知识！！！"></a>【python-sc2】详细解析！！！手把手教你学会实现星际争霸2游戏AI智能体的基础知识！！！</h1><a id="more"></a>
 
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><h2 id="星际争霸2-AI机器人网站"><a href="#星际争霸2-AI机器人网站" class="headerlink" title="星际争霸2 AI机器人网站"></a>星际争霸2 AI机器人网站</h2><p><a target="_blank" rel="noopener" href="https://sc2ai.net/">AI天梯</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><h3 id="星际争霸2-AI机器人网站"><a href="#星际争霸2-AI机器人网站" class="headerlink" title="星际争霸2 AI机器人网站"></a>星际争霸2 AI机器人网站</h3><p><a target="_blank" rel="noopener" href="https://sc2ai.net/">AI天梯</a></p>
 <p><a target="_blank" rel="noopener" href="https://wiki.sc2ai.net/Main_Page">sc2ai_wiki文档</a></p>
 <ul>
 <li>该网站包含基于各种语言编写的sc2库，包括C++、Python、C#、JAVA等。其中，Python有<a target="_blank" rel="noopener" href="https://github.com/BurnySc2/python-sc2">Python-sc2</a>、<a target="_blank" rel="noopener" href="https://github.com/DrInfy/sharpy-sc2">sharpy-sc2</a>和<a target="_blank" rel="noopener" href="https://github.com/google-deepmind/pysc2">PySC2</a>三种框架。此外，针对每个框架提供了教程。</li>
 </ul>
 <p><a target="_blank" rel="noopener" href="https://burnysc2.github.io/python-sc2/docs/index.html">python-sc2官方文档</a></p>
-<h2 id="各种族单位名称-科技树"><a href="#各种族单位名称-科技树" class="headerlink" title="各种族单位名称/科技树"></a>各种族单位名称/科技树</h2><p><a target="_blank" rel="noopener" href="https://liquipedia.net/starcraft2/Protoss_Units_(Legacy_of_the_Void)">【神族】单位名称/科技树</a></p>
+<h3 id="各种族单位名称-科技树"><a href="#各种族单位名称-科技树" class="headerlink" title="各种族单位名称/科技树"></a>各种族单位名称/科技树</h3><p><a target="_blank" rel="noopener" href="https://liquipedia.net/starcraft2/Protoss_Units_(Legacy_of_the_Void)">【神族】单位名称/科技树</a></p>
 <p><a target="_blank" rel="noopener" href="https://liquipedia.net/starcraft2/Terran_Units_(Legacy_of_the_Void)">【人族】单位名称/科技树</a></p>
 <p><a target="_blank" rel="noopener" href="https://liquipedia.net/starcraft2/Zerg_Units_(Legacy_of_the_Void)">【虫族】单位名称/科技树</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/608744987?utm_id=0">星际争霸2单位、建筑及其外号整理</a></p>
-<h1 id="python-sc2"><a href="#python-sc2" class="headerlink" title="python-sc2"></a>python-sc2</h1><h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><ol>
+<h2 id="python-sc2"><a href="#python-sc2" class="headerlink" title="python-sc2"></a>python-sc2</h2><h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><ol>
 <li><p>pip install –upgrade burnysc2</p>
 </li>
 <li><p>下载游戏地图Maps</p>
@@ -386,7 +386,7 @@
 <li><p>安装环境中，找到sc2文件夹中paths.py，比如安装在conda环境中，其目录为“D:\anaconda3\envs\pytorch2.1\Lib\site-packages\sc2”。修改paths.py 中windows运行目录“C:/Program Files (x86)/StarCraft II”（默认路径）为自己的游戏路径“D:/Game/StarCraft II”。</p>
 </li>
 </ol>
-<h2 id="简单测试"><a href="#简单测试" class="headerlink" title="简单测试"></a>简单测试</h2><p>运行代码。（第一次运行之前可能需要自己从战网启动一次游戏？）</p>
+<h3 id="简单测试"><a href="#简单测试" class="headerlink" title="简单测试"></a>简单测试</h3><p>运行代码。（第一次运行之前可能需要自己从战网启动一次游戏？）</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">from sc2 import maps
 from sc2.player import Bot, Computer
 from sc2.main import run_game
@@ -409,7 +409,7 @@ run_game(
     )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>出现下图所示的游戏窗口。</p>
 <p><img src="/posts/30/1.png" alt="img"></p>
-<h2 id="可直接获取的游戏数据"><a href="#可直接获取的游戏数据" class="headerlink" title="可直接获取的游戏数据"></a>可直接获取的游戏数据</h2><h3 id="数据种类"><a href="#数据种类" class="headerlink" title="数据种类"></a>数据种类</h3><p><strong>自己的信息</strong></p>
+<h3 id="可直接获取的游戏数据"><a href="#可直接获取的游戏数据" class="headerlink" title="可直接获取的游戏数据"></a>可直接获取的游戏数据</h3><h4 id="数据种类"><a href="#数据种类" class="headerlink" title="数据种类"></a>数据种类</h4><p><strong>自己的信息</strong></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"># Resources and supply
 self.minerals: int    # 晶体矿
 self.vespene: int    # 高能瓦斯
@@ -478,7 +478,7 @@ self.state: GameState
 self.realtime: bool # Displays if the game was started in realtime or not. In realtime, your bot only has limited time to execute on_step()
 self.time: float # 现在的游戏时间，单位为秒.（13.928571428571429）
 self.time_formatted: str # 现在的游戏实践，格式为“分:秒”。（00:14）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="读取方式"><a href="#读取方式" class="headerlink" title="读取方式"></a>读取方式</h3><ol>
+<h4 id="读取方式"><a href="#读取方式" class="headerlink" title="读取方式"></a>读取方式</h4><ol>
 <li>对于Units类型的数据，可以使用UnitTypeId来查询指定单位的数据。</li>
 </ol>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">from sc2 import maps
@@ -526,7 +526,7 @@ run_game(
     [Bot(Race.Protoss, WorkerRushBot()), Computer(Race.Protoss, Difficulty.Easy)],
     realtime&#x3D;True
     )<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h2><h3 id="bot-ai-py"><a href="#bot-ai-py" class="headerlink" title="bot_ai.py"></a>bot_ai.py</h3><h4 id="already-pending（BotAI类）"><a href="#already-pending（BotAI类）" class="headerlink" title="already_pending（BotAI类）"></a>already_pending（BotAI类）</h4><p>输入：unit_type: Union[UpgradeId, UnitTypeId]</p>
+<h3 id="函数解析"><a href="#函数解析" class="headerlink" title="函数解析"></a>函数解析</h3><h4 id="bot-ai-py"><a href="#bot-ai-py" class="headerlink" title="bot_ai.py"></a>bot_ai.py</h4><h5 id="already-pending（BotAI类）"><a href="#already-pending（BotAI类）" class="headerlink" title="already_pending（BotAI类）"></a>already_pending（BotAI类）</h5><p>输入：unit_type: Union[UpgradeId, UnitTypeId]</p>
 <p>输出：float</p>
 <p><strong>输入为UnitTypeId的情况</strong></p>
 <p>返回一些已在进行中的建筑或单元，或者如果工人正在建造它。这还包括工人的排队订单和建筑的建造队列。</p>
@@ -541,7 +541,7 @@ print(f&quot;amount_of_scv_in_production: &#123;self.already_pending(UnitTypeId.
 </ul>
 <p><strong>输入为Upgradeld的情况</strong></p>
 <p>与already_pending_upgrade函数相同。</p>
-<h4 id="already-pending-upgrade（BotAI类）"><a href="#already-pending-upgrade（BotAI类）" class="headerlink" title="already_pending_upgrade（BotAI类）"></a>already_pending_upgrade（BotAI类）</h4><p>输入：upgrade_type: UpgradeId</p>
+<h5 id="already-pending-upgrade（BotAI类）"><a href="#already-pending-upgrade（BotAI类）" class="headerlink" title="already_pending_upgrade（BotAI类）"></a>already_pending_upgrade（BotAI类）</h5><p>输入：upgrade_type: UpgradeId</p>
 <p>输出：float</p>
 <p>检查某项技术研发升级的状态。</p>
 <ul>
@@ -552,7 +552,7 @@ print(f&quot;amount_of_scv_in_production: &#123;self.already_pending(UnitTypeId.
 <p>例如：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"># 检查“传送门”的研发状态。
 print(f&quot;warpgate_research_status: &#123;self.already_pending_upgrade(UpgradeId.WARPGATERESEARCH)&#125;&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4 id="is-visible（BotAI类）"><a href="#is-visible（BotAI类）" class="headerlink" title="is_visible（BotAI类）"></a>is_visible（BotAI类）</h4><p>输入：pos: Union[Point2, Unit]</p>
+<h5 id="is-visible（BotAI类）"><a href="#is-visible（BotAI类）" class="headerlink" title="is_visible（BotAI类）"></a>is_visible（BotAI类）</h5><p>输入：pos: Union[Point2, Unit]</p>
 <p>输出：bool</p>
 <p><strong>输入为Point2</strong></p>
 <p>如果你拥有该网格点的视野，那么函数返回True。</p>
@@ -562,44 +562,44 @@ print(f&quot;warpgate_research_status: &#123;self.already_pending_upgrade(Upgrad
 print(f&quot;enemy_start_locations: &#123;self.is_visible(self.enemy_start_locations[0])&#125;&quot;)
 # 单位
 print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="unit-py"><a href="#unit-py" class="headerlink" title="unit.py"></a>unit.py</h3><h4 id="attack（Unit类）"><a href="#attack（Unit类）" class="headerlink" title="attack（Unit类）"></a>attack（Unit类）</h4><p>输入：Union[Unit, Point2]；queue: bool = False</p>
+<h4 id="unit-py"><a href="#unit-py" class="headerlink" title="unit.py"></a>unit.py</h4><h5 id="attack（Unit类）"><a href="#attack（Unit类）" class="headerlink" title="attack（Unit类）"></a>attack（Unit类）</h5><p>输入：Union[Unit, Point2]；queue: bool = False</p>
 <p>输出：Union[UnitCommand, bool]</p>
 <p>命令部队攻击。攻击目标可以是单位或者位置。</p>
 <p><strong>输入为Point2</strong></p>
 <p>如果是攻击一个位置，则会使部队移动到那里，并攻击途中的一切。</p>
 <p><strong>输入为Unit</strong></p>
 <p>如果是攻击一个单位，则会使部队攻击那个单位。但游戏单位貌似有自动攻击周围敌人的默认指令，因此在攻击完单位后还会进行自动攻击。 </p>
-<h4 id="move（Unit类）"><a href="#move（Unit类）" class="headerlink" title="move（Unit类）"></a>move（Unit类）</h4><p>输入：position: Union[Unit, Point2]；queue: bool = False</p>
+<h5 id="move（Unit类）"><a href="#move（Unit类）" class="headerlink" title="move（Unit类）"></a>move（Unit类）</h5><p>输入：position: Union[Unit, Point2]；queue: bool = False</p>
 <p>输出：Union[UnitCommand, bool]</p>
 <p>命令单位移动。</p>
 <p><strong>输入为Unit</strong></p>
 <p>如果输入是单位，则会跟随该单位或前往该单位所在的位置。</p>
 <p><strong>输入为Point2</strong></p>
 <p>如果输入是目标点，则会移动到目标点。</p>
-<h4 id="tag（Unit类）"><a href="#tag（Unit类）" class="headerlink" title="tag（Unit类）"></a>tag（Unit类）</h4><p>输出：int</p>
+<h5 id="tag（Unit类）"><a href="#tag（Unit类）" class="headerlink" title="tag（Unit类）"></a>tag（Unit类）</h5><p>输出：int</p>
 <p>返回该单位特殊的标签值。</p>
 <p>这个标签值可以看作是游戏中每个单位（包括建筑）的特殊标签或标号，是独一无二的。</p>
-<h4 id="is-moving（Unit类）"><a href="#is-moving（Unit类）" class="headerlink" title="is_moving（Unit类）"></a>is_moving（Unit类）</h4><p>输出：bool</p>
+<h5 id="is-moving（Unit类）"><a href="#is-moving（Unit类）" class="headerlink" title="is_moving（Unit类）"></a>is_moving（Unit类）</h5><p>输出：bool</p>
 <p>检查自己的某个单位是否正在移动。</p>
-<h4 id="is-attacking（Unit类）"><a href="#is-attacking（Unit类）" class="headerlink" title="is_attacking（Unit类）"></a>is_attacking（Unit类）</h4><p>输出：bool</p>
+<h5 id="is-attacking（Unit类）"><a href="#is-attacking（Unit类）" class="headerlink" title="is_attacking（Unit类）"></a>is_attacking（Unit类）</h5><p>输出：bool</p>
 <p>检查自己的某个单位是否正在攻击。</p>
-<h4 id="is-idel（Unit类）"><a href="#is-idel（Unit类）" class="headerlink" title="is_idel（Unit类）"></a>is_idel（Unit类）</h4><p>输出：bool</p>
+<h5 id="is-idel（Unit类）"><a href="#is-idel（Unit类）" class="headerlink" title="is_idel（Unit类）"></a>is_idel（Unit类）</h5><p>输出：bool</p>
 <p>检查自己的某个单位是否正在空闲。</p>
-<h4 id="health（Unit类）"><a href="#health（Unit类）" class="headerlink" title="health（Unit类）"></a>health（Unit类）</h4><p>输出：float</p>
+<h5 id="health（Unit类）"><a href="#health（Unit类）" class="headerlink" title="health（Unit类）"></a>health（Unit类）</h5><p>输出：float</p>
 <p>返回单位的当前生命值。不包括护盾。</p>
-<h4 id="health-max（Unit类）"><a href="#health-max（Unit类）" class="headerlink" title="health_max（Unit类）"></a>health_max（Unit类）</h4><p>输出：float</p>
+<h5 id="health-max（Unit类）"><a href="#health-max（Unit类）" class="headerlink" title="health_max（Unit类）"></a>health_max（Unit类）</h5><p>输出：float</p>
 <p>返回单位的最大生命值。不包括护盾。</p>
-<h4 id="health-percentage-（Unit类）"><a href="#health-percentage-（Unit类）" class="headerlink" title="health_percentage （Unit类）"></a>health_percentage （Unit类）</h4><p>输出：float  范围[0-1.0]</p>
+<h5 id="health-percentage-（Unit类）"><a href="#health-percentage-（Unit类）" class="headerlink" title="health_percentage （Unit类）"></a>health_percentage （Unit类）</h5><p>输出：float  范围[0-1.0]</p>
 <p>返回单位的当前生命值百分比。不包括护盾。</p>
-<h4 id="shield（Unit类）"><a href="#shield（Unit类）" class="headerlink" title="shield（Unit类）"></a>shield（Unit类）</h4><p>输出：float</p>
+<h5 id="shield（Unit类）"><a href="#shield（Unit类）" class="headerlink" title="shield（Unit类）"></a>shield（Unit类）</h5><p>输出：float</p>
 <p>返回单位的当前护盾值。对于非神族单位，返回0。</p>
-<h4 id="shield-max（Unit类）"><a href="#shield-max（Unit类）" class="headerlink" title="shield_max（Unit类）"></a>shield_max（Unit类）</h4><p>输出：float</p>
+<h5 id="shield-max（Unit类）"><a href="#shield-max（Unit类）" class="headerlink" title="shield_max（Unit类）"></a>shield_max（Unit类）</h5><p>输出：float</p>
 <p>返回单位的最大护盾值。对于非神族单位，返回0。</p>
-<h4 id="shield-percentage（Unit类）"><a href="#shield-percentage（Unit类）" class="headerlink" title="shield_percentage（Unit类）"></a>shield_percentage（Unit类）</h4><p>输出：float  范围[0-1.0]</p>
+<h5 id="shield-percentage（Unit类）"><a href="#shield-percentage（Unit类）" class="headerlink" title="shield_percentage（Unit类）"></a>shield_percentage（Unit类）</h5><p>输出：float  范围[0-1.0]</p>
 <p>返回单位的当前护盾值百分比。对于非神族单位，返回0。</p>
-<h4 id="shield-health-percentage（Unit类）"><a href="#shield-health-percentage（Unit类）" class="headerlink" title="shield_health_percentage（Unit类）"></a>shield_health_percentage（Unit类）</h4><p>输出：float</p>
+<h5 id="shield-health-percentage（Unit类）"><a href="#shield-health-percentage（Unit类）" class="headerlink" title="shield_health_percentage（Unit类）"></a>shield_health_percentage（Unit类）</h5><p>输出：float</p>
 <p>返回单位拥有的护盾+生命值的百分比。</p>
-<h3 id="units-py"><a href="#units-py" class="headerlink" title="units.py"></a>units.py</h3><h4 id="idle（Units类）"><a href="#idle（Units类）" class="headerlink" title="idle（Units类）"></a>idle（Units类）</h4><p>输入：position: Union[Unit, Point2], queue: bool = False</p>
+<h4 id="units-py"><a href="#units-py" class="headerlink" title="units.py"></a>units.py</h4><h5 id="idle（Units类）"><a href="#idle（Units类）" class="headerlink" title="idle（Units类）"></a>idle（Units类）</h5><p>输入：position: Union[Unit, Point2], queue: bool = False</p>
 <p>输出：Units</p>
 <p>返回所有空闲的单位或者建筑。（单位处于站着，建筑没有做任何事）</p>
 <p>例如：</p>
@@ -607,19 +607,19 @@ print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<
 <p>如果狂热者在移动或攻击，就不算空闲。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">if self.units(UnitTypeId.ZEALOT).amount &gt; 0:
     print(f&quot;self.units(UnitTypeId.ZEALOT).idle: &#123;self.units(UnitTypeId.ZEALOT).idle&#125;&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h4 id="closest-to（Units类）"><a href="#closest-to（Units类）" class="headerlink" title="closest_to（Units类）"></a>closest_to（Units类）</h4><p>输入：Union[Unit, Point2]</p>
+<h5 id="closest-to（Units类）"><a href="#closest-to（Units类）" class="headerlink" title="closest_to（Units类）"></a>closest_to（Units类）</h5><p>输入：Union[Unit, Point2]</p>
 <p>输出：Unit</p>
 <p>返回距离输出位置或单位最近的单位。</p>
-<h4 id="of-type（Units类）"><a href="#of-type（Units类）" class="headerlink" title="of_type（Units类）"></a>of_type（Units类）</h4><p>输入：Union[UnitTypeId, Iterable[UnitTypeId]]</p>
+<h5 id="of-type（Units类）"><a href="#of-type（Units类）" class="headerlink" title="of_type（Units类）"></a>of_type（Units类）</h5><p>输入：Union[UnitTypeId, Iterable[UnitTypeId]]</p>
 <p>输出：Units</p>
 <p>过滤特定类型的所有单位。</p>
-<h3 id="score-py（得分）"><a href="#score-py（得分）" class="headerlink" title="score.py（得分）"></a>score.py（得分）</h3><h4 id="self-state-score-score"><a href="#self-state-score-score" class="headerlink" title="self.state.score.score"></a>self.state.score.score</h4><p>在建和当前单位与建筑价值+矿物+vespene的总和。</p>
+<h4 id="score-py（得分）"><a href="#score-py（得分）" class="headerlink" title="score.py（得分）"></a>score.py（得分）</h4><h5 id="self-state-score-score"><a href="#self-state-score-score" class="headerlink" title="self.state.score.score"></a>self.state.score.score</h5><p>在建和当前单位与建筑价值+矿物+vespene的总和。</p>
 <p>例如，初始为1050分，如果又采集了100晶体矿，则分数变为1150。如果花100去建造水晶塔，在建过程中仍为1150，建造完毕后也是1150。如果又生产了几个狂热者，则分数也是不变的。</p>
-<h4 id="self-state-score-killed-value-units"><a href="#self-state-score-killed-value-units" class="headerlink" title="self.state.score.killed_value_units"></a>self.state.score.killed_value_units</h4><p>玩家销毁的敌方单位的矿物和瓦斯总和。例如，跳虫是25个晶体矿生产的，击杀一只跳虫后，该数值增加25.</p>
-<h4 id="self-state-score-killed-value-structures"><a href="#self-state-score-killed-value-structures" class="headerlink" title="self.state.score.killed_value_structures"></a>self.state.score.killed_value_structures</h4><p>玩家销毁的敌方建筑的矿物和瓦斯总和。</p>
-<h4 id="self-state-score-killed-minerals-army"><a href="#self-state-score-killed-minerals-army" class="headerlink" title="self.state.score.killed_minerals_army"></a>self.state.score.killed_minerals_army</h4><p>玩家销毁敌方战斗单位（不包括工人单位）的总晶体矿价值。</p>
-<h4 id="self-state-score-killed-vespene-army"><a href="#self-state-score-killed-vespene-army" class="headerlink" title="self.state.score.killed_vespene_army"></a>self.state.score.killed_vespene_army</h4><p>玩家销毁敌方战斗单位（不包括工人单位）的总高能瓦斯矿价值。</p>
-<h2 id="获取游戏数据"><a href="#获取游戏数据" class="headerlink" title="获取游戏数据"></a>获取游戏数据</h2><h3 id="get-resource"><a href="#get-resource" class="headerlink" title="get_resource"></a>get_resource</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">def get_resource(self):
+<h5 id="self-state-score-killed-value-units"><a href="#self-state-score-killed-value-units" class="headerlink" title="self.state.score.killed_value_units"></a>self.state.score.killed_value_units</h5><p>玩家销毁的敌方单位的矿物和瓦斯总和。例如，跳虫是25个晶体矿生产的，击杀一只跳虫后，该数值增加25.</p>
+<h5 id="self-state-score-killed-value-structures"><a href="#self-state-score-killed-value-structures" class="headerlink" title="self.state.score.killed_value_structures"></a>self.state.score.killed_value_structures</h5><p>玩家销毁的敌方建筑的矿物和瓦斯总和。</p>
+<h5 id="self-state-score-killed-minerals-army"><a href="#self-state-score-killed-minerals-army" class="headerlink" title="self.state.score.killed_minerals_army"></a>self.state.score.killed_minerals_army</h5><p>玩家销毁敌方战斗单位（不包括工人单位）的总晶体矿价值。</p>
+<h5 id="self-state-score-killed-vespene-army"><a href="#self-state-score-killed-vespene-army" class="headerlink" title="self.state.score.killed_vespene_army"></a>self.state.score.killed_vespene_army</h5><p>玩家销毁敌方战斗单位（不包括工人单位）的总高能瓦斯矿价值。</p>
+<h3 id="获取游戏数据"><a href="#获取游戏数据" class="headerlink" title="获取游戏数据"></a>获取游戏数据</h3><h4 id="get-resource"><a href="#get-resource" class="headerlink" title="get_resource"></a>get_resource</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">def get_resource(self):
     return &#123;
         &quot;游戏时间&quot;: self.time_formatted,
         &quot;工人数量&quot;: self.workers.amount,
@@ -632,7 +632,7 @@ print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<
         &quot;战斗单位数量&quot;: self.army_count,
         &quot;基地数量&quot;: self.townhalls.amount,
     &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="get-structures"><a href="#get-structures" class="headerlink" title="get_structures"></a>get_structures</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">def get_structures(self):
+<h4 id="get-structures"><a href="#get-structures" class="headerlink" title="get_structures"></a>get_structures</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">def get_structures(self):
     return &#123;
         &quot;已有基地数量&quot;: self.townhalls.amount,
         &quot;已有吸纳仓数量&quot;: self.structures(UnitTypeId.ASSIMILATOR).amount,
@@ -647,7 +647,7 @@ print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<
         #&quot;机械台数量&quot;: self.structures(UnitTypeId.ROBOTICSFACILITY).amount,
         #&quot;星门数量&quot;: self.structures(UnitTypeId.STARGATE).amount,
     &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="训练单位"><a href="#训练单位" class="headerlink" title="训练单位"></a>训练单位</h2><h3 id="train-Probe"><a href="#train-Probe" class="headerlink" title="train_Probe"></a>train_Probe</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def train_Probe(self):
+<h3 id="训练单位"><a href="#训练单位" class="headerlink" title="训练单位"></a>训练单位</h3><h4 id="train-Probe"><a href="#train-Probe" class="headerlink" title="train_Probe"></a>train_Probe</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def train_Probe(self):
     print(f&#39;Action &#x3D;&#x3D;&gt; 训练探机&#39;)
 
     if not self.structures(UnitTypeId.NEXUS).exists:
@@ -670,7 +670,7 @@ print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<
 
     print(&#39;所有基地都在忙碌&#39;)
     return &#39;所有基地都在忙碌&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="train-Zealot"><a href="#train-Zealot" class="headerlink" title="train_Zealot"></a>train_Zealot</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def train_Zealot(self):
+<h4 id="train-Zealot"><a href="#train-Zealot" class="headerlink" title="train_Zealot"></a>train_Zealot</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def train_Zealot(self):
     print(f&quot;Action &#x3D;&#x3D;&gt; 训练狂热者&quot;)
 
     if not self.structures(UnitTypeId.GATEWAY).exists:
@@ -699,7 +699,7 @@ print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<
                     gate.train(UnitTypeId.ZEALOT, True)
                     break
         return True<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="建造单位"><a href="#建造单位" class="headerlink" title="建造单位"></a>建造单位</h2><h3 id="build-Pylon"><a href="#build-Pylon" class="headerlink" title="build_Pylon"></a>build_Pylon</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def build_Pylon(self):
+<h3 id="建造单位"><a href="#建造单位" class="headerlink" title="建造单位"></a>建造单位</h3><h4 id="build-Pylon"><a href="#build-Pylon" class="headerlink" title="build_Pylon"></a>build_Pylon</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def build_Pylon(self):
     print(f&quot;Action &#x3D;&#x3D;&gt; 建造水晶塔&quot;)
     
     if not (self.structures(UnitTypeId.NEXUS).exists and self.units(UnitTypeId.PROBE).exists):
@@ -720,7 +720,7 @@ print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<
     else:
         print(&quot;剩余补给不足&quot;)
         return &quot;剩余补给不足&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="build-Assimilator"><a href="#build-Assimilator" class="headerlink" title="build_Assimilator"></a>build_Assimilator</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def build_Assimilator(self):
+<h4 id="build-Assimilator"><a href="#build-Assimilator" class="headerlink" title="build_Assimilator"></a>build_Assimilator</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def build_Assimilator(self):
     print(f&quot;Action &#x3D;&#x3D;&gt; 建造吸纳仓&quot;)
     
     if not (self.structures(UnitTypeId.NEXUS).exists and self.units(UnitTypeId.PROBE).exists):
@@ -751,7 +751,7 @@ print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<
     else:
         print(&quot;已经有2个气矿正在建造&quot;)
         return &quot;已经有2个气矿正在建造&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="build-Gateway"><a href="#build-Gateway" class="headerlink" title="build_Gateway"></a>build_Gateway</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def build_Gateway(self):
+<h4 id="build-Gateway"><a href="#build-Gateway" class="headerlink" title="build_Gateway"></a>build_Gateway</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def build_Gateway(self):
     print(f&quot;Action &#x3D;&#x3D;&gt; 建造传送门&quot;)
     if not self.structures(UnitTypeId.PYLON).exists:
         print(&quot;没有水晶塔&quot;)
@@ -771,7 +771,7 @@ print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<
         print(&quot;建造位置被占用&quot;)
         return &quot;建造位置被占用&quot;
     return True<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="其他动作"><a href="#其他动作" class="headerlink" title="其他动作"></a>其他动作</h2><h3 id="attack-enemy-base-all-Zeolot"><a href="#attack-enemy-base-all-Zeolot" class="headerlink" title="attack_enemy_base_all_Zeolot"></a>attack_enemy_base_all_Zeolot</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def attack_enemy_base_all_Zeolot(self):
+<h3 id="其他动作"><a href="#其他动作" class="headerlink" title="其他动作"></a>其他动作</h3><h4 id="attack-enemy-base-all-Zeolot"><a href="#attack-enemy-base-all-Zeolot" class="headerlink" title="attack_enemy_base_all_Zeolot"></a>attack_enemy_base_all_Zeolot</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def attack_enemy_base_all_Zeolot(self):
     print(f&quot;Action &#x3D;&#x3D;&gt; 全体狂热者攻击敌方基地&quot;)
     
     if not self.units(UnitTypeId.ZEALOT).exists:
@@ -785,7 +785,7 @@ print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<
     else:
         print(&quot;狂热者数量不足&quot;)
         return &quot;狂热者数量不足&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="attack-enemy-base-all-Probe"><a href="#attack-enemy-base-all-Probe" class="headerlink" title="attack_enemy_base_all_Probe"></a>attack_enemy_base_all_Probe</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def attack_enemy_base_all_Probe(self):
+<h4 id="attack-enemy-base-all-Probe"><a href="#attack-enemy-base-all-Probe" class="headerlink" title="attack_enemy_base_all_Probe"></a>attack_enemy_base_all_Probe</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def attack_enemy_base_all_Probe(self):
     print(f&quot;Action &#x3D;&#x3D;&gt; 全体狂热者攻击敌方基地&quot;)
     
     if not self.units(UnitTypeId.PROBE).exists:
@@ -794,7 +794,7 @@ print(f&quot;townhalls: &#123;self.is_visible(self.watchtowers[0])&#125;&quot;)<
 
     for probe in self.units(UnitTypeId.PROBE).idle:
         probe.attack(self.enemy_start_locations[0])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="empty-action"><a href="#empty-action" class="headerlink" title="empty_action"></a>empty_action</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def empty_action(self):
+<h4 id="empty-action"><a href="#empty-action" class="headerlink" title="empty_action"></a>empty_action</h4><pre class="line-numbers language-python" data-language="python"><code class="language-python">async def empty_action(self):
     print(f&quot;Action &#x3D;&#x3D;&gt; 空动作&quot;)
     await asyncio.sleep(0.5)
     return True<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
